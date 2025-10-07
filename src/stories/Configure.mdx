@@ -1,0 +1,433 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Getting Started/Configure Your Project" />
+
+<div className="sb-container">
+  <div className='sb-section-title'>
+    # Janovix UI Component Library
+
+    A comprehensive React UI component library built with TypeScript, Tailwind CSS, and Radix UI primitives. This Storybook provides interactive documentation and examples for all available components.
+
+  </div>
+
+  <div className="sb-section">
+    <div className="sb-section-item">
+      <div style={{
+        padding: '20px',
+        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+        borderRadius: '8px',
+        color: 'white',
+        textAlign: 'center',
+        marginBottom: '20px'
+      }}>
+        <h2 style={{ margin: 0, color: 'white' }}>✨ 20+ Components</h2>
+        <p style={{ margin: '8px 0 0 0', opacity: 0.9 }}>Comprehensive UI toolkit</p>
+      </div>
+    </div>
+    <div className="sb-section-item">
+      <div style={{
+        padding: '20px',
+        background: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+        borderRadius: '8px',
+        color: 'white',
+        textAlign: 'center',
+        marginBottom: '20px'
+      }}>
+        <h2 style={{ margin: 0, color: 'white' }}>🌙 Dark Mode</h2>
+        <p style={{ margin: '8px 0 0 0', opacity: 0.9 }}>Built-in theme support</p>
+      </div>
+    </div>
+    <div className="sb-section-item">
+      <div style={{
+        padding: '20px',
+        background: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+        borderRadius: '8px',
+        color: 'white',
+        textAlign: 'center',
+        marginBottom: '20px'
+      }}>
+        <h2 style={{ margin: 0, color: 'white' }}>♿ Accessible</h2>
+        <p style={{ margin: '8px 0 0 0', opacity: 0.9 }}>ARIA compliant components</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div className="sb-container">
+  <div className='sb-section-title'>
+    ## 🚀 Quick Start
+
+    Get up and running with Janovix UI in your React project.
+
+  </div>
+
+  <div className="sb-section">
+    <div className="sb-section-item">
+      <h4 className="sb-section-item-heading">Installation</h4>
+      <div style={{
+        background: '#f6f8fa',
+        padding: '16px',
+        borderRadius: '6px',
+        fontFamily: 'monospace',
+        fontSize: '14px',
+        border: '1px solid #e1e8ed'
+      }}>
+        npm install @janovix/ui
+      </div>
+      <p className="sb-section-item-paragraph">Install the component library via npm or yarn.</p>
+    </div>
+    <div className="sb-section-item">
+      <h4 className="sb-section-item-heading">Basic Usage</h4>
+      <div style={{
+        background: '#f6f8fa',
+        padding: '16px',
+        borderRadius: '6px',
+        fontFamily: 'monospace',
+        fontSize: '14px',
+        border: '1px solid #e1e8ed'
+      }}>
+        {`import { Button, Card } from '@janovix/ui';
+
+function App() {
+return (
+
+<Card>
+<Button>Hello World</Button>
+</Card>
+);
+}`}
+</div>
+<p className="sb-section-item-paragraph">Import and use components in your React application.</p>
+</div>
+
+  </div>
+</div>
+
+<div className="sb-container">
+  <div className='sb-section-title'>
+    ## 🏗️ Available Components
+
+    Explore our comprehensive collection of UI components organized by category.
+
+  </div>
+
+<div className="sb-section">
+  <div className="sb-section-item">
+    <h4 className="sb-section-item-heading">📐 Layout</h4>
+    <ul style={{ paddingLeft: '20px', lineHeight: '1.6' }}>
+      <li>
+        <strong>Card</strong> - Content containers
+      </li>
+      <li>
+        <strong>Aspect Ratio</strong> - Responsive ratios
+      </li>
+      <li>
+        <strong>Separator</strong> - Visual dividers
+      </li>
+      <li>
+        <strong>Sidebar</strong> - Navigation layouts
+      </li>
+    </ul>
+  </div>
+  <div className="sb-section-item">
+    <h4 className="sb-section-item-heading">🧭 Navigation</h4>
+    <ul style={{ paddingLeft: '20px', lineHeight: '1.6' }}>
+      <li>
+        <strong>Breadcrumb</strong> - Page hierarchy
+      </li>
+      <li>
+        <strong>Command</strong> - Command palette
+      </li>
+      <li>
+        <strong>Context Menu</strong> - Right-click menus
+      </li>
+      <li>
+        <strong>Dropdown Menu</strong> - Action menus
+      </li>
+      <li>
+        <strong>Navigation Menu</strong> - Site navigation
+      </li>
+    </ul>
+  </div>
+  <div className="sb-section-item">
+    <h4 className="sb-section-item-heading">📝 Forms</h4>
+    <ul style={{ paddingLeft: '20px', lineHeight: '1.6' }}>
+      <li>
+        <strong>Button</strong> - Interactive buttons
+      </li>
+      <li>
+        <strong>Input</strong> - Text inputs
+      </li>
+      <li>
+        <strong>Checkbox</strong> - Selection controls
+      </li>
+      <li>
+        <strong>Label</strong> - Form labels
+      </li>
+      <li>
+        <strong>Input OTP</strong> - One-time passwords
+      </li>
+      <li>
+        <strong>Calendar</strong> - Date selection
+      </li>
+    </ul>
+  </div>
+</div>
+
+  <div className="sb-section">
+    <div className="sb-section-item">
+      <h4 className="sb-section-item-heading">💬 Feedback</h4>
+      <ul style={{ paddingLeft: '20px', lineHeight: '1.6' }}>
+        <li><strong>Alert</strong> - Status messages</li>
+        <li><strong>Alert Dialog</strong> - Modal alerts</li>
+        <li><strong>Badge</strong> - Status indicators</li>
+        <li><strong>Avatar</strong> - User representations</li>
+        <li><strong>Chart</strong> - Data visualization</li>
+      </ul>
+    </div>
+    <div className="sb-section-item">
+      <h4 className="sb-section-item-heading">🗂️ Data Display</h4>
+      <ul style={{ paddingLeft: '20px', lineHeight: '1.6' }}>
+        <li><strong>Accordion</strong> - Collapsible content</li>
+        <li><strong>Carousel</strong> - Image galleries</li>
+        <li><strong>Collapsible</strong> - Expandable sections</li>
+        <li><strong>Hover Card</strong> - Contextual previews</li>
+      </ul>
+    </div>
+    <div className="sb-section-item">
+      <h4 className="sb-section-item-heading">🪟 Overlays</h4>
+      <ul style={{ paddingLeft: '20px', lineHeight: '1.6' }}>
+        <li><strong>Dialog</strong> - Modal dialogs</li>
+        <li><strong>Drawer</strong> - Slide-out panels</li>
+        <li><strong>Sheet</strong> - Side panels</li>
+        <li><strong>Tooltip</strong> - Helpful hints</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div className="sb-container">
+  <div className='sb-section-title'>
+    ## 🎨 Theming & Customization
+
+    Janovix UI comes with built-in dark/light mode support and extensive customization options.
+
+  </div>
+
+  <div className="sb-section">
+    <div className="sb-section-item">
+      <h4 className="sb-section-item-heading">🌙 Dark Mode</h4>
+      <p className="sb-section-item-paragraph">
+        All components automatically support dark mode through CSS variables.
+        Toggle between themes using the theme switcher in the Storybook toolbar.
+      </p>
+      <div style={{
+        background: '#f6f8fa',
+        padding: '16px',
+        borderRadius: '6px',
+        fontFamily: 'monospace',
+        fontSize: '14px',
+        border: '1px solid #e1e8ed'
+      }}>
+        {`// Apply dark theme
+document.documentElement.classList.add('dark');
+
+// Apply light theme
+document.documentElement.classList.remove('dark');`}
+      </div>
+    </div>
+    <div className="sb-section-item">
+      <h4 className="sb-section-item-heading">🎨 CSS Variables</h4>
+      <p className="sb-section-item-paragraph">
+        Customize colors and design tokens using CSS custom properties.
+        All components use semantic color variables for consistent theming.
+      </p>
+      <div style={{
+        background: '#f6f8fa',
+        padding: '16px',
+        borderRadius: '6px',
+        fontFamily: 'monospace',
+        fontSize: '14px',
+        border: '1px solid #e1e8ed'
+      }}>
+        {`:root {
+--background: 0 0% 100%;
+--foreground: 240 10% 3.9%;
+--primary: 240 5.9% 10%;
+/_ ... other variables _/
+}`}
+
+</div>
+</div>
+
+  </div>
+</div>
+
+<div className="sb-container">
+  <div className='sb-section-title'>
+    ## 🛠️ Development Setup
+
+    Set up your development environment to work with Janovix UI components.
+
+  </div>
+
+  <div className="sb-section">
+    <div className="sb-section-item">
+      <h4 className="sb-section-item-heading">📦 Tech Stack</h4>
+      <ul style={{ paddingLeft: '20px', lineHeight: '1.6' }}>
+        <li><strong>React 19</strong> - Latest React features</li>
+        <li><strong>TypeScript</strong> - Type safety</li>
+        <li><strong>Tailwind CSS</strong> - Utility-first styling</li>
+        <li><strong>Radix UI</strong> - Accessible primitives</li>
+        <li><strong>Vite</strong> - Fast development</li>
+        <li><strong>Storybook</strong> - Component development</li>
+      </ul>
+    </div>
+    <div className="sb-section-item">
+      <h4 className="sb-section-item-heading">🚀 Local Development</h4>
+      <div style={{
+        background: '#f6f8fa',
+        padding: '16px',
+        borderRadius: '6px',
+        fontFamily: 'monospace',
+        fontSize: '14px',
+        border: '1px solid #e1e8ed'
+      }}>
+        {`# Install dependencies
+npm install
+
+# Start development server
+
+npm run dev
+
+# Start Storybook
+
+npm run storybook
+
+# Build for production
+
+npm run build`}
+
+</div>
+</div>
+
+  </div>
+</div>
+
+<div className="sb-container">
+  <div className='sb-section-title'>
+    ## 🎯 Using This Storybook
+
+    Navigate through the component library using the sidebar to explore examples and documentation.
+
+  </div>
+
+  <div className="sb-section">
+    <div className="sb-section-item">
+      <h4 className="sb-section-item-heading">📖 Component Stories</h4>
+      <p className="sb-section-item-paragraph">
+        Each component has multiple stories showcasing different variants, states, and use cases.
+        Use the Controls panel to interact with component props in real-time.
+      </p>
+    </div>
+    <div className="sb-section-item">
+      <h4 className="sb-section-item-heading">🎨 Theme Switcher</h4>
+      <p className="sb-section-item-paragraph">
+        Use the theme toggle in the toolbar to switch between light and dark modes.
+        All components automatically adapt to the selected theme.
+      </p>
+    </div>
+    <div className="sb-section-item">
+      <h4 className="sb-section-item-heading">📱 Responsive Testing</h4>
+      <p className="sb-section-item-paragraph">
+        Use the viewport controls to test components at different screen sizes.
+        All components are designed with mobile-first responsive principles.
+      </p>
+    </div>
+  </div>
+</div>
+
+<div className="sb-container">
+  <div className='sb-section-title'>
+    ## 🤝 Contributing & Support
+
+    Join our community and help improve Janovix UI.
+
+  </div>
+
+  <div className="sb-section">
+    <div className="sb-section-item">
+      <h4 className="sb-section-item-heading">📝 Documentation</h4>
+      <p className="sb-section-item-paragraph">
+        Each component story includes detailed documentation, code examples,
+        and accessibility guidelines to help you implement them correctly.
+      </p>
+    </div>
+    <div className="sb-section-item">
+      <h4 className="sb-section-item-heading">🐛 Issues & Feedback</h4>
+      <p className="sb-section-item-paragraph">
+        Found a bug or have a feature request? Open an issue on our GitHub repository.
+        We welcome contributions and feedback from the community.
+      </p>
+    </div>
+    <div className="sb-section-item">
+      <h4 className="sb-section-item-heading">🚀 Getting Started</h4>
+      <p className="sb-section-item-paragraph">
+        Start by exploring the component stories in the sidebar. Each story demonstrates
+        real-world usage patterns and best practices for implementation.
+      </p>
+    </div>
+  </div>
+</div>
+
+<style>
+  {`
+  .sb-container {
+    margin-bottom: 48px;
+  }
+
+  .sb-section {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+  }
+
+  .sb-section-title {
+    margin-bottom: 32px;
+  }
+
+  .sb-section-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sb-section-item-heading {
+    padding-top: 20px !important;
+    padding-bottom: 5px !important;
+    margin: 0 !important;
+  }
+
+  .sb-section-item-paragraph {
+    margin: 0;
+    padding-bottom: 10px;
+    line-height: 1.6;
+  }
+
+  ul {
+    margin: 0;
+    padding-bottom: 10px;
+  }
+
+  li {
+    margin-bottom: 4px;
+  }
+
+  @media screen and (max-width: 600px) {
+    .sb-section {
+      flex-direction: column;
+    }
+  }
+  `}
+</style>

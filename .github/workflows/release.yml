@@ -1,0 +1,75 @@
+name: Release and Publish
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+  packages: write
+
+jobs:
+  test:
+    name: Run tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          registry-url: https://npm.pkg.github.com
+          scope: "@algtools"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm run test:ci
+
+  publish:
+    name: Build & publish
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          # Configure scoped registry for @algtools without changing default registry
+          registry-url: https://npm.pkg.github.com
+          scope: "@algtools"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build library
+        run: npm run build:lib
+
+      - name: Copy styles into dist
+        run: npm run postbuild:lib
+
+      - name: Create npm package tarball
+        id: pack
+        shell: bash
+        run: |
+          set -euo pipefail
+          TARBALL=$(npm pack --silent)
+          echo "tarball=$TARBALL" >> "$GITHUB_OUTPUT"
+
+      - name: Attach tarball to GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ steps.pack.outputs.tarball }}
+
+      - name: Publish to GitHub Packages
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npm publish

@@ -1,0 +1,92 @@
+# Janovix UI Component Library
+
+Welcome to the **Janovix UI** component library! This is a comprehensive collection of reusable React components built with modern web technologies.
+
+## 🚀 Built With
+
+- **React 18+** - Modern React with TypeScript
+- **Next.js 15** - Full-stack React framework
+- **Tailwind CSS v4** - Latest version of the utility-first CSS framework
+- **Radix UI** - Unstyled, accessible UI primitives
+- **Class Variance Authority** - Type-safe component variants
+- **Lucide React** - Beautiful & consistent icons
+
+## 🎨 Design Principles
+
+### Consistency
+
+All components follow consistent design patterns and naming conventions for predictable usage across your applications.
+
+### Accessibility
+
+Built on top of Radix UI primitives, ensuring keyboard navigation, screen reader support, and ARIA compliance out of the box.
+
+### Customization
+
+Every component supports custom styling through Tailwind CSS classes while maintaining design system consistency.
+
+### Developer Experience
+
+TypeScript-first approach with comprehensive type safety, JSDoc documentation, and intelligent autocompletion.
+
+## 🌟 Key Features
+
+- **Theme Support** - Built-in light/dark mode with CSS custom properties
+- **Responsive Design** - Mobile-first approach with responsive utilities
+- **Component Variants** - Multiple visual styles for different use cases
+- **Icon Integration** - Seamless integration with Lucide React icons
+- **Composition Patterns** - Flexible component composition with `asChild` prop
+
+## 📖 Using This Storybook
+
+Navigate through the component library using the sidebar:
+
+- **UI Components** - Core interface elements (Button, Card, Badge, etc.)
+- **Form Components** - Input fields, selectors, and form controls
+- **Layout Components** - Structural elements for page organization
+- **Feedback Components** - Alerts, toasts, and status indicators
+
+Each component story includes:
+
+- **Live examples** with interactive controls
+- **Code snippets** ready to copy and paste
+- **API documentation** with prop descriptions
+- **Usage guidelines** and best practices
+
+## 🛠️ Installation
+
+```bash
+npm install @janovix/ui
+```
+
+## 📋 Basic Usage
+
+```tsx
+import { Button, Card, CardContent } from '@janovix/ui';
+
+function MyComponent() {
+  return (
+    <Card>
+      <CardContent>
+        <Button>Get Started</Button>
+      </CardContent>
+    </Card>
+  );
+}
+```
+
+## 🎯 Theme Configuration
+
+The component library uses CSS custom properties for theming. You can customize the theme by overriding the CSS variables in your application's global styles.
+
+```css
+:root {
+  --primary: your-primary-color;
+  --secondary: your-secondary-color;
+  /* ... other theme variables */
+}
+```
+
+---
+
+Happy coding! 🎉

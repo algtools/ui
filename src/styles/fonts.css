@@ -1,0 +1,32 @@
+:root {
+  --font-family-sans:
+    'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
+    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  --font-family-serif: 'Lora', 'Georgia', 'Cambria', 'Times New Roman', Times, serif;
+  --font-family-mono:
+    'IBM Plex Mono', 'SF Mono', Monaco, 'Inconsolata', 'Roboto Mono', 'Source Code Pro', monospace;
+}
+
+/* Base font classes */
+.font-sans {
+  font-family: var(--font-family-sans);
+  font-feature-settings:
+    'liga' 1,
+    'calt' 1; /* Enable ligatures and contextual alternates */
+}
+
+.font-serif {
+  font-family: var(--font-family-serif);
+  font-feature-settings:
+    'liga' 1,
+    'calt' 1; /* Enable ligatures and contextual alternates */
+}
+
+.font-mono {
+  font-family: var(--font-family-mono);
+  font-feature-settings:
+    'liga' 1,
+    'calt' 1,
+    'clig' 1; /* Enable ligatures, contextual alternates, and contextual ligatures */
+  font-variant-ligatures: common-ligatures contextual;
+}

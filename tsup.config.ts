@@ -1,0 +1,50 @@
+import { defineConfig } from 'tsup';
+
+export default defineConfig({
+  entry: [
+    'src/index.ts',
+    'src/server.ts',
+    'src/lib/utils.ts',
+    'src/components/ui/**/*.tsx',
+    '!src/**/*.test.{ts,tsx}',
+    '!src/**/*.spec.{ts,tsx}',
+    '!src/**/__tests__/**',
+  ],
+  format: ['esm', 'cjs'],
+  bundle: true,
+  dts: {
+    compilerOptions: {
+      incremental: false,
+    },
+  },
+  sourcemap: true,
+  clean: true,
+  target: 'es2019',
+  splitting: false,
+  treeshake: true,
+  minify: false,
+  define: {
+    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'production'),
+  },
+  external: [
+    'react',
+    'react-dom',
+    'next',
+    'motion',
+    'motion/*',
+    'clsx',
+    'tailwind-merge',
+    'class-variance-authority',
+    '@radix-ui/*',
+    'embla-carousel-react',
+    'lucide-react',
+    'next-themes',
+    'react-day-picker',
+    'react-resizable-panels',
+    'recharts',
+    'sonner',
+    'vaul',
+    'cmdk',
+    'input-otp',
+  ],
+});
