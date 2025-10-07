@@ -71,7 +71,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          TARBALL=$(pnpm pack --silent)
+          TARBALL=$(pnpm pack --silent | tail -1)
           echo "tarball=$TARBALL" >> "$GITHUB_OUTPUT"
 
       - name: Attach tarball to GitHub Release
