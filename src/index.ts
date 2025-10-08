@@ -60,6 +60,23 @@ export * from './components/ui/banner';
 export { cn } from './lib/utils';
 export { FontProvider, useFonts } from './components/font-provider';
 
+// AI Types
+export type {
+  Role,
+  Status,
+  Message,
+  Source,
+  Tool,
+  Task,
+  Suggestion,
+  Branch,
+  Citation,
+  ReasoningStep,
+  ModelConfig,
+  StreamingState,
+  AIComponentProps,
+} from './components/ai/ai-types';
+
 // Hooks
 export { useBoolean } from './hooks/use-boolean';
 export type { UseBooleanReturn } from './hooks/use-boolean';
