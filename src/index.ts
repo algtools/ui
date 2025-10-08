@@ -60,6 +60,10 @@ export * from './components/ui/banner';
 export { cn } from './lib/utils';
 export { FontProvider, useFonts } from './components/font-provider';
 
+// AI Components
+export { Actions } from './components/ai/actions';
+export type { Action, ActionsProps } from './components/ai/actions';
+
 // AI Types
 export type {
   Role,
