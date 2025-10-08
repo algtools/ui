@@ -69,6 +69,8 @@ export { useDebounceValue } from './hooks/use-debounce-value';
 export { useHover } from './hooks/use-hover';
 export type { UseHoverOptions } from './hooks/use-hover';
 export { useIsMobile } from './hooks/use-mobile';
+export { useCopyToClipboard } from './hooks/use-copy-to-clipboard';
+export type { UseCopyToClipboardReturn } from './hooks/use-copy-to-clipboard';
 export { useLocalStorage } from './hooks/use-local-storage';
 export type { UseLocalStorageReturn } from './hooks/use-local-storage';
 export { useMediaQuery } from './hooks/use-media-query';
