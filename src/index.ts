@@ -60,6 +60,10 @@ export * from './components/ui/banner';
 export { cn } from './lib/utils';
 export { FontProvider, useFonts } from './components/font-provider';
 
+// AI Components
+export { CodeBlock } from './components/ai/code-block';
+export type { CodeBlockProps } from './components/ai/code-block';
+
 // AI Types
 export type {
   Role,

@@ -384,3 +384,91 @@
   background-color: hsl(0, 84%, 60% / 0.25);
   color: hsl(0, 84%, 70%);
 }
+
+/* Enhanced Code Block Styles */
+.ai-code-block .code-content {
+  font-size: 0.875rem;
+  line-height: 1.7;
+}
+
+.ai-code-block .code-content pre {
+  margin: 0;
+  padding: 1rem;
+  overflow-x: auto;
+  background: transparent !important;
+}
+
+.ai-code-block .code-content code {
+  font-family:
+    ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Monaco, Consolas, 'Liberation Mono',
+    'Courier New', monospace;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+/* Line Numbers Support */
+.ai-code-block .code-with-line-numbers .code-content pre {
+  padding-left: 3.5rem;
+  position: relative;
+}
+
+.ai-code-block .code-with-line-numbers .code-content code {
+  counter-reset: line;
+}
+
+.ai-code-block .code-with-line-numbers .code-content code .line::before {
+  counter-increment: line;
+  content: counter(line);
+  display: inline-block;
+  width: 2.5rem;
+  margin-left: -3.5rem;
+  padding-right: 1rem;
+  text-align: right;
+  color: hsl(var(--muted-foreground) / 0.5);
+  user-select: none;
+}
+
+/* Highlighted Lines */
+.ai-code-block .highlighted-line {
+  display: block;
+  background-color: hsl(var(--primary) / 0.1);
+  border-left: 3px solid hsl(var(--primary));
+  margin-left: -1rem;
+  margin-right: -1rem;
+  padding-left: calc(1rem - 3px);
+  padding-right: 1rem;
+}
+
+.ai-code-block .code-with-line-numbers .highlighted-line::before {
+  background-color: hsl(var(--primary) / 0.15);
+}
+
+/* Scrollbar Styling for Code Blocks */
+.ai-code-block pre::-webkit-scrollbar {
+  height: 0.5rem;
+}
+
+.ai-code-block pre::-webkit-scrollbar-track {
+  background-color: hsl(var(--muted) / 0.3);
+  border-radius: 0.25rem;
+}
+
+.ai-code-block pre::-webkit-scrollbar-thumb {
+  background-color: hsl(var(--muted-foreground) / 0.3);
+  border-radius: 0.25rem;
+}
+
+.ai-code-block pre::-webkit-scrollbar-thumb:hover {
+  background-color: hsl(var(--muted-foreground) / 0.5);
+}
+
+/* Focus Styles for Accessibility */
+.ai-code-block [role='region']:focus {
+  outline: 2px solid hsl(var(--ring));
+  outline-offset: 2px;
+}
+
+.ai-code-block [role='region']:focus-visible {
+  outline: 2px solid hsl(var(--ring));
+  outline-offset: 2px;
+}
