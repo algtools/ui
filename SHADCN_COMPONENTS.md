@@ -4,7 +4,7 @@ This document lists all components currently available in `@algtools/ui`. These 
 
 > ⚠️ **Note**: This package currently includes base **shadcn/ui** components plus custom additions. For components from **shadcn.io** (AI components, advanced hooks, animations) see `MISSING_SHADCN_IO_COMPONENTS.md`.
 
-## ✅ Currently Available (58 components + 1 hook)
+## ✅ Currently Available (58 components + 11 hooks)
 
 ### Layout & Structure (8 components)
 
@@ -154,15 +154,230 @@ Accordion, AddressEditorMX, Alert, AlertDialog, AspectRatio, Avatar, AvatarEdito
 
 ## Hooks
 
-Currently available hooks:
+### ✅ Phase 1 Hooks (11 hooks - COMPLETE)
 
-- **use-mobile** - Mobile breakpoint detection
+All Phase 1 essential hooks are now implemented and available:
+
+#### State Management (2 hooks)
+
+- **useBoolean** - Boolean state with toggle helpers (setTrue, setFalse, toggle)
+- **useCounter** - Counter with increment/decrement/reset and min/max boundaries
+
+#### Performance & Timing (1 hook)
+
+- **useDebounceValue** - Debounce state values to prevent excessive updates
+
+#### Browser & Storage (1 hook)
+
+- **useLocalStorage** - Persistent state in localStorage with JSON serialization
+
+#### UI & Layout (4 hooks)
+
+- **useMediaQuery** - Responsive design media queries
+- **useIntersectionObserver** - Element visibility detection for lazy loading
+- **useResizeObserver** - Element size change detection
+- **useIsMobile** - Mobile breakpoint detection (convenience hook using useMediaQuery)
+
+#### Event Handling (2 hooks)
+
+- **useOnClickOutside** - Detect clicks outside an element (for modals/dropdowns)
+- **useHover** - Hover state detection with optional delay
+
+#### Clipboard (1 hook)
+
+- **useCopyToClipboard** - Clipboard operations with success/error states
+
+### Import Examples
 
 ```typescript
-import { useMobile } from '@algtools/ui/hooks/use-mobile';
+// State management
+import { useBoolean, useCounter } from '@algtools/ui';
+
+// Performance
+import { useDebounceValue } from '@algtools/ui';
+
+// Storage
+import { useLocalStorage } from '@algtools/ui';
+
+// Layout & UI
+import {
+  useMediaQuery,
+  useIntersectionObserver,
+  useResizeObserver,
+  useIsMobile,
+} from '@algtools/ui';
+
+// Events
+import { useOnClickOutside, useHover } from '@algtools/ui';
+
+// Clipboard
+import { useCopyToClipboard } from '@algtools/ui';
 ```
 
-> 📝 **See `MISSING_SHADCN_IO_COMPONENTS.md`** for 35+ additional hooks available in shadcn.io
+### Usage Examples
+
+#### useBoolean
+
+```typescript
+function MyComponent() {
+  const { value, setTrue, setFalse, toggle } = useBoolean(false);
+
+  return (
+    <div>
+      <p>Value: {value ? 'ON' : 'OFF'}</p>
+      <Button onClick={toggle}>Toggle</Button>
+    </div>
+  );
+}
+```
+
+#### useCounter
+
+```typescript
+function Counter() {
+  const { value, increment, decrement, reset } = useCounter({
+    initialValue: 0,
+    min: 0,
+    max: 10
+  });
+
+  return (
+    <div>
+      <p>Count: {value}</p>
+      <Button onClick={() => increment()}>+1</Button>
+      <Button onClick={() => decrement()}>-1</Button>
+      <Button onClick={reset}>Reset</Button>
+    </div>
+  );
+}
+```
+
+#### useDebounceValue
+
+```typescript
+function SearchInput() {
+  const [search, setSearch] = useState('');
+  const debouncedSearch = useDebounceValue(search, 500);
+
+  useEffect(() => {
+    // API call only triggers after 500ms of no typing
+    fetchResults(debouncedSearch);
+  }, [debouncedSearch]);
+
+  return <Input value={search} onChange={(e) => setSearch(e.target.value)} />;
+}
+```
+
+#### useLocalStorage
+
+```typescript
+function Settings() {
+  const [theme, setTheme] = useLocalStorage('theme', 'light');
+
+  return (
+    <Button onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>
+      Current: {theme}
+    </Button>
+  );
+}
+```
+
+#### useMediaQuery
+
+```typescript
+function ResponsiveComponent() {
+  const isDesktop = useMediaQuery('(min-width: 768px)');
+
+  return (
+    <div>{isDesktop ? <DesktopView /> : <MobileView />}</div>
+  );
+}
+```
+
+#### useIntersectionObserver
+
+```typescript
+function LazyImage({ src }: { src: string }) {
+  const ref = useRef<HTMLImageElement>(null);
+  const entry = useIntersectionObserver(ref, {
+    threshold: 0.1,
+    rootMargin: '100px'
+  });
+
+  const isVisible = entry?.isIntersecting;
+
+  return (
+    <img
+      ref={ref}
+      src={isVisible ? src : '/placeholder.png'}
+      alt="Lazy loaded"
+    />
+  );
+}
+```
+
+#### useResizeObserver
+
+```typescript
+function ResizableBox() {
+  const ref = useRef<HTMLDivElement>(null);
+  const size = useResizeObserver(ref);
+
+  return (
+    <div ref={ref}>
+      Size: {size?.width}x{size?.height}
+    </div>
+  );
+}
+```
+
+#### useOnClickOutside
+
+```typescript
+function Dropdown() {
+  const [isOpen, setIsOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useOnClickOutside(ref, () => setIsOpen(false));
+
+  return (
+    <div ref={ref}>
+      {isOpen && <DropdownMenu />}
+    </div>
+  );
+}
+```
+
+#### useHover
+
+```typescript
+function HoverCard() {
+  const ref = useRef<HTMLDivElement>(null);
+  const isHovered = useHover(ref);
+
+  return (
+    <div ref={ref} style={{ opacity: isHovered ? 1 : 0.5 }}>
+      Hover me!
+    </div>
+  );
+}
+```
+
+#### useCopyToClipboard
+
+```typescript
+function CopyButton({ text }: { text: string }) {
+  const { copiedText, copy, error } = useCopyToClipboard();
+
+  return (
+    <Button onClick={() => copy(text)}>
+      {copiedText ? 'Copied!' : 'Copy'}
+    </Button>
+  );
+}
+```
+
+> 📝 **See `MISSING_SHADCN_IO_COMPONENTS.md`** for 25+ additional hooks available in shadcn.io (Phases 2-3)
 
 ## Utility Exports
 
