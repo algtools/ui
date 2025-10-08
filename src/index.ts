@@ -77,6 +77,10 @@ export type {
   AIComponentProps,
 } from './components/ai/ai-types';
 
+// AI Components
+export { PromptInput } from './components/ai/prompt-input';
+export type { PromptInputProps } from './components/ai/prompt-input';
+
 // Hooks
 export { useBoolean } from './hooks/use-boolean';
 export type { UseBooleanReturn } from './hooks/use-boolean';
