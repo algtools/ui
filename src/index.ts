@@ -63,6 +63,13 @@ export { FontProvider, useFonts } from './components/font-provider';
 // Hooks
 export { useBoolean } from './hooks/use-boolean';
 export type { UseBooleanReturn } from './hooks/use-boolean';
+export { useCounter } from './hooks/use-counter';
+export type { UseCounterOptions, UseCounterReturn } from './hooks/use-counter';
+export { useHover } from './hooks/use-hover';
+export type { UseHoverOptions } from './hooks/use-hover';
 export { useIsMobile } from './hooks/use-mobile';
 export { useCopyToClipboard } from './hooks/use-copy-to-clipboard';
 export type { UseCopyToClipboardReturn } from './hooks/use-copy-to-clipboard';
+export { useOnClickOutside } from './hooks/use-on-click-outside';
+export { useResizeObserver } from './hooks/use-resize-observer';
+export type { Size, ResizeCallback, UseResizeObserverOptions } from './hooks/use-resize-observer';

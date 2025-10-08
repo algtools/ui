@@ -1,7 +1,6 @@
 'use client';
 
 import { Triangle } from 'lucide-react';
-import { useTheme } from 'next-themes';
 import * as React from 'react';
 
 function Logo({
@@ -17,8 +16,6 @@ function Logo({
   width?: number;
   height?: number;
 }) {
-  const { resolvedTheme } = useTheme();
-
   // Default sizes
   const defaultSize = variant === 'icon' ? 48 : 24;
   const iconSize = width || height || defaultSize;
