@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-webpack5';
 import { useState, useEffect } from 'react';
-import { Search, DollarSign, Filter } from 'lucide-react';
+import { Search, Filter } from 'lucide-react';
 
 import { useDebounceValue } from '../hooks/use-debounce-value';
 import { Input } from '../components/ui/input';
