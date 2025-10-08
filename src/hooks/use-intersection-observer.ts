@@ -22,7 +22,7 @@ export interface UseIntersectionObserverOptions extends IntersectionObserverInit
  */
 export interface UseIntersectionObserverReturn {
   /** The target element ref to attach to the observed element */
-  ref: React.RefObject<Element>;
+  ref: React.RefObject<Element | null>;
   /** The latest IntersectionObserverEntry or null if not yet observed */
   entry: IntersectionObserverEntry | null;
   /** Whether the element is currently intersecting with the root */
