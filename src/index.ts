@@ -67,3 +67,8 @@ export { useCounter } from './hooks/use-counter';
 export type { UseCounterOptions, UseCounterReturn } from './hooks/use-counter';
 export { useIsMobile } from './hooks/use-mobile';
 export { useOnClickOutside } from './hooks/use-on-click-outside';
+export { useIntersectionObserver } from './hooks/use-intersection-observer';
+export type {
+  UseIntersectionObserverOptions,
+  UseIntersectionObserverReturn,
+} from './hooks/use-intersection-observer';
