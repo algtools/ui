@@ -148,7 +148,7 @@ function MultipleRefsDemo() {
       <div className="space-y-4">
         <h3 className="text-lg font-semibold">Multiple Refs</h3>
         <p className="text-sm text-muted-foreground">
-          The hook monitors both the button and menu. Clicking either won't close it.
+          The hook monitors both the button and menu. Clicking either won&apos;t close it.
         </p>
 
         <div className="flex items-start gap-4">
@@ -317,7 +317,7 @@ function NestedElementsDemo() {
       <div className="space-y-4">
         <h3 className="text-lg font-semibold">Nested Elements</h3>
         <p className="text-sm text-muted-foreground">
-          Clicks on nested children don't trigger outside click
+          Clicks on nested children don&apos;t trigger outside click
         </p>
 
         <Button onClick={() => setIsOpen(true)} className="w-full">
@@ -340,11 +340,11 @@ function NestedElementsDemo() {
 
             <div className="space-y-2">
               <button className="w-full text-left p-2 text-sm hover:bg-accent rounded">
-                Click me - I'm inside, so panel stays open
+                Click me - I&apos;m inside, so panel stays open
               </button>
               <div className="p-2 border rounded">
                 <p className="text-xs text-muted-foreground">
-                  Even deeply nested elements like this text won't close the panel
+                  Even deeply nested elements like this text won&apos;t close the panel
                 </p>
               </div>
               <Button variant="outline" size="sm" className="w-full">
