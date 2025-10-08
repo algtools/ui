@@ -8,6 +8,17 @@ jest.mock('next-themes', () => ({
   useTheme: jest.fn(),
 }));
 
+jest.mock('lucide-react', () => ({
+  Triangle: ({ className, size, strokeWidth }: any) => (
+    <svg
+      data-testid="triangle-icon"
+      className={className}
+      data-size={size}
+      data-stroke-width={strokeWidth}
+    />
+  ),
+}));
+
 const mockedUseTheme = useTheme as unknown as jest.Mock;
 
 describe('Logo', () => {
@@ -15,38 +26,66 @@ describe('Logo', () => {
     mockedUseTheme.mockReturnValue({ resolvedTheme: 'light' });
   });
 
-  it('renders the default logo variant with outer and inner class names', () => {
-    render(<Logo className="wrapper" imgClassName="inner" />);
+  it('renders with rounded div and primary background', () => {
+    const { container } = render(<Logo className="custom-wrapper" imgClassName="custom-icon" />);
 
-    const wrapper = document.querySelector('div.wrapper');
-    const svg = document.querySelector('svg[viewBox="0 0 102 16"]');
-
+    const wrapper = container.querySelector('div');
     expect(wrapper).not.toBeNull();
-    expect(svg).not.toBeNull();
-    expect(svg!).toHaveClass('inner');
+    expect(wrapper).toHaveClass('inline-flex');
+    expect(wrapper).toHaveClass('items-center');
+    expect(wrapper).toHaveClass('justify-center');
+    expect(wrapper).toHaveClass('rounded-lg');
+    expect(wrapper).toHaveClass('bg-primary');
+    expect(wrapper).toHaveClass('p-2');
+    expect(wrapper).toHaveClass('custom-wrapper');
   });
 
-  it('renders the icon variant with provided width/height and dark theme colors', () => {
-    mockedUseTheme.mockReturnValue({ resolvedTheme: 'dark' });
-    render(<Logo variant="icon" width={250} height={250} imgClassName="icon-svg" />);
+  it('renders Triangle icon with foreground color', () => {
+    const { container } = render(<Logo imgClassName="custom-icon" />);
 
-    const svg = document.querySelector('svg[viewBox="0 0 200 200"]') as SVGElement | null;
+    const svg = container.querySelector('svg[data-testid="triangle-icon"]');
     expect(svg).not.toBeNull();
-    expect(svg!).toHaveClass('icon-svg');
-    expect(svg!.getAttribute('width')).toBe('250');
-    expect(svg!.getAttribute('height')).toBe('250');
-
-    // Dark theme background fill for IconPath
-    const darkRect = document.querySelector('svg[viewBox="0 0 200 200"] rect[fill="#1E2938"]');
-    expect(darkRect).not.toBeNull();
+    expect(svg).toHaveClass('text-primary-foreground');
+    expect(svg).toHaveClass('custom-icon');
   });
 
-  it('applies dark theme colors on the logo variant', () => {
-    mockedUseTheme.mockReturnValue({ resolvedTheme: 'dark' });
-    render(<Logo variant="logo" />);
+  it('uses default size for logo variant', () => {
+    const { container } = render(<Logo variant="logo" />);
 
-    // In dark theme, one of the logo paths uses color1 = #FFFFFF
-    const darkPath = document.querySelector('svg[viewBox="0 0 102 16"] path[fill="#FFFFFF"]');
-    expect(darkPath).not.toBeNull();
+    const svg = container.querySelector('svg[data-testid="triangle-icon"]');
+    expect(svg).not.toBeNull();
+    expect(svg!.getAttribute('data-size')).toBe('24');
+  });
+
+  it('uses default size for icon variant', () => {
+    const { container } = render(<Logo variant="icon" />);
+
+    const svg = container.querySelector('svg[data-testid="triangle-icon"]');
+    expect(svg).not.toBeNull();
+    expect(svg!.getAttribute('data-size')).toBe('48');
+  });
+
+  it('uses custom width when provided', () => {
+    const { container } = render(<Logo width={64} />);
+
+    const svg = container.querySelector('svg[data-testid="triangle-icon"]');
+    expect(svg).not.toBeNull();
+    expect(svg!.getAttribute('data-size')).toBe('64');
+  });
+
+  it('uses custom height when provided', () => {
+    const { container } = render(<Logo height={32} />);
+
+    const svg = container.querySelector('svg[data-testid="triangle-icon"]');
+    expect(svg).not.toBeNull();
+    expect(svg!.getAttribute('data-size')).toBe('32');
+  });
+
+  it('applies strokeWidth of 2', () => {
+    const { container } = render(<Logo />);
+
+    const svg = container.querySelector('svg[data-testid="triangle-icon"]');
+    expect(svg).not.toBeNull();
+    expect(svg!.getAttribute('data-stroke-width')).toBe('2');
   });
 });
