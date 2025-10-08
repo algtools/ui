@@ -1,0 +1,68 @@
+# UI Component Library - Cursor AI Rules
+
+## Component Development Rules
+
+### Story Requirements
+
+- **MANDATORY**: Every component in this library MUST have a corresponding Storybook story
+- When creating a new component, create its story file immediately
+- When updating a component's props, behavior, or variants, update its story to reflect changes
+- Stories should demonstrate all component variants, states, and key use cases
+- Story files should be located alongside components or in a dedicated stories directory
+
+### Code Quality
+
+#### Formatting and Linting
+
+- **ALWAYS** lint and format code using Prettier before completing any task
+- Run linting checks to ensure code meets project standards
+- Fix any linting errors introduced by your changes
+- Ensure consistent code style across all files
+
+#### Testing Requirements
+
+- **Code coverage MUST be at least 85%** for new or updated code
+- Tests use **Jest** and **React Testing Library**
+- Write comprehensive tests covering:
+  - Component rendering
+  - User interactions
+  - Edge cases and error states
+  - Accessibility features
+- Run tests and verify they pass before completing changes
+- Generate coverage reports to verify 85% threshold
+
+### Component Architecture
+
+#### shadcn/ui Foundation
+
+- Components are based on **ui.shadcn.com** and **shadcn.io** components
+- This package serves as a unified UI component library for the entire project
+- Maintain consistency with shadcn/ui patterns and best practices
+- Preserve accessibility features from shadcn/ui components
+
+#### Export Management
+
+- **CRITICAL**: When adding a new component, update `src/index.ts` to export it
+- **CRITICAL**: When deleting a component, remove its export from `src/index.ts`
+- Keep exports organized and alphabetically sorted
+- Export both components and their types/interfaces
+
+## Workflow Checklist
+
+When creating or updating a component:
+
+1. ✅ Implement/update the component
+2. ✅ Create/update the Storybook story
+3. ✅ Write/update tests (85% coverage minimum)
+4. ✅ Update `src/index.ts` exports if needed
+5. ✅ Run linting and Prettier formatting
+6. ✅ Verify tests pass with sufficient coverage
+7. ✅ Verify story renders correctly in Storybook
+
+## Quality Standards
+
+- All code must be TypeScript with proper type definitions
+- Follow React best practices and hooks guidelines
+- Ensure components are accessible (WCAG 2.1 AA minimum)
+- Write clear, self-documenting code with JSDoc comments where needed
+- Keep components composable and reusable
