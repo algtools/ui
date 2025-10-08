@@ -21,6 +21,7 @@ Successfully implemented a comprehensive CodeBlock component with syntax highlig
 **Location:** `/workspace/src/components/ai/code-block.tsx`
 
 **Features:**
+
 - Syntax highlighting using Shiki with 100+ language support
 - Copy to clipboard functionality using existing `useCopyToClipboard` hook
 - Language detection and display
@@ -34,6 +35,7 @@ Successfully implemented a comprehensive CodeBlock component with syntax highlig
 - Forwarded refs for parent component control
 
 **Props:**
+
 ```typescript
 interface CodeBlockProps extends AIComponentProps {
   code: string;
@@ -55,12 +57,14 @@ interface CodeBlockProps extends AIComponentProps {
 **Location:** `/workspace/src/components/ai/__tests__/code-block.test.tsx`
 
 **Test Coverage:**
+
 - ✅ **Statements:** 100%
 - ✅ **Branches:** 93.02%
 - ✅ **Functions:** 100%
 - ✅ **Lines:** 100%
 
 **Test Categories (35 tests):**
+
 - Basic rendering (4 tests)
 - Language display (4 tests)
 - Copy functionality (5 tests)
@@ -78,6 +82,7 @@ interface CodeBlockProps extends AIComponentProps {
 **Location:** `/workspace/src/stories/CodeBlock.stories.tsx`
 
 **Stories (20+):**
+
 - JavaScript
 - TypeScript with filename
 - Python with line numbers
@@ -101,6 +106,7 @@ interface CodeBlockProps extends AIComponentProps {
 **Location:** `/workspace/src/styles/ai-components.css`
 
 **Added styles for:**
+
 - Code content formatting
 - Line numbers display
 - Highlighted lines
@@ -114,6 +120,7 @@ interface CodeBlockProps extends AIComponentProps {
 **Location:** `/workspace/src/index.ts`
 
 Exported:
+
 - `CodeBlock` component
 - `CodeBlockProps` type interface
 
@@ -162,10 +169,7 @@ Exported:
 ```tsx
 import { CodeBlock } from '@algtools/ui';
 
-<CodeBlock
-  code="const greeting = 'Hello, World!';"
-  language="javascript"
-/>
+<CodeBlock code="const greeting = 'Hello, World!';" language="javascript" />;
 ```
 
 ### With All Features
@@ -254,6 +258,7 @@ function AIResponse({ message }) {
 ## Related Components
 
 This component integrates with:
+
 - `useCopyToClipboard` hook (BAA-79)
 - AI infrastructure (BAA-85)
 - Theme system (`next-themes`)
@@ -263,6 +268,7 @@ This component integrates with:
 ## Testing Notes
 
 All tests use proper mocking:
+
 - `next-themes` mocked for theme testing
 - `shiki` mocked for consistent test results
 - `useCopyToClipboard` mocked for copy functionality
