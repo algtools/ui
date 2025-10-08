@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-webpack5';
+import * as React from 'react';
 import { Minus, Plus, RotateCcw } from 'lucide-react';
 
 import { useCounter } from '../hooks/use-counter';
@@ -406,9 +407,6 @@ function StepInputDemo() {
     </Card>
   );
 }
-
-// Add React import for useState and useEffect
-import * as React from 'react';
 
 const meta: Meta<typeof UseCounterDemo> = {
   title: 'Hooks/useCounter',
