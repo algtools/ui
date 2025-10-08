@@ -3,7 +3,15 @@ import { render } from '@testing-library/react';
 import { Logo } from '../logo';
 
 jest.mock('lucide-react', () => ({
-  Triangle: ({ className, size, strokeWidth }: { className?: string; size?: number; strokeWidth?: number }) => (
+  Triangle: ({
+    className,
+    size,
+    strokeWidth,
+  }: {
+    className?: string;
+    size?: number;
+    strokeWidth?: number;
+  }) => (
     <svg
       data-testid="triangle-icon"
       className={className}
@@ -14,7 +22,6 @@ jest.mock('lucide-react', () => ({
 }));
 
 describe('Logo', () => {
-
   it('renders with rounded div and primary background', () => {
     const { container } = render(<Logo className="custom-wrapper" imgClassName="custom-icon" />);
 

@@ -20,23 +20,17 @@ describe('useCounter', () => {
     });
 
     test('should clamp initial value to min boundary', () => {
-      const { result } = renderHook(() =>
-        useCounter({ initialValue: 5, min: 10 })
-      );
+      const { result } = renderHook(() => useCounter({ initialValue: 5, min: 10 }));
       expect(result.current.value).toBe(10);
     });
 
     test('should clamp initial value to max boundary', () => {
-      const { result } = renderHook(() =>
-        useCounter({ initialValue: 15, max: 10 })
-      );
+      const { result } = renderHook(() => useCounter({ initialValue: 15, max: 10 }));
       expect(result.current.value).toBe(10);
     });
 
     test('should clamp initial value within min and max range', () => {
-      const { result } = renderHook(() =>
-        useCounter({ initialValue: 0, min: 5, max: 10 })
-      );
+      const { result } = renderHook(() => useCounter({ initialValue: 0, min: 5, max: 10 }));
       expect(result.current.value).toBe(5);
     });
   });
@@ -75,9 +69,7 @@ describe('useCounter', () => {
     });
 
     test('should not exceed max boundary', () => {
-      const { result } = renderHook(() =>
-        useCounter({ initialValue: 8, max: 10 })
-      );
+      const { result } = renderHook(() => useCounter({ initialValue: 8, max: 10 }));
 
       act(() => {
         result.current.increment(5);
@@ -140,9 +132,7 @@ describe('useCounter', () => {
     });
 
     test('should not go below min boundary', () => {
-      const { result } = renderHook(() =>
-        useCounter({ initialValue: 3, min: 0 })
-      );
+      const { result } = renderHook(() => useCounter({ initialValue: 3, min: 0 }));
 
       act(() => {
         result.current.decrement(5);
@@ -201,9 +191,7 @@ describe('useCounter', () => {
     });
 
     test('should reset to clamped initial value', () => {
-      const { result } = renderHook(() =>
-        useCounter({ initialValue: 0, min: 5, max: 10 })
-      );
+      const { result } = renderHook(() => useCounter({ initialValue: 0, min: 5, max: 10 }));
 
       act(() => {
         result.current.increment(3);
@@ -282,9 +270,7 @@ describe('useCounter', () => {
     });
 
     test('should clamp value to max boundary', () => {
-      const { result } = renderHook(() =>
-        useCounter({ initialValue: 0, max: 10 })
-      );
+      const { result } = renderHook(() => useCounter({ initialValue: 0, max: 10 }));
 
       act(() => {
         result.current.setValue(20);
@@ -294,9 +280,7 @@ describe('useCounter', () => {
     });
 
     test('should clamp value to min boundary', () => {
-      const { result } = renderHook(() =>
-        useCounter({ initialValue: 0, min: -5 })
-      );
+      const { result } = renderHook(() => useCounter({ initialValue: 0, min: -5 }));
 
       act(() => {
         result.current.setValue(-10);
@@ -306,9 +290,7 @@ describe('useCounter', () => {
     });
 
     test('should clamp function updater result', () => {
-      const { result } = renderHook(() =>
-        useCounter({ initialValue: 5, min: 0, max: 10 })
-      );
+      const { result } = renderHook(() => useCounter({ initialValue: 5, min: 0, max: 10 }));
 
       act(() => {
         result.current.setValue((prev) => prev + 100);
@@ -320,9 +302,7 @@ describe('useCounter', () => {
 
   describe('boundaries', () => {
     test('should respect both min and max boundaries', () => {
-      const { result } = renderHook(() =>
-        useCounter({ initialValue: 5, min: 0, max: 10 })
-      );
+      const { result } = renderHook(() => useCounter({ initialValue: 5, min: 0, max: 10 }));
 
       // Try to exceed max
       act(() => {
@@ -338,9 +318,7 @@ describe('useCounter', () => {
     });
 
     test('should work with negative min and max', () => {
-      const { result } = renderHook(() =>
-        useCounter({ initialValue: -5, min: -10, max: -1 })
-      );
+      const { result } = renderHook(() => useCounter({ initialValue: -5, min: -10, max: -1 }));
 
       expect(result.current.value).toBe(-5);
 
@@ -356,9 +334,7 @@ describe('useCounter', () => {
     });
 
     test('should handle zero as boundary', () => {
-      const { result } = renderHook(() =>
-        useCounter({ initialValue: 5, min: 0 })
-      );
+      const { result } = renderHook(() => useCounter({ initialValue: 5, min: 0 }));
 
       act(() => {
         result.current.decrement(10);
@@ -367,9 +343,7 @@ describe('useCounter', () => {
     });
 
     test('should handle equal min and max (fixed value)', () => {
-      const { result } = renderHook(() =>
-        useCounter({ initialValue: 5, min: 5, max: 5 })
-      );
+      const { result } = renderHook(() => useCounter({ initialValue: 5, min: 5, max: 5 }));
 
       expect(result.current.value).toBe(5);
 
@@ -387,9 +361,7 @@ describe('useCounter', () => {
 
   describe('integration', () => {
     test('should work correctly with multiple operations in sequence', () => {
-      const { result } = renderHook(() =>
-        useCounter({ initialValue: 5, min: 0, max: 20 })
-      );
+      const { result } = renderHook(() => useCounter({ initialValue: 5, min: 0, max: 20 }));
 
       expect(result.current.value).toBe(5);
 
@@ -480,9 +452,7 @@ describe('useCounter', () => {
     });
 
     test('should handle very large numbers', () => {
-      const { result } = renderHook(() =>
-        useCounter({ initialValue: 1000000 })
-      );
+      const { result } = renderHook(() => useCounter({ initialValue: 1000000 }));
 
       act(() => {
         result.current.increment(500000);

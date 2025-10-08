@@ -58,15 +58,11 @@ export interface UseCounterReturn {
  * ```
  */
 export function useCounter(options: UseCounterOptions = {}): UseCounterReturn {
-  const {
-    initialValue = 0,
-    min = -Infinity,
-    max = Infinity,
-  } = options;
+  const { initialValue = 0, min = -Infinity, max = Infinity } = options;
 
   // Clamp the initial value to respect min/max boundaries
   const clampedInitialValue = Math.min(Math.max(initialValue, min), max);
-  
+
   const [value, setValueInternal] = React.useState<number>(clampedInitialValue);
 
   // Store min, max, and initialValue in refs to avoid recreating callbacks when they change
@@ -86,20 +82,29 @@ export function useCounter(options: UseCounterOptions = {}): UseCounterReturn {
     return Math.min(Math.max(val, minRef.current), maxRef.current);
   }, []);
 
-  const setValue = React.useCallback((newValue: number | ((prev: number) => number)) => {
-    setValueInternal((prev) => {
-      const nextValue = typeof newValue === 'function' ? newValue(prev) : newValue;
-      return clamp(nextValue);
-    });
-  }, [clamp]);
+  const setValue = React.useCallback(
+    (newValue: number | ((prev: number) => number)) => {
+      setValueInternal((prev) => {
+        const nextValue = typeof newValue === 'function' ? newValue(prev) : newValue;
+        return clamp(nextValue);
+      });
+    },
+    [clamp]
+  );
 
-  const increment = React.useCallback((delta: number = 1) => {
-    setValue((prev) => prev + delta);
-  }, [setValue]);
+  const increment = React.useCallback(
+    (delta: number = 1) => {
+      setValue((prev) => prev + delta);
+    },
+    [setValue]
+  );
 
-  const decrement = React.useCallback((delta: number = 1) => {
-    setValue((prev) => prev - delta);
-  }, [setValue]);
+  const decrement = React.useCallback(
+    (delta: number = 1) => {
+      setValue((prev) => prev - delta);
+    },
+    [setValue]
+  );
 
   const reset = React.useCallback(() => {
     setValueInternal(initialValueRef.current);
