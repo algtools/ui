@@ -57,15 +57,11 @@ function SearchDebounceDemo() {
           <div className="grid grid-cols-2 gap-2 text-xs">
             <div>
               <p className="text-muted-foreground">Current Input:</p>
-              <p className="font-mono font-semibold truncate">
-                {searchTerm || '(empty)'}
-              </p>
+              <p className="font-mono font-semibold truncate">{searchTerm || '(empty)'}</p>
             </div>
             <div>
               <p className="text-muted-foreground">Debounced Value:</p>
-              <p className="font-mono font-semibold truncate">
-                {debouncedSearchTerm || '(empty)'}
-              </p>
+              <p className="font-mono font-semibold truncate">{debouncedSearchTerm || '(empty)'}</p>
             </div>
           </div>
         </div>
@@ -80,10 +76,7 @@ function SearchDebounceDemo() {
           {mockResults.length > 0 ? (
             <ul className="space-y-1">
               {mockResults.map((result, index) => (
-                <li
-                  key={index}
-                  className="text-sm p-2 rounded border bg-card hover:bg-accent"
-                >
+                <li key={index} className="text-sm p-2 rounded border bg-card hover:bg-accent">
                   {result}
                 </li>
               ))}
@@ -254,9 +247,7 @@ function LivePreviewDemo() {
             onChange={(e) => setText(e.target.value)}
             className="w-full min-h-[100px] p-3 rounded-md border border-input bg-background text-sm resize-none focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
           />
-          <p className="text-xs text-muted-foreground">
-            {text.length} characters (typing...)
-          </p>
+          <p className="text-xs text-muted-foreground">{text.length} characters (typing...)</p>
         </div>
 
         <div className="space-y-2">
@@ -366,11 +357,7 @@ function ComplexObjectDemo() {
   const [apiCallCount, setApiCallCount] = useState(0);
 
   useEffect(() => {
-    if (
-      debouncedFilters.category ||
-      debouncedFilters.status ||
-      debouncedFilters.priority
-    ) {
+    if (debouncedFilters.category || debouncedFilters.status || debouncedFilters.priority) {
       setApiCallCount((prev) => prev + 1);
     }
   }, [debouncedFilters]);
@@ -390,9 +377,7 @@ function ComplexObjectDemo() {
               id="category"
               placeholder="e.g., Electronics"
               value={filters.category}
-              onChange={(e) =>
-                setFilters({ ...filters, category: e.target.value })
-              }
+              onChange={(e) => setFilters({ ...filters, category: e.target.value })}
             />
           </div>
 
@@ -412,9 +397,7 @@ function ComplexObjectDemo() {
               id="priority"
               placeholder="e.g., High"
               value={filters.priority}
-              onChange={(e) =>
-                setFilters({ ...filters, priority: e.target.value })
-              }
+              onChange={(e) => setFilters({ ...filters, priority: e.target.value })}
             />
           </div>
         </div>
