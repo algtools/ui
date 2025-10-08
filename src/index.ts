@@ -77,6 +77,10 @@ export type {
   AIComponentProps,
 } from './components/ai/ai-types';
 
+// AI Components
+export { Task as AITask, TaskList } from './components/ai/task';
+export type { TaskProps, TaskListProps } from './components/ai/task';
+
 // Hooks
 export { useBoolean } from './hooks/use-boolean';
 export type { UseBooleanReturn } from './hooks/use-boolean';
