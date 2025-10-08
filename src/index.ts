@@ -70,6 +70,12 @@ export type { UseHoverOptions } from './hooks/use-hover';
 export { useIsMobile } from './hooks/use-mobile';
 export { useCopyToClipboard } from './hooks/use-copy-to-clipboard';
 export type { UseCopyToClipboardReturn } from './hooks/use-copy-to-clipboard';
+export { useMediaQuery } from './hooks/use-media-query';
 export { useOnClickOutside } from './hooks/use-on-click-outside';
+export { useIntersectionObserver } from './hooks/use-intersection-observer';
+export type {
+  UseIntersectionObserverOptions,
+  UseIntersectionObserverReturn,
+} from './hooks/use-intersection-observer';
 export { useResizeObserver } from './hooks/use-resize-observer';
 export type { Size, ResizeCallback, UseResizeObserverOptions } from './hooks/use-resize-observer';
