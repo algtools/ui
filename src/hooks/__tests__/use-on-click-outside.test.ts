@@ -92,10 +92,7 @@ describe('useOnClickOutside', () => {
       const secondElement = document.createElement('div');
       container.appendChild(secondElement);
 
-      const refs = [
-        { current: insideElement },
-        { current: secondElement },
-      ];
+      const refs = [{ current: insideElement }, { current: secondElement }];
 
       renderHook(() => useOnClickOutside(refs, handler));
 
@@ -111,10 +108,7 @@ describe('useOnClickOutside', () => {
       const secondElement = document.createElement('div');
       container.appendChild(secondElement);
 
-      const refs = [
-        { current: insideElement },
-        { current: secondElement },
-      ];
+      const refs = [{ current: insideElement }, { current: secondElement }];
 
       renderHook(() => useOnClickOutside(refs, handler));
 
@@ -130,10 +124,7 @@ describe('useOnClickOutside', () => {
       const secondElement = document.createElement('div');
       container.appendChild(secondElement);
 
-      const refs = [
-        { current: insideElement },
-        { current: secondElement },
-      ];
+      const refs = [{ current: insideElement }, { current: secondElement }];
 
       renderHook(() => useOnClickOutside(refs, handler));
 
@@ -248,10 +239,9 @@ describe('useOnClickOutside', () => {
       const handler = jest.fn();
       const ref = { current: insideElement };
 
-      const { rerender } = renderHook(
-        ({ enabled }) => useOnClickOutside(ref, handler, enabled),
-        { initialProps: { enabled: true } }
-      );
+      const { rerender } = renderHook(({ enabled }) => useOnClickOutside(ref, handler, enabled), {
+        initialProps: { enabled: true },
+      });
 
       // Click outside while enabled
       const event1 = new MouseEvent('mousedown', { bubbles: true });
@@ -271,10 +261,9 @@ describe('useOnClickOutside', () => {
       const handler = jest.fn();
       const ref = { current: insideElement };
 
-      const { rerender } = renderHook(
-        ({ enabled }) => useOnClickOutside(ref, handler, enabled),
-        { initialProps: { enabled: false } }
-      );
+      const { rerender } = renderHook(({ enabled }) => useOnClickOutside(ref, handler, enabled), {
+        initialProps: { enabled: false },
+      });
 
       // Click outside while disabled
       const event1 = new MouseEvent('mousedown', { bubbles: true });
@@ -334,10 +323,9 @@ describe('useOnClickOutside', () => {
       const secondHandler = jest.fn();
       const ref = { current: insideElement };
 
-      const { rerender } = renderHook(
-        ({ handler }) => useOnClickOutside(ref, handler),
-        { initialProps: { handler: firstHandler } }
-      );
+      const { rerender } = renderHook(({ handler }) => useOnClickOutside(ref, handler), {
+        initialProps: { handler: firstHandler },
+      });
 
       // Click outside with first handler
       const event1 = new MouseEvent('mousedown', { bubbles: true });
@@ -363,10 +351,9 @@ describe('useOnClickOutside', () => {
       const secondHandler = jest.fn();
       const ref = { current: insideElement };
 
-      const { rerender } = renderHook(
-        ({ handler }) => useOnClickOutside(ref, handler),
-        { initialProps: { handler: firstHandler } }
-      );
+      const { rerender } = renderHook(({ handler }) => useOnClickOutside(ref, handler), {
+        initialProps: { handler: firstHandler },
+      });
 
       const initialAddCount = addEventListenerSpy.mock.calls.length;
       const initialRemoveCount = removeEventListenerSpy.mock.calls.length;
@@ -405,7 +392,7 @@ describe('useOnClickOutside', () => {
       const level1 = document.createElement('div');
       const level2 = document.createElement('div');
       const level3 = document.createElement('span');
-      
+
       insideElement.appendChild(level1);
       level1.appendChild(level2);
       level2.appendChild(level3);
@@ -470,7 +457,8 @@ describe('useOnClickOutside', () => {
       const ref: { current: HTMLDivElement | null } = { current: null };
 
       const { rerender } = renderHook(
-        ({ currentRef }) => useOnClickOutside(currentRef as React.RefObject<HTMLDivElement>, handler),
+        ({ currentRef }) =>
+          useOnClickOutside(currentRef as React.RefObject<HTMLDivElement>, handler),
         { initialProps: { currentRef: ref } }
       );
 

@@ -22,9 +22,7 @@ function DropdownDemo() {
     <Card className="p-6 w-96">
       <div className="space-y-4">
         <h3 className="text-lg font-semibold">Dropdown Menu</h3>
-        <p className="text-sm text-muted-foreground">
-          Click outside the dropdown to close it
-        </p>
+        <p className="text-sm text-muted-foreground">Click outside the dropdown to close it</p>
 
         <div className="relative" ref={dropdownRef}>
           <Button
@@ -72,7 +70,8 @@ function DropdownDemo() {
         </div>
 
         <div className="text-xs text-muted-foreground">
-          Dropdown is: <Badge variant={isOpen ? 'default' : 'secondary'}>{isOpen ? 'Open' : 'Closed'}</Badge>
+          Dropdown is:{' '}
+          <Badge variant={isOpen ? 'default' : 'secondary'}>{isOpen ? 'Open' : 'Closed'}</Badge>
         </div>
       </div>
     </Card>
@@ -94,9 +93,7 @@ function ModalDemo() {
     <Card className="p-6 w-96">
       <div className="space-y-4">
         <h3 className="text-lg font-semibold">Modal with Click Outside</h3>
-        <p className="text-sm text-muted-foreground">
-          Click outside the modal to close it
-        </p>
+        <p className="text-sm text-muted-foreground">Click outside the modal to close it</p>
 
         <Button onClick={() => setIsOpen(true)} className="w-full">
           Open Modal
@@ -118,8 +115,8 @@ function ModalDemo() {
                   </Button>
                 </div>
                 <p className="text-sm text-muted-foreground">
-                  Click outside this modal or press the close button to dismiss it.
-                  The useOnClickOutside hook handles the outside click detection.
+                  Click outside this modal or press the close button to dismiss it. The
+                  useOnClickOutside hook handles the outside click detection.
                 </p>
                 <Button onClick={() => setIsOpen(false)} className="w-full">
                   Confirm
@@ -142,12 +139,9 @@ function MultipleRefsDemo() {
   const menuRef = useRef<HTMLDivElement>(null);
 
   // Pass both refs - clicking either won't close the menu
-  useOnClickOutside(
-    [buttonRef, menuRef] as React.RefObject<HTMLElement>[],
-    () => {
-      setIsOpen(false);
-    }
-  );
+  useOnClickOutside([buttonRef, menuRef] as React.RefObject<HTMLElement>[], () => {
+    setIsOpen(false);
+  });
 
   return (
     <Card className="p-6 w-96">
@@ -158,20 +152,12 @@ function MultipleRefsDemo() {
         </p>
 
         <div className="flex items-start gap-4">
-          <Button
-            ref={buttonRef}
-            onClick={() => setIsOpen(!isOpen)}
-            variant="outline"
-            size="icon"
-          >
+          <Button ref={buttonRef} onClick={() => setIsOpen(!isOpen)} variant="outline" size="icon">
             <Menu className="h-4 w-4" />
           </Button>
 
           {isOpen && (
-            <div
-              ref={menuRef}
-              className="flex-1 rounded-md border bg-card p-4 shadow-sm"
-            >
+            <div ref={menuRef} className="flex-1 rounded-md border bg-card p-4 shadow-sm">
               <p className="text-sm font-medium mb-2">Quick Actions</p>
               <div className="space-y-2">
                 <button className="w-full text-left text-sm px-2 py-1 hover:bg-accent rounded">
@@ -189,7 +175,8 @@ function MultipleRefsDemo() {
         </div>
 
         <div className="text-xs text-muted-foreground">
-          Menu is: <Badge variant={isOpen ? 'default' : 'secondary'}>{isOpen ? 'Open' : 'Closed'}</Badge>
+          Menu is:{' '}
+          <Badge variant={isOpen ? 'default' : 'secondary'}>{isOpen ? 'Open' : 'Closed'}</Badge>
         </div>
       </div>
     </Card>
@@ -211,9 +198,7 @@ function PopoverDemo() {
     <Card className="p-6 w-96">
       <div className="space-y-4">
         <h3 className="text-lg font-semibold">Info Popover</h3>
-        <p className="text-sm text-muted-foreground">
-          Click the info icon to show details
-        </p>
+        <p className="text-sm text-muted-foreground">Click the info icon to show details</p>
 
         <div className="flex items-center gap-4">
           <p className="text-sm">Need help with this feature?</p>
@@ -231,9 +216,8 @@ function PopoverDemo() {
               <div className="absolute right-0 top-full mt-2 w-64 rounded-lg border bg-popover p-4 shadow-lg z-10">
                 <h5 className="font-semibold text-sm mb-2">Feature Information</h5>
                 <p className="text-xs text-muted-foreground">
-                  This is a helpful popover that provides additional context.
-                  It automatically closes when you click outside of it, thanks
-                  to the useOnClickOutside hook!
+                  This is a helpful popover that provides additional context. It automatically
+                  closes when you click outside of it, thanks to the useOnClickOutside hook!
                 </p>
               </div>
             )}
@@ -241,7 +225,8 @@ function PopoverDemo() {
         </div>
 
         <div className="text-xs text-muted-foreground">
-          Popover is: <Badge variant={isOpen ? 'default' : 'secondary'}>{isOpen ? 'Open' : 'Closed'}</Badge>
+          Popover is:{' '}
+          <Badge variant={isOpen ? 'default' : 'secondary'}>{isOpen ? 'Open' : 'Closed'}</Badge>
         </div>
       </div>
     </Card>
@@ -284,11 +269,7 @@ function ConditionalDemo() {
         </div>
 
         <div className="relative" ref={dropdownRef}>
-          <Button
-            onClick={() => setIsOpen(!isOpen)}
-            variant="outline"
-            className="w-full"
-          >
+          <Button onClick={() => setIsOpen(!isOpen)} variant="outline" className="w-full">
             {isOpen ? 'Close Menu' : 'Open Menu'}
           </Button>
 
@@ -305,14 +286,14 @@ function ConditionalDemo() {
 
         <div className="flex gap-2 text-xs text-muted-foreground">
           <div>
-            Hook: <Badge variant={isEnabled ? 'default' : 'secondary'}>
+            Hook:{' '}
+            <Badge variant={isEnabled ? 'default' : 'secondary'}>
               {isEnabled ? 'Enabled' : 'Disabled'}
             </Badge>
           </div>
           <div>
-            Menu: <Badge variant={isOpen ? 'default' : 'secondary'}>
-              {isOpen ? 'Open' : 'Closed'}
-            </Badge>
+            Menu:{' '}
+            <Badge variant={isOpen ? 'default' : 'secondary'}>{isOpen ? 'Open' : 'Closed'}</Badge>
           </div>
         </div>
       </div>
@@ -344,10 +325,7 @@ function NestedElementsDemo() {
         </Button>
 
         {isOpen && (
-          <div
-            ref={containerRef}
-            className="rounded-lg border bg-card p-4 space-y-3"
-          >
+          <div ref={containerRef} className="rounded-lg border bg-card p-4 space-y-3">
             <div className="flex items-center justify-between">
               <p className="text-sm font-semibold">Settings Panel</p>
               <Button
@@ -377,7 +355,8 @@ function NestedElementsDemo() {
         )}
 
         <div className="text-xs text-muted-foreground">
-          Panel is: <Badge variant={isOpen ? 'default' : 'secondary'}>{isOpen ? 'Open' : 'Closed'}</Badge>
+          Panel is:{' '}
+          <Badge variant={isOpen ? 'default' : 'secondary'}>{isOpen ? 'Open' : 'Closed'}</Badge>
         </div>
       </div>
     </Card>
