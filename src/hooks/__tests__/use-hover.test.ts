@@ -253,9 +253,7 @@ describe('useHover', () => {
     describe('both delays', () => {
       test('should work with both delayEnter and delayLeave', () => {
         const ref = { current: element };
-        const { result } = renderHook(() =>
-          useHover(ref, { delayEnter: 100, delayLeave: 200 })
-        );
+        const { result } = renderHook(() => useHover(ref, { delayEnter: 100, delayLeave: 200 }));
 
         // Mouse enters
         act(() => {
@@ -284,9 +282,7 @@ describe('useHover', () => {
 
       test('should handle rapid enter/leave with both delays', () => {
         const ref = { current: element };
-        const { result } = renderHook(() =>
-          useHover(ref, { delayEnter: 100, delayLeave: 100 })
-        );
+        const { result } = renderHook(() => useHover(ref, { delayEnter: 100, delayLeave: 100 }));
 
         // Rapid enter
         act(() => {
@@ -446,12 +442,9 @@ describe('useHover', () => {
   describe('options updates', () => {
     test('should update behavior when delayEnter changes', () => {
       const ref = { current: element };
-      const { result, rerender } = renderHook(
-        ({ delay }) => useHover(ref, { delayEnter: delay }),
-        {
-          initialProps: { delay: 100 },
-        }
-      );
+      const { result, rerender } = renderHook(({ delay }) => useHover(ref, { delayEnter: delay }), {
+        initialProps: { delay: 100 },
+      });
 
       // Test with initial delay
       act(() => {
@@ -491,12 +484,9 @@ describe('useHover', () => {
 
     test('should update behavior when delayLeave changes', () => {
       const ref = { current: element };
-      const { result, rerender } = renderHook(
-        ({ delay }) => useHover(ref, { delayLeave: delay }),
-        {
-          initialProps: { delay: 100 },
-        }
-      );
+      const { result, rerender } = renderHook(({ delay }) => useHover(ref, { delayLeave: delay }), {
+        initialProps: { delay: 100 },
+      });
 
       // Enter hover
       act(() => {

@@ -37,16 +37,12 @@ function BasicHoverDemo() {
         <div
           ref={cardRef}
           className={`rounded-lg border p-6 text-center transition-all duration-200 ${
-            isHovered
-              ? 'border-primary bg-primary/10 scale-105'
-              : 'border-muted bg-muted/50'
+            isHovered ? 'border-primary bg-primary/10 scale-105' : 'border-muted bg-muted/50'
           }`}
         >
           <p className="text-2xl font-bold mb-2">{isHovered ? '👋 Hello!' : '🖱️ Hover me'}</p>
           <p className="text-sm text-muted-foreground">
-            {isHovered
-              ? 'The hook detected your hover!'
-              : 'Move your mouse over this area'}
+            {isHovered ? 'The hook detected your hover!' : 'Move your mouse over this area'}
           </p>
         </div>
 
@@ -69,9 +65,7 @@ function DelayedTooltipDemo() {
     <Card className="p-6 w-96">
       <div className="space-y-4">
         <h3 className="text-lg font-semibold">Delayed Tooltip</h3>
-        <p className="text-sm text-muted-foreground">
-          Hover for 500ms to show the tooltip
-        </p>
+        <p className="text-sm text-muted-foreground">Hover for 500ms to show the tooltip</p>
 
         <div className="relative flex justify-center py-4">
           <Button ref={buttonRef} variant="outline" className="relative">
@@ -90,7 +84,8 @@ function DelayedTooltipDemo() {
         </div>
 
         <div className="text-xs text-center text-muted-foreground">
-          Tooltip: <Badge variant={isHovered ? 'default' : 'secondary'}>
+          Tooltip:{' '}
+          <Badge variant={isHovered ? 'default' : 'secondary'}>
             {isHovered ? 'Visible' : 'Hidden'}
           </Badge>
         </div>
@@ -104,7 +99,10 @@ function DelayedTooltipDemo() {
  */
 function SmoothTooltipDemo() {
   const buttonRef = useRef<HTMLButtonElement>(null);
-  const isHovered = useHover(buttonRef as React.RefObject<HTMLButtonElement>, { delayEnter: 300, delayLeave: 200 });
+  const isHovered = useHover(buttonRef as React.RefObject<HTMLButtonElement>, {
+    delayEnter: 300,
+    delayLeave: 200,
+  });
 
   return (
     <Card className="p-6 w-96">
@@ -139,7 +137,8 @@ function SmoothTooltipDemo() {
         </div>
 
         <div className="text-xs text-center text-muted-foreground">
-          Tooltip: <Badge variant={isHovered ? 'default' : 'secondary'}>
+          Tooltip:{' '}
+          <Badge variant={isHovered ? 'default' : 'secondary'}>
             {isHovered ? 'Visible' : 'Hidden'}
           </Badge>
         </div>
@@ -164,9 +163,7 @@ function CardHoverDemo() {
     <Card className="p-6 w-full max-w-2xl">
       <div className="space-y-4">
         <h3 className="text-lg font-semibold">Interactive Cards</h3>
-        <p className="text-sm text-muted-foreground">
-          Hover over cards to see interactive effects
-        </p>
+        <p className="text-sm text-muted-foreground">Hover over cards to see interactive effects</p>
 
         <div className="grid grid-cols-3 gap-4">
           <div
@@ -242,9 +239,7 @@ function ContentRevealDemo() {
     <Card className="p-6 w-96">
       <div className="space-y-4">
         <h3 className="text-lg font-semibold">Content Reveal</h3>
-        <p className="text-sm text-muted-foreground">
-          Hover to reveal additional information
-        </p>
+        <p className="text-sm text-muted-foreground">Hover to reveal additional information</p>
 
         <div
           ref={containerRef}
@@ -262,9 +257,7 @@ function ContentRevealDemo() {
 
               <div
                 className={`transition-all duration-300 ease-in-out ${
-                  isHovered
-                    ? 'max-h-48 opacity-100'
-                    : 'max-h-0 opacity-0 overflow-hidden'
+                  isHovered ? 'max-h-48 opacity-100' : 'max-h-0 opacity-0 overflow-hidden'
                 }`}
               >
                 <div className="border-t pt-3 mt-2">
@@ -284,7 +277,8 @@ function ContentRevealDemo() {
         </div>
 
         <div className="text-xs text-center text-muted-foreground">
-          Details: <Badge variant={isHovered ? 'default' : 'secondary'}>
+          Details:{' '}
+          <Badge variant={isHovered ? 'default' : 'secondary'}>
             {isHovered ? 'Revealed' : 'Hidden'}
           </Badge>
         </div>
@@ -312,29 +306,27 @@ function ButtonHoverDemo() {
           <Button
             ref={buttonRef}
             size="lg"
-            className={`transition-all duration-200 ${
-              isHovered ? 'shadow-lg' : 'shadow-md'
-            }`}
+            className={`transition-all duration-200 ${isHovered ? 'shadow-lg' : 'shadow-md'}`}
           >
-            <Heart className={`mr-2 h-5 w-5 transition-all duration-200 ${
-              isHovered ? 'fill-current scale-110' : ''
-            }`} />
+            <Heart
+              className={`mr-2 h-5 w-5 transition-all duration-200 ${
+                isHovered ? 'fill-current scale-110' : ''
+              }`}
+            />
             {isHovered ? 'Thanks!' : 'Click to Like'}
           </Button>
 
           <div className="text-center space-y-2">
             <p className="text-sm">
-              {isHovered
-                ? '✨ Button is being hovered!'
-                : 'Move your mouse over the button'}
+              {isHovered ? '✨ Button is being hovered!' : 'Move your mouse over the button'}
             </p>
             <div className="flex items-center justify-center gap-2">
-              <div className={`w-2 h-2 rounded-full transition-all duration-200 ${
-                isHovered ? 'bg-green-500 animate-pulse' : 'bg-gray-300'
-              }`} />
-              <span className="text-xs text-muted-foreground">
-                {isHovered ? 'Active' : 'Idle'}
-              </span>
+              <div
+                className={`w-2 h-2 rounded-full transition-all duration-200 ${
+                  isHovered ? 'bg-green-500 animate-pulse' : 'bg-gray-300'
+                }`}
+              />
+              <span className="text-xs text-muted-foreground">{isHovered ? 'Active' : 'Idle'}</span>
             </div>
           </div>
         </div>
@@ -348,15 +340,16 @@ function ButtonHoverDemo() {
  */
 function ImageZoomDemo() {
   const imageContainerRef = useRef<HTMLDivElement>(null);
-  const isHovered = useHover(imageContainerRef as React.RefObject<HTMLDivElement>, { delayEnter: 100, delayLeave: 150 });
+  const isHovered = useHover(imageContainerRef as React.RefObject<HTMLDivElement>, {
+    delayEnter: 100,
+    delayLeave: 150,
+  });
 
   return (
     <Card className="p-6 w-96">
       <div className="space-y-4">
         <h3 className="text-lg font-semibold">Image Hover Zoom</h3>
-        <p className="text-sm text-muted-foreground">
-          Hover to zoom the image
-        </p>
+        <p className="text-sm text-muted-foreground">Hover to zoom the image</p>
 
         <div className="relative overflow-hidden rounded-lg border">
           <div
@@ -384,7 +377,8 @@ function ImageZoomDemo() {
         </div>
 
         <div className="text-xs text-center text-muted-foreground">
-          Zoom: <Badge variant={isHovered ? 'default' : 'secondary'}>
+          Zoom:{' '}
+          <Badge variant={isHovered ? 'default' : 'secondary'}>
             {isHovered ? 'Active' : 'Inactive'}
           </Badge>
         </div>
