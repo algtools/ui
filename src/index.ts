@@ -68,6 +68,7 @@ export type { UseCounterOptions, UseCounterReturn } from './hooks/use-counter';
 export { useHover } from './hooks/use-hover';
 export type { UseHoverOptions } from './hooks/use-hover';
 export { useIsMobile } from './hooks/use-mobile';
+export { useMediaQuery } from './hooks/use-media-query';
 export { useOnClickOutside } from './hooks/use-on-click-outside';
 export { useResizeObserver } from './hooks/use-resize-observer';
 export type { Size, ResizeCallback, UseResizeObserverOptions } from './hooks/use-resize-observer';
