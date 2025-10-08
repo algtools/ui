@@ -1,4 +1,4 @@
-THIS SHOULD BE A LINTER ERRORimport { renderHook, act } from '@testing-library/react';
+import { renderHook, act } from '@testing-library/react';
 
 import { useDebounceValue } from '@/hooks/use-debounce-value';
 
@@ -431,7 +431,7 @@ describe('useDebounceValue', () => {
       expect(result.current).toBe('');
     });
 
-    test('should handle falsy values correctly', () => {
+    test('should handle empty string correctly', () => {
       const { result, rerender } = renderHook(
         ({ value, delay }) => useDebounceValue(value, delay),
         {
@@ -444,12 +444,30 @@ describe('useDebounceValue', () => {
         jest.advanceTimersByTime(500);
       });
       expect(result.current).toBe('');
+    });
+
+    test('should handle zero value correctly', () => {
+      const { result, rerender } = renderHook(
+        ({ value, delay }) => useDebounceValue(value, delay),
+        {
+          initialProps: { value: 10, delay: 500 },
+        }
+      );
 
       rerender({ value: 0, delay: 500 });
       act(() => {
         jest.advanceTimersByTime(500);
       });
       expect(result.current).toBe(0);
+    });
+
+    test('should handle false value correctly', () => {
+      const { result, rerender } = renderHook(
+        ({ value, delay }) => useDebounceValue(value, delay),
+        {
+          initialProps: { value: true, delay: 500 },
+        }
+      );
 
       rerender({ value: false, delay: 500 });
       act(() => {
