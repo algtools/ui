@@ -1,15 +1,17 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import { Logo } from '../logo';
-import { useTheme } from 'next-themes';
-
-jest.mock('next-themes', () => ({
-  __esModule: true,
-  useTheme: jest.fn(),
-}));
 
 jest.mock('lucide-react', () => ({
-  Triangle: ({ className, size, strokeWidth }: any) => (
+  Triangle: ({
+    className,
+    size,
+    strokeWidth,
+  }: {
+    className?: string;
+    size?: number;
+    strokeWidth?: number;
+  }) => (
     <svg
       data-testid="triangle-icon"
       className={className}
@@ -19,13 +21,7 @@ jest.mock('lucide-react', () => ({
   ),
 }));
 
-const mockedUseTheme = useTheme as unknown as jest.Mock;
-
 describe('Logo', () => {
-  beforeEach(() => {
-    mockedUseTheme.mockReturnValue({ resolvedTheme: 'light' });
-  });
-
   it('renders with rounded div and primary background', () => {
     const { container } = render(<Logo className="custom-wrapper" imgClassName="custom-icon" />);
 
