@@ -72,14 +72,16 @@ describe('AIImage', () => {
       expect(screen.getByTestId('custom-fallback')).toBeInTheDocument();
     });
 
-    it('calls onError callback when image fails to load', () => {
-      const onError = jest.fn();
-      const { container } = render(<AIImage src="/invalid.jpg" alt="Test" onError={onError} />);
+    it('calls onImageError callback when image fails to load', () => {
+      const onImageError = jest.fn();
+      const { container } = render(
+        <AIImage src="/invalid.jpg" alt="Test" onImageError={onImageError} />
+      );
       const img = container.querySelector('[data-slot="ai-image"]') as HTMLImageElement;
 
       fireEvent.error(img);
 
-      expect(onError).toHaveBeenCalledWith(expect.any(Error));
+      expect(onImageError).toHaveBeenCalledWith(expect.any(Error));
     });
 
     it('displays error message in error state', () => {

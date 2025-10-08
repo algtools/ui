@@ -374,7 +374,7 @@ export const WithCallbacks: Story = {
           showDownload
           caption="Image with event callbacks"
           onLoad={() => addLog('Image loaded successfully')}
-          onError={(error) => addLog(`Error: ${error.message}`)}
+          onImageError={(error) => addLog(`Error: ${error.message}`)}
           className="w-[600px]"
         />
         <div className="bg-muted rounded-lg p-4 max-w-[600px]">

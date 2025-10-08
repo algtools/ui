@@ -33,7 +33,7 @@ export interface AIImageProps extends React.ComponentProps<'div'> {
   /** Callback when image loads successfully */
   onLoad?: () => void;
   /** Callback when image fails to load */
-  onError?: (error: Error) => void;
+  onImageError?: (error: Error) => void;
   /** Optional caption for the image */
   caption?: string;
   /** Whether to show image controls on hover */
@@ -68,7 +68,7 @@ export const AIImage = React.forwardRef<HTMLDivElement, AIImageProps>(
       showDownload = false,
       downloadFilename,
       onLoad,
-      onError,
+      onImageError,
       caption,
       showControlsOnHover = true,
       className,
@@ -96,7 +96,7 @@ export const AIImage = React.forwardRef<HTMLDivElement, AIImageProps>(
     const handleImageError = () => {
       const errorObj = new Error(`Failed to load image: ${src}`);
       setImageError(errorObj.message);
-      onError?.(errorObj);
+      onImageError?.(errorObj);
     };
 
     const handleDownload = async () => {
