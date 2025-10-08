@@ -47,6 +47,15 @@ if (existsSync(scrollbarSource)) {
   console.log('[copy-styles] Copied scrollbar.css to dist/scrollbar.css');
 }
 
+// Copy ai-components.css to dist
+const aiComponentsSource = resolve(projectRoot, 'src', 'styles', 'ai-components.css');
+const aiComponentsOut = resolve(distDir, 'ai-components.css');
+
+if (existsSync(aiComponentsSource)) {
+  copyFileSync(aiComponentsSource, aiComponentsOut);
+  console.log('[copy-styles] Copied ai-components.css to dist/ai-components.css');
+}
+
 console.log('[copy-styles] Copied globals.css to dist/globals.css and dist/styles.css');
 
 // Generate a client entry that uses NAMED re-exports (no `export *`) so Next.js accepts it

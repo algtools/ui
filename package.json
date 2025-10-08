@@ -129,7 +129,8 @@
     "./styles.css": "./dist/styles.css",
     "./globals.css": "./dist/globals.css",
     "./fonts.css": "./dist/fonts.css",
-    "./scrollbar.css": "./dist/scrollbar.css"
+    "./scrollbar.css": "./dist/scrollbar.css",
+    "./ai-components.css": "./dist/ai-components.css"
   },
   "types": "dist/index.d.ts",
   "main": "dist/index.js",
