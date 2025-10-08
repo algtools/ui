@@ -66,4 +66,6 @@ export type { UseBooleanReturn } from './hooks/use-boolean';
 export { useCounter } from './hooks/use-counter';
 export type { UseCounterOptions, UseCounterReturn } from './hooks/use-counter';
 export { useIsMobile } from './hooks/use-mobile';
+export { useLocalStorage } from './hooks/use-local-storage';
+export type { UseLocalStorageReturn } from './hooks/use-local-storage';
 export { useOnClickOutside } from './hooks/use-on-click-outside';
