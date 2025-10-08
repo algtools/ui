@@ -64,3 +64,4 @@ export { FontProvider, useFonts } from './components/font-provider';
 export { useBoolean } from './hooks/use-boolean';
 export type { UseBooleanReturn } from './hooks/use-boolean';
 export { useIsMobile } from './hooks/use-mobile';
+export { useOnClickOutside } from './hooks/use-on-click-outside';
