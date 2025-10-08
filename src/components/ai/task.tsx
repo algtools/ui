@@ -154,11 +154,11 @@ export const Task = React.forwardRef<HTMLDivElement, TaskProps>(
             {formattedTimestamp && (
               <time
                 className="text-xs text-muted-foreground whitespace-nowrap"
-                dateTime={
-                  typeof (task.updatedAt || task.createdAt) === 'string'
-                    ? task.updatedAt || task.createdAt
-                    : (task.updatedAt || task.createdAt)?.toISOString()
-                }
+                dateTime={(() => {
+                  const timestamp = task.updatedAt || task.createdAt;
+                  if (!timestamp) return undefined;
+                  return typeof timestamp === 'string' ? timestamp : timestamp.toISOString();
+                })()}
               >
                 {formattedTimestamp}
               </time>

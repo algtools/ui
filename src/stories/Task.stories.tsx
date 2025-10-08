@@ -106,7 +106,7 @@ export const WithTimestamp: Story = {
   },
 };
 
-export const AllStatuses: Story = {
+export const AllStatuses = {
   render: () => (
     <div className="space-y-3 w-[600px]">
       <Task
@@ -153,7 +153,7 @@ export const AllStatuses: Story = {
   ),
 };
 
-export const ProgressVariations: Story = {
+export const ProgressVariations = {
   render: () => (
     <div className="space-y-3 w-[600px]">
       <Task
@@ -205,7 +205,7 @@ export const ProgressVariations: Story = {
   ),
 };
 
-export const TaskListExample: Story = {
+export const TaskListExample = {
   render: () => (
     <TaskList
       tasks={[
@@ -252,21 +252,21 @@ export const TaskListExample: Story = {
   },
 };
 
-export const EmptyTaskList: Story = {
+export const EmptyTaskList = {
   render: () => <TaskList tasks={[]} />,
   parameters: {
     layout: 'padded',
   },
 };
 
-export const CustomEmptyMessage: Story = {
+export const CustomEmptyMessage = {
   render: () => <TaskList tasks={[]} emptyMessage="No tasks found. Start a new session." />,
   parameters: {
     layout: 'padded',
   },
 };
 
-export const InteractiveTaskList: Story = {
+export const InteractiveTaskList = {
   render: () => {
     const [selectedTask, setSelectedTask] = React.useState<TaskType | null>(null);
 
@@ -310,7 +310,7 @@ export const InteractiveTaskList: Story = {
   },
 };
 
-export const LongTaskTitle: Story = {
+export const LongTaskTitle = {
   render: () => (
     <div className="w-[600px]">
       <Task
@@ -327,7 +327,7 @@ export const LongTaskTitle: Story = {
   ),
 };
 
-export const AIAgentWorkflow: Story = {
+export const AIAgentWorkflow = {
   render: () => (
     <div className="space-y-4 max-w-2xl">
       <div>
@@ -389,7 +389,7 @@ export const AIAgentWorkflow: Story = {
   },
 };
 
-export const ErrorHandling: Story = {
+export const ErrorHandling = {
   render: () => (
     <div className="space-y-3 w-[600px]">
       <Task
@@ -420,7 +420,7 @@ export const ErrorHandling: Story = {
   ),
 };
 
-export const DarkMode: Story = {
+export const DarkMode = {
   render: () => (
     <div className="dark bg-background p-6 rounded-lg space-y-3">
       <Task
