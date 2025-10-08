@@ -68,6 +68,8 @@ export type { UseCounterOptions, UseCounterReturn } from './hooks/use-counter';
 export { useHover } from './hooks/use-hover';
 export type { UseHoverOptions } from './hooks/use-hover';
 export { useIsMobile } from './hooks/use-mobile';
+export { useLocalStorage } from './hooks/use-local-storage';
+export type { UseLocalStorageReturn } from './hooks/use-local-storage';
 export { useMediaQuery } from './hooks/use-media-query';
 export { useOnClickOutside } from './hooks/use-on-click-outside';
 export { useIntersectionObserver } from './hooks/use-intersection-observer';
