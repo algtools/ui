@@ -66,4 +66,5 @@ export type { UseBooleanReturn } from './hooks/use-boolean';
 export { useCounter } from './hooks/use-counter';
 export type { UseCounterOptions, UseCounterReturn } from './hooks/use-counter';
 export { useIsMobile } from './hooks/use-mobile';
+export { useMediaQuery } from './hooks/use-media-query';
 export { useOnClickOutside } from './hooks/use-on-click-outside';
