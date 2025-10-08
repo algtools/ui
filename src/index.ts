@@ -56,6 +56,7 @@ export * from './components/ui/combobox';
 export * from './components/ui/tags';
 export * from './components/ui/dropzone';
 export * from './components/ui/banner';
+export * from './components/ui/suggestion';
 
 export { cn } from './lib/utils';
 export { FontProvider, useFonts } from './components/font-provider';
