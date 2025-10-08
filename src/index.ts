@@ -65,5 +65,7 @@ export { useBoolean } from './hooks/use-boolean';
 export type { UseBooleanReturn } from './hooks/use-boolean';
 export { useCounter } from './hooks/use-counter';
 export type { UseCounterOptions, UseCounterReturn } from './hooks/use-counter';
+export { useHover } from './hooks/use-hover';
+export type { UseHoverOptions } from './hooks/use-hover';
 export { useIsMobile } from './hooks/use-mobile';
 export { useOnClickOutside } from './hooks/use-on-click-outside';
