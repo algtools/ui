@@ -67,3 +67,5 @@ export { useCounter } from './hooks/use-counter';
 export type { UseCounterOptions, UseCounterReturn } from './hooks/use-counter';
 export { useIsMobile } from './hooks/use-mobile';
 export { useOnClickOutside } from './hooks/use-on-click-outside';
+export { useResizeObserver } from './hooks/use-resize-observer';
+export type { Size, ResizeCallback, UseResizeObserverOptions } from './hooks/use-resize-observer';
