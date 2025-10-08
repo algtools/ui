@@ -362,7 +362,11 @@ describe('useResizeObserver', () => {
       const callback1 = jest.fn();
       const callback2 = jest.fn();
 
-      const TestComponent = ({ onResize }: { onResize: (size: { width: number; height: number }) => void }) => {
+      const TestComponent = ({
+        onResize,
+      }: {
+        onResize: (size: { width: number; height: number }) => void;
+      }) => {
         const [ref] = useResizeObserver<HTMLDivElement>({ onResize });
         return <div ref={ref} data-testid="observed" />;
       };
@@ -474,7 +478,7 @@ describe('useResizeObserver', () => {
     test('should return proper TypeScript types', () => {
       const TestComponent = () => {
         const [ref, size] = useResizeObserver<HTMLDivElement>();
-        
+
         // Type checks - these will fail at compile time if types are wrong
         const _width: number = size.width;
         const _height: number = size.height;
@@ -514,7 +518,17 @@ describe('useResizeObserver', () => {
       // First resize
       const mockEntry1: ResizeObserverEntry = {
         target: element,
-        contentRect: { width: 100, height: 200, x: 0, y: 0, top: 0, right: 100, bottom: 200, left: 0, toJSON: () => ({}) },
+        contentRect: {
+          width: 100,
+          height: 200,
+          x: 0,
+          y: 0,
+          top: 0,
+          right: 100,
+          bottom: 200,
+          left: 0,
+          toJSON: () => ({}),
+        },
         borderBoxSize: [{ inlineSize: 100, blockSize: 200 }],
         contentBoxSize: [{ inlineSize: 100, blockSize: 200 }],
         devicePixelContentBoxSize: [{ inlineSize: 100, blockSize: 200 }],
@@ -529,7 +543,17 @@ describe('useResizeObserver', () => {
       // Second resize
       const mockEntry2: ResizeObserverEntry = {
         target: element,
-        contentRect: { width: 300, height: 400, x: 0, y: 0, top: 0, right: 300, bottom: 400, left: 0, toJSON: () => ({}) },
+        contentRect: {
+          width: 300,
+          height: 400,
+          x: 0,
+          y: 0,
+          top: 0,
+          right: 300,
+          bottom: 400,
+          left: 0,
+          toJSON: () => ({}),
+        },
         borderBoxSize: [{ inlineSize: 300, blockSize: 400 }],
         contentBoxSize: [{ inlineSize: 300, blockSize: 400 }],
         devicePixelContentBoxSize: [{ inlineSize: 300, blockSize: 400 }],
@@ -572,7 +596,17 @@ describe('useResizeObserver', () => {
       // Trigger first observer
       const mockEntry1: ResizeObserverEntry = {
         target: element1,
-        contentRect: { width: 100, height: 200, x: 0, y: 0, top: 0, right: 100, bottom: 200, left: 0, toJSON: () => ({}) },
+        contentRect: {
+          width: 100,
+          height: 200,
+          x: 0,
+          y: 0,
+          top: 0,
+          right: 100,
+          bottom: 200,
+          left: 0,
+          toJSON: () => ({}),
+        },
         borderBoxSize: [{ inlineSize: 100, blockSize: 200 }],
         contentBoxSize: [{ inlineSize: 100, blockSize: 200 }],
         devicePixelContentBoxSize: [{ inlineSize: 100, blockSize: 200 }],
@@ -589,7 +623,17 @@ describe('useResizeObserver', () => {
       // Trigger second observer
       const mockEntry2: ResizeObserverEntry = {
         target: element2,
-        contentRect: { width: 300, height: 400, x: 0, y: 0, top: 0, right: 300, bottom: 400, left: 0, toJSON: () => ({}) },
+        contentRect: {
+          width: 300,
+          height: 400,
+          x: 0,
+          y: 0,
+          top: 0,
+          right: 300,
+          bottom: 400,
+          left: 0,
+          toJSON: () => ({}),
+        },
         borderBoxSize: [{ inlineSize: 300, blockSize: 400 }],
         contentBoxSize: [{ inlineSize: 300, blockSize: 400 }],
         devicePixelContentBoxSize: [{ inlineSize: 300, blockSize: 400 }],

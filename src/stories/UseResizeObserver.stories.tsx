@@ -19,11 +19,7 @@ function UseResizeObserverDemo() {
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <h3 className="text-lg font-semibold">useResizeObserver Hook Demo</h3>
-          <Button
-            onClick={() => setIsExpanded(!isExpanded)}
-            variant="outline"
-            size="sm"
-          >
+          <Button onClick={() => setIsExpanded(!isExpanded)} variant="outline" size="sm">
             {isExpanded ? (
               <>
                 <Minimize2 className="mr-2 h-4 w-4" />
@@ -44,7 +40,8 @@ function UseResizeObserverDemo() {
             isExpanded ? 'h-96' : 'h-48'
           }`}
           style={{
-            background: 'linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary) / 0.5) 100%)',
+            background:
+              'linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary) / 0.5) 100%)',
           }}
         >
           <div className="flex flex-col items-center justify-center h-full text-primary-foreground">
@@ -106,33 +103,23 @@ function ResponsiveDemo() {
           <div className="space-y-4">
             <div className="flex items-center justify-between">
               <span className="text-sm">Extra Small (xs)</span>
-              <Badge variant={breakpoint === 'xs' ? 'default' : 'outline'}>
-                &lt; 640px
-              </Badge>
+              <Badge variant={breakpoint === 'xs' ? 'default' : 'outline'}>&lt; 640px</Badge>
             </div>
             <div className="flex items-center justify-between">
               <span className="text-sm">Small (sm)</span>
-              <Badge variant={breakpoint === 'sm' ? 'default' : 'outline'}>
-                640px - 768px
-              </Badge>
+              <Badge variant={breakpoint === 'sm' ? 'default' : 'outline'}>640px - 768px</Badge>
             </div>
             <div className="flex items-center justify-between">
               <span className="text-sm">Medium (md)</span>
-              <Badge variant={breakpoint === 'md' ? 'default' : 'outline'}>
-                768px - 1024px
-              </Badge>
+              <Badge variant={breakpoint === 'md' ? 'default' : 'outline'}>768px - 1024px</Badge>
             </div>
             <div className="flex items-center justify-between">
               <span className="text-sm">Large (lg)</span>
-              <Badge variant={breakpoint === 'lg' ? 'default' : 'outline'}>
-                1024px - 1280px
-              </Badge>
+              <Badge variant={breakpoint === 'lg' ? 'default' : 'outline'}>1024px - 1280px</Badge>
             </div>
             <div className="flex items-center justify-between">
               <span className="text-sm">Extra Large (xl)</span>
-              <Badge variant={breakpoint === 'xl' ? 'default' : 'outline'}>
-                ≥ 1280px
-              </Badge>
+              <Badge variant={breakpoint === 'xl' ? 'default' : 'outline'}>≥ 1280px</Badge>
             </div>
           </div>
         </div>
@@ -191,8 +178,7 @@ function CallbackDemo() {
         </div>
 
         <p className="text-xs text-muted-foreground text-center">
-          The callback is triggered every time the textarea is resized. Check the console for
-          logs.
+          The callback is triggered every time the textarea is resized. Check the console for logs.
         </p>
       </div>
     </Card>
@@ -206,8 +192,7 @@ function AspectRatioDemo() {
   const [ref, size] = useResizeObserver<HTMLDivElement>();
   const [dimensions, setDimensions] = React.useState({ width: 400, height: 300 });
 
-  const aspectRatio =
-    size.height > 0 ? (size.width / size.height).toFixed(2) : '0.00';
+  const aspectRatio = size.height > 0 ? (size.width / size.height).toFixed(2) : '0.00';
 
   const getOrientation = (): string => {
     if (size.width > size.height) return 'Landscape';
@@ -272,9 +257,7 @@ function AspectRatioDemo() {
           <p className="text-sm text-muted-foreground">
             Dimensions: {size.width} × {size.height} pixels
           </p>
-          <p className="text-xs text-muted-foreground">
-            Use the sliders to adjust the size
-          </p>
+          <p className="text-xs text-muted-foreground">Use the sliders to adjust the size</p>
         </div>
       </div>
     </Card>
@@ -366,8 +349,7 @@ export const Basic: Story = {
   parameters: {
     docs: {
       description: {
-        story:
-          'Basic usage of the useResizeObserver hook showing real-time dimension tracking.',
+        story: 'Basic usage of the useResizeObserver hook showing real-time dimension tracking.',
       },
     },
   },
@@ -378,8 +360,7 @@ export const ResponsiveBreakpoints: Story = {
   parameters: {
     docs: {
       description: {
-        story:
-          'Using useResizeObserver to detect responsive breakpoints and adapt UI accordingly.',
+        story: 'Using useResizeObserver to detect responsive breakpoints and adapt UI accordingly.',
       },
     },
   },
