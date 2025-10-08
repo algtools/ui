@@ -27,9 +27,7 @@ function ResponsiveBreakpointsDemo() {
             <div className="flex items-center gap-2">
               <Smartphone className="h-4 w-4" />
               <span className="font-medium">Mobile</span>
-              <code className="text-xs bg-muted px-2 py-1 rounded">
-                (max-width: 767px)
-              </code>
+              <code className="text-xs bg-muted px-2 py-1 rounded">(max-width: 767px)</code>
             </div>
             <Badge variant={isMobile ? 'default' : 'secondary'}>
               {isMobile ? 'Active' : 'Inactive'}
@@ -40,9 +38,7 @@ function ResponsiveBreakpointsDemo() {
             <div className="flex items-center gap-2">
               <Tablet className="h-4 w-4" />
               <span className="font-medium">Tablet</span>
-              <code className="text-xs bg-muted px-2 py-1 rounded">
-                (768px - 1023px)
-              </code>
+              <code className="text-xs bg-muted px-2 py-1 rounded">(768px - 1023px)</code>
             </div>
             <Badge variant={isTablet ? 'default' : 'secondary'}>
               {isTablet ? 'Active' : 'Inactive'}
@@ -53,9 +49,7 @@ function ResponsiveBreakpointsDemo() {
             <div className="flex items-center gap-2">
               <Monitor className="h-4 w-4" />
               <span className="font-medium">Desktop</span>
-              <code className="text-xs bg-muted px-2 py-1 rounded">
-                (min-width: 1024px)
-              </code>
+              <code className="text-xs bg-muted px-2 py-1 rounded">(min-width: 1024px)</code>
             </div>
             <Badge variant={isDesktop ? 'default' : 'secondary'}>
               {isDesktop ? 'Active' : 'Inactive'}
@@ -66,9 +60,7 @@ function ResponsiveBreakpointsDemo() {
             <div className="flex items-center gap-2">
               <Monitor className="h-4 w-4" />
               <span className="font-medium">Large Desktop</span>
-              <code className="text-xs bg-muted px-2 py-1 rounded">
-                (min-width: 1280px)
-              </code>
+              <code className="text-xs bg-muted px-2 py-1 rounded">(min-width: 1280px)</code>
             </div>
             <Badge variant={isLargeDesktop ? 'default' : 'secondary'}>
               {isLargeDesktop ? 'Active' : 'Inactive'}
@@ -114,8 +106,8 @@ function ConditionalRenderDemo() {
               <p className="font-medium text-blue-900 dark:text-blue-100">Mobile View</p>
             </div>
             <p className="text-sm text-blue-700 dark:text-blue-300">
-              This content is only visible on mobile devices (width &lt; 768px).
-              Perfect for touch-optimized interfaces!
+              This content is only visible on mobile devices (width &lt; 768px). Perfect for
+              touch-optimized interfaces!
             </p>
           </div>
         )}
@@ -127,8 +119,8 @@ function ConditionalRenderDemo() {
               <p className="font-medium text-green-900 dark:text-green-100">Desktop View</p>
             </div>
             <p className="text-sm text-green-700 dark:text-green-300">
-              This content is only visible on desktop devices (width ≥ 1024px).
-              Great for complex layouts with more screen real estate!
+              This content is only visible on desktop devices (width ≥ 1024px). Great for complex
+              layouts with more screen real estate!
             </p>
           </div>
         )}
@@ -140,8 +132,8 @@ function ConditionalRenderDemo() {
               <p className="font-medium text-purple-900 dark:text-purple-100">Tablet View</p>
             </div>
             <p className="text-sm text-purple-700 dark:text-purple-300">
-              This content is only visible on tablet devices (768px - 1023px).
-              A perfect middle ground for both touch and mouse interactions!
+              This content is only visible on tablet devices (768px - 1023px). A perfect middle
+              ground for both touch and mouse interactions!
             </p>
           </div>
         )}
@@ -169,15 +161,9 @@ function SystemPreferencesDemo() {
         <div className="space-y-3">
           <div className="flex items-center justify-between p-3 border rounded-lg">
             <div className="flex items-center gap-2">
-              {prefersDark ? (
-                <Moon className="h-4 w-4" />
-              ) : (
-                <Sun className="h-4 w-4" />
-              )}
+              {prefersDark ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
               <span className="font-medium">Color Scheme</span>
-              <code className="text-xs bg-muted px-2 py-1 rounded">
-                prefers-color-scheme
-              </code>
+              <code className="text-xs bg-muted px-2 py-1 rounded">prefers-color-scheme</code>
             </div>
             <Badge variant={prefersDark ? 'default' : 'secondary'}>
               {prefersDark ? 'Dark' : 'Light'}
@@ -188,9 +174,7 @@ function SystemPreferencesDemo() {
             <div className="flex items-center gap-2">
               <Minimize2 className="h-4 w-4" />
               <span className="font-medium">Reduced Motion</span>
-              <code className="text-xs bg-muted px-2 py-1 rounded">
-                prefers-reduced-motion
-              </code>
+              <code className="text-xs bg-muted px-2 py-1 rounded">prefers-reduced-motion</code>
             </div>
             <Badge variant={prefersReducedMotion ? 'default' : 'secondary'}>
               {prefersReducedMotion ? 'Enabled' : 'Disabled'}
@@ -200,9 +184,7 @@ function SystemPreferencesDemo() {
           <div className="flex items-center justify-between p-3 border rounded-lg">
             <div className="flex items-center gap-2">
               <span className="font-medium">High Contrast</span>
-              <code className="text-xs bg-muted px-2 py-1 rounded">
-                prefers-contrast
-              </code>
+              <code className="text-xs bg-muted px-2 py-1 rounded">prefers-contrast</code>
             </div>
             <Badge variant={prefersContrast ? 'default' : 'secondary'}>
               {prefersContrast ? 'Enabled' : 'Disabled'}
@@ -212,8 +194,8 @@ function SystemPreferencesDemo() {
 
         <div className="mt-4 p-4 border rounded-lg bg-muted/50">
           <p className="text-xs text-muted-foreground">
-            💡 Tip: These preferences are set in your system settings and help create
-            more accessible and user-friendly experiences.
+            💡 Tip: These preferences are set in your system settings and help create more
+            accessible and user-friendly experiences.
           </p>
         </div>
       </div>
@@ -241,9 +223,7 @@ function OrientationDemo() {
             <div className="flex items-center gap-2">
               <div className="w-4 h-6 border-2 rounded" />
               <span className="font-medium">Portrait</span>
-              <code className="text-xs bg-muted px-2 py-1 rounded">
-                (orientation: portrait)
-              </code>
+              <code className="text-xs bg-muted px-2 py-1 rounded">(orientation: portrait)</code>
             </div>
             <Badge variant={isPortrait ? 'default' : 'secondary'}>
               {isPortrait ? 'Active' : 'Inactive'}
@@ -254,9 +234,7 @@ function OrientationDemo() {
             <div className="flex items-center gap-2">
               <div className="w-6 h-4 border-2 rounded" />
               <span className="font-medium">Landscape</span>
-              <code className="text-xs bg-muted px-2 py-1 rounded">
-                (orientation: landscape)
-              </code>
+              <code className="text-xs bg-muted px-2 py-1 rounded">(orientation: landscape)</code>
             </div>
             <Badge variant={isLandscape ? 'default' : 'secondary'}>
               {isLandscape ? 'Active' : 'Inactive'}

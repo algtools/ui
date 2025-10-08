@@ -11,16 +11,16 @@ const listenersMap = new Map<string, Set<(event: MediaQueryListEvent) => void>>(
  */
 function installMatchMediaMock() {
   listenersMap.clear();
-  
+
   Object.defineProperty(window, 'matchMedia', {
     writable: true,
     value: (query: string) => {
       if (!listenersMap.has(query)) {
         listenersMap.set(query, new Set());
       }
-      
+
       const listeners = listenersMap.get(query)!;
-      
+
       return {
         media: query,
         matches: false, // Default to false, can be changed by tests
@@ -61,9 +61,9 @@ function setMediaQueryMatches(query: string, matches: boolean) {
       if (!listenersMap.has(q)) {
         listenersMap.set(q, new Set());
       }
-      
+
       const listeners = listenersMap.get(q)!;
-      
+
       return {
         media: q,
         matches: q === query ? matches : false,
@@ -107,7 +107,7 @@ describe('useMediaQuery', () => {
     test('should handle different media queries independently', () => {
       setMediaQueryMatches('(min-width: 768px)', true);
       const { result: result1 } = renderHook(() => useMediaQuery('(min-width: 768px)'));
-      
+
       setMediaQueryMatches('(max-width: 767px)', false);
       const { result: result2 } = renderHook(() => useMediaQuery('(max-width: 767px)'));
 
@@ -219,7 +219,7 @@ describe('useMediaQuery', () => {
       // Start with first query matching
       const query1 = '(min-width: 768px)';
       const query2 = '(min-width: 1024px)';
-      
+
       // Set up mock to return true for first query
       Object.defineProperty(window, 'matchMedia', {
         writable: true,
@@ -227,16 +227,19 @@ describe('useMediaQuery', () => {
           if (!listenersMap.has(q)) {
             listenersMap.set(q, new Set());
           }
-          
+
           const listeners = listenersMap.get(q)!;
-          
+
           return {
             media: q,
             matches: q === query1, // First query matches
             addEventListener: (_type: string, listener: (event: MediaQueryListEvent) => void) => {
               listeners.add(listener);
             },
-            removeEventListener: (_type: string, listener: (event: MediaQueryListEvent) => void) => {
+            removeEventListener: (
+              _type: string,
+              listener: (event: MediaQueryListEvent) => void
+            ) => {
               listeners.delete(listener);
             },
             onchange: null,
@@ -246,11 +249,10 @@ describe('useMediaQuery', () => {
           };
         },
       });
-      
-      const { result, rerender } = renderHook(
-        ({ query }) => useMediaQuery(query),
-        { initialProps: { query: query1 } }
-      );
+
+      const { result, rerender } = renderHook(({ query }) => useMediaQuery(query), {
+        initialProps: { query: query1 },
+      });
 
       expect(result.current).toBe(true);
 
@@ -261,16 +263,19 @@ describe('useMediaQuery', () => {
           if (!listenersMap.has(q)) {
             listenersMap.set(q, new Set());
           }
-          
+
           const listeners = listenersMap.get(q)!;
-          
+
           return {
             media: q,
             matches: false, // Second query doesn't match
             addEventListener: (_type: string, listener: (event: MediaQueryListEvent) => void) => {
               listeners.add(listener);
             },
-            removeEventListener: (_type: string, listener: (event: MediaQueryListEvent) => void) => {
+            removeEventListener: (
+              _type: string,
+              listener: (event: MediaQueryListEvent) => void
+            ) => {
               listeners.delete(listener);
             },
             onchange: null,
@@ -292,11 +297,10 @@ describe('useMediaQuery', () => {
     test('should clean up old listener when query changes', async () => {
       const query1 = '(min-width: 768px)';
       const query2 = '(min-width: 1024px)';
-      
-      const { rerender } = renderHook(
-        ({ query }) => useMediaQuery(query),
-        { initialProps: { query: query1 } }
-      );
+
+      const { rerender } = renderHook(({ query }) => useMediaQuery(query), {
+        initialProps: { query: query1 },
+      });
 
       expect(listenersMap.get(query1)?.size).toBe(1);
       expect(listenersMap.get(query2)?.size).toBeUndefined();
@@ -319,7 +323,7 @@ describe('useMediaQuery', () => {
 
     test('should work with tablet breakpoint', () => {
       setMediaQueryMatches('(min-width: 768px) and (max-width: 1023px)', true);
-      const { result } = renderHook(() => 
+      const { result } = renderHook(() =>
         useMediaQuery('(min-width: 768px) and (max-width: 1023px)')
       );
       expect(result.current).toBe(true);
@@ -355,7 +359,7 @@ describe('useMediaQuery', () => {
   describe('SSR compatibility', () => {
     test('should return false during SSR (window undefined)', () => {
       const originalWindow = global.window;
-      
+
       // Simulate SSR by removing window
       // @ts-expect-error - Intentionally removing window for SSR test
       delete global.window;
@@ -372,7 +376,7 @@ describe('useMediaQuery', () => {
     test('should allow multiple hooks with same query to work independently', async () => {
       const query = '(min-width: 768px)';
       setMediaQueryMatches(query, false);
-      
+
       const { result: result1 } = renderHook(() => useMediaQuery(query));
       const { result: result2 } = renderHook(() => useMediaQuery(query));
 
@@ -392,28 +396,31 @@ describe('useMediaQuery', () => {
     test('should allow multiple hooks with different queries', async () => {
       const query1 = '(min-width: 768px)';
       const query2 = '(max-width: 767px)';
-      
+
       // Set up mock to handle multiple queries with different match states
       const matchStates = new Map<string, boolean>();
       matchStates.set(query1, true);
       matchStates.set(query2, false);
-      
+
       Object.defineProperty(window, 'matchMedia', {
         writable: true,
         value: (q: string) => {
           if (!listenersMap.has(q)) {
             listenersMap.set(q, new Set());
           }
-          
+
           const listeners = listenersMap.get(q)!;
-          
+
           return {
             media: q,
             matches: matchStates.get(q) ?? false,
             addEventListener: (_type: string, listener: (event: MediaQueryListEvent) => void) => {
               listeners.add(listener);
             },
-            removeEventListener: (_type: string, listener: (event: MediaQueryListEvent) => void) => {
+            removeEventListener: (
+              _type: string,
+              listener: (event: MediaQueryListEvent) => void
+            ) => {
               listeners.delete(listener);
             },
             onchange: null,

@@ -82,7 +82,7 @@ export function useMediaQuery(query: string): boolean {
     }
 
     const mediaQueryList = window.matchMedia(query);
-    
+
     // Handler for media query changes
     const handleChange = (event: MediaQueryListEvent) => {
       setMatches(event.matches);
@@ -90,7 +90,7 @@ export function useMediaQuery(query: string): boolean {
 
     // Add event listener for changes
     mediaQueryList.addEventListener('change', handleChange);
-    
+
     // Set initial value (in case it changed between mount and effect)
     setMatches(mediaQueryList.matches);
 
