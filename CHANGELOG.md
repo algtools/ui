@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.1.0] - 2025-10-08
+## [0.2.0] - 2025-10-08
 
 ### Added - Phase 1 Essential Hooks ✅
 
@@ -136,7 +136,7 @@ See [ROADMAP_SHADCN_IO.md](./ROADMAP_SHADCN_IO.md) for the complete roadmap.
 
 ---
 
-## [1.0.0] - 2025-09-XX
+## [0.1.1] - 2025-09-XX
 
 ### Added
 
@@ -156,5 +156,5 @@ See [ROADMAP_SHADCN_IO.md](./ROADMAP_SHADCN_IO.md) for the complete roadmap.
 - Comprehensive test coverage
 - GitHub Pages deployment for Storybook
 
-[1.1.0]: https://github.com/algtools/ui/compare/v1.0.0...v1.1.0
-[1.0.0]: https://github.com/algtools/ui/releases/tag/v1.0.0
+[0.2.0]: https://github.com/algtools/ui/compare/v0.1.1...v0.2.0
+[0.1.1]: https://github.com/algtools/ui/releases/tag/v0.1.1

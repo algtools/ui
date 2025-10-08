@@ -292,10 +292,10 @@ Following semantic versioning:
 
 Release history and roadmap:
 
-- ✅ **v1.1.0** - Phase 1 complete (11 essential hooks) - COMPLETE
-- ⏳ **v1.2.0** - Phase 2 complete (AI components) - Pending
-- ⏳ **v1.3.0** - Phase 3 complete (remaining hooks) - Pending
-- ⏳ **v2.0.0** - All phases complete (if breaking changes needed) - Future
+- ✅ **v0.2.0** - Phase 1 complete (11 essential hooks) - COMPLETE
+- ⏳ **v0.3.0** - Phase 2 complete (AI components) - Pending
+- ⏳ **v0.4.0** - Phase 3 complete (remaining hooks) - Pending
+- ⏳ **v1.0.0** - All phases complete (first stable release) - Future
 
 ---
 
