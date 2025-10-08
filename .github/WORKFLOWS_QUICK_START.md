@@ -3,6 +3,7 @@
 ## ⚡ TL;DR Setup
 
 ### For Chromatic (Recommended):
+
 ```bash
 # 1. Add GitHub Secret
 #    Settings → Secrets → New: CHROMATIC_PROJECT_TOKEN
@@ -15,6 +16,7 @@ mv .github/workflows/pr-preview.yml .github/workflows/pr-preview.yml.disabled
 ```
 
 ### For GitHub Pages:
+
 ```bash
 # 1. Enable GitHub Pages
 #    Settings → Pages → Source: gh-pages branch
@@ -30,32 +32,35 @@ mv .github/workflows/chromatic.yml .github/workflows/chromatic.yml.disabled
 ## 🎯 What You Get
 
 ### ✅ On Every PR:
+
 - **Automated Tests** - Jest runs all tests
-- **Linting** - ESLint checks code quality  
+- **Linting** - ESLint checks code quality
 - **Formatting** - Prettier validates formatting
 - **Build Check** - Ensures library builds successfully
 - **Storybook Preview** - Live preview of your UI changes
 
 ### 🔗 Preview URLs:
+
 - **Chromatic**: Posted in PR comments + status check
 - **GitHub Pages**: `https://<org>.github.io/<repo>/pr-<number>/`
 
 ### 🧹 Automatic Cleanup:
+
 Both options automatically remove preview deployments when PRs close!
 
 ---
 
 ## 🆚 Chromatic vs GitHub Pages
 
-| Feature | Chromatic | GitHub Pages |
-|---------|-----------|--------------|
-| **Visual Testing** | ✅ Yes | ❌ No |
-| **Auto Cleanup** | ✅ Yes | ✅ Yes |
-| **Setup Complexity** | 🟢 Easy | 🟡 Medium |
-| **Speed** | 🚀 Fast | 🐢 Slower |
-| **Cost** | 💰 Free tier limits | 💚 Free unlimited |
-| **Custom Domain** | ✅ Yes | ✅ Yes |
-| **History** | ✅ Full history | ❌ Current only |
+| Feature              | Chromatic           | GitHub Pages      |
+| -------------------- | ------------------- | ----------------- |
+| **Visual Testing**   | ✅ Yes              | ❌ No             |
+| **Auto Cleanup**     | ✅ Yes              | ✅ Yes            |
+| **Setup Complexity** | 🟢 Easy             | 🟡 Medium         |
+| **Speed**            | 🚀 Fast             | 🐢 Slower         |
+| **Cost**             | 💰 Free tier limits | 💚 Free unlimited |
+| **Custom Domain**    | ✅ Yes              | ✅ Yes            |
+| **History**          | ✅ Full history     | ❌ Current only   |
 
 **Recommendation**: Use Chromatic unless you need unlimited free hosting.
 
@@ -69,7 +74,7 @@ Both options automatically remove preview deployments when PRs close!
 2. PR Checks run automatically
    ⏱️ ~2-3 minutes
         ↓
-3. Storybook builds and deploys  
+3. Storybook builds and deploys
    ⏱️ ~3-5 minutes
         ↓
 4. Bot comments with preview link
@@ -109,6 +114,7 @@ pnpm storybook
 ## 🎨 Testing UI Changes
 
 ### Before Submitting PR:
+
 ```bash
 # 1. Run Storybook locally
 pnpm storybook
@@ -127,6 +133,7 @@ pnpm storybook
 ## 🚨 Troubleshooting
 
 ### ❌ Chromatic not deploying
+
 ```bash
 # Check secret exists
 gh secret list | grep CHROMATIC
@@ -136,6 +143,7 @@ gh secret set CHROMATIC_PROJECT_TOKEN
 ```
 
 ### ❌ GitHub Pages 404
+
 ```bash
 # Check gh-pages branch exists
 git branch -r | grep gh-pages
@@ -144,6 +152,7 @@ git branch -r | grep gh-pages
 ```
 
 ### ❌ Tests pass locally but fail in CI
+
 ```bash
 # Use CI command locally
 pnpm test:ci
@@ -175,7 +184,7 @@ Settings → Branches → Add rule
 ├─ Branch name: main
 ├─ ✅ Require status checks to pass
 │   ├─ ✅ Lint
-│   ├─ ✅ Test  
+│   ├─ ✅ Test
 │   └─ ✅ Build
 └─ ✅ Require branches to be up to date
 ```
@@ -185,13 +194,17 @@ Settings → Branches → Add rule
 ## 🎁 Bonus Features
 
 ### Test Coverage (Optional)
+
 Add `CODECOV_TOKEN` secret for coverage reports:
+
 - Badge in PR comments
 - Coverage trends over time
 - File-by-file breakdown
 
 ### Status Badges
+
 Add to README.md:
+
 ```markdown
 ![Tests](https://github.com/<org>/<repo>/actions/workflows/pr-checks.yml/badge.svg)
 ```

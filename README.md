@@ -140,6 +140,7 @@ This repository uses automated workflows for quality assurance:
 - 📦 **Build Verification** - Ensures no build errors
 
 When you create a PR:
+
 1. Automated checks will run (~5 minutes)
 2. A preview deployment link will be posted in comments
 3. All checks must pass before merging

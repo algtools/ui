@@ -3,7 +3,9 @@
 ## ✅ What Was Created
 
 ### 1. **PR Checks Workflow** (`.github/workflows/pr-checks.yml`)
+
 Runs comprehensive checks on every pull request:
+
 - **Linting**: ESLint code quality checks (non-blocking)
 - **Formatting**: Prettier format validation (blocking)
 - **Testing**: Full Jest test suite with coverage
@@ -14,7 +16,9 @@ Runs comprehensive checks on every pull request:
 ---
 
 ### 2. **Chromatic Deployment** (`.github/workflows/chromatic.yml`)
+
 Creates ephemeral Storybook previews with visual testing:
+
 - Automatic PR preview deployments
 - Visual regression testing
 - Auto-cleanup on PR close
@@ -25,7 +29,9 @@ Creates ephemeral Storybook previews with visual testing:
 ---
 
 ### 3. **GitHub Pages PR Preview** (`.github/workflows/pr-preview.yml`)
+
 Alternative to Chromatic using GitHub Pages:
+
 - Deploys to `<org>.github.io/<repo>/pr-<number>/`
 - Auto-cleanup on PR close
 - Comments with preview links
@@ -41,7 +47,9 @@ Alternative to Chromatic using GitHub Pages:
 You have **two options** for PR previews. Choose **ONE**:
 
 #### Option A: Chromatic (Recommended) ⭐
+
 **Pros:**
+
 - ✨ Visual regression testing built-in
 - 🎯 Professional-grade UI testing
 - 📸 Snapshot history
@@ -49,7 +57,8 @@ You have **two options** for PR previews. Choose **ONE**:
 - 🤖 Smart change detection
 
 **Setup:**
-1. Add GitHub secret `CHROMATIC_PROJECT_TOKEN` 
+
+1. Add GitHub secret `CHROMATIC_PROJECT_TOKEN`
 2. Value: Your existing token `chpt_9ea5fa1ab968f88` or get new one from chromatic.com
 3. Disable PR Preview workflow:
    ```bash
@@ -57,12 +66,15 @@ You have **two options** for PR previews. Choose **ONE**:
    ```
 
 #### Option B: GitHub Pages
+
 **Pros:**
+
 - 💰 Completely free
 - 🎯 Simple and straightforward
 - 📦 Self-hosted on your domain
 
 **Setup:**
+
 1. Enable GitHub Pages in Settings → Pages
 2. Select source: `gh-pages` branch
 3. Disable Chromatic workflow:
@@ -106,6 +118,7 @@ You have **two options** for PR previews. Choose **ONE**:
 ## 🧪 Testing Your Setup
 
 ### 1. Create a Test PR
+
 ```bash
 git checkout -b test/verify-workflows
 echo "# Test" >> TEST.md
@@ -115,13 +128,16 @@ git push origin test/verify-workflows
 ```
 
 ### 2. Create PR on GitHub
+
 Watch for:
+
 - ✅ PR Checks workflow starts automatically
 - ✅ Preview deployment workflow starts
 - ✅ Status checks appear in PR
 - ✅ Bot comment with preview link (after ~3-5 min)
 
 ### 3. Verify Each Check
+
 - [ ] Lint check passes (or shows warnings)
 - [ ] Format check passes
 - [ ] Tests run and pass
@@ -130,6 +146,7 @@ Watch for:
 - [ ] Preview link works and shows Storybook
 
 ### 4. Close PR and Verify Cleanup
+
 - [ ] Close the test PR
 - [ ] Check that preview is removed (Chromatic or gh-pages)
 - [ ] Confirm cleanup comment appears
@@ -139,6 +156,7 @@ Watch for:
 ## 📊 Expected Results
 
 ### On PR Creation:
+
 ```
 ✓ PR Checks / Lint       (2-3 min)
 ✓ PR Checks / Test       (2-3 min)
@@ -148,12 +166,14 @@ Watch for:
 ```
 
 ### On PR Close:
+
 ```
 ✓ Preview cleanup        (1-2 min)
   └─ 💬 Comment posted confirming cleanup
 ```
 
 ### On Merge to Main:
+
 ```
 ✓ Storybook Deployment   (3-5 min)
   └─ Updates production Storybook
@@ -164,11 +184,13 @@ Watch for:
 ## 🔍 Monitoring & Debugging
 
 ### View Workflow Runs
+
 - Go to **Actions** tab in GitHub
 - Click on specific workflow to see runs
 - Click on a run to see detailed logs
 
 ### Check Workflow Status
+
 ```bash
 # Using GitHub CLI
 gh run list --workflow=pr-checks.yml
@@ -180,14 +202,14 @@ gh run list --limit 1
 
 ### Common Issues & Solutions
 
-| Issue | Solution |
-|-------|----------|
-| 🔴 Lint failures | Run `pnpm lint` locally and fix issues |
-| 🔴 Format failures | Run `pnpm format` to auto-fix |
-| 🔴 Test failures | Run `pnpm test:ci` locally to reproduce |
-| 🔴 Build failures | Check Node version, run `pnpm build:lib` |
-| 🔴 Chromatic fails | Verify `CHROMATIC_PROJECT_TOKEN` is set |
-| 🔴 Pages 404 | Enable Pages in repo Settings |
+| Issue              | Solution                                 |
+| ------------------ | ---------------------------------------- |
+| 🔴 Lint failures   | Run `pnpm lint` locally and fix issues   |
+| 🔴 Format failures | Run `pnpm format` to auto-fix            |
+| 🔴 Test failures   | Run `pnpm test:ci` locally to reproduce  |
+| 🔴 Build failures  | Check Node version, run `pnpm build:lib` |
+| 🔴 Chromatic fails | Verify `CHROMATIC_PROJECT_TOKEN` is set  |
+| 🔴 Pages 404       | Enable Pages in repo Settings            |
 
 ---
 
@@ -230,6 +252,7 @@ Your setup is complete when:
 ## 🤝 Team Communication
 
 ### For Your Team:
+
 ```markdown
 ## 🎉 New CI/CD Workflows Active!
 
@@ -241,6 +264,7 @@ We now have automated checks on all PRs:
 ✅ **Live Previews** - See UI changes before merge
 
 ### For Contributors:
+
 1. Create your PR as usual
 2. Wait for checks to complete (~5 min)
 3. Click preview link in PR comments
@@ -254,20 +278,22 @@ Questions? Check `.github/WORKFLOWS_QUICK_START.md`
 ## 🔄 Maintenance
 
 ### Regular Updates
+
 - **Monthly**: Review workflow performance and optimization
 - **Quarterly**: Update action versions (dependabot recommended)
 - **As Needed**: Adjust settings based on team feedback
 
 ### Keeping Up to Date
+
 ```yaml
 # Add dependabot for GitHub Actions
 # Create .github/dependabot.yml:
 version: 2
 updates:
-  - package-ecosystem: "github-actions"
-    directory: "/"
+  - package-ecosystem: 'github-actions'
+    directory: '/'
     schedule:
-      interval: "monthly"
+      interval: 'monthly'
 ```
 
 ---
@@ -275,6 +301,7 @@ updates:
 ## 📈 Metrics to Track
 
 Consider tracking:
+
 - ⏱️ Average PR check duration
 - ✅ Pass rate of PR checks
 - 🔄 Number of preview deployments
@@ -285,21 +312,23 @@ Consider tracking:
 
 ## 🎊 You're All Set!
 
-Your repository now has enterprise-grade CI/CD workflows! 
+Your repository now has enterprise-grade CI/CD workflows!
 
 **Next steps:**
+
 1. Choose your preview strategy (Chromatic or GitHub Pages)
 2. Add required secrets
 3. Test with a PR
 4. Enable branch protection
 5. Communicate with your team
 
-**Need help?** 
+**Need help?**
+
 - Check the detailed docs in `.github/WORKFLOWS_SETUP.md`
 - Open an issue for workflow-related questions
 - Review workflow logs in the Actions tab
 
 ---
 
-*Created as part of BAA-73: Setup hooks infrastructure and use-boolean*
-*Date: 2025-10-08*
+_Created as part of BAA-73: Setup hooks infrastructure and use-boolean_
+_Date: 2025-10-08_

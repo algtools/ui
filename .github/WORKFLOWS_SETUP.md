@@ -5,9 +5,11 @@ This repository includes several GitHub Actions workflows for automated testing,
 ## 📋 Workflows Overview
 
 ### 1. PR Checks (`pr-checks.yml`)
+
 **Purpose:** Runs automated checks on every pull request
 
 **What it does:**
+
 - ✅ Lints code with ESLint
 - ✅ Checks code formatting with Prettier
 - ✅ Runs Jest test suite
@@ -18,9 +20,11 @@ This repository includes several GitHub Actions workflows for automated testing,
 **Status:** ✅ Required check before merging
 
 ### 2. Chromatic Deployment (`chromatic.yml`)
+
 **Purpose:** Deploys ephemeral Storybook previews using Chromatic
 
 **What it does:**
+
 - 🎨 Builds and publishes Storybook to Chromatic
 - 📸 Runs visual regression testing
 - 🔗 Posts preview link in PR comments
@@ -30,10 +34,12 @@ This repository includes several GitHub Actions workflows for automated testing,
 **Triggers:** On PR creation/updates and pushes to main
 **Setup Required:** Yes (see setup instructions below)
 
-### 3. PR Preview - GitHub Pages (`pr-preview.yml`) 
+### 3. PR Preview - GitHub Pages (`pr-preview.yml`)
+
 **Purpose:** Alternative to Chromatic - deploys previews to GitHub Pages
 
 **What it does:**
+
 - 📚 Builds Storybook for the PR
 - 🌐 Deploys to `<username>.github.io/<repo>/pr-<number>/`
 - 🔗 Posts preview link in PR comments
@@ -44,9 +50,11 @@ This repository includes several GitHub Actions workflows for automated testing,
 **Note:** Choose either Chromatic OR GitHub Pages, not both
 
 ### 4. Storybook Deployment (`storybook.yml`)
+
 **Purpose:** Deploys production Storybook to GitHub Pages
 
 **What it does:**
+
 - 📚 Builds Storybook from main branch
 - 🌐 Deploys to GitHub Pages (production site)
 
@@ -54,9 +62,11 @@ This repository includes several GitHub Actions workflows for automated testing,
 **Status:** ✅ Already configured
 
 ### 5. Release and Publish (`release.yml`)
+
 **Purpose:** Publishes package on GitHub releases
 
 **What it does:**
+
 - 🧪 Runs tests
 - 📦 Builds library
 - 🚀 Publishes to GitHub Packages
@@ -74,12 +84,14 @@ This repository includes several GitHub Actions workflows for automated testing,
 Chromatic provides the best experience with visual regression testing and automatic cleanup.
 
 #### Step 1: Get Chromatic Token
+
 1. Go to [chromatic.com](https://www.chromatic.com/)
 2. Sign in with your GitHub account
 3. Create a new project or use existing: `chpt_9ea5fa1ab968f88`
 4. Copy your project token
 
 #### Step 2: Add GitHub Secret
+
 1. Go to your repository on GitHub
 2. Navigate to **Settings** → **Secrets and variables** → **Actions**
 3. Click **New repository secret**
@@ -88,14 +100,18 @@ Chromatic provides the best experience with visual regression testing and automa
 6. Click **Add secret**
 
 #### Step 3: Disable PR Preview Workflow (Optional)
+
 If using Chromatic, you might want to disable the GitHub Pages preview:
+
 ```bash
 # Rename to disable
 mv .github/workflows/pr-preview.yml .github/workflows/pr-preview.yml.disabled
 ```
 
 #### Step 4: Test It!
+
 Create a test PR and watch the Chromatic workflow run. You'll see:
+
 - A status check appears in the PR
 - A link to the Chromatic preview
 - Visual regression test results
@@ -107,6 +123,7 @@ Create a test PR and watch the Chromatic workflow run. You'll see:
 If you prefer to use GitHub Pages for PR previews instead of Chromatic.
 
 #### Step 1: Enable GitHub Pages
+
 1. Go to your repository on GitHub
 2. Navigate to **Settings** → **Pages**
 3. Under "Source", select **Deploy from a branch**
@@ -115,6 +132,7 @@ If you prefer to use GitHub Pages for PR previews instead of Chromatic.
 6. Click **Save**
 
 #### Step 2: Update Main Storybook Deployment
+
 The main `storybook.yml` workflow needs a small adjustment to avoid conflicts:
 
 ```yaml
@@ -126,13 +144,16 @@ The main `storybook.yml` workflow needs a small adjustment to avoid conflicts:
 ```
 
 #### Step 3: Disable Chromatic Workflow
+
 ```bash
 # Rename to disable
 mv .github/workflows/chromatic.yml .github/workflows/chromatic.yml.disabled
 ```
 
 #### Step 4: Test It!
+
 Create a test PR and watch the preview deploy. You'll see:
+
 - A comment with the preview URL: `https://<org>.github.io/<repo>/pr-<number>/`
 - The preview updates automatically on new commits
 - The preview is removed when PR closes
@@ -144,7 +165,9 @@ Create a test PR and watch the preview deploy. You'll see:
 ### PR Checks Workflow
 
 #### Optional: Setup Codecov
+
 For test coverage reporting:
+
 1. Go to [codecov.io](https://codecov.io/)
 2. Add your repository
 3. Get your Codecov token
@@ -153,7 +176,9 @@ For test coverage reporting:
 If you don't want Codecov, the workflow will continue without it (it's set to `continue-on-error: true`).
 
 #### Customize Lint Behavior
+
 By default, lint errors don't fail the build:
+
 ```yaml
 - name: Run linter
   run: pnpm run lint
@@ -163,6 +188,7 @@ By default, lint errors don't fail the build:
 ### Chromatic Workflow
 
 #### Visual Testing Options
+
 ```yaml
 # Only test changed stories (faster)
 onlyChanged: true
@@ -175,9 +201,10 @@ autoAcceptChanges: ${{ github.ref == 'refs/heads/main' }}
 ```
 
 #### Build Performance
+
 ```yaml
 env:
-  NODE_OPTIONS: "--max_old_space_size=4096" # Adjust if needed
+  NODE_OPTIONS: '--max_old_space_size=4096' # Adjust if needed
 ```
 
 ---
@@ -197,22 +224,26 @@ Add these to your `README.md`:
 ## 🐛 Troubleshooting
 
 ### Chromatic: "Project token is invalid"
+
 - Make sure the secret is named exactly `CHROMATIC_PROJECT_TOKEN`
 - Verify the token is correct in repository secrets
 - Try regenerating the token in Chromatic dashboard
 
 ### GitHub Pages: "404 on preview URL"
+
 - Check that GitHub Pages is enabled
 - Verify the `gh-pages` branch exists
 - Wait a few minutes after first deployment
 - Check Actions logs for deployment errors
 
 ### Tests failing on CI but pass locally
+
 - Ensure you're using `pnpm test:ci` which runs with `--ci --maxWorkers=1`
 - Check Node.js version matches (20.x)
 - Verify all dependencies are in `package.json`, not just installed locally
 
 ### Build failing with memory issues
+
 - Increase `NODE_OPTIONS: "--max_old_space_size=4096"` to higher value
 - Consider splitting large builds into chunks
 
@@ -221,12 +252,14 @@ Add these to your `README.md`:
 ## 🎯 Best Practices
 
 ### For Contributors
+
 1. Always create PRs from feature branches
 2. Wait for PR checks to pass before requesting review
 3. Check the Storybook preview to verify UI changes
 4. Address any visual regression failures in Chromatic
 
 ### For Maintainers
+
 1. Set PR checks as required status checks:
    - Settings → Branches → Branch protection rules
    - Add rules for `main` branch

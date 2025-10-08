@@ -23,8 +23,8 @@ export default function AvatarEditorDemoPage() {
       <div className="space-y-2">
         <h1 className="text-2xl font-semibold tracking-tight">Avatar Editor Demo</h1>
         <p className="text-sm text-muted-foreground">
-          This demo showcases the onChange callback updating a live preview as you edit, and onSave storing the final
-          result below.
+          This demo showcases the onChange callback updating a live preview as you edit, and onSave
+          storing the final result below.
         </p>
       </div>
 
@@ -49,7 +49,11 @@ export default function AvatarEditorDemoPage() {
             <div className="border rounded-md p-4 bg-muted/20 flex items-center justify-center min-h-40">
               {editedPreview ? (
                 // eslint-disable-next-line @next/next/no-img-element
-                <img src={editedPreview} alt="Live avatar preview" className="max-w-full rounded-full w-40 h-40" />
+                <img
+                  src={editedPreview}
+                  alt="Live avatar preview"
+                  className="max-w-full rounded-full w-40 h-40"
+                />
               ) : (
                 <span className="text-sm text-muted-foreground">No changes yet</span>
               )}
@@ -64,7 +68,11 @@ export default function AvatarEditorDemoPage() {
             <div className="border rounded-md p-4 bg-muted/20 flex items-center justify-center min-h-40">
               {savedPreview ? (
                 // eslint-disable-next-line @next/next/no-img-element
-                <img src={savedPreview} alt="Saved avatar preview" className="max-w-full rounded-full w-40 h-40" />
+                <img
+                  src={savedPreview}
+                  alt="Saved avatar preview"
+                  className="max-w-full rounded-full w-40 h-40"
+                />
               ) : (
                 <span className="text-sm text-muted-foreground">Nothing saved yet</span>
               )}
@@ -75,5 +83,3 @@ export default function AvatarEditorDemoPage() {
     </div>
   );
 }
-
-

@@ -20,16 +20,16 @@
 
 <!-- Link to related issues using #issue_number or Linear issue ID -->
 
-Closes # 
-Linear: 
+Closes #
+Linear:
 
 ## Changes Made
 
 <!-- List the specific changes you made -->
 
-- 
-- 
-- 
+-
+-
+-
 
 ## Screenshots/Videos
 
@@ -37,9 +37,7 @@ Linear:
 
 ### Before
 
-
 ### After
-
 
 ## Storybook Preview
 
@@ -51,22 +49,26 @@ Linear:
 <!-- Put an `x` in the boxes that apply -->
 
 ### Code Quality
+
 - [ ] My code follows the project's style guidelines
 - [ ] I have run `pnpm lint` and fixed any issues
 - [ ] I have run `pnpm format` to format the code
 - [ ] I have commented my code, particularly in hard-to-understand areas
 
 ### Testing
+
 - [ ] I have added tests that prove my fix is effective or that my feature works
 - [ ] New and existing unit tests pass locally with my changes (`pnpm test`)
 - [ ] I have tested this in a Next.js 15 application
 
 ### Documentation
+
 - [ ] I have updated the documentation accordingly
 - [ ] I have added/updated JSDoc comments for new functions/components
 - [ ] I have added/updated Storybook stories if applicable
 
 ### Build & Deploy
+
 - [ ] My changes build successfully (`pnpm build:lib`)
 - [ ] I have checked the Storybook preview and it looks correct
 - [ ] I have verified there are no console errors or warnings
@@ -84,6 +86,7 @@ Linear:
 ## For Reviewers
 
 ### Review Checklist
+
 - [ ] Code quality and style
 - [ ] Test coverage
 - [ ] Documentation completeness
@@ -92,6 +95,7 @@ Linear:
 - [ ] Performance impact considered
 
 ### Testing in Your Project
+
 ```bash
 # Test this PR in your Next.js app
 pnpm add https://github.com/<org>/<repo>/archive/refs/pull/<PR_NUMBER>/head.tar.gz
