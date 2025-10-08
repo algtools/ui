@@ -46,43 +46,43 @@ describe('useIntersectionObserver', () => {
   describe('options', () => {
     test('should accept enabled option set to false', () => {
       const { result } = renderHook(() => useIntersectionObserver({ enabled: false }));
-      
+
       expect(result.current.ref).toBeDefined();
       expect(result.current.isIntersecting).toBe(false);
     });
 
     test('should accept threshold option', () => {
       const { result } = renderHook(() => useIntersectionObserver({ threshold: 0.5 }));
-      
+
       expect(result.current.ref).toBeDefined();
       expect(result.current.intersectionRatio).toBe(0);
     });
 
     test('should accept array threshold option', () => {
-      const { result } = renderHook(() => 
+      const { result } = renderHook(() =>
         useIntersectionObserver({ threshold: [0, 0.25, 0.5, 0.75, 1] })
       );
-      
+
       expect(result.current.ref).toBeDefined();
     });
 
     test('should accept rootMargin option', () => {
       const { result } = renderHook(() => useIntersectionObserver({ rootMargin: '10px' }));
-      
+
       expect(result.current.ref).toBeDefined();
     });
 
     test('should accept root option', () => {
       const root = document.createElement('div');
       const { result } = renderHook(() => useIntersectionObserver({ root }));
-      
+
       expect(result.current.ref).toBeDefined();
     });
 
     test('should accept onChange callback', () => {
       const onChange = jest.fn();
       const { result } = renderHook(() => useIntersectionObserver({ onChange }));
-      
+
       expect(result.current.ref).toBeDefined();
     });
   });
@@ -287,10 +287,9 @@ describe('useIntersectionObserver', () => {
     });
 
     test('should cleanup when enabled becomes false', () => {
-      const { rerender } = renderHook(
-        ({ enabled }) => useIntersectionObserver({ enabled }),
-        { initialProps: { enabled: true } }
-      );
+      const { rerender } = renderHook(({ enabled }) => useIntersectionObserver({ enabled }), {
+        initialProps: { enabled: true },
+      });
 
       // Change to disabled
       expect(() => rerender({ enabled: false })).not.toThrow();

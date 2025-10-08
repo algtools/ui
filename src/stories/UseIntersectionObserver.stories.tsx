@@ -363,8 +363,8 @@ function TrackedSection({
         </Badge>
       </div>
       <p className="text-muted-foreground">
-        This section is being tracked. When more than 50% of it is visible in the viewport, it
-        will be marked as active in the header above.
+        This section is being tracked. When more than 50% of it is visible in the viewport, it will
+        be marked as active in the header above.
       </p>
     </Card>
   );

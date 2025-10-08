@@ -133,13 +133,7 @@ export interface UseIntersectionObserverReturn {
 export function useIntersectionObserver(
   options: UseIntersectionObserverOptions = {}
 ): UseIntersectionObserverReturn {
-  const {
-    threshold = 0,
-    root = null,
-    rootMargin = '0px',
-    enabled = true,
-    onChange,
-  } = options;
+  const { threshold = 0, root = null, rootMargin = '0px', enabled = true, onChange } = options;
 
   const ref = React.useRef<Element>(null);
   const [entry, setEntry] = React.useState<IntersectionObserverEntry | null>(null);
