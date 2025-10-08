@@ -57,9 +57,7 @@ export interface UseCopyToClipboardReturn {
  * }
  * ```
  */
-export function useCopyToClipboard(
-  resetDelay?: number
-): UseCopyToClipboardReturn {
+export function useCopyToClipboard(resetDelay?: number): UseCopyToClipboardReturn {
   const [copiedText, setCopiedText] = React.useState<string | null>(null);
   const [isCopied, setIsCopied] = React.useState<boolean>(false);
   const [error, setError] = React.useState<Error | null>(null);
@@ -130,8 +128,7 @@ export function useCopyToClipboard(
               throw new Error('Copy command was unsuccessful');
             }
           } catch (err) {
-            const errorMessage =
-              err instanceof Error ? err.message : 'Failed to copy text';
+            const errorMessage = err instanceof Error ? err.message : 'Failed to copy text';
             const copyError = new Error(errorMessage);
             setError(copyError);
             setIsCopied(false);
@@ -148,8 +145,7 @@ export function useCopyToClipboard(
           }, resetDelay);
         }
       } catch (err) {
-        const errorMessage =
-          err instanceof Error ? err.message : 'Failed to copy text';
+        const errorMessage = err instanceof Error ? err.message : 'Failed to copy text';
         const copyError = new Error(errorMessage);
         setError(copyError);
         setIsCopied(false);

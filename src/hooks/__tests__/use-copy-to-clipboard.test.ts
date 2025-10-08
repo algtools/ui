@@ -89,9 +89,7 @@ describe('useCopyToClipboard', () => {
 
     test('should handle Clipboard API errors', async () => {
       const mockError = new Error('Permission denied');
-      (navigator.clipboard.writeText as jest.Mock).mockRejectedValueOnce(
-        mockError
-      );
+      (navigator.clipboard.writeText as jest.Mock).mockRejectedValueOnce(mockError);
 
       const { result } = renderHook(() => useCopyToClipboard());
 
@@ -144,9 +142,7 @@ describe('useCopyToClipboard', () => {
       expect(result.current.copiedText).toBeNull();
       expect(result.current.isCopied).toBe(false);
       expect(result.current.error).toBeTruthy();
-      expect(result.current.error?.message).toBe(
-        'Copy command was unsuccessful'
-      );
+      expect(result.current.error?.message).toBe('Copy command was unsuccessful');
     });
 
     test('should handle fallback method exceptions', async () => {
