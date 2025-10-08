@@ -112,7 +112,6 @@ describe('Response', () => {
     });
 
     it('should render with streamingState prop', () => {
-      const mockCancel = jest.fn();
       const { container } = render(<Response content="Text" isStreaming={true} />);
 
       // Component should render without errors
