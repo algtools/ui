@@ -10,13 +10,25 @@ jest.mock('@radix-ui/react-popover', () => {
   const React = require('react');
   return {
     __esModule: true,
-    Root: ({ children, open, onOpenChange }: React.ComponentProps<'div'> & { open?: boolean; onOpenChange?: (open: boolean) => void }) => (
+    Root: ({
+      children,
+      open,
+      onOpenChange,
+    }: React.ComponentProps<'div'> & {
+      open?: boolean;
+      onOpenChange?: (open: boolean) => void;
+    }) => (
       <div data-popover-root data-open={open} onClick={() => onOpenChange?.(!open)}>
         {children}
       </div>
     ),
-    Portal: ({ children }: React.ComponentProps<'div'>) => <div data-popover-portal>{children}</div>,
-    Trigger: React.forwardRef<HTMLButtonElement, React.ComponentProps<'button'> & { asChild?: boolean }>(function PopoverTrigger({ children, asChild, ...props }, ref) {
+    Portal: ({ children }: React.ComponentProps<'div'>) => (
+      <div data-popover-portal>{children}</div>
+    ),
+    Trigger: React.forwardRef<
+      HTMLButtonElement,
+      React.ComponentProps<'button'> & { asChild?: boolean }
+    >(function PopoverTrigger({ children, asChild, ...props }, ref) {
       if (asChild && React.isValidElement(children)) {
         return React.cloneElement(children, { ...props, ref } as React.HTMLAttributes<HTMLElement>);
       }
@@ -31,7 +43,9 @@ jest.mock('@radix-ui/react-popover', () => {
         {children}
       </div>
     ),
-    Anchor: ({ children, ...props }: React.ComponentProps<'div'>) => <div {...props}>{children}</div>,
+    Anchor: ({ children, ...props }: React.ComponentProps<'div'>) => (
+      <div {...props}>{children}</div>
+    ),
   };
 });
 
