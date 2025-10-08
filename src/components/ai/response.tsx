@@ -103,7 +103,12 @@ export const Response = React.forwardRef<HTMLDivElement, ResponseProps>(
           rehypePlugins={[rehypeHighlight, rehypeRaw]}
           components={{
             // Custom component for code blocks
-            code({ inline, className, children, ...props }) {
+            code(props) {
+              const { inline, className, children, ...rest } = props as {
+                inline?: boolean;
+                className?: string;
+                children?: React.ReactNode;
+              };
               const match = /language-(\w+)/.exec(className || '');
               const language = match ? match[1] : '';
 
@@ -115,7 +120,7 @@ export const Response = React.forwardRef<HTMLDivElement, ResponseProps>(
                     </div>
                     <div className="ai-code-block__content">
                       <pre>
-                        <code className={className} {...props}>
+                        <code className={className} {...rest}>
                           {children}
                         </code>
                       </pre>
@@ -125,7 +130,7 @@ export const Response = React.forwardRef<HTMLDivElement, ResponseProps>(
               }
 
               return (
-                <code className={className} {...props}>
+                <code className={className} {...rest}>
                   {children}
                 </code>
               );
