@@ -64,7 +64,7 @@ export function useResizeObserver<T extends HTMLElement = HTMLElement>(
   options?: UseResizeObserverOptions
 ): [React.RefObject<T>, Size] {
   const { onResize } = options || {};
-  const ref = React.useRef<T>(null);
+  const ref = React.useRef<T>(null) as React.RefObject<T>;
   const [size, setSize] = React.useState<Size>({ width: 0, height: 0 });
   const onResizeRef = React.useRef(onResize);
 
