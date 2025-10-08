@@ -63,4 +63,6 @@ export { FontProvider, useFonts } from './components/font-provider';
 // Hooks
 export { useBoolean } from './hooks/use-boolean';
 export type { UseBooleanReturn } from './hooks/use-boolean';
+export { useCounter } from './hooks/use-counter';
+export type { UseCounterOptions, UseCounterReturn } from './hooks/use-counter';
 export { useIsMobile } from './hooks/use-mobile';
