@@ -101,6 +101,53 @@ export default function MyPage() {
   - Ensure the PAT has the **read:packages** scope and is not expired.
   - If you switched accounts, run `npm logout` and try again.
 
+### Development & Contributing
+
+#### Getting Started
+
+```bash
+# Clone the repository
+git clone <repository-url>
+cd ui
+
+# Install dependencies
+pnpm install
+
+# Run Storybook locally
+pnpm storybook
+
+# Run tests
+pnpm test
+
+# Run tests in watch mode
+pnpm test:watch
+
+# Build the library
+pnpm build:lib
+
+# Lint and format
+pnpm lint
+pnpm format
+```
+
+#### CI/CD & Pull Requests
+
+This repository uses automated workflows for quality assurance:
+
+- ✅ **Automated Testing** - All tests run on every PR
+- 🎨 **Storybook Previews** - Ephemeral deployments for each PR
+- 🔍 **Code Quality** - Linting and formatting checks
+- 📦 **Build Verification** - Ensures no build errors
+
+When you create a PR:
+
+1. Automated checks will run (~5 minutes)
+2. A preview deployment link will be posted in comments
+3. All checks must pass before merging
+4. Preview is automatically cleaned up when PR closes
+
+**For detailed CI/CD documentation**, see [Workflows Setup Guide](.github/WORKFLOWS_SETUP.md)
+
 ### Notes
 
 - This package targets Next.js v15 and Tailwind CSS v4 only.

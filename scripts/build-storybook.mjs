@@ -9,9 +9,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 // Read package.json to get repository info
-const packageJson = JSON.parse(
-  readFileSync(join(__dirname, '..', 'package.json'), 'utf8')
-);
+const packageJson = JSON.parse(readFileSync(join(__dirname, '..', 'package.json'), 'utf8'));
 
 // Extract repository name from package.json or environment
 let repoName = 'ui'; // fallback
@@ -36,8 +34,8 @@ try {
     stdio: 'inherit',
     env: {
       ...process.env,
-      NODE_OPTIONS: '--max_old_space_size=4096'
-    }
+      NODE_OPTIONS: '--max_old_space_size=4096',
+    },
   });
   console.log('✅ Storybook build completed successfully!');
 } catch (error) {

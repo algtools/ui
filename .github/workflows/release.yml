@@ -27,7 +27,7 @@ jobs:
           node-version: 20
           cache: pnpm
           registry-url: https://npm.pkg.github.com
-          scope: "@algtools"
+          scope: '@algtools'
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -55,7 +55,7 @@ jobs:
           cache: pnpm
           # Configure scoped registry for @algtools without changing default registry
           registry-url: https://npm.pkg.github.com
-          scope: "@algtools"
+          scope: '@algtools'
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile

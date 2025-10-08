@@ -105,8 +105,7 @@ class MockImage {
 beforeEach(() => {
   (global as unknown as { FileReader: typeof FileReader }).FileReader =
     MockFileReader as unknown as typeof FileReader;
-  (global as unknown as { Image: typeof Image }).Image =
-    MockImage as unknown as typeof Image;
+  (global as unknown as { Image: typeof Image }).Image = MockImage as unknown as typeof Image;
   nextImageSize = { width: 1200, height: 800 };
 });
 
@@ -301,7 +300,12 @@ describe('AvatarEditor', () => {
     try {
       const onChange = jest.fn();
       const { container } = render(
-        <AvatarEditor onSave={async () => {}} onDiscard={() => {}} onChange={onChange} quality={0.5} />
+        <AvatarEditor
+          onSave={async () => {}}
+          onDiscard={() => {}}
+          onChange={onChange}
+          quality={0.5}
+        />
       );
       const input = getFileInput(container)!;
       fireEvent.change(input, { target: { files: [createFile()] } });
@@ -313,7 +317,8 @@ describe('AvatarEditor', () => {
       expect(lastCallArgs[1]).toBe(0.5);
     } finally {
       // Restore the original method
-      HTMLCanvasElement.prototype.toDataURL = originalToDataURL as typeof HTMLCanvasElement.prototype.toDataURL;
+      HTMLCanvasElement.prototype.toDataURL =
+        originalToDataURL as typeof HTMLCanvasElement.prototype.toDataURL;
     }
   });
 

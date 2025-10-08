@@ -560,8 +560,7 @@ function AvatarEditor({
                   <RotateCw className="w-3 h-3" />
                 </Button>
                 <div className="w-px h-6 bg-border mx-1" />
-                {
-                  onSave &&
+                {onSave && (
                   <Button
                     onClick={handleSave}
                     disabled={isLoading}
@@ -575,7 +574,7 @@ function AvatarEditor({
                       <Save className="w-3 h-3" />
                     )}
                   </Button>
-                }
+                )}
                 <Button
                   variant="outline"
                   onClick={handleDiscard}
