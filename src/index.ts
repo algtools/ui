@@ -60,11 +60,15 @@ export * from './components/ui/banner';
 export { cn } from './lib/utils';
 export { FontProvider, useFonts } from './components/font-provider';
 
+// AI Components
+export { Message } from './components/ai/message';
+export type { MessageProps } from './components/ai/message';
+
 // AI Types
 export type {
   Role,
   Status,
-  Message,
+  Message as MessageType,
   Source,
   Tool,
   Task,
