@@ -17,16 +17,16 @@ jest.mock('@radix-ui/react-collapsible', () => {
         defaultOpen,
         onOpenChange,
         ...props
-      }: React.ComponentProps<'div'> & {
+      }: React.ComponentPropsWithoutRef<'div'> & {
         open?: boolean;
         defaultOpen?: boolean;
         onOpenChange?: (open: boolean) => void;
       },
-      ref: React.Ref<HTMLDivElement>
+      ref: React.ForwardedRef<HTMLDivElement>
     ) => {
       const [isOpen, setIsOpen] = React.useState(open ?? defaultOpen ?? false);
       const currentOpen = open !== undefined ? open : isOpen;
-      const divRef = React.useRef<HTMLDivElement>(null);
+      const divRef = React.useRef(null as HTMLDivElement | null);
 
       React.useImperativeHandle(ref, () => divRef.current as HTMLDivElement);
 
@@ -43,7 +43,7 @@ jest.mock('@radix-ui/react-collapsible', () => {
         const handleCollapsibleChange = (e: Event) => {
           const customEvent = e as CustomEvent<{ open: boolean }>;
           const newOpen = customEvent.detail.open;
-          
+
           if (open === undefined) {
             setIsOpen(newOpen);
           }
@@ -56,9 +56,7 @@ jest.mock('@radix-ui/react-collapsible', () => {
 
       return (
         <div ref={divRef} data-state={currentOpen ? 'open' : 'closed'} {...props}>
-          {typeof children === 'function'
-            ? children({ isOpen: currentOpen, setIsOpen })
-            : children}
+          {children}
         </div>
       );
     }
@@ -67,15 +65,15 @@ jest.mock('@radix-ui/react-collapsible', () => {
 
   const MockTrigger = React.forwardRef(
     (
-      { children, onClick, ...props }: React.ComponentProps<'button'>,
-      ref: React.Ref<HTMLButtonElement>
+      { children, onClick, ...props }: React.ComponentPropsWithoutRef<'button'>,
+      ref: React.ForwardedRef<HTMLButtonElement>
     ) => {
       const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
         const parent = e.currentTarget.parentElement;
         if (parent) {
           const isOpen = parent.getAttribute('data-state') === 'open';
           parent.setAttribute('data-state', isOpen ? 'closed' : 'open');
-          
+
           // Trigger re-render by dispatching a custom event
           const event = new CustomEvent('collapsible-change', { detail: { open: !isOpen } });
           parent.dispatchEvent(event);
@@ -93,10 +91,13 @@ jest.mock('@radix-ui/react-collapsible', () => {
   MockTrigger.displayName = 'MockTrigger';
 
   const MockContent = React.forwardRef(
-    ({ children, ...props }: React.ComponentProps<'div'>, ref: React.Ref<HTMLDivElement>) => {
-      const [parent, setParent] = React.useState<HTMLElement | null>(null);
-      const [, forceUpdate] = React.useReducer((x) => x + 1, 0);
-      const divRef = React.useRef<HTMLDivElement>(null);
+    (
+      { children, ...props }: React.ComponentPropsWithoutRef<'div'>,
+      ref: React.ForwardedRef<HTMLDivElement>
+    ) => {
+      const [parent, setParent] = React.useState(null as HTMLElement | null);
+      const [, forceUpdate] = React.useReducer((x: number) => x + 1, 0);
+      const divRef = React.useRef(null as HTMLDivElement | null);
 
       React.useImperativeHandle(ref, () => divRef.current as HTMLDivElement);
 
@@ -381,10 +382,10 @@ describe('Reasoning', () => {
       expect(root).toHaveAttribute('data-state', 'closed');
 
       rerender(<Reasoning steps={mockSteps} open={true} />);
-      
+
       // Wait for the state to update
       await screen.findByRole('log');
-      
+
       // Query the root again after rerender
       root = container.querySelector('[data-state]');
       expect(root).toHaveAttribute('data-state', 'open');
