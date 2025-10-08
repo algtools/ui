@@ -18,7 +18,7 @@ export interface UseLocalStorageReturn<T> {
 
 /**
  * A custom hook for managing state that persists to localStorage with automatic serialization.
- * 
+ *
  * Features:
  * - Automatic JSON serialization/deserialization
  * - SSR-safe (checks for window object)
@@ -53,7 +53,7 @@ export interface UseLocalStorageReturn<T> {
  *   name: string;
  *   email: string;
  * }
- * 
+ *
  * function UserProfile() {
  *   const { value: user, setValue: setUser } = useLocalStorage<User>('user', {
  *     name: 'Guest',
@@ -71,10 +71,7 @@ export interface UseLocalStorageReturn<T> {
  * }
  * ```
  */
-export function useLocalStorage<T>(
-  key: string,
-  initialValue: T
-): UseLocalStorageReturn<T> {
+export function useLocalStorage<T>(key: string, initialValue: T): UseLocalStorageReturn<T> {
   const [error, setError] = React.useState<Error | null>(null);
 
   // State to store our value
@@ -111,13 +108,13 @@ export function useLocalStorage<T>(
       try {
         // Allow value to be a function so we have same API as useState
         const valueToStore = value instanceof Function ? value(storedValue) : value;
-        
+
         // Save state
         setStoredValue(valueToStore);
-        
+
         // Save to local storage
         window.localStorage.setItem(key, JSON.stringify(valueToStore));
-        
+
         // Clear any previous errors
         setError(null);
       } catch (err) {
@@ -140,10 +137,10 @@ export function useLocalStorage<T>(
     try {
       // Remove from local storage
       window.localStorage.removeItem(key);
-      
+
       // Reset to initial value
       setStoredValue(initialValue);
-      
+
       // Clear any previous errors
       setError(null);
     } catch (err) {

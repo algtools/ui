@@ -118,15 +118,16 @@ function UserPreferencesDemo() {
     language: string;
   }
 
-  const { value: prefs, setValue: setPrefs, removeValue } = useLocalStorage<Preferences>(
-    'user-preferences',
-    {
-      notifications: true,
-      autoSave: false,
-      theme: 'system',
-      language: 'en',
-    }
-  );
+  const {
+    value: prefs,
+    setValue: setPrefs,
+    removeValue,
+  } = useLocalStorage<Preferences>('user-preferences', {
+    notifications: true,
+    autoSave: false,
+    theme: 'system',
+    language: 'en',
+  });
 
   const updatePref = <K extends keyof Preferences>(key: K, value: Preferences[K]) => {
     setPrefs((prev) => ({ ...prev, [key]: value }));
@@ -206,10 +207,11 @@ function ShoppingCartDemo() {
     quantity: number;
   }
 
-  const { value: cart, setValue: setCart, removeValue } = useLocalStorage<CartItem[]>(
-    'shopping-cart',
-    []
-  );
+  const {
+    value: cart,
+    setValue: setCart,
+    removeValue,
+  } = useLocalStorage<CartItem[]>('shopping-cart', []);
 
   const addItem = () => {
     const newItem: CartItem = {
@@ -320,14 +322,15 @@ function FormPersistenceDemo() {
     message: string;
   }
 
-  const { value: formData, setValue: setFormData, removeValue } = useLocalStorage<FormData>(
-    'contact-form',
-    {
-      name: '',
-      email: '',
-      message: '',
-    }
-  );
+  const {
+    value: formData,
+    setValue: setFormData,
+    removeValue,
+  } = useLocalStorage<FormData>('contact-form', {
+    name: '',
+    email: '',
+    message: '',
+  });
 
   const updateField = <K extends keyof FormData>(field: K, value: FormData[K]) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
@@ -419,9 +422,7 @@ function ErrorHandlingDemo() {
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <h3 className="text-lg font-semibold">Error Handling</h3>
-          <Badge variant={error ? 'destructive' : 'default'}>
-            {error ? 'Error' : 'OK'}
-          </Badge>
+          <Badge variant={error ? 'destructive' : 'default'}>{error ? 'Error' : 'OK'}</Badge>
         </div>
 
         {error && (
@@ -528,8 +529,7 @@ export const FormPersistence: Story = {
   parameters: {
     docs: {
       description: {
-        story:
-          'Auto-saving form data to prevent loss on accidental page refresh or navigation.',
+        story: 'Auto-saving form data to prevent loss on accidental page refresh or navigation.',
       },
     },
   },
