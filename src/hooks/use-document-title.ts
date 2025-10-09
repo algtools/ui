@@ -61,22 +61,28 @@ export function useDocumentTitle(title: string, options: UseDocumentTitleOptions
 
   React.useEffect(() => {
     // SSR safety check
-    if (typeof document === 'undefined') {
+    if (typeof document === 'undefined' || typeof window === 'undefined') {
       return;
     }
 
+    // Determine which document to update (parent if in iframe, current otherwise)
+    // This ensures the hook works correctly in Storybook and other iframe contexts
+    const targetDocument =
+      window.self !== window.top && window.top?.document ? window.top.document : document;
+
     // Store the previous title only once on mount
     if (prevTitleRef.current === null) {
-      prevTitleRef.current = document.title;
+      prevTitleRef.current = targetDocument.title;
     }
 
     // Set the new title with prefix and suffix
-    document.title = `${prefix}${title}${suffix}`;
+    const newTitle = `${prefix}${title}${suffix}`;
+    targetDocument.title = newTitle;
 
     // Cleanup function to restore title if requested
     return () => {
       if (restoreOnUnmount && prevTitleRef.current !== null) {
-        document.title = prevTitleRef.current;
+        targetDocument.title = prevTitleRef.current;
       }
     };
   }, [title, prefix, suffix, restoreOnUnmount]);

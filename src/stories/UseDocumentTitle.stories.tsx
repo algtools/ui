@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-webpack5';
 import { FileText, Globe, Info } from 'lucide-react';
 import { useState } from 'react';
+import * as React from 'react';
 
 import { useDocumentTitle } from '../hooks/use-document-title';
 import { Button } from '../components/ui/button';
@@ -14,7 +15,22 @@ import { Badge } from '../components/ui/badge';
  * Basic demo component that uses the useDocumentTitle hook
  */
 function UseDocumentTitleDemo() {
+  const [currentTitle, setCurrentTitle] = useState('');
+
   useDocumentTitle('useDocumentTitle Demo');
+
+  // Poll document.title to show real-time updates
+  React.useEffect(() => {
+    const updateTitle = () => {
+      const doc =
+        window.self !== window.top && window.top?.document ? window.top.document : document;
+      setCurrentTitle(doc.title);
+    };
+
+    updateTitle();
+    const interval = setInterval(updateTitle, 100);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <Card className="p-6 w-96">
@@ -26,7 +42,7 @@ function UseDocumentTitleDemo() {
 
         <div className="rounded-lg border p-4 bg-muted/50">
           <p className="text-sm text-muted-foreground mb-2">Current document title:</p>
-          <p className="text-sm font-mono font-medium break-words">useDocumentTitle Demo</p>
+          <p className="text-sm font-mono font-medium break-words">{currentTitle}</p>
         </div>
 
         <div className="rounded-lg border border-blue-200 bg-blue-50 dark:bg-blue-950 p-3">
@@ -47,8 +63,22 @@ function UseDocumentTitleDemo() {
  */
 function DynamicTitleDemo() {
   const [title, setTitle] = useState('Dynamic Page Title');
+  const [currentTitle, setCurrentTitle] = useState('');
 
   useDocumentTitle(title);
+
+  // Poll document.title to show real-time updates
+  React.useEffect(() => {
+    const updateTitle = () => {
+      const doc =
+        window.self !== window.top && window.top?.document ? window.top.document : document;
+      setCurrentTitle(doc.title);
+    };
+
+    updateTitle();
+    const interval = setInterval(updateTitle, 100);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <Card className="p-6 w-96">
@@ -67,7 +97,7 @@ function DynamicTitleDemo() {
 
         <div className="rounded-lg border p-4 bg-muted/50">
           <p className="text-xs text-muted-foreground mb-1">Document title:</p>
-          <p className="text-sm font-mono break-words">{title}</p>
+          <p className="text-sm font-mono break-words">{currentTitle}</p>
         </div>
 
         <div className="flex gap-2">
@@ -98,13 +128,25 @@ function PrefixSuffixDemo() {
   const [page, setPage] = useState('Dashboard');
   const [usePrefix, setUsePrefix] = useState(true);
   const [useSuffix, setUseSuffix] = useState(true);
+  const [currentTitle, setCurrentTitle] = useState('');
 
   useDocumentTitle(page, {
     prefix: usePrefix ? 'MyApp - ' : '',
     suffix: useSuffix ? ' | v1.0' : '',
   });
 
-  const fullTitle = `${usePrefix ? 'MyApp - ' : ''}${page}${useSuffix ? ' | v1.0' : ''}`;
+  // Poll document.title to show real-time updates
+  React.useEffect(() => {
+    const updateTitle = () => {
+      const doc =
+        window.self !== window.top && window.top?.document ? window.top.document : document;
+      setCurrentTitle(doc.title);
+    };
+
+    updateTitle();
+    const interval = setInterval(updateTitle, 100);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <Card className="p-6 w-96">
@@ -145,7 +187,7 @@ function PrefixSuffixDemo() {
 
         <div className="rounded-lg border p-4 bg-muted/50">
           <p className="text-xs text-muted-foreground mb-2">Resulting title:</p>
-          <p className="text-sm font-mono break-words font-medium">{fullTitle}</p>
+          <p className="text-sm font-mono break-words font-medium">{currentTitle}</p>
         </div>
       </div>
     </Card>
@@ -216,6 +258,7 @@ function RestoreOnUnmountDemo() {
  */
 function MultiPageDemo() {
   const [currentPage, setCurrentPage] = useState<'home' | 'products' | 'about' | 'contact'>('home');
+  const [currentTitle, setCurrentTitle] = useState('');
 
   const pages = {
     home: {
@@ -246,6 +289,19 @@ function MultiPageDemo() {
     prefix: 'MyWebsite - ',
     suffix: ' | Shop Online',
   });
+
+  // Poll document.title to show real-time updates
+  React.useEffect(() => {
+    const updateTitle = () => {
+      const doc =
+        window.self !== window.top && window.top?.document ? window.top.document : document;
+      setCurrentTitle(doc.title);
+    };
+
+    updateTitle();
+    const interval = setInterval(updateTitle, 100);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <Card className="p-6 w-96">
@@ -279,7 +335,7 @@ function MultiPageDemo() {
 
         <div className="rounded-lg border p-3 bg-primary/5">
           <p className="text-xs text-muted-foreground mb-1">Document title:</p>
-          <p className="text-xs font-mono">MyWebsite - {page.title} | Shop Online</p>
+          <p className="text-xs font-mono">{currentTitle}</p>
         </div>
       </div>
     </Card>
@@ -291,10 +347,24 @@ function MultiPageDemo() {
  */
 function NotificationCounterDemo() {
   const [count, setCount] = useState(0);
+  const [currentTitle, setCurrentTitle] = useState('');
 
   useDocumentTitle(count > 0 ? `(${count}) New Messages` : 'Messages', {
     suffix: ' | Chat App',
   });
+
+  // Poll document.title to show real-time updates
+  React.useEffect(() => {
+    const updateTitle = () => {
+      const doc =
+        window.self !== window.top && window.top?.document ? window.top.document : document;
+      setCurrentTitle(doc.title);
+    };
+
+    updateTitle();
+    const interval = setInterval(updateTitle, 100);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <Card className="p-6 w-96">
@@ -324,9 +394,7 @@ function NotificationCounterDemo() {
 
         <div className="rounded-lg border p-3 bg-muted/50">
           <p className="text-xs text-muted-foreground mb-1">Document title:</p>
-          <p className="text-xs font-mono">
-            {count > 0 ? `(${count}) New Messages` : 'Messages'} | Chat App
-          </p>
+          <p className="text-xs font-mono">{currentTitle}</p>
         </div>
 
         <div className="rounded-lg border border-blue-200 bg-blue-50 dark:bg-blue-950 p-3">

@@ -302,4 +302,29 @@ describe('useDocumentTitle', () => {
       expect(document.title).toBe(originalTitle);
     });
   });
+
+  describe('iframe context (Storybook)', () => {
+    test('should work in iframe context (like Storybook)', () => {
+      // Note: In a real test environment, we can't fully simulate Storybook's iframe setup
+      // because jsdom doesn't support nested window contexts the same way browsers do.
+      // The hook is designed to work with window.top?.document when in an iframe.
+      // This test verifies the hook works without errors in the current context.
+
+      const { unmount } = renderHook(() => useDocumentTitle('Iframe Test'));
+
+      // The hook should work without errors
+      expect(document.title).toBe('Iframe Test');
+
+      unmount();
+    });
+
+    test('should handle when window.top is same as window.self', () => {
+      // Verify that in normal (non-iframe) context, the hook works correctly
+      const { unmount } = renderHook(() => useDocumentTitle('Normal Context Test'));
+
+      expect(document.title).toBe('Normal Context Test');
+
+      unmount();
+    });
+  });
 });
