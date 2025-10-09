@@ -129,3 +129,6 @@ export type {
 } from './hooks/use-intersection-observer';
 export { useResizeObserver } from './hooks/use-resize-observer';
 export type { Size, ResizeCallback, UseResizeObserverOptions } from './hooks/use-resize-observer';
+export { useEventCallback } from './hooks/use-event-callback';
+export { useEventListener } from './hooks/use-event-listener';
+export type { UseEventListenerOptions } from './hooks/use-event-listener';
