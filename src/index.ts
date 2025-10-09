@@ -69,6 +69,8 @@ export { Message } from './components/ai/message';
 export type { MessageProps } from './components/ai/message';
 export { Response } from './components/ai/response';
 export type { ResponseProps } from './components/ai/response';
+export { WebPreview } from './components/ai/web-preview';
+export type { WebPreviewProps } from './components/ai/web-preview';
 
 // AI Types
 export type {
