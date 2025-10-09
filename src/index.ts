@@ -87,6 +87,8 @@ export { Task as AITask, TaskList } from './components/ai/task';
 export type { TaskProps, TaskListProps } from './components/ai/task';
 export { WebPreview } from './components/ai/web-preview';
 export type { WebPreviewProps } from './components/ai/web-preview';
+export { Tool as AITool } from './components/ai/tool';
+export type { ToolProps } from './components/ai/tool';
 
 // AI Types
 export type {
