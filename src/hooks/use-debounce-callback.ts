@@ -168,14 +168,16 @@ export function useDebounceCallback<TArgs extends unknown[]>(
     [delay]
   );
 
-  // Cleanup on unmount
+  // Cleanup on unmount and when delay changes
   React.useEffect(() => {
     return () => {
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current);
+        timeoutRef.current = null;
       }
+      pendingArgsRef.current = null;
     };
-  }, []);
+  }, [delay]);
 
   return {
     callback: debouncedCallback,
