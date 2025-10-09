@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-webpack5';
 import { useState, useRef, useEffect } from 'react';
-import { MousePointer, Move, Crosshair, Zap, Timer, Sparkles } from 'lucide-react';
+import { MousePointer, Move, Crosshair as CrosshairIcon, Zap, Timer, Sparkles } from 'lucide-react';
 
 import { useMousePosition } from '../hooks/use-mouse-position';
 import { Button } from '../components/ui/button';
@@ -307,7 +307,7 @@ function CoordinateDisplayDemo() {
 
         <div className="rounded-lg border bg-muted/50 p-6">
           <div className="text-center space-y-4">
-            <Crosshair className="h-16 w-16 mx-auto text-muted-foreground" />
+            <CrosshairIcon className="h-16 w-16 mx-auto text-muted-foreground" />
 
             <div className="space-y-2">
               <div className="flex justify-between items-center px-4">
@@ -442,7 +442,7 @@ function CrosshairDemo() {
         <div className="flex items-center justify-between">
           <h3 className="text-lg font-semibold">Crosshair Overlay</h3>
           <Badge variant="outline">
-            <Crosshair className="mr-1 h-3 w-3" />
+            <CrosshairIcon className="mr-1 h-3 w-3" />
             Precision tracking
           </Badge>
         </div>
@@ -480,7 +480,7 @@ function CrosshairDemo() {
 
           <div className="absolute inset-0 flex items-center justify-center text-muted-foreground pointer-events-none">
             <div className="text-center">
-              <Crosshair className="h-12 w-12 mx-auto mb-2 opacity-20" />
+              <CrosshairIcon className="h-12 w-12 mx-auto mb-2 opacity-20" />
               <p className="text-sm opacity-50">Move your mouse in this area</p>
             </div>
           </div>
