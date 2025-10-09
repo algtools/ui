@@ -112,6 +112,8 @@ export { useBoolean } from './hooks/use-boolean';
 export type { UseBooleanReturn } from './hooks/use-boolean';
 export { useCounter } from './hooks/use-counter';
 export type { UseCounterOptions, UseCounterReturn } from './hooks/use-counter';
+export { useDebounceCallback } from './hooks/use-debounce-callback';
+export type { UseDebounceCallbackReturn } from './hooks/use-debounce-callback';
 export { useDebounceValue } from './hooks/use-debounce-value';
 export { useHover } from './hooks/use-hover';
 export type { UseHoverOptions } from './hooks/use-hover';
