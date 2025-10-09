@@ -110,8 +110,11 @@ export type {
 // Hooks
 export { useBoolean } from './hooks/use-boolean';
 export type { UseBooleanReturn } from './hooks/use-boolean';
+export { useClickAnyWhere } from './hooks/use-click-anywhere';
 export { useCounter } from './hooks/use-counter';
 export type { UseCounterOptions, UseCounterReturn } from './hooks/use-counter';
+export { useDebounceCallback } from './hooks/use-debounce-callback';
+export type { UseDebounceCallbackReturn } from './hooks/use-debounce-callback';
 export { useDebounceValue } from './hooks/use-debounce-value';
 export { useHover } from './hooks/use-hover';
 export type { UseHoverOptions } from './hooks/use-hover';
@@ -130,3 +133,9 @@ export type {
 export { useResizeObserver } from './hooks/use-resize-observer';
 export type { Size, ResizeCallback, UseResizeObserverOptions } from './hooks/use-resize-observer';
 export { useIsomorphicLayoutEffect } from './hooks/use-isomorphic-layout-effect';
+export { useToggle } from './hooks/use-toggle';
+export type { UseToggleOptions, UseToggleReturn } from './hooks/use-toggle';
+export { useMap } from './hooks/use-map';
+export type { UseMapReturn } from './hooks/use-map';
+export { useStep } from './hooks/use-step';
+export type { UseStepOptions, UseStepReturn } from './hooks/use-step';
