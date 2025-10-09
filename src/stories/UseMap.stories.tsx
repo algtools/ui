@@ -64,17 +64,15 @@ function UseMapDemo() {
           ) : (
             <div className="space-y-2">
               {Array.from(value.entries()).map(([k, v]) => (
-                <div key={k} className="flex items-center justify-between p-2 rounded bg-secondary/50">
+                <div
+                  key={k}
+                  className="flex items-center justify-between p-2 rounded bg-secondary/50"
+                >
                   <div className="flex-1">
                     <span className="font-medium text-sm">{k}:</span>{' '}
                     <span className="text-sm">{v}</span>
                   </div>
-                  <Button
-                    onClick={() => remove(k)}
-                    variant="ghost"
-                    size="icon"
-                    className="h-6 w-6"
-                  >
+                  <Button onClick={() => remove(k)} variant="ghost" size="icon" className="h-6 w-6">
                     <X className="h-3 w-3" />
                   </Button>
                 </div>
@@ -202,7 +200,9 @@ function FormStateDemo() {
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <h3 className="text-lg font-semibold">Form State Manager</h3>
-          <Badge variant="outline">{size}/{fields.length} filled</Badge>
+          <Badge variant="outline">
+            {size}/{fields.length} filled
+          </Badge>
         </div>
 
         <div className="space-y-3">
@@ -294,9 +294,7 @@ function CacheDemo() {
 
         <div className="rounded-lg border p-3 max-h-48 overflow-y-auto">
           {size === 0 ? (
-            <p className="text-sm text-muted-foreground text-center py-4">
-              No cached results
-            </p>
+            <p className="text-sm text-muted-foreground text-center py-4">No cached results</p>
           ) : (
             <div className="space-y-2">
               {Array.from(cache.entries()).map(([key, value]) => (

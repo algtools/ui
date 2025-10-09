@@ -268,12 +268,9 @@ describe('useToggle', () => {
       const onChange1 = jest.fn();
       const onChange2 = jest.fn();
 
-      const { result, rerender } = renderHook(
-        ({ onChange }) => useToggle(false, { onChange }),
-        {
-          initialProps: { onChange: onChange1 },
-        }
-      );
+      const { result, rerender } = renderHook(({ onChange }) => useToggle(false, { onChange }), {
+        initialProps: { onChange: onChange1 },
+      });
 
       act(() => {
         result.current.toggle();

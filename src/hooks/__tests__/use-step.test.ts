@@ -300,7 +300,9 @@ describe('useStep', () => {
       });
 
       test('should be true when at maxStep and circular', () => {
-        const { result } = renderHook(() => useStep({ initialStep: 5, maxStep: 5, circular: true }));
+        const { result } = renderHook(() =>
+          useStep({ initialStep: 5, maxStep: 5, circular: true })
+        );
         expect(result.current.canGoToNext).toBe(true);
       });
     });

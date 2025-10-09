@@ -99,7 +99,7 @@ export function useToggle(
   const toggle = React.useCallback(() => {
     setValueInternal((prev) => {
       const newValue = !prev;
-      
+
       // Call appropriate callbacks
       if (newValue) {
         onToggleOnRef.current?.();

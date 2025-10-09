@@ -75,11 +75,7 @@ export interface UseStepReturn {
  * ```
  */
 export function useStep(options: UseStepOptions = {}): UseStepReturn {
-  const {
-    initialStep = 0,
-    maxStep = Infinity,
-    circular = false,
-  } = options;
+  const { initialStep = 0, maxStep = Infinity, circular = false } = options;
 
   // Clamp initial step to valid range
   const clampedInitialStep = Math.max(0, Math.min(initialStep, maxStep));

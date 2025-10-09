@@ -75,7 +75,9 @@ describe('useMap', () => {
     });
 
     test('should work with different value types', () => {
-      const { result } = renderHook(() => useMap<string, string | number | boolean | object | number[]>());
+      const { result } = renderHook(() =>
+        useMap<string, string | number | boolean | object | number[]>()
+      );
 
       act(() => {
         result.current.set('string', 'hello');

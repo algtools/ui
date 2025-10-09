@@ -52,12 +52,10 @@ export interface UseMapReturn<K, V> {
  * }
  * ```
  */
-export function useMap<K, V>(
-  initialMap: Iterable<[K, V]> = []
-): UseMapReturn<K, V> {
+export function useMap<K, V>(initialMap: Iterable<[K, V]> = []): UseMapReturn<K, V> {
   // Create initial map
   const initialMapRef = React.useRef(new Map(initialMap));
-  
+
   const [map, setMap] = React.useState(() => new Map(initialMapRef.current));
 
   const set = React.useCallback((key: K, value: V) => {

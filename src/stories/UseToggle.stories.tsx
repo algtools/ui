@@ -117,8 +117,7 @@ function NotificationToggleDemo() {
 
         <div className={`rounded-lg border p-4 ${isEnabled ? 'bg-primary/5 border-primary' : ''}`}>
           <p className="text-sm">
-            Notifications are currently{' '}
-            <strong>{isEnabled ? 'enabled' : 'disabled'}</strong>.
+            Notifications are currently <strong>{isEnabled ? 'enabled' : 'disabled'}</strong>.
           </p>
           <p className="text-xs text-muted-foreground mt-2">
             {isEnabled
@@ -182,11 +181,7 @@ function FeatureFlagDemo() {
               <p className="font-medium text-sm">New Dashboard</p>
               <p className="text-xs text-muted-foreground">Enable redesigned UI</p>
             </div>
-            <Button
-              onClick={toggleFeature1}
-              variant={feature1 ? 'default' : 'outline'}
-              size="sm"
-            >
+            <Button onClick={toggleFeature1} variant={feature1 ? 'default' : 'outline'} size="sm">
               {feature1 ? 'ON' : 'OFF'}
             </Button>
           </div>
@@ -196,11 +191,7 @@ function FeatureFlagDemo() {
               <p className="font-medium text-sm">Advanced Analytics</p>
               <p className="text-xs text-muted-foreground">Access detailed reports</p>
             </div>
-            <Button
-              onClick={toggleFeature2}
-              variant={feature2 ? 'default' : 'outline'}
-              size="sm"
-            >
+            <Button onClick={toggleFeature2} variant={feature2 ? 'default' : 'outline'} size="sm">
               {feature2 ? 'ON' : 'OFF'}
             </Button>
           </div>
@@ -210,11 +201,7 @@ function FeatureFlagDemo() {
               <p className="font-medium text-sm">Beta Features</p>
               <p className="text-xs text-muted-foreground">Try experimental features</p>
             </div>
-            <Button
-              onClick={toggleFeature3}
-              variant={feature3 ? 'default' : 'outline'}
-              size="sm"
-            >
+            <Button onClick={toggleFeature3} variant={feature3 ? 'default' : 'outline'} size="sm">
               {feature3 ? 'ON' : 'OFF'}
             </Button>
           </div>
@@ -223,9 +210,7 @@ function FeatureFlagDemo() {
         <div className="rounded-lg bg-secondary/50 p-3">
           <p className="text-xs text-muted-foreground">
             Active features:{' '}
-            <strong>
-              {[feature1, feature2, feature3].filter(Boolean).length} of 3
-            </strong>
+            <strong>{[feature1, feature2, feature3].filter(Boolean).length} of 3</strong>
           </p>
         </div>
       </div>

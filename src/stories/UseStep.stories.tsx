@@ -39,7 +39,9 @@ function UseStepDemo() {
         <div className="space-y-2">
           <div className="flex items-center justify-between text-sm">
             <span className="text-muted-foreground">Progress</span>
-            <span className="font-medium">{Math.round(((currentStep + 1) / steps.length) * 100)}%</span>
+            <span className="font-medium">
+              {Math.round(((currentStep + 1) / steps.length) * 100)}%
+            </span>
           </div>
           <Progress value={((currentStep + 1) / steps.length) * 100} />
         </div>
@@ -89,8 +91,12 @@ function UseStepDemo() {
         </Button>
 
         <div className="flex gap-2 text-xs">
-          <Badge variant={isFirstStep ? 'default' : 'secondary'}>First: {isFirstStep ? 'Yes' : 'No'}</Badge>
-          <Badge variant={isLastStep ? 'default' : 'secondary'}>Last: {isLastStep ? 'Yes' : 'No'}</Badge>
+          <Badge variant={isFirstStep ? 'default' : 'secondary'}>
+            First: {isFirstStep ? 'Yes' : 'No'}
+          </Badge>
+          <Badge variant={isLastStep ? 'default' : 'secondary'}>
+            Last: {isLastStep ? 'Yes' : 'No'}
+          </Badge>
         </div>
       </div>
     </Card>
