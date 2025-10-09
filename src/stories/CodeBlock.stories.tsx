@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react-webpack5';
 import { CodeBlock } from '../components/ai/code-block';
 
 const meta = {
-  title: 'AI Components/CodeBlock',
+  title: 'AI/CodeBlock',
   component: CodeBlock,
   parameters: {
     layout: 'padded',
