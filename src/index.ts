@@ -81,6 +81,8 @@ export { Reasoning } from './components/ai/reasoning';
 export type { ReasoningProps } from './components/ai/reasoning';
 export { Response } from './components/ai/response';
 export type { ResponseProps } from './components/ai/response';
+export { Sources } from './components/ai/sources';
+export type { SourcesProps } from './components/ai/sources';
 export { Task as AITask, TaskList } from './components/ai/task';
 export type { TaskProps, TaskListProps } from './components/ai/task';
 export { WebPreview } from './components/ai/web-preview';
