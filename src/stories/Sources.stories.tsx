@@ -405,7 +405,7 @@ export const EmptySources: Story = {
         <CardHeader>
           <CardTitle>Empty Sources</CardTitle>
           <CardDescription>
-            When no sources are provided, the component doesn't render
+            When no sources are provided, the component doesn&apos;t render
           </CardDescription>
         </CardHeader>
         <CardContent>
