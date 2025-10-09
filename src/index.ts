@@ -115,7 +115,9 @@ export type { UseCounterOptions, UseCounterReturn } from './hooks/use-counter';
 export { useDebounceValue } from './hooks/use-debounce-value';
 export { useHover } from './hooks/use-hover';
 export type { UseHoverOptions } from './hooks/use-hover';
+export { useIsClient } from './hooks/use-is-client';
 export { useIsMobile } from './hooks/use-mobile';
+export { useIsMounted } from './hooks/use-is-mounted';
 export { useCopyToClipboard } from './hooks/use-copy-to-clipboard';
 export type { UseCopyToClipboardReturn } from './hooks/use-copy-to-clipboard';
 export { useLocalStorage } from './hooks/use-local-storage';
@@ -129,3 +131,4 @@ export type {
 } from './hooks/use-intersection-observer';
 export { useResizeObserver } from './hooks/use-resize-observer';
 export type { Size, ResizeCallback, UseResizeObserverOptions } from './hooks/use-resize-observer';
+export { useUnmount } from './hooks/use-unmount';
