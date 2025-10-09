@@ -129,3 +129,4 @@ export type {
 } from './hooks/use-intersection-observer';
 export { useResizeObserver } from './hooks/use-resize-observer';
 export type { Size, ResizeCallback, UseResizeObserverOptions } from './hooks/use-resize-observer';
+export { useIsomorphicLayoutEffect } from './hooks/use-isomorphic-layout-effect';
