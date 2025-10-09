@@ -107,22 +107,24 @@ export type {
   AIComponentProps,
 } from './components/ai/ai-types';
 
-// Hooks
+// Hooks (deduped)
 export { useBoolean } from './hooks/use-boolean';
 export type { UseBooleanReturn } from './hooks/use-boolean';
 export { useClickAnyWhere } from './hooks/use-click-anywhere';
 export { useCounter } from './hooks/use-counter';
 export type { UseCounterOptions, UseCounterReturn } from './hooks/use-counter';
-export { useDebounceCallback } from './hooks/use-debounce-callback';
-export type { UseDebounceCallbackReturn } from './hooks/use-debounce-callback';
+export { useCopyToClipboard } from './hooks/use-copy-to-clipboard';
+export type { UseCopyToClipboardReturn } from './hooks/use-copy-to-clipboard';
+export { useDarkMode } from './hooks/use-dark-mode';
+export type { UseDarkModeReturn } from './hooks/use-dark-mode';
 export { useDebounceValue } from './hooks/use-debounce-value';
 export { useHover } from './hooks/use-hover';
 export type { UseHoverOptions } from './hooks/use-hover';
 export { useIsClient } from './hooks/use-is-client';
 export { useIsMobile } from './hooks/use-mobile';
 export { useIsMounted } from './hooks/use-is-mounted';
-export { useCopyToClipboard } from './hooks/use-copy-to-clipboard';
-export type { UseCopyToClipboardReturn } from './hooks/use-copy-to-clipboard';
+export { useDebounceCallback } from './hooks/use-debounce-callback';
+export type { UseDebounceCallbackReturn } from './hooks/use-debounce-callback';
 export { useLocalStorage } from './hooks/use-local-storage';
 export type { UseLocalStorageReturn } from './hooks/use-local-storage';
 export { useSessionStorage } from './hooks/use-session-storage';
@@ -139,6 +141,9 @@ export type {
 export { useResizeObserver } from './hooks/use-resize-observer';
 export type { Size, ResizeCallback, UseResizeObserverOptions } from './hooks/use-resize-observer';
 export { useUnmount } from './hooks/use-unmount';
+export { useTernaryDarkMode } from './hooks/use-ternary-dark-mode';
+export type { TernaryDarkMode, UseTernaryDarkModeReturn } from './hooks/use-ternary-dark-mode';
+export { useIsomorphicLayoutEffect } from './hooks/use-isomorphic-layout-effect';
 export { useWindowSize } from './hooks/use-window-size';
 export type { WindowSize, UseWindowSizeOptions } from './hooks/use-window-size';
 export { useScreen } from './hooks/use-screen';
