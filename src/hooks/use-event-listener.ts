@@ -5,21 +5,6 @@ import * as React from 'react';
 import { useEventCallback } from './use-event-callback';
 
 /**
- * Window event map for type safety
- */
-type WindowEventMap = GlobalEventHandlersEventMap;
-
-/**
- * Document event map for type safety
- */
-type DocumentEventMap = DocumentEventMap;
-
-/**
- * Element event map for type safety
- */
-type ElementEventMap = HTMLElementEventMap;
-
-/**
  * Options for configuring the event listener
  */
 export interface UseEventListenerOptions<
@@ -39,8 +24,8 @@ export interface UseEventListenerOptions<
           ? DocumentEventMap[K]
           : Event
         : T extends HTMLElement
-          ? K extends keyof ElementEventMap
-            ? ElementEventMap[K]
+          ? K extends keyof HTMLElementEventMap
+            ? HTMLElementEventMap[K]
             : Event
           : Event
   ) => void;
@@ -150,13 +135,13 @@ export function useEventListener<
     : T extends Document
       ? keyof DocumentEventMap
       : T extends HTMLElement
-        ? keyof ElementEventMap
+        ? keyof HTMLElementEventMap
         : never = T extends Window
     ? keyof WindowEventMap
     : T extends Document
       ? keyof DocumentEventMap
       : T extends HTMLElement
-        ? keyof ElementEventMap
+        ? keyof HTMLElementEventMap
         : never,
 >({
   eventName,
@@ -213,14 +198,5 @@ export function useEventListener<
         options
       );
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [
-    eventName,
-    element,
-    // For ref objects, we need to track the current value to re-run the effect
-    'current' in (element || {}) ? (element as React.RefObject<T>).current : element,
-    savedHandler,
-    options,
-    enabled,
-  ]);
+  }, [eventName, element, savedHandler, options, enabled]);
 }

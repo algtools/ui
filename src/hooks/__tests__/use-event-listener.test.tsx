@@ -150,23 +150,25 @@ describe('useEventListener', () => {
       const element1 = document.createElement('button');
       const element2 = document.createElement('button');
 
-      const ref = { current: element1 };
+      const ref1 = { current: element1 };
+      const ref2 = { current: element2 };
 
-      const { rerender } = renderHook(() =>
-        useEventListener({
-          eventName: 'click',
-          handler,
-          element: ref,
-        })
+      const { rerender } = renderHook(
+        ({ elementRef }) =>
+          useEventListener({
+            eventName: 'click',
+            handler,
+            element: elementRef,
+          }),
+        { initialProps: { elementRef: ref1 } }
       );
 
       // Click on first element
       element1.dispatchEvent(new MouseEvent('click', { bubbles: true }));
       expect(handler).toHaveBeenCalledTimes(1);
 
-      // Change ref to second element
-      ref.current = element2;
-      rerender();
+      // Change to second ref
+      rerender({ elementRef: ref2 });
 
       // Click on second element
       element2.dispatchEvent(new MouseEvent('click', { bubbles: true }));
@@ -568,25 +570,27 @@ describe('useEventListener', () => {
 
     test('should work with dynamic element creation', () => {
       const handler = jest.fn();
+      const ref1 = { current: null };
       let element: HTMLButtonElement | null = null;
-      const ref = { current: element };
 
-      const { rerender } = renderHook(() =>
-        useEventListener({
-          eventName: 'click',
-          handler,
-          element: ref,
-        })
+      const { rerender } = renderHook(
+        ({ elementRef }) =>
+          useEventListener({
+            eventName: 'click',
+            handler,
+            element: elementRef as React.RefObject<HTMLButtonElement>,
+          }),
+        { initialProps: { elementRef: ref1 } }
       );
 
       // Try to click (element doesn't exist yet)
       window.dispatchEvent(new MouseEvent('click', { bubbles: true }));
       expect(handler).not.toHaveBeenCalled();
 
-      // Create element
+      // Create element and new ref
       element = document.createElement('button');
-      ref.current = element;
-      rerender();
+      const ref2 = { current: element };
+      rerender({ elementRef: ref2 });
 
       // Now clicking should work
       element.dispatchEvent(new MouseEvent('click', { bubbles: true }));
