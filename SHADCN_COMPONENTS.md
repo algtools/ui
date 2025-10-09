@@ -2,9 +2,9 @@
 
 This document lists all components currently available in `@algtools/ui`. These are primarily from **shadcn/ui** with custom additions.
 
-> ⚠️ **Note**: This package currently includes base **shadcn/ui** components plus custom additions. For components from **shadcn.io** (AI components, advanced hooks, animations) see `MISSING_SHADCN_IO_COMPONENTS.md`.
+> ✅ **Note**: This package includes base **shadcn/ui** components, custom additions, and **Phase 2 AI components** from **shadcn.io**. For additional available components (advanced hooks, animations) see `MISSING_SHADCN_IO_COMPONENTS.md`.
 
-## ✅ Currently Available (58 components + 11 hooks)
+## ✅ Currently Available (70 components + 35 hooks + 12 AI components)
 
 ### Layout & Structure (8 components)
 
@@ -83,6 +83,69 @@ This document lists all components currently available in `@algtools/ui`. These 
 - **Tags** - Tag input and management component
 - **ThemeSwitcher** - Theme toggle with light/dark/system modes
 
+### AI Components (12 components) ✨
+
+AI-specific components for building ChatGPT-like interfaces, conversational UIs, and AI-powered experiences:
+
+#### Core Chat Components (6 components)
+
+- **Message** - Chat message display with role-based styling (user/assistant/system) and avatar support
+- **Conversation** - Message container with auto-scrolling during streaming and scroll-to-bottom functionality
+- **Response** - Markdown renderer optimized for streaming AI responses with syntax highlighting
+- **PromptInput** - ChatGPT-style input with auto-resize, submit handling, and keyboard shortcuts
+- **CodeBlock** - Code blocks with syntax highlighting (powered by Shiki), language detection, and copy functionality
+- **Loader** - Animated indicator for AI thinking/processing states
+
+#### Supporting Components (6 components)
+
+- **Sources** - Expandable citation list for displaying AI sources (like "Used 5 sources")
+- **Actions** - Action button group for AI responses (regenerate, copy, feedback, etc.)
+- **Tool** - Display AI function/tool calls with parameters and results (OpenAI tool usage pattern)
+- **Task** - Task list component showing AI agent work progress with status indicators
+- **Reasoning** - Collapsible blocks for displaying AI thinking process and reasoning steps
+- **WebPreview** - Preview component for AI-generated websites with iframe support
+
+#### Usage Example
+
+```typescript
+import {
+  Message,
+  Conversation,
+  Response,
+  PromptInput,
+  CodeBlock,
+  Loader,
+  Sources,
+  Actions,
+  Tool,
+  Task,
+  Reasoning,
+  WebPreview,
+} from '@algtools/ui';
+```
+
+#### AI Component Types
+
+All AI components come with comprehensive TypeScript types:
+
+```typescript
+import type {
+  Role,
+  Status,
+  Message as MessageType,
+  Source,
+  Tool,
+  Task,
+  Suggestion,
+  Branch,
+  Citation,
+  ReasoningStep,
+  ModelConfig,
+  StreamingState,
+  AIComponentProps,
+} from '@algtools/ui';
+```
+
 ## Component Import Examples
 
 ### Basic Import
@@ -148,70 +211,131 @@ import {
 
 - ThemeSwitcher
 
+### AI & Chat Interfaces
+
+- Message, Conversation, Response, PromptInput, CodeBlock, Loader, Sources, Actions, Tool, Task, Reasoning, WebPreview
+
 ## Complete Alphabetical List
 
-Accordion, AddressEditorMX, Alert, AlertDialog, AspectRatio, Avatar, AvatarEditor, Badge, Banner, Breadcrumb, Button, Calendar, Card, Carousel, Chart, Checkbox, Collapsible, Combobox, Command, ContextMenu, Dialog, Drawer, DropdownMenu, Dropzone, Form, HoverCard, Input, InputOTP, Label, Logo, Menubar, NavigationMenu, Pagination, PhoneInput, Popover, Progress, RadioGroup, Resizable, ScrollArea, Select, Separator, Sheet, Sidebar, Skeleton, Slider, Sonner, Spinner, Switch, Table, Tabs, Tags, Textarea, ThemeSwitcher, Toggle, ToggleGroup, Tooltip.
+Accordion, Actions (AI), AddressEditorMX, Alert, AlertDialog, AspectRatio, Avatar, AvatarEditor, Badge, Banner, Breadcrumb, Button, Calendar, Card, Carousel, Chart, Checkbox, CodeBlock (AI), Collapsible, Combobox, Command, ContextMenu, Conversation (AI), Dialog, Drawer, DropdownMenu, Dropzone, Form, HoverCard, Input, InputOTP, Label, Loader (AI), Logo, Menubar, Message (AI), NavigationMenu, Pagination, PhoneInput, Popover, Progress, PromptInput (AI), RadioGroup, Reasoning (AI), Resizable, Response (AI), ScrollArea, Select, Separator, Sheet, Sidebar, Skeleton, Slider, Sonner, Sources (AI), Spinner, Switch, Table, Tabs, Tags, Task (AI), Textarea, ThemeSwitcher, Toggle, ToggleGroup, Tool (AI), Tooltip, WebPreview (AI).
 
 ## Hooks
 
-### ✅ Phase 1 Hooks (11 hooks - COMPLETE)
+### ✅ All Hooks (35 hooks - COMPLETE)
 
-All Phase 1 essential hooks are now implemented and available:
+All essential and advanced hooks from Phase 1 and Phase 3 are now implemented and available:
 
-#### State Management (2 hooks)
+#### State Management (4 hooks)
 
 - **useBoolean** - Boolean state with toggle helpers (setTrue, setFalse, toggle)
 - **useCounter** - Counter with increment/decrement/reset and min/max boundaries
+- **useToggle** - Advanced boolean toggle with value options
+- **useMap** - Map data structure state management
+- **useStep** - Step-by-step wizard navigation (next, prev, goTo, reset)
 
-#### Performance & Timing (1 hook)
-
-- **useDebounceValue** - Debounce state values to prevent excessive updates
-
-#### Browser & Storage (1 hook)
+#### Browser & Storage (4 hooks)
 
 - **useLocalStorage** - Persistent state in localStorage with JSON serialization
+- **useSessionStorage** - Persistent state in sessionStorage
+- **useReadLocalStorage** - Read-only localStorage access (no setter)
+- **useDocumentTitle** - Dynamic browser tab title management
 
-#### UI & Layout (4 hooks)
+#### Performance & Timing (5 hooks)
+
+- **useDebounceValue** - Debounce state values to prevent excessive updates
+- **useDebounceCallback** - Debounce function calls with cancel/flush
+- **useInterval** - Managed setInterval with pause/resume
+- **useTimeout** - Managed setTimeout with clear function
+- **useCountdown** - Countdown timer with play/pause/reset controls
+
+#### UI & Layout (7 hooks)
 
 - **useMediaQuery** - Responsive design media queries
 - **useIntersectionObserver** - Element visibility detection for lazy loading
 - **useResizeObserver** - Element size change detection
 - **useIsMobile** - Mobile breakpoint detection (convenience hook using useMediaQuery)
+- **useWindowSize** - Window dimensions tracking with debouncing
+- **useScreen** - Screen information (dimensions, orientation, color scheme)
+- **useScrollLock** - Prevent body scrolling (for modals and overlays)
 
-#### Event Handling (2 hooks)
+#### Event Handling (6 hooks)
 
 - **useOnClickOutside** - Detect clicks outside an element (for modals/dropdowns)
+- **useClickAnyWhere** - Global click detection
 - **useHover** - Hover state detection with optional delay
+- **useEventListener** - Declarative DOM event listener management
+- **useEventCallback** - Stable event callback references
+- **useMousePosition** - Mouse cursor position tracking
 
-#### Clipboard (1 hook)
+#### Lifecycle & SSR (4 hooks)
 
+- **useIsMounted** - Component mount state detection
+- **useIsClient** - Client-side detection (SSR-safe)
+- **useUnmount** - Cleanup on component unmount
+- **useIsomorphicLayoutEffect** - SSR-safe useLayoutEffect alternative
+
+#### Theme & Dark Mode (2 hooks)
+
+- **useDarkMode** - Dark mode management with system sync (binary: light/dark)
+- **useTernaryDarkMode** - Ternary dark mode (light/dark/system)
+
+#### Browser APIs (2 hooks)
+
+- **useScript** - Dynamic script loading with status tracking
 - **useCopyToClipboard** - Clipboard operations with success/error states
 
 ### Import Examples
 
 ```typescript
 // State management
-import { useBoolean, useCounter } from '@algtools/ui';
+import { useBoolean, useCounter, useToggle, useMap, useStep } from '@algtools/ui';
 
-// Performance
-import { useDebounceValue } from '@algtools/ui';
+// Browser & Storage
+import {
+  useLocalStorage,
+  useSessionStorage,
+  useReadLocalStorage,
+  useDocumentTitle,
+} from '@algtools/ui';
 
-// Storage
-import { useLocalStorage } from '@algtools/ui';
+// Performance & Timing
+import {
+  useDebounceValue,
+  useDebounceCallback,
+  useInterval,
+  useTimeout,
+  useCountdown,
+} from '@algtools/ui';
 
-// Layout & UI
+// UI & Layout
 import {
   useMediaQuery,
   useIntersectionObserver,
   useResizeObserver,
   useIsMobile,
+  useWindowSize,
+  useScreen,
+  useScrollLock,
 } from '@algtools/ui';
 
-// Events
-import { useOnClickOutside, useHover } from '@algtools/ui';
+// Event Handling
+import {
+  useOnClickOutside,
+  useClickAnyWhere,
+  useHover,
+  useEventListener,
+  useEventCallback,
+  useMousePosition,
+} from '@algtools/ui';
 
-// Clipboard
-import { useCopyToClipboard } from '@algtools/ui';
+// Lifecycle & SSR
+import { useIsMounted, useIsClient, useUnmount, useIsomorphicLayoutEffect } from '@algtools/ui';
+
+// Theme & Dark Mode
+import { useDarkMode, useTernaryDarkMode } from '@algtools/ui';
+
+// Browser APIs
+import { useScript, useCopyToClipboard } from '@algtools/ui';
 ```
 
 ### Usage Examples
@@ -377,7 +501,7 @@ function CopyButton({ text }: { text: string }) {
 }
 ```
 
-> 📝 **See `MISSING_SHADCN_IO_COMPONENTS.md`** for 25+ additional hooks available in shadcn.io (Phases 2-3)
+> 📝 **All 35 hooks from shadcn.io are now implemented!** See `MISSING_SHADCN_IO_COMPONENTS.md` for details on what remains (animations, specialized buttons, etc.)
 
 ## Utility Exports
 
@@ -395,12 +519,12 @@ import { cn, FontProvider, useFonts } from '@algtools/ui';
 
 See **`MISSING_SHADCN_IO_COMPONENTS.md`** for a comprehensive analysis of shadcn.io components not yet in this package:
 
-- 🤖 **16 AI Components** (Message, Conversation, Response, etc.)
-- 🪝 **35+ React Hooks** (useDebounce, useLocalStorage, etc.)
+- ✅ ~~**12 AI Components**~~ - **COMPLETE!** (Phase 2)
+- ✅ ~~**35 React Hooks**~~ - **COMPLETE!** (Phase 1 + Phase 3)
 - 🎨 **15+ Animated Button Variants**
 - 🎭 **Animation Components**
 - 📊 **Enhanced Chart Variants**
-- 🧩 **Specialized UI Components**
+- 🧩 **Additional Specialized UI Components**
 
 ## Notes
 
@@ -408,10 +532,11 @@ See **`MISSING_SHADCN_IO_COMPONENTS.md`** for a comprehensive analysis of shadcn
 2. **Radix Primitives**: Most components are built on Radix UI for accessibility
 3. **Theming**: Components respect the global theme configuration
 4. **Composition**: Many components have sub-components (e.g., Card → CardHeader, CardTitle, CardContent, CardFooter)
-5. **shadcn/ui vs shadcn.io**: This package currently has shadcn/ui base + custom additions. shadcn.io has additional AI/animation/hook components
+5. **shadcn/ui vs shadcn.io**: This package has shadcn/ui base + custom additions + Phase 2 AI components + all 35 hooks from shadcn.io. Animation components and specialized variants are pending
 
 ## Resources
 
+- [AI Components Guide](./AI_COMPONENTS_GUIDE.md) - Comprehensive guide for using AI components
 - [shadcn/ui Documentation](https://ui.shadcn.com) - Base UI components documentation
 - [shadcn.io](https://shadcn.io) - Extended component collection (AI, hooks, animations)
 - [Radix UI Documentation](https://www.radix-ui.com) - Underlying primitives

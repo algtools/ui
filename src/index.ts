@@ -107,19 +107,30 @@ export type {
   AIComponentProps,
 } from './components/ai/ai-types';
 
-// Hooks
+// Hooks (deduped)
 export { useBoolean } from './hooks/use-boolean';
 export type { UseBooleanReturn } from './hooks/use-boolean';
+export { useClickAnyWhere } from './hooks/use-click-anywhere';
 export { useCounter } from './hooks/use-counter';
 export type { UseCounterOptions, UseCounterReturn } from './hooks/use-counter';
+export { useCopyToClipboard } from './hooks/use-copy-to-clipboard';
+export type { UseCopyToClipboardReturn } from './hooks/use-copy-to-clipboard';
+export { useDarkMode } from './hooks/use-dark-mode';
+export type { UseDarkModeReturn } from './hooks/use-dark-mode';
 export { useDebounceValue } from './hooks/use-debounce-value';
 export { useHover } from './hooks/use-hover';
 export type { UseHoverOptions } from './hooks/use-hover';
+export { useIsClient } from './hooks/use-is-client';
 export { useIsMobile } from './hooks/use-mobile';
-export { useCopyToClipboard } from './hooks/use-copy-to-clipboard';
-export type { UseCopyToClipboardReturn } from './hooks/use-copy-to-clipboard';
+export { useIsMounted } from './hooks/use-is-mounted';
+export { useDebounceCallback } from './hooks/use-debounce-callback';
+export type { UseDebounceCallbackReturn } from './hooks/use-debounce-callback';
 export { useLocalStorage } from './hooks/use-local-storage';
 export type { UseLocalStorageReturn } from './hooks/use-local-storage';
+export { useSessionStorage } from './hooks/use-session-storage';
+export type { UseSessionStorageReturn } from './hooks/use-session-storage';
+export { useReadLocalStorage } from './hooks/use-read-local-storage';
+export type { UseReadLocalStorageReturn } from './hooks/use-read-local-storage';
 export { useMediaQuery } from './hooks/use-media-query';
 export { useOnClickOutside } from './hooks/use-on-click-outside';
 export { useIntersectionObserver } from './hooks/use-intersection-observer';
@@ -129,3 +140,38 @@ export type {
 } from './hooks/use-intersection-observer';
 export { useResizeObserver } from './hooks/use-resize-observer';
 export type { Size, ResizeCallback, UseResizeObserverOptions } from './hooks/use-resize-observer';
+export { useMousePosition } from './hooks/use-mouse-position';
+export type {
+  MousePosition,
+  UseMousePositionOptions,
+  UseMousePositionReturn,
+} from './hooks/use-mouse-position';
+export { useEventCallback } from './hooks/use-event-callback';
+export { useEventListener } from './hooks/use-event-listener';
+export type { UseEventListenerOptions } from './hooks/use-event-listener';
+export { useInterval } from './hooks/use-interval';
+export type { UseIntervalOptions, UseIntervalReturn } from './hooks/use-interval';
+export { useTimeout } from './hooks/use-timeout';
+export type { UseTimeoutReturn } from './hooks/use-timeout';
+export { useCountdown } from './hooks/use-countdown';
+export type { UseCountdownOptions, UseCountdownReturn } from './hooks/use-countdown';
+export { useDocumentTitle } from './hooks/use-document-title';
+export type { UseDocumentTitleOptions } from './hooks/use-document-title';
+export { useScript } from './hooks/use-script';
+export type { ScriptStatus, UseScriptOptions, UseScriptReturn } from './hooks/use-script';
+export { useUnmount } from './hooks/use-unmount';
+export { useTernaryDarkMode } from './hooks/use-ternary-dark-mode';
+export type { TernaryDarkMode, UseTernaryDarkModeReturn } from './hooks/use-ternary-dark-mode';
+export { useIsomorphicLayoutEffect } from './hooks/use-isomorphic-layout-effect';
+export { useWindowSize } from './hooks/use-window-size';
+export type { WindowSize, UseWindowSizeOptions } from './hooks/use-window-size';
+export { useScreen } from './hooks/use-screen';
+export type { ScreenInfo, UseScreenOptions } from './hooks/use-screen';
+export { useScrollLock } from './hooks/use-scroll-lock';
+export type { UseScrollLockOptions, UseScrollLockReturn } from './hooks/use-scroll-lock';
+export { useToggle } from './hooks/use-toggle';
+export type { UseToggleOptions, UseToggleReturn } from './hooks/use-toggle';
+export { useMap } from './hooks/use-map';
+export type { UseMapReturn } from './hooks/use-map';
+export { useStep } from './hooks/use-step';
+export type { UseStepOptions, UseStepReturn } from './hooks/use-step';
