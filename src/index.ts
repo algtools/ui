@@ -69,6 +69,8 @@ export { Actions } from './components/ai/actions';
 export type { Action, ActionsProps } from './components/ai/actions';
 export { CodeBlock } from './components/ai/code-block';
 export type { CodeBlockProps } from './components/ai/code-block';
+export { Conversation } from './components/ai/conversation';
+export type { ConversationProps } from './components/ai/conversation';
 export { Loader } from './components/ai/loader';
 export type { LoaderProps } from './components/ai/loader';
 export { Message } from './components/ai/message';

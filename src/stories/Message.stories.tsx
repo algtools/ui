@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-webpack5';
 import { Message } from '@/components/ai/message';
-import { Bot, User } from 'lucide-react';
 
 const meta = {
   title: 'AI/Message',
