@@ -90,6 +90,8 @@ export type {
 } from './components/ai/ai-types';
 
 // AI Components
+export { PromptInput } from './components/ai/prompt-input';
+export type { PromptInputProps } from './components/ai/prompt-input';
 export { Task as AITask, TaskList } from './components/ai/task';
 export type { TaskProps, TaskListProps } from './components/ai/task';
 
