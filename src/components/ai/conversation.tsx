@@ -129,7 +129,7 @@ export const Conversation = React.forwardRef<HTMLDivElement, ConversationProps>(
     const [showScrollButton, setShowScrollButton] = React.useState(false);
     const [isUserScrolling, setIsUserScrolling] = React.useState(false);
     const lastMessageCountRef = React.useRef(messages.length);
-    const scrollTimeoutRef = React.useRef<NodeJS.Timeout>();
+    const scrollTimeoutRef = React.useRef<NodeJS.Timeout | undefined>(undefined);
 
     /**
      * Scrolls to the bottom of the conversation
