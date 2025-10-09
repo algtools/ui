@@ -69,8 +69,14 @@ export { Loader } from './components/ai/loader';
 export type { LoaderProps } from './components/ai/loader';
 export { Message } from './components/ai/message';
 export type { MessageProps } from './components/ai/message';
+export { PromptInput } from './components/ai/prompt-input';
+export type { PromptInputProps } from './components/ai/prompt-input';
+export { Reasoning } from './components/ai/reasoning';
+export type { ReasoningProps } from './components/ai/reasoning';
 export { Response } from './components/ai/response';
 export type { ResponseProps } from './components/ai/response';
+export { Task as AITask, TaskList } from './components/ai/task';
+export type { TaskProps, TaskListProps } from './components/ai/task';
 export { WebPreview } from './components/ai/web-preview';
 export type { WebPreviewProps } from './components/ai/web-preview';
 
@@ -90,12 +96,6 @@ export type {
   StreamingState,
   AIComponentProps,
 } from './components/ai/ai-types';
-
-// AI Components
-export { PromptInput } from './components/ai/prompt-input';
-export type { PromptInputProps } from './components/ai/prompt-input';
-export { Task as AITask, TaskList } from './components/ai/task';
-export type { TaskProps, TaskListProps } from './components/ai/task';
 
 // Hooks
 export { useBoolean } from './hooks/use-boolean';
