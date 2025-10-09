@@ -63,14 +63,22 @@ export { cn } from './lib/utils';
 export { FontProvider, useFonts } from './components/font-provider';
 
 // AI Components
+export { CodeBlock } from './components/ai/code-block';
+export type { CodeBlockProps } from './components/ai/code-block';
+export { Loader } from './components/ai/loader';
+export type { LoaderProps } from './components/ai/loader';
 export { Message } from './components/ai/message';
 export type { MessageProps } from './components/ai/message';
+export { PromptInput } from './components/ai/prompt-input';
+export type { PromptInputProps } from './components/ai/prompt-input';
 export { Reasoning } from './components/ai/reasoning';
 export type { ReasoningProps } from './components/ai/reasoning';
 export { Response } from './components/ai/response';
 export type { ResponseProps } from './components/ai/response';
 export { Task as AITask, TaskList } from './components/ai/task';
 export type { TaskProps, TaskListProps } from './components/ai/task';
+export { WebPreview } from './components/ai/web-preview';
+export type { WebPreviewProps } from './components/ai/web-preview';
 
 // AI Types
 export type {
