@@ -1,4 +1,4 @@
-import { renderHook, waitFor, act } from '@testing-library/react';
+import { renderHook, waitFor } from '@testing-library/react';
 
 import { useScript } from '@/hooks/use-script';
 
@@ -360,9 +360,12 @@ describe('useScript', () => {
 
       simulateScriptLoad(src);
 
-      await waitFor(() => {
-        expect(result.current.status).toBe('ready');
-      }, { timeout: 3000 });
+      await waitFor(
+        () => {
+          expect(result.current.status).toBe('ready');
+        },
+        { timeout: 3000 }
+      );
 
       // Check that the object still has same properties
       expect(result.current).toHaveProperty('status');
