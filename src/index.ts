@@ -59,6 +59,7 @@ export * from './components/ui/banner';
 export * from './components/ui/ai-image';
 export * from './components/ui/suggestion';
 export * from './components/ui/inline-citation';
+export * from './components/ui/branch';
 
 export { cn } from './lib/utils';
 export { FontProvider, useFonts } from './components/font-provider';
