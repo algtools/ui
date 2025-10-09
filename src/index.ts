@@ -129,3 +129,9 @@ export type {
 } from './hooks/use-intersection-observer';
 export { useResizeObserver } from './hooks/use-resize-observer';
 export type { Size, ResizeCallback, UseResizeObserverOptions } from './hooks/use-resize-observer';
+export { useToggle } from './hooks/use-toggle';
+export type { UseToggleOptions, UseToggleReturn } from './hooks/use-toggle';
+export { useMap } from './hooks/use-map';
+export type { UseMapReturn } from './hooks/use-map';
+export { useStep } from './hooks/use-step';
+export type { UseStepOptions, UseStepReturn } from './hooks/use-step';
