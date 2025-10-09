@@ -56,10 +56,15 @@ export * from './components/ui/combobox';
 export * from './components/ui/tags';
 export * from './components/ui/dropzone';
 export * from './components/ui/banner';
+export * from './components/ui/ai-image';
 export * from './components/ui/inline-citation';
 
 export { cn } from './lib/utils';
 export { FontProvider, useFonts } from './components/font-provider';
+
+// AI Components
+export { Response } from './components/ai/response';
+export type { ResponseProps } from './components/ai/response';
 
 // AI Types
 export type {
