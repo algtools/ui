@@ -153,6 +153,8 @@ export { useInterval } from './hooks/use-interval';
 export type { UseIntervalOptions, UseIntervalReturn } from './hooks/use-interval';
 export { useTimeout } from './hooks/use-timeout';
 export type { UseTimeoutReturn } from './hooks/use-timeout';
+export { useCountdown } from './hooks/use-countdown';
+export type { UseCountdownOptions, UseCountdownReturn } from './hooks/use-countdown';
 export { useDocumentTitle } from './hooks/use-document-title';
 export type { UseDocumentTitleOptions } from './hooks/use-document-title';
 export { useScript } from './hooks/use-script';
