@@ -129,3 +129,7 @@ export type {
 } from './hooks/use-intersection-observer';
 export { useResizeObserver } from './hooks/use-resize-observer';
 export type { Size, ResizeCallback, UseResizeObserverOptions } from './hooks/use-resize-observer';
+export { useInterval } from './hooks/use-interval';
+export type { UseIntervalOptions, UseIntervalReturn } from './hooks/use-interval';
+export { useTimeout } from './hooks/use-timeout';
+export type { UseTimeoutReturn } from './hooks/use-timeout';
