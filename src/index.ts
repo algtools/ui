@@ -136,6 +136,7 @@ export type {
 } from './hooks/use-intersection-observer';
 export { useResizeObserver } from './hooks/use-resize-observer';
 export type { Size, ResizeCallback, UseResizeObserverOptions } from './hooks/use-resize-observer';
+export { useIsomorphicLayoutEffect } from './hooks/use-isomorphic-layout-effect';
 export { useWindowSize } from './hooks/use-window-size';
 export type { WindowSize, UseWindowSizeOptions } from './hooks/use-window-size';
 export { useScreen } from './hooks/use-screen';
