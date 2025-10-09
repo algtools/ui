@@ -63,6 +63,8 @@ export { cn } from './lib/utils';
 export { FontProvider, useFonts } from './components/font-provider';
 
 // AI Components
+export { CodeBlock } from './components/ai/code-block';
+export type { CodeBlockProps } from './components/ai/code-block';
 export { Message } from './components/ai/message';
 export type { MessageProps } from './components/ai/message';
 export { Response } from './components/ai/response';
