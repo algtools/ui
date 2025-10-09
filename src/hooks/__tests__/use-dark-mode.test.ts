@@ -397,7 +397,6 @@ describe('useDarkMode', () => {
       expect(typeof result.current.toggle).toBe('function');
       expect(typeof result.current.setDarkMode).toBe('function');
     });
-
   });
 
   describe('integration', () => {

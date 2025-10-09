@@ -609,7 +609,6 @@ describe('useTernaryDarkMode', () => {
       expect(typeof result.current.setMode).toBe('function');
       expect(typeof result.current.toggle).toBe('function');
     });
-
   });
 
   describe('integration', () => {
