@@ -57,6 +57,7 @@ export * from './components/ui/tags';
 export * from './components/ui/dropzone';
 export * from './components/ui/banner';
 export * from './components/ui/ai-image';
+export * from './components/ui/inline-citation';
 
 export { cn } from './lib/utils';
 export { FontProvider, useFonts } from './components/font-provider';
@@ -64,14 +65,18 @@ export { FontProvider, useFonts } from './components/font-provider';
 // AI Components
 export { Actions } from './components/ai/actions';
 export type { Action, ActionsProps } from './components/ai/actions';
+export { Message } from './components/ai/message';
+export type { MessageProps } from './components/ai/message';
 export { Response } from './components/ai/response';
 export type { ResponseProps } from './components/ai/response';
+export { Task as AITask, TaskList } from './components/ai/task';
+export type { TaskProps, TaskListProps } from './components/ai/task';
 
 // AI Types
 export type {
   Role,
   Status,
-  Message,
+  Message as MessageType,
   Source,
   Tool,
   Task,
