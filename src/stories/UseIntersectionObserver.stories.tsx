@@ -50,20 +50,21 @@ function BasicVisibilityDemo() {
       </div>
 
       {/* Target element */}
-      <Card
-        ref={ref}
-        className={`p-6 transition-all duration-300 ${
-          isIntersecting ? 'bg-primary/10 border-primary' : 'bg-background'
-        }`}
-      >
-        <div className="text-center space-y-2">
-          <Eye className="mx-auto h-8 w-8" />
-          <h4 className="font-semibold">Target Element</h4>
-          <p className="text-sm text-muted-foreground">
-            {isIntersecting ? 'I am visible!' : 'I am hidden!'}
-          </p>
-        </div>
-      </Card>
+      <div ref={ref as React.RefObject<HTMLDivElement>}>
+        <Card
+          className={`p-6 transition-all duration-300 ${
+            isIntersecting ? 'bg-primary/10 border-primary' : 'bg-background'
+          }`}
+        >
+          <div className="text-center space-y-2">
+            <Eye className="mx-auto h-8 w-8" />
+            <h4 className="font-semibold">Target Element</h4>
+            <p className="text-sm text-muted-foreground">
+              {isIntersecting ? 'I am visible!' : 'I am hidden!'}
+            </p>
+          </div>
+        </Card>
+      </div>
 
       {/* Spacer after */}
       <div className="h-[400px]" />
@@ -118,21 +119,23 @@ function LazyImage({ src, alt }: { src: string; alt: string }) {
   }, [isIntersecting, hasLoaded]);
 
   return (
-    <Card ref={ref} className="overflow-hidden">
-      {hasLoaded ? (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img src={src} alt={alt} className="w-full h-[300px] object-cover" loading="lazy" />
-      ) : (
-        <Skeleton className="w-full h-[300px] flex items-center justify-center">
-          <ImageIcon className="h-8 w-8 text-muted-foreground" />
-        </Skeleton>
-      )}
-      <div className="p-4">
-        <Badge variant={hasLoaded ? 'default' : 'secondary'}>
-          {hasLoaded ? 'Loaded' : 'Waiting...'}
-        </Badge>
-      </div>
-    </Card>
+    <div ref={ref as React.RefObject<HTMLDivElement>}>
+      <Card className="overflow-hidden">
+        {hasLoaded ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={src} alt={alt} className="w-full h-[300px] object-cover" loading="lazy" />
+        ) : (
+          <Skeleton className="w-full h-[300px] flex items-center justify-center">
+            <ImageIcon className="h-8 w-8 text-muted-foreground" />
+          </Skeleton>
+        )}
+        <div className="p-4">
+          <Badge variant={hasLoaded ? 'default' : 'secondary'}>
+            {hasLoaded ? 'Loaded' : 'Waiting...'}
+          </Badge>
+        </div>
+      </Card>
+    </div>
   );
 }
 
@@ -171,24 +174,25 @@ function AnimatedCard({ index }: { index: number }) {
   });
 
   return (
-    <Card
-      ref={ref}
-      className="p-6 transition-all duration-500"
-      style={{
-        opacity: intersectionRatio,
-        transform: `translateY(${(1 - intersectionRatio) * 20}px) scale(${
-          0.95 + intersectionRatio * 0.05
-        })`,
-      }}
-    >
-      <div className="flex items-center justify-between">
-        <h4 className="font-semibold">Card {index}</h4>
-        <Badge variant="outline">{(intersectionRatio * 100).toFixed(0)}%</Badge>
-      </div>
-      <p className="text-sm text-muted-foreground mt-2">
-        This card fades in and slides up as it enters the viewport.
-      </p>
-    </Card>
+    <div ref={ref as React.RefObject<HTMLDivElement>}>
+      <Card
+        className="p-6 transition-all duration-500"
+        style={{
+          opacity: intersectionRatio,
+          transform: `translateY(${(1 - intersectionRatio) * 20}px) scale(${
+            0.95 + intersectionRatio * 0.05
+          })`,
+        }}
+      >
+        <div className="flex items-center justify-between">
+          <h4 className="font-semibold">Card {index}</h4>
+          <Badge variant="outline">{(intersectionRatio * 100).toFixed(0)}%</Badge>
+        </div>
+        <p className="text-sm text-muted-foreground mt-2">
+          This card fades in and slides up as it enters the viewport.
+        </p>
+      </Card>
+    </div>
   );
 }
 
@@ -249,18 +253,20 @@ function InfiniteScrollDemo() {
       </div>
 
       {hasMore && (
-        <Card ref={ref} className="p-4">
-          <div className="flex items-center justify-center gap-2 text-muted-foreground">
-            {isLoading ? (
-              <>
-                <Loader2 className="h-4 w-4 animate-spin" />
-                <span className="text-sm">Loading more items...</span>
-              </>
-            ) : (
-              <span className="text-sm">Scroll to load more</span>
-            )}
-          </div>
-        </Card>
+        <div ref={ref as React.RefObject<HTMLDivElement>}>
+          <Card className="p-4">
+            <div className="flex items-center justify-center gap-2 text-muted-foreground">
+              {isLoading ? (
+                <>
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                  <span className="text-sm">Loading more items...</span>
+                </>
+              ) : (
+                <span className="text-sm">Scroll to load more</span>
+              )}
+            </div>
+          </Card>
+        </div>
       )}
 
       {!hasMore && (
@@ -355,18 +361,20 @@ function TrackedSection({
   });
 
   return (
-    <Card ref={ref} className={`p-6 min-h-[300px] ${color} border-2`}>
-      <div className="flex items-center justify-between mb-4">
-        <h4 className="text-xl font-semibold">{title}</h4>
-        <Badge variant={isIntersecting ? 'default' : 'secondary'}>
-          {isIntersecting ? 'Visible' : 'Hidden'}
-        </Badge>
-      </div>
-      <p className="text-muted-foreground">
-        This section is being tracked. When more than 50% of it is visible in the viewport, it will
-        be marked as active in the header above.
-      </p>
-    </Card>
+    <div ref={ref as React.RefObject<HTMLDivElement>}>
+      <Card className={`p-6 min-h-[300px] ${color} border-2`}>
+        <div className="flex items-center justify-between mb-4">
+          <h4 className="text-xl font-semibold">{title}</h4>
+          <Badge variant={isIntersecting ? 'default' : 'secondary'}>
+            {isIntersecting ? 'Visible' : 'Hidden'}
+          </Badge>
+        </div>
+        <p className="text-muted-foreground">
+          This section is being tracked. When more than 50% of it is visible in the viewport, it
+          will be marked as active in the header above.
+        </p>
+      </Card>
+    </div>
   );
 }
 
@@ -408,23 +416,24 @@ function TriggerOnceDemo() {
         <p className="text-sm text-muted-foreground">↓ Scroll down ↓</p>
       </div>
 
-      <Card
-        ref={ref}
-        className={`p-8 transition-all duration-700 ${
-          hasBeenVisible
-            ? 'opacity-100 translate-y-0'
-            : 'opacity-0 translate-y-10 pointer-events-none'
-        }`}
-      >
-        <div className="text-center space-y-4">
-          <div className="text-4xl">🎉</div>
-          <h4 className="text-xl font-semibold">You found me!</h4>
-          <p className="text-muted-foreground">
-            This animation triggered once when the element first entered the viewport. Scrolling
-            back up won&apos;t hide it again.
-          </p>
-        </div>
-      </Card>
+      <div ref={ref as React.RefObject<HTMLDivElement>}>
+        <Card
+          className={`p-8 transition-all duration-700 ${
+            hasBeenVisible
+              ? 'opacity-100 translate-y-0'
+              : 'opacity-0 translate-y-10 pointer-events-none'
+          }`}
+        >
+          <div className="text-center space-y-4">
+            <div className="text-4xl">🎉</div>
+            <h4 className="text-xl font-semibold">You found me!</h4>
+            <p className="text-muted-foreground">
+              This animation triggered once when the element first entered the viewport. Scrolling
+              back up won&apos;t hide it again.
+            </p>
+          </div>
+        </Card>
+      </div>
 
       <div className="h-[400px]" />
     </div>
