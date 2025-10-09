@@ -62,6 +62,8 @@ export { cn } from './lib/utils';
 export { FontProvider, useFonts } from './components/font-provider';
 
 // AI Components
+export { Message } from './components/ai/message';
+export type { MessageProps } from './components/ai/message';
 export { Response } from './components/ai/response';
 export type { ResponseProps } from './components/ai/response';
 
@@ -69,7 +71,7 @@ export type { ResponseProps } from './components/ai/response';
 export type {
   Role,
   Status,
-  Message,
+  Message as MessageType,
   Source,
   Tool,
   Task,
