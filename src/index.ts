@@ -110,6 +110,7 @@ export type {
 // Hooks
 export { useBoolean } from './hooks/use-boolean';
 export type { UseBooleanReturn } from './hooks/use-boolean';
+export { useClickAnyWhere } from './hooks/use-click-anywhere';
 export { useCounter } from './hooks/use-counter';
 export type { UseCounterOptions, UseCounterReturn } from './hooks/use-counter';
 export { useDebounceValue } from './hooks/use-debounce-value';
