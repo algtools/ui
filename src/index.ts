@@ -140,6 +140,10 @@ export type {
 } from './hooks/use-intersection-observer';
 export { useResizeObserver } from './hooks/use-resize-observer';
 export type { Size, ResizeCallback, UseResizeObserverOptions } from './hooks/use-resize-observer';
+export { useDocumentTitle } from './hooks/use-document-title';
+export type { UseDocumentTitleOptions } from './hooks/use-document-title';
+export { useScript } from './hooks/use-script';
+export type { ScriptStatus, UseScriptOptions, UseScriptReturn } from './hooks/use-script';
 export { useUnmount } from './hooks/use-unmount';
 export { useTernaryDarkMode } from './hooks/use-ternary-dark-mode';
 export type { TernaryDarkMode, UseTernaryDarkModeReturn } from './hooks/use-ternary-dark-mode';
