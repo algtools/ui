@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react-webpack5';
 import * as React from 'react';
-import { Tool } from '@/components/ai/tool';
+import { Tool as AITool } from '@/components/ai/tool';
 import type { Tool as ToolType } from '@/components/ai/ai-types';
 
 const meta = {
   title: 'AI/Tool',
-  component: Tool,
+  component: AITool,
   parameters: {
     layout: 'centered',
   },
@@ -218,14 +218,14 @@ export const ComplexParameters: Story = {
 export const AllStatuses = {
   render: () => (
     <div className="space-y-3 w-[700px]">
-      <Tool
+      <AITool
         tool={{
           name: 'pending_function',
           description: 'Waiting to execute',
           status: 'pending',
         }}
       />
-      <Tool
+      <AITool
         tool={{
           name: 'executing_function',
           description: 'Currently running',
@@ -235,7 +235,7 @@ export const AllStatuses = {
         showParameters
         defaultParametersExpanded
       />
-      <Tool
+      <AITool
         tool={{
           name: 'completed_function',
           description: 'Successfully finished',
@@ -246,7 +246,7 @@ export const AllStatuses = {
         showParameters
         showResult
       />
-      <Tool
+      <AITool
         tool={{
           name: 'failed_function',
           description: 'Encountered an error',
@@ -258,7 +258,7 @@ export const AllStatuses = {
         showResult
         defaultResultExpanded
       />
-      <Tool
+      <AITool
         tool={{
           name: 'cancelled_function',
           description: 'User cancelled execution',
@@ -272,7 +272,7 @@ export const AllStatuses = {
 export const OpenAIToolExample = {
   render: () => (
     <div className="space-y-3 w-[700px]">
-      <Tool
+      <AITool
         tool={{
           name: 'get_current_weather',
           description: 'Get the current weather in a given location',
@@ -291,7 +291,7 @@ export const OpenAIToolExample = {
         showParameters
         showResult
       />
-      <Tool
+      <AITool
         tool={{
           name: 'search_wikipedia',
           description: 'Search Wikipedia for information',
@@ -359,7 +359,7 @@ export const FunctionCallWorkflow = {
         <h3 className="text-lg font-semibold">AI Agent Function Calls</h3>
         <div className="space-y-3">
           {tools.map((tool, index) => (
-            <Tool
+            <AITool
               key={index}
               tool={tool}
               showParameters
@@ -387,7 +387,7 @@ export const FunctionCallWorkflow = {
 export const LongToolName = {
   render: () => (
     <div className="w-[600px]">
-      <Tool
+      <AITool
         tool={{
           name: 'execute_very_long_function_name_that_demonstrates_text_wrapping_behavior',
           description: 'This tool has an extremely long name to test wrapping',
@@ -403,7 +403,7 @@ export const LongToolName = {
 export const ErrorHandling = {
   render: () => (
     <div className="space-y-3 w-[700px]">
-      <Tool
+      <AITool
         tool={{
           name: 'network_request',
           description: 'Make HTTP request',
@@ -424,7 +424,7 @@ export const ErrorHandling = {
         defaultParametersExpanded
         defaultResultExpanded
       />
-      <Tool
+      <AITool
         tool={{
           name: 'file_operation',
           description: 'Read protected file',
@@ -443,14 +443,14 @@ export const ErrorHandling = {
 export const DarkMode = {
   render: () => (
     <div className="dark bg-background p-6 rounded-lg space-y-3 w-[700px]">
-      <Tool
+      <AITool
         tool={{
           name: 'pending_in_dark',
           description: 'Pending status in dark mode',
           status: 'pending',
         }}
       />
-      <Tool
+      <AITool
         tool={{
           name: 'in_progress_in_dark',
           description: 'In progress in dark mode',
@@ -459,7 +459,7 @@ export const DarkMode = {
         }}
         showParameters
       />
-      <Tool
+      <AITool
         tool={{
           name: 'complete_in_dark',
           description: 'Completed in dark mode',
@@ -468,7 +468,7 @@ export const DarkMode = {
         }}
         showResult
       />
-      <Tool
+      <AITool
         tool={{
           name: 'failed_in_dark',
           description: 'Failed in dark mode',
