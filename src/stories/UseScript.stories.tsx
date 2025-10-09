@@ -335,10 +335,89 @@ function ScriptOptionsDemo() {
  * Demo with error handling
  */
 function ErrorHandlingDemo() {
-  const [scriptUrl, setScriptUrl] = useState('https://cdn.example.com/nonexistent-script.js');
-  const [loadScript, setLoadScript] = useState(false);
+  const [selectedScript, setSelectedScript] = useState<string>('');
+  const [key, setKey] = useState(0);
 
-  const { status, isError, error } = useScript(loadScript ? scriptUrl : '');
+  const scripts = [
+    {
+      name: 'Valid Script (Lodash)',
+      url: 'https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js',
+      isValid: true,
+    },
+    {
+      name: 'Invalid URL (404)',
+      url: 'https://cdn.jsdelivr.net/npm/this-package-does-not-exist-12345@1.0.0/index.js',
+      isValid: false,
+    },
+    {
+      name: 'Invalid Domain',
+      url: 'https://this-domain-definitely-does-not-exist-12345.com/script.js',
+      isValid: false,
+    },
+  ];
+
+  const ScriptLoader = ({ url }: { url: string }) => {
+    const { status, isError, error, isLoading, isReady } = useScript(url);
+
+    return (
+      <div className="rounded-lg border p-4 bg-muted/50">
+        <div className="flex items-center justify-between mb-3">
+          <span className="text-sm font-medium">Status:</span>
+          <Badge
+            variant={isError ? 'destructive' : isReady ? 'default' : 'secondary'}
+            className="capitalize"
+          >
+            {status}
+          </Badge>
+        </div>
+
+        {isLoading && (
+          <div className="flex items-center gap-2 text-sm text-blue-600 dark:text-blue-400 mb-3">
+            <Loader2 className="h-4 w-4 animate-spin" />
+            <span>Loading script...</span>
+          </div>
+        )}
+
+        {isReady && (
+          <div className="rounded-lg border border-green-200 bg-green-50 dark:bg-green-950 p-3 mb-3">
+            <div className="flex items-center gap-2">
+              <CheckCircle2 className="h-4 w-4 text-green-600 dark:text-green-400" />
+              <p className="text-sm text-green-600 dark:text-green-400">
+                Script loaded successfully!
+              </p>
+            </div>
+          </div>
+        )}
+
+        {isError && (
+          <div className="rounded-lg border border-red-200 bg-red-50 dark:bg-red-950 p-3 mb-3">
+            <div className="flex items-start gap-2">
+              <XCircle className="h-4 w-4 text-red-600 dark:text-red-400 mt-0.5" />
+              <div className="flex-1">
+                <p className="text-sm text-red-600 dark:text-red-400 font-medium">
+                  Failed to load script
+                </p>
+                {error && (
+                  <p className="text-xs text-red-600/80 dark:text-red-400/80 mt-1">
+                    {error.message || 'The script could not be loaded'}
+                  </p>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
+
+        <div className="rounded-lg border p-2 bg-background">
+          <p className="text-xs text-muted-foreground break-all font-mono">{url}</p>
+        </div>
+      </div>
+    );
+  };
+
+  const handleReset = () => {
+    setSelectedScript('');
+    setKey((k) => k + 1); // Force remount to clear any previous script state
+  };
 
   return (
     <Card className="p-6 w-96">
@@ -346,58 +425,40 @@ function ErrorHandlingDemo() {
         <h3 className="text-lg font-semibold">Error Handling</h3>
 
         <div className="space-y-2">
-          <Label htmlFor="error-script-url">Script URL (try an invalid URL)</Label>
-          <Input
-            id="error-script-url"
-            value={scriptUrl}
-            onChange={(e) => setScriptUrl(e.target.value)}
-            placeholder="https://example.com/script.js"
-            disabled={loadScript}
-          />
+          <Label>Select a script to test:</Label>
+          {scripts.map((script) => (
+            <Button
+              key={script.url}
+              onClick={() => setSelectedScript(script.url)}
+              variant={selectedScript === script.url ? 'default' : 'outline'}
+              className="w-full justify-start"
+              size="sm"
+            >
+              <span className="mr-2">{script.isValid ? '✓' : '✗'}</span>
+              {script.name}
+            </Button>
+          ))}
         </div>
 
-        <Button
-          onClick={() => setLoadScript(!loadScript)}
-          className="w-full"
-          variant={loadScript ? 'destructive' : 'default'}
-        >
-          {loadScript ? 'Reset' : 'Try Loading Script'}
-        </Button>
-
-        {loadScript && (
-          <div className="rounded-lg border p-4 bg-muted/50">
-            <div className="flex items-center justify-between mb-3">
-              <span className="text-sm font-medium">Status:</span>
-              <Badge variant={isError ? 'destructive' : 'secondary'} className="capitalize">
-                {status}
-              </Badge>
-            </div>
-
-            {isError && (
-              <div className="rounded-lg border border-red-200 bg-red-50 dark:bg-red-950 p-3">
-                <div className="flex items-start gap-2">
-                  <XCircle className="h-4 w-4 text-red-600 dark:text-red-400 mt-0.5" />
-                  <div className="flex-1">
-                    <p className="text-sm text-red-600 dark:text-red-400 font-medium">
-                      Failed to load script
-                    </p>
-                    {error && (
-                      <p className="text-xs text-red-600/80 dark:text-red-400/80 mt-1">
-                        {error.message || 'Unknown error occurred'}
-                      </p>
-                    )}
-                  </div>
-                </div>
-              </div>
-            )}
-          </div>
+        {selectedScript && (
+          <>
+            <ScriptLoader key={key} url={selectedScript} />
+            <Button onClick={handleReset} variant="outline" className="w-full" size="sm">
+              Reset & Try Another
+            </Button>
+          </>
         )}
 
-        <div className="rounded-lg border border-amber-200 bg-amber-50 dark:bg-amber-950 p-3">
-          <p className="text-xs text-amber-600 dark:text-amber-400">
-            Try loading an invalid URL to see error handling in action
-          </p>
-        </div>
+        {!selectedScript && (
+          <div className="rounded-lg border border-blue-200 bg-blue-50 dark:bg-blue-950 p-3">
+            <div className="flex items-start gap-2">
+              <AlertCircle className="h-4 w-4 text-blue-600 dark:text-blue-400 mt-0.5" />
+              <p className="text-xs text-blue-600 dark:text-blue-400">
+                Select a script above to see how the hook handles valid and invalid URLs
+              </p>
+            </div>
+          </div>
+        )}
       </div>
     </Card>
   );
@@ -540,7 +601,7 @@ export const ErrorHandling: Story = {
     docs: {
       description: {
         story:
-          'Demonstrates error handling when a script fails to load. Try entering an invalid URL to see error states.',
+          'Demonstrates error handling with both valid and invalid script URLs. Select different scripts to see how the hook handles successful loads, 404 errors, and network failures. Each selection properly resets the state for accurate testing.',
       },
     },
   },
