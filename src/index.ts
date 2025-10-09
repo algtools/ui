@@ -107,20 +107,24 @@ export type {
   AIComponentProps,
 } from './components/ai/ai-types';
 
-// Hooks
+// Hooks (deduped)
 export { useBoolean } from './hooks/use-boolean';
 export type { UseBooleanReturn } from './hooks/use-boolean';
 export { useClickAnyWhere } from './hooks/use-click-anywhere';
 export { useCounter } from './hooks/use-counter';
 export type { UseCounterOptions, UseCounterReturn } from './hooks/use-counter';
-export { useDebounceCallback } from './hooks/use-debounce-callback';
-export type { UseDebounceCallbackReturn } from './hooks/use-debounce-callback';
+export { useCopyToClipboard } from './hooks/use-copy-to-clipboard';
+export type { UseCopyToClipboardReturn } from './hooks/use-copy-to-clipboard';
+export { useDarkMode } from './hooks/use-dark-mode';
+export type { UseDarkModeReturn } from './hooks/use-dark-mode';
 export { useDebounceValue } from './hooks/use-debounce-value';
 export { useHover } from './hooks/use-hover';
 export type { UseHoverOptions } from './hooks/use-hover';
+export { useIsClient } from './hooks/use-is-client';
 export { useIsMobile } from './hooks/use-mobile';
-export { useCopyToClipboard } from './hooks/use-copy-to-clipboard';
-export type { UseCopyToClipboardReturn } from './hooks/use-copy-to-clipboard';
+export { useIsMounted } from './hooks/use-is-mounted';
+export { useDebounceCallback } from './hooks/use-debounce-callback';
+export type { UseDebounceCallbackReturn } from './hooks/use-debounce-callback';
 export { useLocalStorage } from './hooks/use-local-storage';
 export type { UseLocalStorageReturn } from './hooks/use-local-storage';
 export { useSessionStorage } from './hooks/use-session-storage';
@@ -142,6 +146,21 @@ export type {
   UseMousePositionOptions,
   UseMousePositionReturn,
 } from './hooks/use-mouse-position';
+export { useEventCallback } from './hooks/use-event-callback';
+export { useEventListener } from './hooks/use-event-listener';
+export type { UseEventListenerOptions } from './hooks/use-event-listener';
+export { useInterval } from './hooks/use-interval';
+export type { UseIntervalOptions, UseIntervalReturn } from './hooks/use-interval';
+export { useTimeout } from './hooks/use-timeout';
+export type { UseTimeoutReturn } from './hooks/use-timeout';
+export { useDocumentTitle } from './hooks/use-document-title';
+export type { UseDocumentTitleOptions } from './hooks/use-document-title';
+export { useScript } from './hooks/use-script';
+export type { ScriptStatus, UseScriptOptions, UseScriptReturn } from './hooks/use-script';
+export { useUnmount } from './hooks/use-unmount';
+export { useTernaryDarkMode } from './hooks/use-ternary-dark-mode';
+export type { TernaryDarkMode, UseTernaryDarkModeReturn } from './hooks/use-ternary-dark-mode';
+export { useIsomorphicLayoutEffect } from './hooks/use-isomorphic-layout-effect';
 export { useWindowSize } from './hooks/use-window-size';
 export type { WindowSize, UseWindowSizeOptions } from './hooks/use-window-size';
 export { useScreen } from './hooks/use-screen';
