@@ -1,26 +1,41 @@
 import type { Meta, StoryObj } from '@storybook/react-webpack5';
 import * as React from 'react';
-import { Eye, RefreshCw, Settings } from 'lucide-react';
+import { Eye, RefreshCw, ExternalLink, AlertCircle } from 'lucide-react';
 
 import { useReadLocalStorage } from '../hooks/use-read-local-storage';
-import { useLocalStorage } from '../hooks/use-local-storage';
 import { Button } from '../components/ui/button';
 import { Card } from '../components/ui/card';
 import { Input } from '../components/ui/input';
 import { Label } from '../components/ui/label';
 import { Badge } from '../components/ui/badge';
-import { Alert, AlertDescription } from '../components/ui/alert';
-import { Switch } from '../components/ui/switch';
+import { Alert, AlertDescription, AlertTitle } from '../components/ui/alert';
 
 /**
- * Demo component showing read-only access to localStorage
+ * Demo component showing read-only access with manual localStorage updates
  */
 function UseReadLocalStorageDemo() {
-  const { value, error } = useReadLocalStorage('read-demo-text', 'Default Value');
-  const { setValue: setWritableValue } = useLocalStorage('read-demo-text', 'Default Value');
+  const STORAGE_KEY = 'read-demo-text';
+  const { value, error } = useReadLocalStorage(STORAGE_KEY, 'Default Value');
+  const [inputValue, setInputValue] = React.useState('');
+
+  const handleManualUpdate = () => {
+    if (typeof window !== 'undefined') {
+      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(inputValue));
+      // Manually dispatch storage event to simulate cross-tab update
+      window.dispatchEvent(
+        new StorageEvent('storage', {
+          key: STORAGE_KEY,
+          newValue: JSON.stringify(inputValue),
+          oldValue: window.localStorage.getItem(STORAGE_KEY),
+          storageArea: window.localStorage,
+          url: window.location.href,
+        })
+      );
+    }
+  };
 
   return (
-    <Card className="p-6 w-96">
+    <Card className="p-6 w-full max-w-2xl">
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <h3 className="text-lg font-semibold">useReadLocalStorage Demo</h3>
@@ -30,6 +45,25 @@ function UseReadLocalStorageDemo() {
           </Badge>
         </div>
 
+        <Alert>
+          <AlertCircle className="h-4 w-4" />
+          <AlertTitle>How It Works</AlertTitle>
+          <AlertDescription className="text-xs mt-2 space-y-2">
+            <p>
+              This hook reads from localStorage and listens for changes from{' '}
+              <strong>other browser tabs/windows</strong>.
+            </p>
+            <p>
+              Storage events only fire for OTHER tabs, not the same page. To test cross-tab sync:
+            </p>
+            <ol className="list-decimal ml-4 mt-1 space-y-1">
+              <li>Open this story in a new tab</li>
+              <li>Update the value in one tab using the controls below</li>
+              <li>Watch the value update in the other tab automatically!</li>
+            </ol>
+          </AlertDescription>
+        </Alert>
+
         {error && (
           <Alert variant="destructive">
             <AlertDescription>Error: {error.message}</AlertDescription>
@@ -38,26 +72,24 @@ function UseReadLocalStorageDemo() {
 
         <div className="rounded-lg border p-4 bg-muted/50">
           <p className="text-sm font-medium mb-2">Current Value (Read-Only):</p>
-          <p className="text-sm font-mono break-all">{value}</p>
+          <p className="text-sm font-mono break-all bg-background p-3 rounded">{value}</p>
         </div>
 
-        <Alert>
-          <AlertDescription className="text-xs">
-            This hook only reads from localStorage. To modify the value, use another source or
-            useLocalStorage.
-          </AlertDescription>
-        </Alert>
-
         <div className="border-t pt-4">
-          <p className="text-sm font-medium mb-2">External Writer:</p>
+          <p className="text-sm font-medium mb-3">Update localStorage:</p>
           <div className="space-y-2">
             <Input
-              value={value}
-              onChange={(e) => setWritableValue(e.target.value)}
-              placeholder="Modify value here..."
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
+              placeholder="Type a new value..."
             />
+            <Button onClick={handleManualUpdate} className="w-full">
+              <RefreshCw className="mr-2 h-4 w-4" />
+              Update Value (Simulates Cross-Tab Change)
+            </Button>
             <p className="text-xs text-muted-foreground">
-              Changes made here are reflected in the read-only view above
+              This manually updates localStorage and dispatches a storage event to simulate a
+              cross-tab update.
             </p>
           </div>
         </div>
@@ -67,348 +99,323 @@ function UseReadLocalStorageDemo() {
 }
 
 /**
- * Demo component showing theme monitoring
+ * Reader-only component for cross-tab demo
  */
-function ThemeMonitorDemo() {
-  interface ThemeConfig {
-    mode: 'light' | 'dark' | 'system';
-    primaryColor: string;
-    fontSize: number;
-  }
-
-  const { value: theme } = useReadLocalStorage<ThemeConfig>('app-theme', {
-    mode: 'system',
-    primaryColor: '#3b82f6',
-    fontSize: 16,
-  });
-
-  const { setValue: setTheme } = useLocalStorage<ThemeConfig>('app-theme', {
-    mode: 'system',
-    primaryColor: '#3b82f6',
-    fontSize: 16,
-  });
+function ReaderComponent({ storageKey }: { storageKey: string }) {
+  const { value } = useReadLocalStorage(storageKey, 0);
 
   return (
-    <Card className="p-6 w-96">
+    <Card className="p-6 flex-1">
       <div className="space-y-4">
         <div className="flex items-center justify-between">
-          <h3 className="text-lg font-semibold">Theme Monitor</h3>
-          <Badge variant="secondary">
+          <h3 className="text-lg font-semibold">Reader</h3>
+          <Badge variant="outline">
             <Eye className="mr-1 h-3 w-3" />
-            Observer
+            Read-Only
           </Badge>
         </div>
 
-        <div className="rounded-lg border p-4 bg-muted/50">
-          <p className="text-sm font-medium mb-2">Current Theme:</p>
-          <div className="space-y-1 text-sm font-mono">
-            <p>Mode: {theme.mode}</p>
-            <p>Color: {theme.primaryColor}</p>
-            <p>Font Size: {theme.fontSize}px</p>
-          </div>
+        <div className="rounded-lg border p-8 text-center bg-muted/50">
+          <p className="text-6xl font-bold tabular-nums">{value}</p>
         </div>
 
         <Alert>
           <AlertDescription className="text-xs">
-            This component only reads the theme. Changes from other components are automatically
-            reflected here.
+            This component only reads the value. It will update when the value changes in another
+            tab.
           </AlertDescription>
         </Alert>
-
-        <div className="border-t pt-4">
-          <div className="flex items-center justify-between mb-2">
-            <p className="text-sm font-medium">Theme Controller:</p>
-            <Settings className="h-4 w-4 text-muted-foreground" />
-          </div>
-          <div className="space-y-3">
-            <select
-              value={theme.mode}
-              onChange={(e) =>
-                setTheme((prev) => ({ ...prev, mode: e.target.value as ThemeConfig['mode'] }))
-              }
-              className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
-            >
-              <option value="light">Light</option>
-              <option value="dark">Dark</option>
-              <option value="system">System</option>
-            </select>
-            <Input
-              type="color"
-              value={theme.primaryColor}
-              onChange={(e) => setTheme((prev) => ({ ...prev, primaryColor: e.target.value }))}
-            />
-            <Input
-              type="number"
-              value={theme.fontSize}
-              onChange={(e) =>
-                setTheme((prev) => ({ ...prev, fontSize: parseInt(e.target.value) || 16 }))
-              }
-              min="12"
-              max="24"
-            />
-          </div>
-        </div>
       </div>
     </Card>
   );
 }
 
 /**
- * Demo component showing settings display
+ * Writer component for cross-tab demo
  */
-function SettingsDisplayDemo() {
-  interface AppSettings {
-    notifications: boolean;
-    autoSave: boolean;
-    language: string;
-  }
+function WriterComponent({ storageKey }: { storageKey: string }) {
+  const [localValue, setLocalValue] = React.useState(0);
 
-  const { value: settings } = useReadLocalStorage<AppSettings>('app-settings-demo', {
-    notifications: true,
-    autoSave: false,
-    language: 'en',
-  });
+  React.useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const stored = window.localStorage.getItem(storageKey);
+      if (stored) {
+        try {
+          setLocalValue(JSON.parse(stored));
+        } catch {
+          // ignore
+        }
+      }
+    }
+  }, [storageKey]);
 
-  const { setValue: setSettings } = useLocalStorage<AppSettings>('app-settings-demo', {
-    notifications: true,
-    autoSave: false,
-    language: 'en',
-  });
-
-  const updateSetting = <K extends keyof AppSettings>(key: K, value: AppSettings[K]) => {
-    setSettings((prev) => ({ ...prev, [key]: value }));
+  const updateValue = (newValue: number) => {
+    setLocalValue(newValue);
+    if (typeof window !== 'undefined') {
+      window.localStorage.setItem(storageKey, JSON.stringify(newValue));
+      // Storage events don't fire for the same page, so we manually dispatch
+      window.dispatchEvent(
+        new StorageEvent('storage', {
+          key: storageKey,
+          newValue: JSON.stringify(newValue),
+          oldValue: window.localStorage.getItem(storageKey),
+          storageArea: window.localStorage,
+          url: window.location.href,
+        })
+      );
+    }
   };
 
   return (
-    <Card className="p-6 w-96">
+    <Card className="p-6 flex-1">
       <div className="space-y-4">
         <div className="flex items-center justify-between">
-          <h3 className="text-lg font-semibold">Settings Display</h3>
-          <Badge variant="outline">
-            <Eye className="mr-1 h-3 w-3" />
-            Read-Only View
+          <h3 className="text-lg font-semibold">Writer</h3>
+          <Badge variant="secondary">
+            <RefreshCw className="mr-1 h-3 w-3" />
+            Write
           </Badge>
         </div>
 
-        <div className="rounded-lg border p-4 bg-primary/5">
-          <p className="text-sm font-medium mb-3">Current Settings:</p>
-          <div className="space-y-2">
-            <div className="flex items-center justify-between text-sm">
-              <span>Notifications:</span>
-              <Badge variant={settings.notifications ? 'default' : 'secondary'}>
-                {settings.notifications ? 'Enabled' : 'Disabled'}
-              </Badge>
-            </div>
-            <div className="flex items-center justify-between text-sm">
-              <span>Auto Save:</span>
-              <Badge variant={settings.autoSave ? 'default' : 'secondary'}>
-                {settings.autoSave ? 'Enabled' : 'Disabled'}
-              </Badge>
-            </div>
-            <div className="flex items-center justify-between text-sm">
-              <span>Language:</span>
-              <Badge variant="outline">{settings.language}</Badge>
-            </div>
-          </div>
+        <div className="rounded-lg border p-8 text-center bg-primary/5">
+          <p className="text-6xl font-bold tabular-nums">{localValue}</p>
+        </div>
+
+        <div className="grid grid-cols-3 gap-2">
+          <Button onClick={() => updateValue(localValue - 1)} variant="outline">
+            -1
+          </Button>
+          <Button onClick={() => updateValue(0)} variant="secondary">
+            Reset
+          </Button>
+          <Button onClick={() => updateValue(localValue + 1)} variant="default">
+            +1
+          </Button>
         </div>
 
         <Alert>
           <AlertDescription className="text-xs">
-            This is a read-only display. Modify settings using the controls below.
+            This component writes to localStorage. The reader will sync automatically.
           </AlertDescription>
         </Alert>
-
-        <div className="border-t pt-4">
-          <p className="text-sm font-medium mb-3">Settings Controls:</p>
-          <div className="space-y-3">
-            <div className="flex items-center justify-between">
-              <Label htmlFor="notifications">Notifications</Label>
-              <Switch
-                id="notifications"
-                checked={settings.notifications}
-                onCheckedChange={(checked) => updateSetting('notifications', checked)}
-              />
-            </div>
-            <div className="flex items-center justify-between">
-              <Label htmlFor="autoSave">Auto Save</Label>
-              <Switch
-                id="autoSave"
-                checked={settings.autoSave}
-                onCheckedChange={(checked) => updateSetting('autoSave', checked)}
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="language">Language</Label>
-              <select
-                id="language"
-                value={settings.language}
-                onChange={(e) => updateSetting('language', e.target.value)}
-                className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
-              >
-                <option value="en">English</option>
-                <option value="es">Español</option>
-                <option value="fr">Français</option>
-                <option value="de">Deutsch</option>
-              </select>
-            </div>
-          </div>
-        </div>
       </div>
     </Card>
   );
 }
 
 /**
- * Demo component showing cross-component synchronization
+ * Demo showing cross-component synchronization
  */
-function SyncDemo() {
-  const { value: counter } = useReadLocalStorage('sync-counter', 0);
-  const { setValue: setCounter } = useLocalStorage('sync-counter', 0);
+function CrossTabDemo() {
+  const STORAGE_KEY = 'sync-counter-demo';
 
   return (
-    <div className="flex gap-4">
-      <Card className="p-6 w-80">
-        <div className="space-y-4">
-          <div className="flex items-center justify-between">
-            <h3 className="text-lg font-semibold">Reader Component</h3>
-            <Badge variant="outline">
-              <Eye className="mr-1 h-3 w-3" />
-              Read
-            </Badge>
-          </div>
+    <div className="w-full max-w-5xl space-y-4">
+      <Alert className="mb-4">
+        <ExternalLink className="h-4 w-4" />
+        <AlertTitle>Test Cross-Tab Synchronization</AlertTitle>
+        <AlertDescription className="text-xs mt-2">
+          <p className="mb-2">
+            To see the automatic synchronization in action, open this story in multiple browser
+            tabs:
+          </p>
+          <ol className="list-decimal ml-4 space-y-1">
+            <li>Right-click this tab and select &quot;Duplicate Tab&quot;</li>
+            <li>Arrange the windows side-by-side</li>
+            <li>Click the +1 or -1 buttons in one tab</li>
+            <li>Watch the Reader update automatically in both tabs!</li>
+          </ol>
+        </AlertDescription>
+      </Alert>
 
-          <div className="rounded-lg border p-8 text-center bg-muted/50">
-            <p className="text-6xl font-bold tabular-nums">{counter}</p>
-          </div>
-
-          <Alert>
-            <AlertDescription className="text-xs">
-              This component only reads the value. It automatically updates when the value changes.
-            </AlertDescription>
-          </Alert>
-        </div>
-      </Card>
-
-      <Card className="p-6 w-80">
-        <div className="space-y-4">
-          <div className="flex items-center justify-between">
-            <h3 className="text-lg font-semibold">Writer Component</h3>
-            <Badge variant="secondary">
-              <RefreshCw className="mr-1 h-3 w-3" />
-              Write
-            </Badge>
-          </div>
-
-          <div className="rounded-lg border p-8 text-center bg-primary/5">
-            <p className="text-6xl font-bold tabular-nums">{counter}</p>
-          </div>
-
-          <div className="grid grid-cols-3 gap-2">
-            <Button onClick={() => setCounter((c) => c - 1)} variant="outline">
-              -1
-            </Button>
-            <Button onClick={() => setCounter(0)} variant="secondary">
-              Reset
-            </Button>
-            <Button onClick={() => setCounter((c) => c + 1)} variant="default">
-              +1
-            </Button>
-          </div>
-
-          <Alert>
-            <AlertDescription className="text-xs">
-              This component can modify the value. The reader component will automatically sync.
-            </AlertDescription>
-          </Alert>
-        </div>
-      </Card>
+      <div className="flex gap-4 flex-wrap">
+        <ReaderComponent storageKey={STORAGE_KEY} />
+        <WriterComponent storageKey={STORAGE_KEY} />
+      </div>
     </div>
   );
 }
 
 /**
- * Demo component showing user info display
+ * Demo showing theme monitoring
  */
-function UserInfoDemo() {
-  interface User {
-    name: string;
-    email: string;
-    role: string;
+function ThemeMonitorDemo() {
+  interface ThemeConfig {
+    mode: 'light' | 'dark' | 'system';
+    primaryColor: string;
   }
 
-  const { value: user, error } = useReadLocalStorage<User>('user-info-demo', {
-    name: 'Guest User',
-    email: 'guest@example.com',
-    role: 'visitor',
+  const THEME_KEY = 'app-theme-demo';
+  const { value: theme } = useReadLocalStorage<ThemeConfig>(THEME_KEY, {
+    mode: 'system',
+    primaryColor: '#3b82f6',
   });
 
-  const { setValue: setUser } = useLocalStorage<User>('user-info-demo', {
-    name: 'Guest User',
-    email: 'guest@example.com',
-    role: 'visitor',
-  });
+  const [localTheme, setLocalTheme] = React.useState<ThemeConfig>(theme);
+
+  React.useEffect(() => {
+    setLocalTheme(theme);
+  }, [theme]);
+
+  const updateTheme = (updates: Partial<ThemeConfig>) => {
+    const newTheme = { ...localTheme, ...updates };
+    setLocalTheme(newTheme);
+
+    if (typeof window !== 'undefined') {
+      window.localStorage.setItem(THEME_KEY, JSON.stringify(newTheme));
+      window.dispatchEvent(
+        new StorageEvent('storage', {
+          key: THEME_KEY,
+          newValue: JSON.stringify(newTheme),
+          oldValue: window.localStorage.getItem(THEME_KEY),
+          storageArea: window.localStorage,
+          url: window.location.href,
+        })
+      );
+    }
+  };
 
   return (
-    <Card className="p-6 w-96">
-      <div className="space-y-4">
-        <div className="flex items-center justify-between">
-          <h3 className="text-lg font-semibold">User Profile View</h3>
-          <Badge variant="outline">Read-Only</Badge>
-        </div>
+    <div className="w-full max-w-4xl space-y-4">
+      <Alert>
+        <AlertCircle className="h-4 w-4" />
+        <AlertDescription className="text-xs">
+          Open this story in multiple tabs to see theme changes sync automatically between them.
+        </AlertDescription>
+      </Alert>
 
-        {error ? (
-          <Alert variant="destructive">
-            <AlertDescription>Error loading user data: {error.message}</AlertDescription>
-          </Alert>
-        ) : (
-          <div className="rounded-lg border p-4 bg-muted/50">
-            <div className="space-y-2">
-              <div>
-                <p className="text-xs text-muted-foreground">Name</p>
-                <p className="text-sm font-medium">{user.name}</p>
-              </div>
-              <div>
-                <p className="text-xs text-muted-foreground">Email</p>
-                <p className="text-sm font-medium">{user.email}</p>
-              </div>
-              <div>
-                <p className="text-xs text-muted-foreground">Role</p>
-                <Badge variant="secondary">{user.role}</Badge>
+      <div className="flex gap-4 flex-wrap">
+        <Card className="p-6 flex-1 min-w-[300px]">
+          <div className="space-y-4">
+            <div className="flex items-center justify-between">
+              <h3 className="text-lg font-semibold">Theme Monitor</h3>
+              <Badge variant="outline">
+                <Eye className="mr-1 h-3 w-3" />
+                Read-Only
+              </Badge>
+            </div>
+
+            <div className="rounded-lg border p-4 bg-muted/50">
+              <p className="text-sm font-medium mb-2">Current Theme:</p>
+              <div className="space-y-1 text-sm font-mono">
+                <p>Mode: {theme.mode}</p>
+                <div className="flex items-center gap-2">
+                  <p>Color:</p>
+                  <div
+                    className="w-6 h-6 rounded border"
+                    style={{ backgroundColor: theme.primaryColor }}
+                  />
+                  <p>{theme.primaryColor}</p>
+                </div>
               </div>
             </div>
+
+            <Alert>
+              <AlertDescription className="text-xs">
+                This view is read-only and syncs automatically with changes from other tabs.
+              </AlertDescription>
+            </Alert>
           </div>
-        )}
+        </Card>
+
+        <Card className="p-6 flex-1 min-w-[300px]">
+          <div className="space-y-4">
+            <div className="flex items-center justify-between">
+              <h3 className="text-lg font-semibold">Theme Controller</h3>
+              <Badge variant="secondary">
+                <RefreshCw className="mr-1 h-3 w-3" />
+                Write
+              </Badge>
+            </div>
+
+            <div className="space-y-3">
+              <div className="space-y-2">
+                <Label htmlFor="theme-mode">Theme Mode</Label>
+                <select
+                  id="theme-mode"
+                  value={localTheme.mode}
+                  onChange={(e) => updateTheme({ mode: e.target.value as ThemeConfig['mode'] })}
+                  className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+                >
+                  <option value="light">Light</option>
+                  <option value="dark">Dark</option>
+                  <option value="system">System</option>
+                </select>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="theme-color">Primary Color</Label>
+                <div className="flex gap-2">
+                  <Input
+                    id="theme-color"
+                    type="color"
+                    value={localTheme.primaryColor}
+                    onChange={(e) => updateTheme({ primaryColor: e.target.value })}
+                    className="w-20 h-10"
+                  />
+                  <Input
+                    type="text"
+                    value={localTheme.primaryColor}
+                    onChange={(e) => updateTheme({ primaryColor: e.target.value })}
+                    className="flex-1"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <Alert>
+              <AlertDescription className="text-xs">
+                Changes here will be reflected in the Theme Monitor and in other tabs.
+              </AlertDescription>
+            </Alert>
+          </div>
+        </Card>
+      </div>
+    </div>
+  );
+}
+
+/**
+ * Simple demo showing the read-only nature
+ */
+function ReadOnlyDemo() {
+  const DEMO_KEY = 'read-only-demo';
+  const { value } = useReadLocalStorage(DEMO_KEY, 'Initial value');
+
+  return (
+    <Card className="p-6 w-full max-w-md">
+      <div className="space-y-4">
+        <div className="flex items-center justify-between">
+          <h3 className="text-lg font-semibold">Read-Only View</h3>
+          <Badge variant="outline">
+            <Eye className="mr-1 h-3 w-3" />
+            No Write Access
+          </Badge>
+        </div>
+
+        <div className="rounded-lg border p-4 bg-muted/50">
+          <p className="text-sm font-medium mb-2">Stored Value:</p>
+          <p className="text-sm font-mono break-all bg-background p-3 rounded">{value}</p>
+        </div>
 
         <Alert>
-          <AlertDescription className="text-xs">
-            This component displays user data in read-only mode. Perfect for dashboards and info
-            panels.
+          <AlertTitle className="text-sm">Key Features</AlertTitle>
+          <AlertDescription className="text-xs mt-2">
+            <ul className="list-disc ml-4 space-y-1">
+              <li>No setValue or removeValue methods</li>
+              <li>Prevents accidental modifications</li>
+              <li>Automatically syncs with changes from other tabs</li>
+              <li>Perfect for display-only components</li>
+            </ul>
           </AlertDescription>
         </Alert>
 
-        <div className="border-t pt-4">
-          <p className="text-sm font-medium mb-2">Update User (Simulated):</p>
-          <div className="space-y-2">
-            <Input
-              placeholder="Name"
-              value={user.name}
-              onChange={(e) => setUser((prev) => ({ ...prev, name: e.target.value }))}
-            />
-            <Input
-              placeholder="Email"
-              value={user.email}
-              onChange={(e) => setUser((prev) => ({ ...prev, email: e.target.value }))}
-            />
-            <select
-              value={user.role}
-              onChange={(e) => setUser((prev) => ({ ...prev, role: e.target.value }))}
-              className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
-            >
-              <option value="visitor">Visitor</option>
-              <option value="user">User</option>
-              <option value="admin">Admin</option>
-            </select>
-          </div>
+        <div className="text-xs text-muted-foreground p-3 bg-muted rounded">
+          <p className="font-medium mb-1">💡 Tip:</p>
+          <p>
+            Use browser DevTools to modify localStorage (key: &quot;{DEMO_KEY}&quot;) and see the
+            value update, or open in multiple tabs to see cross-tab sync.
+          </p>
         </div>
       </div>
     </Card>
@@ -423,7 +430,7 @@ const meta: Meta<typeof UseReadLocalStorageDemo> = {
     docs: {
       description: {
         component:
-          'A custom hook for reading values from localStorage without write capabilities. Automatically syncs when values change from other sources. Features SSR support and error handling.',
+          'A custom hook for reading values from localStorage without write capabilities. Automatically syncs when values change from **other browser tabs/windows** via the storage event. Features SSR support and error handling. **Note**: Storage events only fire for OTHER tabs, not the same page.',
       },
     },
   },
@@ -439,7 +446,32 @@ export const Basic: Story = {
     docs: {
       description: {
         story:
-          'Basic usage of the useReadLocalStorage hook. Demonstrates read-only access with external modification.',
+          "Basic usage of the useReadLocalStorage hook. Demonstrates read-only access with simulated cross-tab updates. The button manually dispatches a storage event to demonstrate the hook's reactivity.",
+      },
+    },
+  },
+};
+
+export const ReadOnlyNature: Story = {
+  render: () => <ReadOnlyDemo />,
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Demonstrates the read-only nature of the hook. No write methods are exposed, making it perfect for display-only components that need to read shared state.',
+      },
+    },
+  },
+};
+
+export const CrossTabSync: Story = {
+  render: () => <CrossTabDemo />,
+  parameters: {
+    layout: 'fullscreen',
+    docs: {
+      description: {
+        story:
+          'Demonstrates automatic synchronization between reader and writer components. **To test**: Open this story in multiple browser tabs and watch values sync automatically when you make changes in one tab!',
       },
     },
   },
@@ -448,46 +480,11 @@ export const Basic: Story = {
 export const ThemeMonitor: Story = {
   render: () => <ThemeMonitorDemo />,
   parameters: {
-    docs: {
-      description: {
-        story:
-          'Monitor theme configuration in read-only mode. Perfect for display components that need to reflect settings.',
-      },
-    },
-  },
-};
-
-export const SettingsDisplay: Story = {
-  render: () => <SettingsDisplayDemo />,
-  parameters: {
-    docs: {
-      description: {
-        story: 'Display application settings in read-only mode with external controls.',
-      },
-    },
-  },
-};
-
-export const CrossComponentSync: Story = {
-  render: () => <SyncDemo />,
-  parameters: {
     layout: 'fullscreen',
     docs: {
       description: {
         story:
-          'Demonstrates automatic synchronization between reader and writer components. Changes in one are reflected in the other.',
-      },
-    },
-  },
-};
-
-export const UserInfo: Story = {
-  render: () => <UserInfoDemo />,
-  parameters: {
-    docs: {
-      description: {
-        story:
-          'Display user information in read-only mode. Useful for profile displays and info panels.',
+          'Monitor theme configuration in read-only mode. Open in multiple tabs to see theme changes sync automatically. Perfect for display components that need to reflect settings from a central store.',
       },
     },
   },
