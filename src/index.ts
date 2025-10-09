@@ -129,3 +129,5 @@ export type {
 } from './hooks/use-intersection-observer';
 export { useResizeObserver } from './hooks/use-resize-observer';
 export type { Size, ResizeCallback, UseResizeObserverOptions } from './hooks/use-resize-observer';
+export { useScrollLock } from './hooks/use-scroll-lock';
+export type { UseScrollLockOptions, UseScrollLockReturn } from './hooks/use-scroll-lock';
