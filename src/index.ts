@@ -107,7 +107,7 @@ export type {
   AIComponentProps,
 } from './components/ai/ai-types';
 
-// Hooks
+// Hooks (deduped)
 export { useBoolean } from './hooks/use-boolean';
 export type { UseBooleanReturn } from './hooks/use-boolean';
 export { useClickAnyWhere } from './hooks/use-click-anywhere';
@@ -120,20 +120,28 @@ export type { UseDarkModeReturn } from './hooks/use-dark-mode';
 export { useDebounceValue } from './hooks/use-debounce-value';
 export { useHover } from './hooks/use-hover';
 export type { UseHoverOptions } from './hooks/use-hover';
+export { useDebounceCallback } from './hooks/use-debounce-callback';
+export type { UseDebounceCallbackReturn } from './hooks/use-debounce-callback';
+export { useIsMobile } from './hooks/use-mobile';
+export { useLocalStorage } from './hooks/use-local-storage';
+export type { UseLocalStorageReturn } from './hooks/use-local-storage';
+export { useSessionStorage } from './hooks/use-session-storage';
+export type { UseSessionStorageReturn } from './hooks/use-session-storage';
+export { useReadLocalStorage } from './hooks/use-read-local-storage';
+export type { UseReadLocalStorageReturn } from './hooks/use-read-local-storage';
+export { useMediaQuery } from './hooks/use-media-query';
+export { useOnClickOutside } from './hooks/use-on-click-outside';
 export { useIntersectionObserver } from './hooks/use-intersection-observer';
 export type {
   UseIntersectionObserverOptions,
   UseIntersectionObserverReturn,
 } from './hooks/use-intersection-observer';
-export { useIsMobile } from './hooks/use-mobile';
-export { useLocalStorage } from './hooks/use-local-storage';
-export type { UseLocalStorageReturn } from './hooks/use-local-storage';
-export { useMediaQuery } from './hooks/use-media-query';
-export { useOnClickOutside } from './hooks/use-on-click-outside';
 export { useResizeObserver } from './hooks/use-resize-observer';
 export type { Size, ResizeCallback, UseResizeObserverOptions } from './hooks/use-resize-observer';
 export { useTernaryDarkMode } from './hooks/use-ternary-dark-mode';
 export type { TernaryDarkMode, UseTernaryDarkModeReturn } from './hooks/use-ternary-dark-mode';
+export { useScrollLock } from './hooks/use-scroll-lock';
+export type { UseScrollLockOptions, UseScrollLockReturn } from './hooks/use-scroll-lock';
 export { useToggle } from './hooks/use-toggle';
 export type { UseToggleOptions, UseToggleReturn } from './hooks/use-toggle';
 export { useMap } from './hooks/use-map';
