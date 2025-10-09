@@ -182,6 +182,21 @@ function ThrottledMousePositionDemo() {
  */
 function CursorFollowerDemo() {
   const { x, y } = useMousePosition({ throttleMs: 16 }); // ~60fps
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [relativePos, setRelativePos] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    if (containerRef.current) {
+      const rect = containerRef.current.getBoundingClientRect();
+      const relX = x - rect.left;
+      const relY = y - rect.top;
+
+      // Only update if mouse is within container bounds
+      if (relX >= 0 && relX <= rect.width && relY >= 0 && relY <= rect.height) {
+        setRelativePos({ x: relX, y: relY });
+      }
+    }
+  }, [x, y]);
 
   return (
     <Card className="p-6 w-full max-w-2xl">
@@ -194,19 +209,22 @@ function CursorFollowerDemo() {
           </Badge>
         </div>
 
-        <div className="relative rounded-lg border bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 h-64 overflow-hidden">
+        <div
+          ref={containerRef}
+          className="relative rounded-lg border bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 h-64 overflow-hidden"
+        >
           <div
             className="absolute w-8 h-8 rounded-full bg-primary/70 backdrop-blur-sm border-2 border-primary shadow-lg transition-all duration-150 ease-out pointer-events-none"
             style={{
-              left: `${Math.max(0, Math.min(x, 1000))}px`,
-              top: `${Math.max(0, Math.min(y, 400))}px`,
+              left: `${relativePos.x}px`,
+              top: `${relativePos.y}px`,
               transform: 'translate(-50%, -50%)',
             }}
           >
             <div className="absolute inset-0 rounded-full bg-primary animate-ping opacity-20" />
           </div>
 
-          <div className="absolute inset-0 flex items-center justify-center text-muted-foreground">
+          <div className="absolute inset-0 flex items-center justify-center text-muted-foreground pointer-events-none">
             <div className="text-center">
               <Sparkles className="h-12 w-12 mx-auto mb-2 opacity-30" />
               <p className="text-sm">Move your mouse in this area</p>
@@ -215,7 +233,8 @@ function CursorFollowerDemo() {
         </div>
 
         <div className="text-xs text-center text-muted-foreground">
-          Cursor position: ({x}, {y}) • Throttled at 16ms (~60fps)
+          Container position: ({Math.round(relativePos.x)}, {Math.round(relativePos.y)}) • Throttled
+          at 16ms (~60fps)
         </div>
       </div>
     </Card>
@@ -227,14 +246,24 @@ function CursorFollowerDemo() {
  */
 function MouseTrailDemo() {
   const { x, y } = useMousePosition({ throttleMs: 16 });
+  const containerRef = useRef<HTMLDivElement>(null);
   const [trail, setTrail] = useState<Array<{ x: number; y: number; id: number }>>([]);
 
   useEffect(() => {
-    setTrail((prev) => {
-      const newTrail = [...prev, { x, y, id: Date.now() }];
-      // Keep only last 15 positions
-      return newTrail.slice(-15);
-    });
+    if (containerRef.current) {
+      const rect = containerRef.current.getBoundingClientRect();
+      const relX = x - rect.left;
+      const relY = y - rect.top;
+
+      // Only add to trail if mouse is within container bounds
+      if (relX >= 0 && relX <= rect.width && relY >= 0 && relY <= rect.height) {
+        setTrail((prev) => {
+          const newTrail = [...prev, { x: relX, y: relY, id: Date.now() }];
+          // Keep only last 15 positions
+          return newTrail.slice(-15);
+        });
+      }
+    }
   }, [x, y]);
 
   return (
@@ -248,7 +277,10 @@ function MouseTrailDemo() {
           </Badge>
         </div>
 
-        <div className="relative rounded-lg border bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 dark:from-indigo-950/20 dark:via-purple-950/20 dark:to-pink-950/20 h-64 overflow-hidden">
+        <div
+          ref={containerRef}
+          className="relative rounded-lg border bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 dark:from-indigo-950/20 dark:via-purple-950/20 dark:to-pink-950/20 h-64 overflow-hidden"
+        >
           {trail.map((point, index) => {
             const opacity = (index + 1) / trail.length;
             const scale = 0.3 + (index / trail.length) * 0.7;
@@ -277,7 +309,7 @@ function MouseTrailDemo() {
         </div>
 
         <div className="text-xs text-center text-muted-foreground">
-          Trail points: {trail.length}/15 • Current position: ({x}, {y})
+          Trail points: {trail.length}/15
         </div>
       </div>
     </Card>
