@@ -48,3 +48,7 @@ pnpm-lock.yaml
 # build files
 *.log
 dist/
+
+# YAML files
+*.yml
+*.yaml
