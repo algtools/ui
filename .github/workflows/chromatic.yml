@@ -2,10 +2,10 @@ name: Chromatic Deployment
 
 on:
   pull_request:
-    branches: ['main']
+    branches: ["main"]
     types: [opened, synchronize, reopened]
   push:
-    branches: ['main']
+    branches: ["main"]
 
 # Permissions needed for commenting on PRs
 permissions:
@@ -43,23 +43,31 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Publish to Chromatic
-        uses: chromaui/action@latest
-        with:
-          # Chromatic project token from GitHub secrets
-          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-          # Build Storybook
-          buildScriptName: build-storybook
-          # Auto-accept changes on main branch
-          autoAcceptChanges: ${{ github.ref == 'refs/heads/main' }}
-          # Exit with 0 even if there are visual changes (don't block PR)
-          exitZeroOnChanges: true
-          # Exit with 0 if there are build errors (don't block PR)
-          exitOnceUploaded: true
-          # Only run visual tests on PRs, not on main
-          onlyChanged: ${{ github.event_name == 'pull_request' }}
+      - name: Build Storybook
+        run: pnpm run build-storybook
         env:
-          NODE_OPTIONS: '--max_old_space_size=4096'
+          NODE_OPTIONS: "--max_old_space_size=4096"
+
+      - name: Publish to Chromatic (Patch Build for PR)
+        if: github.event_name == 'pull_request'
+        run: |
+          npx chromatic \
+            --project-token=${{ secrets.CHROMATIC_PROJECT_TOKEN }} \
+            --patch-build=${{ github.event.pull_request.head.ref }}...main \
+            --exit-zero-on-changes \
+            --exit-once-uploaded
+        env:
+          NODE_OPTIONS: "--max_old_space_size=4096"
+
+      - name: Publish to Chromatic (Normal Build for main)
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          npx chromatic \
+            --project-token=${{ secrets.CHROMATIC_PROJECT_TOKEN }} \
+            --auto-accept-changes \
+            --exit-zero-on-changes
+        env:
+          NODE_OPTIONS: "--max_old_space_size=4096"
 
       - name: Comment PR with Chromatic link
         if: github.event_name == 'pull_request'
