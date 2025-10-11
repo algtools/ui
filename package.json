@@ -17,7 +17,7 @@
     "prepublishOnly": "npm run build:lib && npm run postbuild:lib",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "node scripts/build-storybook.mjs",
-    "chromatic": "npx chromatic --project-token=chpt_9ea5fa1ab968f88"
+    "chromatic": "npx chromatic"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
