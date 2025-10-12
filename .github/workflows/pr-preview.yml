@@ -1,8 +1,8 @@
-name: PR Preview (GitHub Pages)
+name: Deploy - Preview Environment (GitHub Pages)
 
 on:
   pull_request:
-    branches: ['main']
+    branches: ["main"]
     types: [opened, synchronize, reopened]
   # Clean up when PR is closed
   pull_request_target:
@@ -12,6 +12,7 @@ permissions:
   contents: write
   pull-requests: write
   issues: write
+  packages: read
 
 jobs:
   build-and-deploy:
@@ -32,14 +33,18 @@ jobs:
         with:
           node-version: 20
           cache: pnpm
+          registry-url: "https://npm.pkg.github.com"
+          scope: "@algtools"
 
       - name: Install dependencies
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: pnpm install --frozen-lockfile
 
       - name: Build Storybook
         run: pnpm run build-storybook
         env:
-          NODE_OPTIONS: '--max_old_space_size=4096'
+          NODE_OPTIONS: "--max_old_space_size=4096"
 
       - name: Add .nojekyll file
         run: touch ./storybook-static/.nojekyll
