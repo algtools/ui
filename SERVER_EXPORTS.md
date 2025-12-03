@@ -8,7 +8,7 @@ Import server-safe components from the server export:
 
 ```tsx
 // In loading.tsx or other server components
-import { Skeleton, Spinner, Card, cn } from '@janovix/ui/server';
+import { Skeleton, Spinner, Card, cn } from '@algtools/ui/server';
 
 export default function Loading() {
   return (
@@ -30,7 +30,7 @@ export default function Loading() {
 
 ## Available Components
 
-The following components are exported from `@janovix/ui/server` and are safe for server-side rendering:
+The following components are exported from `@algtools/ui/server` and are safe for server-side rendering:
 
 ### Layout & Structure
 
@@ -108,7 +108,7 @@ The following components are **NOT** exported from the server path because they 
 - `ToggleGroup` - Uses React context
 - `InputOTP` - Uses React context
 
-These components should be imported from the main export (`@janovix/ui`) and used only in client components.
+These components should be imported from the main export (`@algtools/ui`) and used only in client components.
 
 ## Benefits
 
@@ -122,7 +122,7 @@ These components should be imported from the main export (`@janovix/ui`) and use
 
 ```tsx
 // app/dashboard/loading.tsx
-import { Skeleton, Card, Spinner } from '@janovix/ui/server';
+import { Skeleton, Card, Spinner } from '@algtools/ui/server';
 
 export default function DashboardLoading() {
   return (
@@ -171,4 +171,4 @@ export default function DashboardLoading() {
 - Interactive features work normally on the client
 - Components are optimized for both server and client rendering
 - Use in combination with client components as needed
-- The main export (`@janovix/ui`) still contains all components for client-side usage
+- The main export (`@algtools/ui`) still contains all components for client-side usage

@@ -25,7 +25,7 @@ Once deployed, your Storybook will be available at:
 https://<username>.github.io/<repository-name>/
 ```
 
-For this repository: `https://<your-username>.github.io/janovix-ui/`
+For this repository: `https://algtools.github.io/ui/`
 
 ## ⚙️ Configuration Files
 

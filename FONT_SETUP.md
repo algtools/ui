@@ -1,6 +1,6 @@
 # Font Setup Guide
 
-This document explains how to properly set up fonts when using the `@janovix/ui` library in your host application.
+This document explains how to properly set up fonts when using the `@algtools/ui` library in your host application.
 
 ## Font Stack
 
@@ -17,14 +17,14 @@ Import the fonts CSS file in your main CSS file or root component:
 
 ```css
 /* In your main CSS file */
-@import '@janovix/ui/dist/fonts.css';
+@import '@algtools/ui/dist/fonts.css';
 ```
 
 Or in your Next.js `globals.css`:
 
 ```css
-@import '@janovix/ui/dist/fonts.css';
-@import '@janovix/ui/dist/styles.css';
+@import '@algtools/ui/dist/fonts.css';
+@import '@algtools/ui/dist/styles.css';
 ```
 
 ### Option 2: FontProvider Component
@@ -32,7 +32,7 @@ Or in your Next.js `globals.css`:
 Wrap your app with the FontProvider for automatic font loading:
 
 ```tsx
-import { FontProvider } from '@janovix/ui';
+import { FontProvider } from '@algtools/ui';
 
 function MyApp({ children }) {
   return <FontProvider>{children}</FontProvider>;
@@ -42,7 +42,7 @@ function MyApp({ children }) {
 **With custom fonts:**
 
 ```tsx
-import { FontProvider } from '@janovix/ui';
+import { FontProvider } from '@algtools/ui';
 
 function MyApp({ children }) {
   return (
@@ -61,7 +61,7 @@ function MyApp({ children }) {
 **Disable automatic loading:**
 
 ```tsx
-import { FontProvider } from '@janovix/ui';
+import { FontProvider } from '@algtools/ui';
 
 function MyApp({ children }) {
   return <FontProvider loadFonts={false}>{children}</FontProvider>;
@@ -187,7 +187,7 @@ If you need to disable ligatures for specific elements:
 ## Utilities
 
 ```tsx
-import { useFonts } from '@janovix/ui';
+import { useFonts } from '@algtools/ui';
 
 function MyComponent() {
   const fonts = useFonts();
