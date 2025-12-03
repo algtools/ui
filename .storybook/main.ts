@@ -1,6 +1,10 @@
 import type { StorybookConfig } from '@storybook/react-webpack5';
 import path from 'path';
 
+// Get base path from environment variable (set during GitHub Pages build)
+// If deployed to algtools.github.io/ui, base path should be /ui
+const basePath = process.env.STORYBOOK_BASE_PATH || '';
+
 const config: StorybookConfig = {
   stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
   addons: ['@storybook/addon-webpack5-compiler-swc', '@storybook/addon-docs'],
@@ -11,6 +15,8 @@ const config: StorybookConfig = {
   core: {
     disableTelemetry: true,
   },
+  // Configure base path for GitHub Pages deployment
+  ...(basePath && { basePath }),
   staticDirs: ['../public'],
   webpackFinal: async (config) => {
     // Add path aliases support

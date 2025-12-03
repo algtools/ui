@@ -47,6 +47,13 @@ if (statsJson) {
   console.log(`Stats JSON: ${statsJson}`);
 }
 
+// Determine base path for GitHub Pages deployment
+// If deployed to algtools.github.io/ui, the base path should be /ui
+// This will be passed as an environment variable to be used in main.ts
+if (isGitHubPages && repoName === 'ui') {
+  process.env.STORYBOOK_BASE_PATH = '/ui';
+}
+
 // Build command with forwarded arguments
 let buildCommand = `storybook build --output-dir ${outputDir}`;
 if (statsJson) {
