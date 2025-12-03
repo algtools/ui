@@ -15,6 +15,11 @@ const config: StorybookConfig = {
   core: {
     disableTelemetry: true,
   },
+  // Enable stories API generation (generates stories.json and index.json)
+  // In Storybook 9.x, index.json is the primary file, but stories.json may also be generated
+  features: {
+    buildStoriesJson: true,
+  } as any, // Type assertion needed as TypeScript types may not include this yet
   // Configure base path for GitHub Pages deployment
   ...(basePath && { basePath }),
   staticDirs: ['../public'],
