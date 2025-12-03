@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { execSync } from 'child_process';
-import { readFileSync } from 'fs';
+import { readFileSync, copyFileSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
@@ -69,6 +69,35 @@ try {
       NODE_OPTIONS: '--max_old_space_size=4096',
     },
   });
+
+  // Enrich stories.json with component information (props, specs, etc.)
+  const enrichScriptPath = join(__dirname, 'enrich-stories-json.mjs');
+  try {
+    console.log('Enriching stories.json with component information...');
+    execSync(`node ${enrichScriptPath}`, {
+      stdio: 'inherit',
+      env: {
+        ...process.env,
+        NODE_OPTIONS: '--max_old_space_size=4096',
+      },
+    });
+    console.log('✅ Enriched stories.json with component props and specs');
+  } catch (enrichError) {
+    console.warn(
+      '⚠️  Warning: Could not enrich stories.json, using basic copy:',
+      enrichError.message
+    );
+    // Fallback to simple copy if enrichment fails
+    const indexJsonPath = join(__dirname, '..', outputDir, 'index.json');
+    const storiesJsonPath = join(__dirname, '..', outputDir, 'stories.json');
+    try {
+      copyFileSync(indexJsonPath, storiesJsonPath);
+      console.log('✅ Created basic stories.json from index.json');
+    } catch (copyError) {
+      console.warn('⚠️  Warning: Could not create stories.json:', copyError.message);
+    }
+  }
+
   console.log('✅ Storybook build completed successfully!');
 } catch (error) {
   console.error('❌ Storybook build failed:', error.message);
