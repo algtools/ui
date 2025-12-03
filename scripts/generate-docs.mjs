@@ -1,0 +1,8 @@
+Token value
+eqTuleEMQ7IhVy-Ji9lAS-KEtCSPOGQLrW6Io8Cd
+Access Key ID
+f23b0cbc1ad18be57e904dd5e95d793e
+Secret Access Key
+545995d4659cdd845c0ac1b3fd267669fad26c0650663fe3058d02ae17cb68ac
+URL
+https://31eafafb86927bf33ef3cf164fe6aa15.r2.cloudflarestorage.com
