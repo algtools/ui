@@ -15,11 +15,10 @@ The documentation generation script reads Storybook's `stories.json` or `index.j
    ```
 
 2. **R2 Configuration** (for upload): If you want to upload to R2, set these environment variables:
-   - `R2_ACCOUNT_ID`: Your Cloudflare account ID
-   - `R2_ACCESS_KEY_ID`: Your R2 access key ID
-   - `R2_SECRET_ACCESS_KEY`: Your R2 secret access key
-   - `R2_BUCKET_NAME`: The name of your R2 bucket
-   - `R2_PUBLIC_URL` (optional): Public URL for accessing the documentation
+   - `CLOUDFLARE_ACCOUNT_ID`: Your Cloudflare account ID (same as used elsewhere in the project)
+   - `R2_ACCESS_KEY_ID`: Your R2 access key ID (GitHub Secret)
+   - `R2_SECRET_ACCESS_KEY`: Your R2 secret access key (GitHub Secret)
+   - `R2_BUCKET_NAME`: The name of your R2 bucket (GitHub Variable)
 
 ## Usage
 
@@ -98,11 +97,10 @@ This ensures the bucket only contains the latest documentation.
 For R2 upload, you can set these in your environment or use a `.env` file:
 
 ```bash
-R2_ACCOUNT_ID=your_account_id
+CLOUDFLARE_ACCOUNT_ID=your_account_id
 R2_ACCESS_KEY_ID=your_access_key
 R2_SECRET_ACCESS_KEY=your_secret_key
 R2_BUCKET_NAME=your_bucket_name
-R2_PUBLIC_URL=https://your-public-url.com/docs
 ```
 
 ## Troubleshooting
@@ -113,7 +111,12 @@ R2_PUBLIC_URL=https://your-public-url.com/docs
 
 ### Error: "Missing R2 configuration"
 
-**Solution**: Make sure all required R2 environment variables are set before running with `--upload`.
+**Solution**: Make sure all required R2 environment variables are set before running with `--upload`. Check that:
+
+- `CLOUDFLARE_ACCOUNT_ID` is set (can use existing organization secret)
+- `R2_ACCESS_KEY_ID` is set (GitHub Secret)
+- `R2_SECRET_ACCESS_KEY` is set (GitHub Secret)
+- `R2_BUCKET_NAME` is set (GitHub Variable)
 
 ### No components found
 
@@ -130,10 +133,9 @@ You can integrate this into your CI/CD pipeline:
 
 - name: Generate and Upload Docs
   env:
-    R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+    CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
     R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
     R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
-    R2_BUCKET_NAME: ${{ secrets.R2_BUCKET_NAME }}
-    R2_PUBLIC_URL: ${{ secrets.R2_PUBLIC_URL }}
+    R2_BUCKET_NAME: ${{ vars.R2_BUCKET_NAME }}
   run: pnpm run docs:upload
 ```
