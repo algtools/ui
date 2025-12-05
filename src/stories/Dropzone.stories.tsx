@@ -7,6 +7,12 @@ const meta = {
   component: Dropzone,
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component:
+          'A drag-and-drop file upload component that allows users to upload files by dragging them into a designated area or clicking to browse.',
+      },
+    },
   },
   tags: ['autodocs'],
 } satisfies Meta<typeof Dropzone>;

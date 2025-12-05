@@ -11,6 +11,12 @@ const meta = {
   component: Calendar,
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component:
+          'A date field component that allows users to enter and edit date values. Built on top of react-day-picker with customizable styling.',
+      },
+    },
   },
   tags: ['autodocs'],
   argTypes: {

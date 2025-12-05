@@ -18,6 +18,12 @@ const meta = {
   component: AlertDialog,
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component:
+          'A modal dialog that interrupts the user with important content and expects a response. Built with Radix UI for accessibility.',
+      },
+    },
   },
   tags: ['autodocs'],
   argTypes: {

@@ -418,9 +418,20 @@ function generateMarkdownDocs() {
   } else {
     // Group stories by title
     const componentMap = new Map();
+    const skippedEntries = [];
+    const processedTitles = new Set();
+
     for (const [storyId, storyData] of Object.entries(storiesData)) {
-      if (storyData.type === 'story' && storyData.title) {
+      // Process stories - ensure we include all story types, not just 'story'
+      // Some entries might be 'docs' or other types but still have story data
+      const isStory =
+        storyData.type === 'story' ||
+        (storyData.type !== undefined && storyData.title && storyData.name);
+
+      if (isStory && storyData.title) {
         const title = storyData.title;
+        processedTitles.add(title);
+
         if (!componentMap.has(title)) {
           let componentDescription = storyData.parameters?.docs?.description?.component || null;
 
@@ -463,12 +474,112 @@ function generateMarkdownDocs() {
           name: storyData.name,
           description: storyDescription,
         });
+      } else if (storyData.title) {
+        // Log entries that have titles but aren't being processed
+        skippedEntries.push({
+          id: storyId,
+          type: storyData.type,
+          title: storyData.title,
+          name: storyData.name,
+        });
       }
     }
     components = Array.from(componentMap.values());
+
+    // Log statistics
+    const hooksCount = components.filter((c) => c.title.startsWith('Hooks/')).length;
+    console.log(`Found ${components.length} components (${hooksCount} hooks)`);
+
+    if (skippedEntries.length > 0) {
+      console.log(`⚠️  Skipped ${skippedEntries.length} entries that might need processing:`);
+      skippedEntries.slice(0, 10).forEach((entry) => {
+        console.log(`   - ${entry.title} (type: ${entry.type || 'unknown'})`);
+      });
+      if (skippedEntries.length > 10) {
+        console.log(`   ... and ${skippedEntries.length - 10} more`);
+      }
+    }
   }
 
-  console.log(`Found ${components.length} components`);
+  // Ensure hooks are included - double check
+  const hooksInComponents = components.filter((c) => c.title.startsWith('Hooks/'));
+  if (hooksInComponents.length === 0) {
+    console.warn(
+      '⚠️  Warning: No hooks found in components. This might indicate an issue with Storybook build.'
+    );
+  } else {
+    console.log(`✅ Verified ${hooksInComponents.length} hooks will be documented`);
+  }
+
+  // Fallback: If hooks are missing, try to find them in source files
+  const existingTitles = new Set(components.map((c) => c.title));
+  const hooksStoriesDir = join(__dirname, '..', 'src', 'stories');
+  if (existsSync(hooksStoriesDir)) {
+    const hookFiles = readdirSync(hooksStoriesDir).filter(
+      (f) => f.startsWith('Use') && f.endsWith('.stories.tsx')
+    );
+
+    for (const hookFile of hookFiles) {
+      const hookFilePath = join(hooksStoriesDir, hookFile);
+      try {
+        const hookContent = readFileSync(hookFilePath, 'utf8');
+        const titleMatch = hookContent.match(/title:\s*['"`]([^'"`]+)['"`]/);
+        if (titleMatch) {
+          const hookTitle = titleMatch[1];
+          if (hookTitle.startsWith('Hooks/') && !existingTitles.has(hookTitle)) {
+            console.log(`📝 Adding missing hook from source: ${hookTitle}`);
+            // Create relative import path
+            const relativePath = hookFilePath.replace(join(__dirname, '..') + '/', './');
+            // Extract basic info from the file
+            const description = extractComponentDescription(relativePath);
+
+            // Try to find all story exports in the file
+            const storyExports = [];
+            const storyExportMatches = [
+              ...hookContent.matchAll(/export\s+const\s+(\w+)\s*:\s*Story\s*=/g),
+            ];
+            for (const match of storyExportMatches) {
+              const storyName = match[1];
+              const storyDesc =
+                extractStoryDescription(relativePath, storyName) ||
+                generateDefaultStoryDescription(storyName);
+              storyExports.push({
+                id: null,
+                name: storyName,
+                description: storyDesc,
+              });
+            }
+
+            // If no stories found, add a default one
+            if (storyExports.length === 0) {
+              storyExports.push({
+                id: null,
+                name: 'Default',
+                description: `Default usage of ${hookTitle.replace('Hooks/', '')}`,
+              });
+            }
+
+            components.push({
+              title: hookTitle,
+              description: description || `A React hook for ${hookTitle.replace('Hooks/', '')}`,
+              props: {},
+              stories: storyExports,
+              storybookUrl: null,
+              componentPath: null,
+              importPath: relativePath,
+            });
+            existingTitles.add(hookTitle);
+          }
+        }
+      } catch (error) {
+        // Silently skip if we can't read the file
+      }
+    }
+  }
+
+  console.log(
+    `Final count: ${components.length} components (${components.filter((c) => c.title.startsWith('Hooks/')).length} hooks)`
+  );
 
   // Generate markdown for each component
   const generatedFiles = [];
@@ -573,8 +684,8 @@ async function initializeR2Client() {
   });
 }
 
-async function cleanR2Bucket(s3Client, prefix = 'docs/') {
-  console.log(`🧹 Cleaning R2 bucket (prefix: ${prefix})...`);
+async function cleanR2Bucket(s3Client, prefix = '') {
+  console.log(`🧹 Cleaning R2 bucket root (markdown files only)...`);
 
   let continuationToken = undefined;
   let deletedCount = 0;
@@ -590,25 +701,34 @@ async function cleanR2Bucket(s3Client, prefix = 'docs/') {
       const response = await s3Client.send(listCommand);
 
       if (response.Contents && response.Contents.length > 0) {
-        const deleteCommand = new DeleteObjectsCommand({
-          Bucket: R2_BUCKET_NAME,
-          Delete: {
-            Objects: response.Contents.map((obj) => ({ Key: obj.Key })),
-          },
+        // Filter to only delete markdown files in root (not in subdirectories)
+        const markdownFiles = response.Contents.filter((obj) => {
+          const key = obj.Key;
+          // Only match .md files in root (no slashes in the path)
+          return key.endsWith('.md') && !key.includes('/');
         });
 
-        const deleteResponse = await s3Client.send(deleteCommand);
-        deletedCount += deleteResponse.Deleted?.length || 0;
-        console.log(`  Deleted ${deleteResponse.Deleted?.length || 0} objects`);
+        if (markdownFiles.length > 0) {
+          const deleteCommand = new DeleteObjectsCommand({
+            Bucket: R2_BUCKET_NAME,
+            Delete: {
+              Objects: markdownFiles.map((obj) => ({ Key: obj.Key })),
+            },
+          });
+
+          const deleteResponse = await s3Client.send(deleteCommand);
+          deletedCount += deleteResponse.Deleted?.length || 0;
+          console.log(`  Deleted ${deleteResponse.Deleted?.length || 0} markdown files`);
+        }
       }
 
       continuationToken = response.NextContinuationToken;
     } while (continuationToken);
 
     if (deletedCount === 0) {
-      console.log(`  No objects found to delete`);
+      console.log(`  No markdown files found to delete in root`);
     } else {
-      console.log(`✅ Cleaned ${deletedCount} objects from bucket`);
+      console.log(`✅ Cleaned ${deletedCount} markdown files from bucket root`);
     }
   } catch (error) {
     console.warn(`⚠️  Warning: Could not clean bucket: ${error.message}`);
@@ -618,8 +738,8 @@ async function cleanR2Bucket(s3Client, prefix = 'docs/') {
   return deletedCount;
 }
 
-async function uploadFilesToR2(s3Client, docsDir, prefix = 'docs/') {
-  console.log(`📤 Uploading markdown files to R2 bucket...`);
+async function uploadFilesToR2(s3Client, docsDir, prefix = '') {
+  console.log(`📤 Uploading markdown files to R2 bucket root...`);
 
   const files = readdirSync(docsDir).filter((file) => file.endsWith('.md'));
 
@@ -633,7 +753,8 @@ async function uploadFilesToR2(s3Client, docsDir, prefix = 'docs/') {
     try {
       const filePath = join(docsDir, file);
       const fileContent = readFileSync(filePath, 'utf8');
-      const key = `${prefix}${file}`;
+      // Upload to root - no prefix, just the filename
+      const key = prefix ? `${prefix}${file}` : file;
 
       const putCommand = new PutObjectCommand({
         Bucket: R2_BUCKET_NAME,
@@ -651,7 +772,7 @@ async function uploadFilesToR2(s3Client, docsDir, prefix = 'docs/') {
     }
   }
 
-  console.log(`✅ Uploaded ${uploadedCount} files to R2 bucket`);
+  console.log(`✅ Uploaded ${uploadedCount} files to R2 bucket root`);
   return uploadedCount;
 }
 

@@ -11,6 +11,12 @@ const meta = {
   component: Sources,
   parameters: {
     layout: 'padded',
+    docs: {
+      description: {
+        component:
+          'A collapsible component for displaying source references used in AI responses. Shows links, titles, and metadata for external sources with expand/collapse functionality.',
+      },
+    },
   },
   tags: ['autodocs'],
   argTypes: {

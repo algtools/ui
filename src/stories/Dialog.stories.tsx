@@ -48,6 +48,12 @@ const meta = {
   component: Dialog,
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component:
+          'A window overlaid on either the primary window or another dialog window, rendering the content underneath inert.',
+      },
+    },
   },
   tags: ['autodocs'],
   argTypes: {

@@ -18,6 +18,12 @@ const meta = {
   component: Combobox,
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component:
+          'Autocomplete input and command palette with a list of suggestions. Combines the functionality of a text input with a dropdown list.',
+      },
+    },
   },
   tags: ['autodocs'],
 } satisfies Meta<typeof Combobox>;

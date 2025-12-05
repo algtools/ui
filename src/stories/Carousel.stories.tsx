@@ -19,6 +19,12 @@ const meta = {
   component: Carousel,
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component:
+          'A carousel with motion and swipe built using Embla. Perfect for displaying a collection of items in a scrollable, navigable format.',
+      },
+    },
   },
   tags: ['autodocs'],
   argTypes: {

@@ -36,6 +36,12 @@ const meta = {
   component: InputOTP,
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component:
+          'A one-time password input component that splits the input into individual slots. Perfect for verification codes and PINs.',
+      },
+    },
   },
   tags: ['autodocs'],
   argTypes: {

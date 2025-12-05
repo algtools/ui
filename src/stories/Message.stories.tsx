@@ -6,6 +6,12 @@ const meta = {
   component: Message,
   parameters: {
     layout: 'padded',
+    docs: {
+      description: {
+        component:
+          'A message component for displaying individual messages in a conversation. Supports user and assistant roles with avatars, timestamps, and content rendering.',
+      },
+    },
   },
   tags: ['autodocs'],
   argTypes: {

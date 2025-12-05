@@ -18,6 +18,12 @@ const meta = {
   component: Alert,
   parameters: {
     layout: 'padded',
+    docs: {
+      description: {
+        component:
+          'Displays a callout for user attention. Alerts are used to communicate important information to users, such as warnings, errors, or success messages.',
+      },
+    },
   },
   tags: ['autodocs'],
   argTypes: {

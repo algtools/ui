@@ -11,6 +11,12 @@ const meta = {
   component: Accordion,
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component:
+          'A vertically stacked set of interactive headings that each reveal a section of content. Perfect for organizing and displaying collapsible content sections.',
+      },
+    },
   },
   tags: ['autodocs'],
   argTypes: {

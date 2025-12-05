@@ -9,6 +9,12 @@ const meta = {
   component: Conversation,
   parameters: {
     layout: 'padded',
+    docs: {
+      description: {
+        component:
+          'A complete conversation interface for AI chat applications. Displays messages, handles streaming, auto-scrolling, and provides a full chat experience with avatars, timestamps, and loading states.',
+      },
+    },
   },
   tags: ['autodocs'],
   argTypes: {
@@ -490,6 +496,9 @@ export const SystemMessages: Story = {
 };
 
 export const Interactive: Story = {
+  args: {
+    messages: [],
+  },
   render: () => {
     const [messages, setMessages] = useState<Message[]>(mockMessages);
     const [isLoading, setIsLoading] = useState(false);
@@ -553,6 +562,9 @@ export const Interactive: Story = {
 };
 
 export const StreamingSimulation: Story = {
+  args: {
+    messages: [],
+  },
   render: () => {
     const [messages, setMessages] = useState<Message[]>([
       {
@@ -628,6 +640,9 @@ export const StreamingSimulation: Story = {
 };
 
 export const MultipleConversations: Story = {
+  args: {
+    messages: [],
+  },
   render: () => (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
       <div>
@@ -651,6 +666,9 @@ export const MultipleConversations: Story = {
 };
 
 export const DifferentHeights: Story = {
+  args: {
+    messages: [],
+  },
   render: () => (
     <div className="space-y-8">
       <div>

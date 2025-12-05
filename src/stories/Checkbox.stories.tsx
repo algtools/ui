@@ -10,6 +10,12 @@ const meta = {
   component: Checkbox,
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component:
+          'A control that allows the user to toggle between checked and unchecked states. Built with Radix UI for accessibility.',
+      },
+    },
   },
   tags: ['autodocs'],
   argTypes: {

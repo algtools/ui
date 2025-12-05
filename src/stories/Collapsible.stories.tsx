@@ -21,6 +21,12 @@ const meta = {
   component: Collapsible,
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component:
+          'An interactive component which expands/collapses a section of content. Built with Radix UI for accessibility.',
+      },
+    },
   },
   tags: ['autodocs'],
   argTypes: {

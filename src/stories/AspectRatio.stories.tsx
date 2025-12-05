@@ -7,6 +7,12 @@ const meta = {
   component: AspectRatio,
   parameters: {
     layout: 'padded',
+    docs: {
+      description: {
+        component:
+          'Displays content within a desired ratio. Useful for preventing layout shift when loading media or displaying responsive content.',
+      },
+    },
   },
   tags: ['autodocs'],
   argTypes: {

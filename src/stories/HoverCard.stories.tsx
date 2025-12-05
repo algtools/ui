@@ -34,6 +34,12 @@ const meta = {
   component: HoverCard,
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component:
+          'For sighted users to preview content available behind a link. Displays rich content on hover with configurable delays.',
+      },
+    },
   },
   tags: ['autodocs'],
   argTypes: {

@@ -50,6 +50,12 @@ const meta = {
   component: Drawer,
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component:
+          'A drawer component that slides in from the edge of the screen. Perfect for mobile interfaces and quick actions.',
+      },
+    },
   },
   tags: ['autodocs'],
   argTypes: {

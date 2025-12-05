@@ -30,6 +30,12 @@ const meta = {
   component: Input,
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component:
+          'A versatile input component that supports various input types including text, email, password, number, and more. Provides consistent styling and behavior across different input scenarios.',
+      },
+    },
   },
   tags: ['autodocs'],
   argTypes: {

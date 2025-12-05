@@ -15,6 +15,12 @@ const meta = {
   component: Breadcrumb,
   parameters: {
     layout: 'padded',
+    docs: {
+      description: {
+        component:
+          'Displays the path to the current resource using a hierarchy of links. Helps users understand their location in the application.',
+      },
+    },
   },
   tags: ['autodocs'],
   argTypes: {

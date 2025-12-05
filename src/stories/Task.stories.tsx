@@ -7,6 +7,12 @@ const meta = {
   component: Task,
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component:
+          'A component for displaying AI task execution status. Shows task progress, status indicators, timestamps, and optional progress bars for long-running operations.',
+      },
+    },
   },
   tags: ['autodocs'],
   argTypes: {

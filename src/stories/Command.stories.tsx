@@ -45,6 +45,12 @@ const meta = {
   component: Command,
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component:
+          'Fast, composable, unstyled command menu for React. Perfect for building command palettes, search interfaces, and keyboard navigation.',
+      },
+    },
   },
   tags: ['autodocs'],
   argTypes: {

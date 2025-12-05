@@ -8,6 +8,12 @@ const meta = {
   component: AITool,
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component:
+          'A component for displaying AI tool usage and execution. Shows tool name, parameters, results, and execution status with collapsible sections for detailed information.',
+      },
+    },
   },
   tags: ['autodocs'],
   argTypes: {

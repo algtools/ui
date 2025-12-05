@@ -60,6 +60,12 @@ const meta = {
   component: DropdownMenu,
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component:
+          'Displays a menu to the user — such as a set of actions or functions — triggered by a button. Built with Radix UI for accessibility.',
+      },
+    },
   },
   tags: ['autodocs'],
   argTypes: {

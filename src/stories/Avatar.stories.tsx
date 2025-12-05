@@ -7,6 +7,12 @@ const meta = {
   component: Avatar,
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component:
+          'An image element with a fallback for representing the user. Displays user profile pictures with a fallback to initials or icons.',
+      },
+    },
   },
   tags: ['autodocs'],
   argTypes: {

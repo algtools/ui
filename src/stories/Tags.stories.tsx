@@ -17,6 +17,12 @@ const meta = {
   component: Tags,
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component:
+          'A component for selecting and managing multiple tags. Supports search, filtering, and removal of selected tags.',
+      },
+    },
   },
   tags: ['autodocs'],
 } satisfies Meta<typeof Tags>;

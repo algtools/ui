@@ -22,6 +22,12 @@ const meta = {
   component: Badge,
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component:
+          "Displays a badge or a component that looks like a badge. Badges are used to highlight an item's status for quick recognition.",
+      },
+    },
   },
   tags: ['autodocs'],
   argTypes: {

@@ -38,6 +38,12 @@ const meta = {
   component: Label,
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component:
+          'Renders an accessible label associated with controls. Built with Radix UI Label for proper form accessibility.',
+      },
+    },
   },
   tags: ['autodocs'],
   argTypes: {

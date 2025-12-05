@@ -40,6 +40,12 @@ const meta = {
   component: Card,
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component:
+          'Displays a card with header, content, footer, and title. Cards are used to group related content and actions.',
+      },
+    },
   },
   tags: ['autodocs'],
   argTypes: {

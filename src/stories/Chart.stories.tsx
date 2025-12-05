@@ -29,6 +29,12 @@ const meta = {
   component: ChartContainer,
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component:
+          'A chart component built on Recharts for displaying data visualizations. Supports bar, line, area, pie, and radial bar charts with customizable styling.',
+      },
+    },
   },
   tags: ['autodocs'],
   argTypes: {

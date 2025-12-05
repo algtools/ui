@@ -6,6 +6,12 @@ const meta = {
   component: Logo,
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component:
+          'A logo component that displays the application logo in different variants (full logo or icon-only) with customizable sizing and styling.',
+      },
+    },
   },
   tags: ['autodocs'],
   argTypes: {
