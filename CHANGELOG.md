@@ -1,3 +1,11 @@
+# [0.5.0](https://github.com/algtools/ui/compare/v0.4.2...v0.5.0) (2025-12-05)
+
+
+### Features
+
+* configure semantic release ([1b63df9](https://github.com/algtools/ui/commit/1b63df95b3f1eaea6220ae64678be3cc82f0fa5a))
+* enable stories API for static builds and configure base path for GitHub Pages deployment ([1aae1a9](https://github.com/algtools/ui/commit/1aae1a9be8231fc429c8c71981b016da20232826))
+
 # Changelog
 
 All notable changes to this project will be documented in this file.
