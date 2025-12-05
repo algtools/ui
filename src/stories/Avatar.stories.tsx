@@ -27,6 +27,13 @@ export const Default: Story = {
       <AvatarFallback>CN</AvatarFallback>
     </Avatar>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Default avatar component displaying a user image with a fallback showing initials when the image loads.',
+      },
+    },
+  },
 };
 
 export const WithFallback: Story = {
@@ -36,6 +43,13 @@ export const WithFallback: Story = {
       <AvatarFallback>JD</AvatarFallback>
     </Avatar>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Avatar with a broken image URL, demonstrating how the fallback automatically displays when the image fails to load.',
+      },
+    },
+  },
 };
 
 export const FallbackOnly: Story = {
@@ -44,6 +58,13 @@ export const FallbackOnly: Story = {
       <AvatarFallback>AB</AvatarFallback>
     </Avatar>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Avatar using only the fallback without an image, useful when no profile picture is available.',
+      },
+    },
+  },
 };
 
 export const Sizes: Story = {
@@ -80,6 +101,13 @@ export const Sizes: Story = {
       </Avatar>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Avatars in different sizes from small (24px) to extra large (80px), demonstrating size customization through className.',
+      },
+    },
+  },
 };
 
 export const WithIcons: Story = {
@@ -104,6 +132,13 @@ export const WithIcons: Story = {
       </Avatar>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Avatars using icons in the fallback instead of text, providing visual alternatives when no image or initials are available.',
+      },
+    },
+  },
 };
 
 export const CustomColors: Story = {
@@ -130,6 +165,13 @@ export const CustomColors: Story = {
       </Avatar>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Avatars with custom colored fallbacks, allowing for personalized styling and visual differentiation.',
+      },
+    },
+  },
 };
 
 export const UserProfiles: Story = {
@@ -175,6 +217,13 @@ export const UserProfiles: Story = {
       </div>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Avatars integrated into user profile displays, showing how they work alongside user names and email addresses.',
+      },
+    },
+  },
 };
 
 export const CommentSection: Story = {
@@ -232,6 +281,13 @@ export const CommentSection: Story = {
       </div>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Avatars used in a comment section, demonstrating how they appear alongside user comments and timestamps.',
+      },
+    },
+  },
 };
 
 export const AvatarGroup: Story = {
@@ -303,6 +359,13 @@ export const AvatarGroup: Story = {
       </div>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Groups of overlapping avatars with negative spacing, commonly used to display team members or contributors with a "+N" indicator for additional members.',
+      },
+    },
+  },
 };
 
 export const StatusIndicators: Story = {
@@ -353,4 +416,11 @@ export const StatusIndicators: Story = {
       </div>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Avatars with status indicators (online, away, offline, do not disturb) displayed as colored badges in the bottom-right corner.',
+      },
+    },
+  },
 };

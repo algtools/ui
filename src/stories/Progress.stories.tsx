@@ -59,6 +59,13 @@ export const Default: Story = {
       <p className="text-sm text-muted-foreground text-center">{args.value}% complete</p>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A default progress bar showing completion percentage, demonstrating basic progress indicator functionality.',
+      },
+    },
+  },
 };
 
 export const ProgressStates: Story = {
@@ -86,6 +93,13 @@ export const ProgressStates: Story = {
       </div>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Progress bars in different states (0%, 25%, 50%, 75%, 100%), demonstrating various completion levels.',
+      },
+    },
+  },
 };
 
 export const CustomColors: Story = {
@@ -121,6 +135,13 @@ export const CustomColors: Story = {
       </div>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Progress bars with custom colors, demonstrating how to customize progress bar appearance with different color schemes.',
+      },
+    },
+  },
 };
 
 export const CustomSizes: Story = {
@@ -148,6 +169,13 @@ export const CustomSizes: Story = {
       </div>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Progress bars in different sizes (small, medium, large), demonstrating size variations.',
+      },
+    },
+  },
 };
 
 export const AnimatedProgress: Story = {
@@ -209,6 +237,13 @@ export const AnimatedProgress: Story = {
         </div>
       </div>
     );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'An animated progress bar that updates dynamically, demonstrating smooth progress animations and transitions.',
+      },
+    },
   },
 };
 
@@ -302,6 +337,13 @@ export const FileUpload: Story = {
         </CardContent>
       </Card>
     );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'A file upload progress indicator showing upload status, file name, and completion percentage.',
+      },
+    },
   },
 };
 
@@ -408,6 +450,13 @@ export const DownloadProgress: Story = {
       </Card>
     );
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'A download progress indicator showing download status, file size, and transfer speed.',
+      },
+    },
+  },
 };
 
 export const FormCompletion: Story = {
@@ -496,6 +545,13 @@ export const FormCompletion: Story = {
       </Card>
     );
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'A form completion progress indicator showing how many form steps have been completed.',
+      },
+    },
+  },
 };
 
 export const SkillLevels: Story = {
@@ -528,6 +584,13 @@ export const SkillLevels: Story = {
         </CardContent>
       </Card>
     );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Skill level progress bars showing proficiency levels for different skills, demonstrating skill assessment displays.',
+      },
+    },
   },
 };
 
@@ -583,5 +646,12 @@ export const StorageUsage: Story = {
         </CardContent>
       </Card>
     );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Storage usage progress indicators showing disk space usage, demonstrating system resource monitoring.',
+      },
+    },
   },
 };

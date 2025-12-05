@@ -53,6 +53,14 @@ export const Default: Story = {
     size: 'md',
     showDots: true,
   },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Default AI loader with standard thinking message and animated dots, the most common configuration for AI response loading states.',
+      },
+    },
+  },
 };
 
 /**

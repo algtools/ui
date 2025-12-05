@@ -78,6 +78,13 @@ export const Default: Story = {
     alt: 'AI generated landscape',
     className: 'w-[600px]',
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Default AI image component with basic image display functionality.',
+      },
+    },
+  },
 };
 
 export const WithCaption: Story = {
@@ -86,6 +93,14 @@ export const WithCaption: Story = {
     alt: 'AI generated abstract art',
     caption: 'Generated with DALL-E 3 • "Colorful abstract technology visualization"',
     className: 'w-[600px]',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'AI image with caption text displayed below the image, useful for showing generation metadata or descriptions.',
+      },
+    },
   },
 };
 
@@ -97,6 +112,14 @@ export const WithZoom: Story = {
     caption: 'Click the zoom button to view full size',
     className: 'w-[600px]',
   },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'AI image with zoom functionality enabled, allowing users to preview the full-size image in a modal overlay.',
+      },
+    },
+  },
 };
 
 export const WithDownload: Story = {
@@ -107,6 +130,14 @@ export const WithDownload: Story = {
     downloadFilename: 'ai-portrait.png',
     caption: 'Click the download button to save',
     className: 'w-[400px]',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'AI image with download functionality, allowing users to save the generated image with a custom filename.',
+      },
+    },
   },
 };
 
@@ -120,6 +151,14 @@ export const WithAllFeatures: Story = {
     caption: 'Full-featured AI image with zoom and download',
     className: 'w-[600px]',
   },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Complete AI image component showcasing all available features including zoom, download, and caption functionality.',
+      },
+    },
+  },
 };
 
 export const Loading: Story = {
@@ -129,6 +168,14 @@ export const Loading: Story = {
     isLoading: true,
     className: 'w-[600px] h-[400px]',
   },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'AI image in loading state, displaying a loading indicator while the image is being generated or fetched.',
+      },
+    },
+  },
 };
 
 export const Error: Story = {
@@ -137,6 +184,14 @@ export const Error: Story = {
     alt: 'Failed to load',
     error: 'Network error: Unable to fetch image',
     className: 'w-[600px] h-[400px]',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'AI image displaying an error state when the image fails to load, showing a user-friendly error message.',
+      },
+    },
   },
 };
 
@@ -154,6 +209,14 @@ export const CustomErrorFallback: Story = {
       </div>
     ),
     className: 'w-[600px] h-[400px]',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'AI image with a custom error fallback component, allowing for branded error messaging when image generation fails.',
+      },
+    },
   },
 };
 
@@ -184,6 +247,14 @@ export const AspectRatios: Story = {
       </div>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'AI images with different aspect ratio configurations, demonstrating how the component maintains consistent proportions across various formats.',
+      },
+    },
+  },
 };
 
 export const ControlsAlwaysVisible: Story = {
@@ -195,6 +266,14 @@ export const ControlsAlwaysVisible: Story = {
     showControlsOnHover: false,
     caption: 'Controls are always visible',
     className: 'w-[600px]',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'AI image with controls always visible instead of showing on hover, useful for accessibility or when controls should be persistently available.',
+      },
+    },
   },
 };
 
@@ -235,6 +314,14 @@ export const ImageGallery: Story = {
       />
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Multiple AI images displayed in a grid gallery layout, each with zoom and download capabilities.',
+      },
+    },
+  },
 };
 
 export const LoadingSequence: Story = {
@@ -262,6 +349,14 @@ export const LoadingSequence: Story = {
       </div>
     );
   },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Interactive demonstration of loading and error states, allowing users to toggle between loading and error conditions.',
+      },
+    },
+  },
 };
 
 export const ResponsiveGrid: Story = {
@@ -282,6 +377,14 @@ export const ResponsiveGrid: Story = {
       </div>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'AI images displayed in a responsive grid layout that adapts to different screen sizes, from single column on mobile to three columns on large screens.',
+      },
+    },
+  },
 };
 
 export const ChatMessage: Story = {
@@ -315,6 +418,14 @@ export const ChatMessage: Story = {
       </div>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'AI image component integrated into a chat message interface, demonstrating how it appears in conversational AI contexts.',
+      },
+    },
+  },
 };
 
 export const DifferentSizes: Story = {
@@ -355,6 +466,14 @@ export const DifferentSizes: Story = {
       </div>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'AI images displayed in different size configurations, from small thumbnails to large format displays.',
+      },
+    },
+  },
 };
 
 export const WithCallbacks: Story = {
@@ -393,5 +512,13 @@ export const WithCallbacks: Story = {
         </div>
       </div>
     );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'AI image with event callbacks for load and error events, demonstrating how to handle image lifecycle events programmatically.',
+      },
+    },
   },
 };

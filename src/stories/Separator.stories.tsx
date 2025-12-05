@@ -89,6 +89,13 @@ export const Default: Story = {
       </div>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A basic horizontal separator dividing content sections, commonly used to visually separate different parts of a layout.',
+      },
+    },
+  },
 };
 
 export const Vertical: Story = {
@@ -110,6 +117,13 @@ export const Vertical: Story = {
       </div>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A vertical separator used to divide content horizontally in a row layout, useful for toolbars and navigation bars.',
+      },
+    },
+  },
 };
 
 export const InCard: Story = {
@@ -159,6 +173,13 @@ export const InCard: Story = {
       </CardContent>
     </Card>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Separators used within a card to divide different sections of user profile information, creating clear visual separation.',
+      },
+    },
+  },
 };
 
 export const Navigation: Story = {
@@ -215,6 +236,13 @@ export const Navigation: Story = {
       </CardContent>
     </Card>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Separators used in navigation menus to group related menu items, creating logical sections in the navigation structure.',
+      },
+    },
+  },
 };
 
 export const SocialPost: Story = {
@@ -277,6 +305,13 @@ export const SocialPost: Story = {
       </CardContent>
     </Card>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Separators used in social media posts to divide post content, engagement actions, and comment sections.',
+      },
+    },
+  },
 };
 
 export const EcommerceCart: Story = {
@@ -344,6 +379,13 @@ export const EcommerceCart: Story = {
       </CardContent>
     </Card>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Separators used in e-commerce shopping carts to divide cart items, pricing breakdown, and checkout sections.',
+      },
+    },
+  },
 };
 
 export const Dashboard: Story = {
@@ -440,6 +482,13 @@ export const Dashboard: Story = {
       </Card>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Separators used in dashboards to divide different sections like stats cards and activity feeds, creating clear visual hierarchy.',
+      },
+    },
+  },
 };
 
 export const Toolbar: Story = {
@@ -492,6 +541,13 @@ export const Toolbar: Story = {
       </CardContent>
     </Card>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Vertical separators used in toolbars to group related action buttons, organizing toolbar controls into logical sections.',
+      },
+    },
+  },
 };
 
 export const MediaGrid: Story = {
@@ -549,6 +605,13 @@ export const MediaGrid: Story = {
       </CardContent>
     </Card>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Separators used in media libraries to divide different media types (images, videos, audio), organizing content by category.',
+      },
+    },
+  },
 };
 
 export const StatusUpdate: Story = {
@@ -609,4 +672,11 @@ export const StatusUpdate: Story = {
       </CardContent>
     </Card>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Separators used in system status pages to divide service status information, recent incidents, and update timestamps.',
+      },
+    },
+  },
 };

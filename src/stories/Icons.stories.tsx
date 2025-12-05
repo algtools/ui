@@ -386,6 +386,13 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const IconShowcase: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Comprehensive icon browser with search functionality and category organization. Click icons to copy their names, or use the import button to copy import statements. Browse hundreds of Lucide React icons organized by category.',
+      },
+    },
+  },
   render: () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedCategory, setSelectedCategory] = useState('Actions & Controls');
@@ -655,6 +662,13 @@ export const IconShowcase: Story = {
 };
 
 export const IconSizes: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Demonstration of common icon sizes from extra small (12px) to hero size (40px), showing how icons scale and the corresponding Tailwind CSS classes.',
+      },
+    },
+  },
   render: () => {
     const sampleIcons = ['Heart', 'Star', 'Settings', 'Bell', 'User', 'Home'];
 
@@ -707,6 +721,13 @@ export const IconSizes: Story = {
 };
 
 export const IconColors: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Different ways to color icons using Tailwind CSS classes, including semantic colors (primary, secondary, destructive), status colors (success, warning, error, info), and custom color options.',
+      },
+    },
+  },
   render: () => {
     const IconComponent = getIconComponent('Heart');
     if (!IconComponent) return <div>Icon not found</div>;

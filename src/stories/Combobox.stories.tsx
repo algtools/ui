@@ -59,6 +59,13 @@ export const Default: Story = {
       </div>
     );
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Default combobox component with searchable input and dropdown list, allowing users to search and select from a list of options.',
+      },
+    },
+  },
 };
 
 export const WithGroupsAndSeparator: Story = {
@@ -109,6 +116,13 @@ export const WithGroupsAndSeparator: Story = {
       </div>
     );
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Combobox with grouped items and separators, organizing options into categories (Fruits, Vegetables) for better navigation and organization.',
+      },
+    },
+  },
 };
 
 export const CreateNew: Story = {
@@ -151,5 +165,12 @@ export const CreateNew: Story = {
         <p className="mt-2 text-sm text-muted-foreground">Value: {value || '—'}</p>
       </div>
     );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Combobox with create-new functionality, allowing users to add new options dynamically when the searched value does not exist in the list.',
+      },
+    },
   },
 };

@@ -71,6 +71,13 @@ export const Default: Story = {
       </div>
     </RadioGroup>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Default radio group with three options, allowing users to select a single choice from multiple options.',
+      },
+    },
+  },
 };
 
 export const PaymentMethods: Story = {
@@ -132,6 +139,13 @@ export const PaymentMethods: Story = {
         </CardContent>
       </Card>
     );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Payment method selection with enhanced radio options featuring icons, descriptions, and visual feedback for the selected option.',
+      },
+    },
   },
 };
 
@@ -198,6 +212,13 @@ export const ShippingOptions: Story = {
         </CardContent>
       </Card>
     );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Shipping options selection with icons, descriptions, pricing, and visual highlighting of the selected option.',
+      },
+    },
   },
 };
 
@@ -300,6 +321,13 @@ export const PlanSelection: Story = {
       </div>
     );
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Subscription plan selection with pricing, feature lists, badges, and enhanced visual styling for pricing comparison scenarios.',
+      },
+    },
+  },
 };
 
 export const Theme: Story = {
@@ -330,6 +358,13 @@ export const Theme: Story = {
         </CardContent>
       </Card>
     );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Simple theme preference selection (light, dark, system) for application settings.',
+      },
+    },
   },
 };
 
@@ -371,6 +406,13 @@ export const DevicePreference: Story = {
       </Card>
     );
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Device preference selection with icons and descriptions, allowing users to specify their primary device type.',
+      },
+    },
+  },
 };
 
 export const Notification: Story = {
@@ -405,6 +447,13 @@ export const Notification: Story = {
         </CardContent>
       </Card>
     );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Notification frequency selection for user preferences, allowing users to choose how often they receive updates.',
+      },
+    },
   },
 };
 
@@ -469,6 +518,13 @@ export const SecurityLevel: Story = {
       </Card>
     );
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Security level selection with color-coded icons and descriptions, allowing users to choose their preferred security settings.',
+      },
+    },
+  },
 };
 
 export const DisabledStates: Story = {
@@ -521,6 +577,13 @@ export const DisabledStates: Story = {
       </div>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Radio group disabled states: fully disabled group, individual disabled items, and mixed states, demonstrating different disabled scenarios.',
+      },
+    },
+  },
 };
 
 export const WithValidation: Story = {
@@ -586,5 +649,12 @@ export const WithValidation: Story = {
         </CardContent>
       </Card>
     );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Radio group with validation, showing error states when no option is selected and demonstrating form validation patterns with icons.',
+      },
+    },
   },
 };

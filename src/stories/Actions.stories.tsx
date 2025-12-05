@@ -65,6 +65,13 @@ export const Default: Story = {
     onCopy: () => console.log('Copy clicked'),
     onRegenerate: () => console.log('Regenerate clicked'),
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Default Actions component with common chat actions like copy and regenerate.',
+      },
+    },
+  },
 };
 
 /**
@@ -77,6 +84,14 @@ export const AllDefaultActions: Story = {
     onThumbsUp: () => console.log('Thumbs up clicked'),
     onThumbsDown: () => console.log('Thumbs down clicked'),
     onShare: () => console.log('Share clicked'),
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'All available default actions including copy, regenerate, feedback (thumbs up/down), and share functionality.',
+      },
+    },
   },
 };
 
@@ -119,6 +134,14 @@ export const VerticalOrientation: Story = {
     onRegenerate: () => console.log('Regenerate clicked'),
     onThumbsUp: () => console.log('Thumbs up clicked'),
     onThumbsDown: () => console.log('Thumbs down clicked'),
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Actions component displayed in vertical orientation, stacking buttons vertically instead of horizontally.',
+      },
+    },
   },
 };
 

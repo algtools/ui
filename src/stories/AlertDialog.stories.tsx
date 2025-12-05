@@ -59,6 +59,13 @@ export const Default: Story = {
       </AlertDialogContent>
     </AlertDialog>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A default alert dialog with a title, description, and action buttons, demonstrating basic alert dialog functionality.',
+      },
+    },
+  },
 };
 
 export const Destructive: Story = {
@@ -85,6 +92,13 @@ export const Destructive: Story = {
       </AlertDialogContent>
     </AlertDialog>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A destructive alert dialog for critical actions like deleting an account, with a destructive action button.',
+      },
+    },
+  },
 };
 
 export const Confirmation: Story = {
@@ -107,6 +121,13 @@ export const Confirmation: Story = {
       </AlertDialogContent>
     </AlertDialog>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A confirmation dialog for saving changes, demonstrating how to confirm user actions before proceeding.',
+      },
+    },
+  },
 };
 
 export const Warning: Story = {
@@ -132,6 +153,13 @@ export const Warning: Story = {
       </AlertDialogContent>
     </AlertDialog>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A warning alert dialog with orange styling, indicating potential risks or important warnings that require user acknowledgment.',
+      },
+    },
+  },
 };
 
 export const Information: Story = {
@@ -155,6 +183,13 @@ export const Information: Story = {
       </AlertDialogContent>
     </AlertDialog>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'An informational alert dialog displaying important information like subscription expiration, demonstrating informational dialogs.',
+      },
+    },
+  },
 };
 
 export const SingleAction: Story = {
@@ -177,6 +212,13 @@ export const SingleAction: Story = {
       </AlertDialogContent>
     </AlertDialog>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'An alert dialog with a single action button, demonstrating how to show informational dialogs without a cancel option.',
+      },
+    },
+  },
 };
 
 export const LongContent: Story = {
@@ -229,6 +271,13 @@ export const LongContent: Story = {
       </AlertDialogContent>
     </AlertDialog>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'An alert dialog with long scrollable content like terms and conditions, demonstrating how to handle lengthy content in dialogs.',
+      },
+    },
+  },
 };
 
 export const CustomStyling: Story = {
@@ -258,4 +307,11 @@ export const CustomStyling: Story = {
       </AlertDialogContent>
     </AlertDialog>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'An alert dialog with custom styling including gradients and custom colors, demonstrating how to customize alert dialog appearance.',
+      },
+    },
+  },
 };

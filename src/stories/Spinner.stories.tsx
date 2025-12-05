@@ -38,6 +38,13 @@ export const Default: Story = {
   args: {
     size: 'md',
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Default spinner component in medium size, providing visual feedback during loading states.',
+      },
+    },
+  },
 };
 
 export const Sizes: Story = {

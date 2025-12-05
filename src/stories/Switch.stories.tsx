@@ -70,6 +70,13 @@ export const Default: Story = {
       <Label htmlFor="default">Default switch</Label>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Default switch component in an unchecked state, allowing users to toggle between on and off states.',
+      },
+    },
+  },
 };
 
 export const Checked: Story = {
@@ -79,6 +86,13 @@ export const Checked: Story = {
       <Label htmlFor="checked">Checked by default</Label>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Switch component in a checked state by default, useful for settings that are enabled by default.',
+      },
+    },
+  },
 };
 
 export const Disabled: Story = {
@@ -98,6 +112,13 @@ export const Disabled: Story = {
       </div>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Disabled switch states showing both unchecked and checked disabled appearances, demonstrating when controls are not available.',
+      },
+    },
+  },
 };
 
 export const WithLabels: Story = {
@@ -130,6 +151,13 @@ export const WithLabels: Story = {
       </div>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Switches with descriptive labels and helper text, demonstrating how to provide context for each toggle option in settings panels.',
+      },
+    },
+  },
 };
 
 export const ControlledState: Story = {
@@ -152,6 +180,13 @@ export const ControlledState: Story = {
         </div>
       </div>
     );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Controlled switch with React state management, demonstrating how to programmatically control the switch state and display current status.',
+      },
+    },
   },
 };
 
@@ -271,6 +306,13 @@ export const NotificationSettings: Story = {
       </Card>
     );
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Notification preferences panel with multiple switches (email, push, SMS, in-app), dynamic icons based on state, and active count badge.',
+      },
+    },
+  },
 };
 
 export const SystemSettings: Story = {
@@ -372,6 +414,13 @@ export const SystemSettings: Story = {
         </CardContent>
       </Card>
     );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'System settings panel with switches for Wi-Fi, Bluetooth, location services, and dark mode, featuring dynamic icons that reflect the current state.',
+      },
+    },
   },
 };
 
@@ -534,6 +583,13 @@ export const PrivacySettings: Story = {
       </Card>
     );
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Privacy settings panel with switches for profile visibility, contact information display, messaging permissions, and security features, including a dynamic security score indicator.',
+      },
+    },
+  },
 };
 
 export const MediaControls: Story = {
@@ -632,6 +688,13 @@ export const MediaControls: Story = {
       </Card>
     );
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Media playback preferences with switches for autoplay, mute, captions, and quality settings, featuring badges and icons for visual context.',
+      },
+    },
+  },
 };
 
 export const SwitchStates: Story = {
@@ -664,4 +727,11 @@ export const SwitchStates: Story = {
       </div>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'All switch states displayed together: unchecked, checked, disabled unchecked, and disabled checked, providing a comprehensive view of all possible states.',
+      },
+    },
+  },
 };

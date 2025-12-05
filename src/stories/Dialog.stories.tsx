@@ -93,6 +93,13 @@ export const Default: Story = {
       </DialogContent>
     </Dialog>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A default dialog component with a title, description, content area, and footer buttons, demonstrating basic modal dialog functionality.',
+      },
+    },
+  },
 };
 
 export const FormDialog: Story = {
@@ -166,6 +173,13 @@ export const FormDialog: Story = {
       </Dialog>
     );
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'A dialog containing a contact form with name, email, and message fields, demonstrating how to integrate forms within dialogs.',
+      },
+    },
+  },
 };
 
 export const ConfirmationDialog: Story = {
@@ -212,6 +226,13 @@ export const ConfirmationDialog: Story = {
       </DialogContent>
     </Dialog>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A confirmation dialog for destructive actions like deleting an account, featuring warning messages and a destructive action button.',
+      },
+    },
+  },
 };
 
 export const ProfileDialog: Story = {
@@ -275,6 +296,13 @@ export const ProfileDialog: Story = {
       </DialogContent>
     </Dialog>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A profile dialog displaying user information including avatar, name, role, badges, contact details, and an edit button.',
+      },
+    },
+  },
 };
 
 export const SettingsDialog: Story = {
@@ -343,6 +371,13 @@ export const SettingsDialog: Story = {
       </DialogContent>
     </Dialog>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A settings dialog with multiple sections for account preferences, notifications, and security settings, demonstrating a comprehensive settings interface.',
+      },
+    },
+  },
 };
 
 export const FileUploadDialog: Story = {
@@ -434,6 +469,13 @@ export const FileUploadDialog: Story = {
       </Dialog>
     );
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'A file upload dialog with drag-and-drop functionality, file selection, and a preview of selected files before upload.',
+      },
+    },
+  },
 };
 
 export const SearchDialog: Story = {
@@ -519,6 +561,13 @@ export const SearchDialog: Story = {
       </Dialog>
     );
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'A search dialog with a search input field and dynamic results display, demonstrating how to implement search functionality within a dialog.',
+      },
+    },
+  },
 };
 
 export const SuccessDialog: Story = {
@@ -554,6 +603,13 @@ export const SuccessDialog: Story = {
       </DialogContent>
     </Dialog>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A success dialog with a checkmark icon and success message, typically used to confirm successful completion of an action.',
+      },
+    },
+  },
 };
 
 export const InfoDialog: Story = {
@@ -608,6 +664,13 @@ export const InfoDialog: Story = {
       </DialogContent>
     </Dialog>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'An informational dialog displaying detailed information about features, with structured content and helpful tips.',
+      },
+    },
+  },
 };
 
 export const NoCloseButton: Story = {
@@ -639,6 +702,13 @@ export const NoCloseButton: Story = {
       </DialogContent>
     </Dialog>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A dialog without a close button in the header, requiring users to use the footer buttons to close the dialog.',
+      },
+    },
+  },
 };
 
 export const CustomStyling: Story = {
@@ -683,4 +753,11 @@ export const CustomStyling: Story = {
       </DialogContent>
     </Dialog>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A dialog with custom styling including gradient backgrounds, custom colors, and themed buttons, demonstrating how to customize dialog appearance.',
+      },
+    },
+  },
 };

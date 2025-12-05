@@ -151,6 +151,13 @@ export const Default: Story = {
     content: simpleContent,
     isStreaming: false,
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Default response component rendering simple markdown content with basic formatting like headings, bold, and italic text.',
+      },
+    },
+  },
 };
 
 export const RichContent: Story = {

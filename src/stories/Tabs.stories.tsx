@@ -129,6 +129,13 @@ export const Default: Story = {
       </TabsContent>
     </Tabs>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A default tabs component with Account and Password tabs, demonstrating basic tab switching functionality with form content.',
+      },
+    },
+  },
 };
 
 export const WithIcons: Story = {
@@ -307,6 +314,13 @@ export const WithIcons: Story = {
       </TabsContent>
     </Tabs>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A tabs component with icons in the tab triggers, demonstrating a dashboard interface with Overview, Analytics, Reports, and Settings tabs.',
+      },
+    },
+  },
 };
 
 export const UserProfile: Story = {
@@ -526,6 +540,13 @@ export const UserProfile: Story = {
       </TabsContent>
     </Tabs>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A comprehensive user profile tabs component with Profile, Account, Security, Notifications, and Preferences tabs, demonstrating a multi-section profile interface.',
+      },
+    },
+  },
 };
 
 export const MediaLibrary: Story = {
@@ -699,6 +720,13 @@ export const MediaLibrary: Story = {
       </TabsContent>
     </Tabs>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A media library tabs component with Images, Videos, Documents, and Audio tabs, demonstrating a media management interface with file listings and actions.',
+      },
+    },
+  },
 };
 
 export const ProjectManagement: Story = {
@@ -970,6 +998,13 @@ export const ProjectManagement: Story = {
       </Tabs>
     );
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'A project management tabs component with Tasks, Board, Timeline, and Analytics tabs, demonstrating a controlled tabs implementation with state management for project tracking.',
+      },
+    },
+  },
 };
 
 export const SettingsPanel: Story = {
@@ -1176,6 +1211,13 @@ export const SettingsPanel: Story = {
       </TabsContent>
     </Tabs>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A settings panel tabs component with General, Appearance, Notifications, and Privacy tabs, demonstrating a comprehensive settings interface with various configuration options.',
+      },
+    },
+  },
 };
 
 export const Compact: Story = {
@@ -1218,4 +1260,11 @@ export const Compact: Story = {
       </TabsContent>
     </Tabs>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A compact tabs component with smaller text and minimal spacing, demonstrating a space-efficient tabs design for limited screen space.',
+      },
+    },
+  },
 };

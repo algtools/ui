@@ -67,6 +67,13 @@ export const Default: Story = {
       </CollapsibleContent>
     </Collapsible>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A basic collapsible component with a trigger button and expandable content, commonly used for FAQs and accordions.',
+      },
+    },
+  },
 };
 
 export const WithCard: Story = {
@@ -103,6 +110,13 @@ export const WithCard: Story = {
       </Collapsible>
     </Card>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A collapsible integrated within a card component, using the card header as the trigger for settings panels.',
+      },
+    },
+  },
 };
 
 export const ControlledState: Story = {
@@ -144,6 +158,13 @@ export const ControlledState: Story = {
         </Collapsible>
       </div>
     );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'A controlled collapsible where the open state is managed externally, allowing programmatic control and status display.',
+      },
+    },
   },
 };
 
@@ -220,6 +241,13 @@ export const NestedCollapsibles: Story = {
       </Collapsible>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Nested collapsibles creating a hierarchical menu structure, useful for settings panels and navigation menus.',
+      },
+    },
+  },
 };
 
 export const FAQ: Story = {
@@ -268,6 +296,13 @@ export const FAQ: Story = {
         </div>
       </div>
     );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'A FAQ section built with collapsibles, where each question expands to reveal its answer, with separators between items.',
+      },
+    },
   },
 };
 
@@ -328,6 +363,13 @@ export const MenuNavigation: Story = {
       </div>
     );
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'A navigation menu using collapsibles to organize menu sections with icons and expandable sub-items.',
+      },
+    },
+  },
 };
 
 export const WithAnimation: Story = {
@@ -365,6 +407,13 @@ export const WithAnimation: Story = {
       </Collapsible>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A collapsible with enhanced animations using CSS transitions and keyframe animations for smooth expand/collapse effects.',
+      },
+    },
+  },
 };
 
 export const DisabledState: Story = {
@@ -390,6 +439,13 @@ export const DisabledState: Story = {
       </div>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A disabled collapsible that cannot be interacted with, useful for conditional UI states where content should not be accessible.',
+      },
+    },
+  },
 };
 
 export const CustomStyling: Story = {
@@ -428,4 +484,11 @@ export const CustomStyling: Story = {
       </Collapsible>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A collapsible with custom styling demonstrating how to theme the component with a coordinated color scheme and custom design.',
+      },
+    },
+  },
 };

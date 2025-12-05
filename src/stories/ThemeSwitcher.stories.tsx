@@ -35,16 +35,44 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: { variant: 'circle-blur', start: 'top-left' },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Default theme switcher with circle-blur animation starting from the top-left corner, providing smooth theme transitions.',
+      },
+    },
+  },
 };
 
 export const Controlled: Story = {
   args: { variant: 'circle', start: 'center' },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Theme switcher with circle animation starting from the center, offering a classic expanding circle transition effect.',
+      },
+    },
+  },
 };
 
 export const CircleBlurFromCorners: Story = {
   args: { variant: 'circle-blur', start: 'top-left' },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Circle-blur animation variant starting from corners (top-left, top-right, bottom-left, bottom-right), creating directional theme transitions.',
+      },
+    },
+  },
 };
 
 export const PolygonWipe: Story = {
   args: { variant: 'polygon' },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Polygon wipe animation variant, providing a geometric transition effect when switching between light and dark themes.',
+      },
+    },
+  },
 };

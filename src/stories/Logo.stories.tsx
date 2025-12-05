@@ -39,6 +39,13 @@ export const Default: Story = {
   render: (args) => {
     return <Logo {...args} />;
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Default logo component displaying the full logo variant, ready for use in headers and navigation.',
+      },
+    },
+  },
 };
 
 export const Themes: Story = {
@@ -54,6 +61,13 @@ export const Themes: Story = {
       </div>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Logo displayed on both light and dark backgrounds, demonstrating how it adapts to different theme contexts.',
+      },
+    },
+  },
 };
 
 export const Variants: Story = {
@@ -71,6 +85,13 @@ export const Variants: Story = {
       </div>
     );
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Two logo variants: full logo (horizontal with text) and icon-only (square), suitable for different layout contexts.',
+      },
+    },
+  },
 };
 
 export const Sizes: Story = {
@@ -85,5 +106,12 @@ export const Sizes: Story = {
         <Logo {...args} variant="logo" width={208} height={32} />
       </div>
     );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Logo in various sizes for both icon and full logo variants, demonstrating how to scale the logo for different use cases (favicons, headers, footers).',
+      },
+    },
   },
 };

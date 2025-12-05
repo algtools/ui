@@ -80,6 +80,14 @@ export const Default: Story = {
       </p>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Default OTP input component with 6 digits and auto-focus, commonly used for verification codes and one-time passwords.',
+      },
+    },
+  },
 };
 
 export const FourDigit: Story = {
@@ -98,6 +106,13 @@ export const FourDigit: Story = {
       <p className="text-sm text-muted-foreground">Enter your 4-digit PIN.</p>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: '4-digit PIN input, suitable for shorter verification codes or PIN entry scenarios.',
+      },
+    },
+  },
 };
 
 export const WithSeparator: Story = {
@@ -121,6 +136,14 @@ export const WithSeparator: Story = {
       <p className="text-sm text-muted-foreground">Enter the 6-digit code in XXX-XXX format.</p>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'OTP input with separator dividing the code into two groups (XXX-XXX format), improving readability for longer codes.',
+      },
+    },
+  },
 };
 
 export const EightDigitWithGroups: Story = {
@@ -146,6 +169,14 @@ export const EightDigitWithGroups: Story = {
       <p className="text-sm text-muted-foreground">Enter the 8-digit security code.</p>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          '8-digit OTP input with separator, organized into two groups of four digits for better visual organization.',
+      },
+    },
+  },
 };
 
 export const DisabledState: Story = {
@@ -166,6 +197,14 @@ export const DisabledState: Story = {
       <p className="text-sm text-muted-foreground">This field is disabled.</p>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Disabled OTP input showing the inactive state when verification is not currently available or has been completed.',
+      },
+    },
+  },
 };
 
 export const ControlledExample: Story = {
@@ -205,6 +244,14 @@ export const ControlledExample: Story = {
         )}
       </div>
     );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Controlled OTP input with React state management, demonstrating how to track input value and show completion feedback.',
+      },
+    },
   },
 };
 
@@ -306,6 +353,14 @@ export const TwoFactorAuth: Story = {
       </Card>
     );
   },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Complete two-factor authentication flow with OTP input, including verification states (input, verifying, success, error) and resend functionality.',
+      },
+    },
+  },
 };
 
 export const SMSVerification: Story = {
@@ -369,6 +424,14 @@ export const SMSVerification: Story = {
       </Card>
     );
   },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'SMS verification flow with OTP input, countdown timer, and resend functionality for phone number verification.',
+      },
+    },
+  },
 };
 
 export const EmailVerification: Story = {
@@ -422,6 +485,14 @@ export const EmailVerification: Story = {
         </CardFooter>
       </Card>
     );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Email verification flow with OTP input and resend functionality, demonstrating email-based verification patterns.',
+      },
+    },
   },
 };
 
@@ -481,6 +552,14 @@ export const BankingPIN: Story = {
         </CardFooter>
       </Card>
     );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Banking PIN entry with password-masked input, security badge, and attempt tracking for secure financial authentication.',
+      },
+    },
   },
 };
 
@@ -552,6 +631,14 @@ export const MultipleInputs: Story = {
       </div>
     );
   },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Multiple OTP inputs for different verification methods (SMS, email, backup code), allowing users to choose their preferred verification method.',
+      },
+    },
+  },
 };
 
 export const ValidationStates: Story = {
@@ -618,5 +705,13 @@ export const ValidationStates: Story = {
         </div>
       </div>
     );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'OTP input in different validation states: normal (empty), error (invalid code), and success (verified), demonstrating form validation feedback.',
+      },
+    },
   },
 };

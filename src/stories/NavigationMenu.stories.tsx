@@ -207,6 +207,13 @@ export const Default: Story = {
       </NavigationMenuList>
     </NavigationMenu>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A default navigation menu with "Getting started" and "Components" dropdowns, featuring rich content areas with descriptions and links.',
+      },
+    },
+  },
 };
 
 export const SimpleNavigation: Story = {
@@ -240,6 +247,13 @@ export const SimpleNavigation: Story = {
       </NavigationMenuList>
     </NavigationMenu>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A simple navigation menu with icon links to Home, Products, About, and Contact pages, demonstrating basic navigation without dropdowns.',
+      },
+    },
+  },
 };
 
 export const ProductNavigation: Story = {
@@ -383,6 +397,13 @@ export const ProductNavigation: Story = {
       </NavigationMenuList>
     </NavigationMenu>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A product-focused navigation menu with "Products" and "Solutions" dropdowns, showcasing categorized offerings like web development and digital services.',
+      },
+    },
+  },
 };
 
 export const WithoutViewport: Story = {
@@ -442,6 +463,13 @@ export const WithoutViewport: Story = {
       </NavigationMenuList>
     </NavigationMenu>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A navigation menu with viewport disabled, demonstrating how the menu behaves without the automatic viewport positioning feature.',
+      },
+    },
+  },
 };
 
 export const ResourcesNavigation: Story = {
@@ -582,6 +610,13 @@ export const ResourcesNavigation: Story = {
       </NavigationMenuList>
     </NavigationMenu>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A resources-focused navigation menu with "Learning" and "Community" dropdowns, featuring educational content and community links with a highlighted call-to-action area.',
+      },
+    },
+  },
 };
 
 export const CompactNavigation: Story = {
@@ -638,6 +673,13 @@ export const CompactNavigation: Story = {
       </NavigationMenuList>
     </NavigationMenu>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A compact navigation menu with a minimal "Quick Links" dropdown, showing a space-efficient menu design for dashboards and user interfaces.',
+      },
+    },
+  },
 };
 
 export const ComplexNavigation: Story = {
@@ -792,4 +834,11 @@ export const ComplexNavigation: Story = {
       </NavigationMenu>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A complex navigation menu with "Platform" and "Solutions" dropdowns, featuring multi-column layouts with categorized links and descriptions for enterprise-level navigation.',
+      },
+    },
+  },
 };

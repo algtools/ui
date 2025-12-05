@@ -35,6 +35,13 @@ export const Headings: Story = {
       <h6 className="text-base font-medium">Heading 6 - Inter Medium</h6>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Typography headings from H1 to H6, demonstrating different heading levels with their default font weights and sizes.',
+      },
+    },
+  },
 };
 
 export const BodyText: Story = {
@@ -58,6 +65,13 @@ export const BodyText: Story = {
       </p>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Body text examples with different paragraph styles, demonstrating standard text formatting for content.',
+      },
+    },
+  },
 };
 
 export const FontWeights: Story = {
@@ -74,6 +88,13 @@ export const FontWeights: Story = {
       <p className="text-base font-black">Black (900) - The quick brown fox</p>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Typography examples with different font weights (light, normal, medium, semibold, bold), demonstrating weight variations.',
+      },
+    },
+  },
 };
 
 export const MonospaceCode: Story = {
@@ -119,6 +140,13 @@ export default function Example() {
       </div>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Monospace and code typography examples, demonstrating how to display code snippets and technical content.',
+      },
+    },
+  },
 };
 
 export const TextColors: Story = {
@@ -135,6 +163,13 @@ export const TextColors: Story = {
       </div>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Typography examples with different text colors, demonstrating color variations for text content.',
+      },
+    },
+  },
 };
 
 export const TextSizes: Story = {
@@ -151,6 +186,13 @@ export const TextSizes: Story = {
       <p className="text-5xl">text-5xl (48px) - 5x large text</p>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Typography examples with different text sizes (xs, sm, base, lg, xl, 2xl, etc.), demonstrating size variations.',
+      },
+    },
+  },
 };
 
 export const LineHeight: Story = {
@@ -184,6 +226,13 @@ export const LineHeight: Story = {
       </div>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Typography examples with different line heights, demonstrating how line height affects text readability and spacing.',
+      },
+    },
+  },
 };
 
 export const Ligatures: Story = {
@@ -259,6 +308,13 @@ if (condition1 && condition2 || fallback) {
       </div>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Typography examples demonstrating font ligatures, showing how certain character combinations are rendered with special glyphs.',
+      },
+    },
+  },
 };
 
 export const LetterSpacing: Story = {
@@ -272,6 +328,13 @@ export const LetterSpacing: Story = {
       <p className="tracking-widest">Widest Tracking - The quick brown fox</p>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Typography examples with different letter spacing values, demonstrating how letter spacing affects text appearance.',
+      },
+    },
+  },
 };
 
 export const Lists: Story = {
@@ -310,6 +373,13 @@ export const Lists: Story = {
       </div>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Typography examples for lists including ordered and unordered lists, demonstrating list formatting.',
+      },
+    },
+  },
 };
 
 export const Blockquote: Story = {
@@ -328,6 +398,13 @@ export const Blockquote: Story = {
       </blockquote>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Typography examples for blockquotes, demonstrating how to format quoted text and citations.',
+      },
+    },
+  },
 };
 
 export const AllTypography: Story = {
@@ -425,4 +502,11 @@ console.log(message);`}
       </section>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A comprehensive showcase of all typography styles including headings, body text, lists, blockquotes, and code, demonstrating the complete typography system.',
+      },
+    },
+  },
 };

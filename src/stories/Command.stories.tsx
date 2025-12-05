@@ -113,6 +113,13 @@ export const Default: Story = {
       </CommandList>
     </Command>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A basic command palette with searchable items grouped by category, displaying icons and keyboard shortcuts for quick navigation.',
+      },
+    },
+  },
 };
 
 export const DialogCommand: Story = {
@@ -198,6 +205,13 @@ export const DialogCommand: Story = {
       </div>
     );
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'A command palette displayed in a dialog/modal, typically triggered with a keyboard shortcut (⌘K), providing quick access to commands and actions.',
+      },
+    },
+  },
 };
 
 export const FileCommands: Story = {
@@ -249,6 +263,13 @@ export const FileCommands: Story = {
       </CommandList>
     </Command>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A command palette for file management, displaying recent files and file actions with keyboard shortcuts for quick operations.',
+      },
+    },
+  },
 };
 
 export const WithKeyboardShortcuts: Story = {
@@ -303,6 +324,13 @@ export const WithKeyboardShortcuts: Story = {
       </CommandList>
     </Command>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A command palette showcasing keyboard shortcuts for various editor and view actions, demonstrating shortcut notation.',
+      },
+    },
+  },
 };
 
 export const ContactSearch: Story = {
@@ -354,6 +382,13 @@ export const ContactSearch: Story = {
       </Command>
     );
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'A contact search command palette displaying team members with their email addresses and roles, plus contact action shortcuts.',
+      },
+    },
+  },
 };
 
 export const CustomEmpty: Story = {
@@ -385,6 +420,13 @@ export const CustomEmpty: Story = {
       </CommandList>
     </Command>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A command palette with a custom empty state message, showing how to provide helpful feedback when no search results are found.',
+      },
+    },
+  },
 };
 
 export const MenuCommand: Story = {
@@ -444,6 +486,13 @@ export const MenuCommand: Story = {
       </CardContent>
     </Card>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A command palette integrated within a card component, displaying quick actions organized by category with keyboard shortcuts.',
+      },
+    },
+  },
 };
 
 export const DisabledItems: Story = {
@@ -485,6 +534,13 @@ export const DisabledItems: Story = {
       </CommandList>
     </Command>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A command palette with disabled items, demonstrating how to show unavailable actions with visual indicators and explanatory text.',
+      },
+    },
+  },
 };
 
 export const ControlledCommand: Story = {
@@ -536,5 +592,12 @@ export const ControlledCommand: Story = {
         </Button>
       </div>
     );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'A controlled command palette where the search value and selected item are managed externally, allowing programmatic control and state display.',
+      },
+    },
   },
 };

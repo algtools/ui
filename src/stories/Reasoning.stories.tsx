@@ -87,6 +87,13 @@ export const Default: Story = {
     variant: 'default',
     showStepNumbers: true,
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Default reasoning component collapsed by default, showing a collapsible block with step-by-step AI thinking process.',
+      },
+    },
+  },
 };
 
 export const DefaultOpen: Story = {
@@ -96,6 +103,13 @@ export const DefaultOpen: Story = {
     defaultOpen: true,
     variant: 'default',
     showStepNumbers: true,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Reasoning component expanded by default, immediately showing the AI thinking process without requiring user interaction.',
+      },
+    },
   },
 };
 
@@ -107,6 +121,13 @@ export const CompactVariant: Story = {
     variant: 'compact',
     showStepNumbers: true,
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Compact variant of the reasoning component with reduced spacing, ideal for dense layouts or when space is limited.',
+      },
+    },
+  },
 };
 
 export const WithoutStepNumbers: Story = {
@@ -116,6 +137,13 @@ export const WithoutStepNumbers: Story = {
     defaultOpen: true,
     showStepNumbers: false,
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Reasoning component without step numbers, providing a cleaner visual appearance when numbering is not needed.',
+      },
+    },
+  },
 };
 
 export const CustomIcon: Story = {
@@ -124,6 +152,13 @@ export const CustomIcon: Story = {
     title: 'Deep Thinking',
     defaultOpen: true,
     icon: <Brain className="h-4 w-4 text-purple-500" />,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Reasoning component with a custom icon, allowing for personalized branding or visual differentiation.',
+      },
+    },
   },
 };
 
@@ -139,6 +174,13 @@ export const SingleStep: Story = {
     ],
     title: 'Reasoning',
     defaultOpen: true,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Reasoning component with a single step, demonstrating how it handles minimal reasoning processes.',
+      },
+    },
   },
 };
 
@@ -185,6 +227,13 @@ export const ManySteps: Story = {
     title: 'Detailed Reasoning',
     defaultOpen: true,
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Reasoning component with many steps (6+), demonstrating how it handles complex, multi-step reasoning processes.',
+      },
+    },
+  },
 };
 
 export const EmptyState: Story = {
@@ -192,6 +241,13 @@ export const EmptyState: Story = {
     steps: [],
     title: 'No Reasoning Available',
     defaultOpen: true,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Reasoning component with empty steps array, demonstrating graceful handling when no reasoning steps are available.',
+      },
+    },
   },
 };
 
@@ -213,6 +269,13 @@ export const StepsWithoutTitles: Story = {
     ],
     title: 'Simple Steps',
     defaultOpen: true,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Reasoning steps without titles, showing how the component handles steps with only content and no title text.',
+      },
+    },
   },
 };
 
@@ -239,6 +302,13 @@ export const ControlledState: Story = {
         />
       </div>
     );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Reasoning component in controlled mode, where the open/closed state is managed externally through React state.',
+      },
+    },
   },
 };
 
@@ -314,6 +384,13 @@ export const MultipleReasoningBlocks: Story = {
       />
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Multiple reasoning blocks displayed together, each with different icons and states, showing how reasoning can be broken into separate logical phases.',
+      },
+    },
+  },
 };
 
 export const InChatContext: Story = {
@@ -368,6 +445,13 @@ export const InChatContext: Story = {
       </Card>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Reasoning component integrated into a chat message context, showing how it appears alongside AI responses in conversational interfaces.',
+      },
+    },
+  },
 };
 
 export const ErrorScenario: Story = {
@@ -401,6 +485,13 @@ export const ErrorScenario: Story = {
       />
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Reasoning component used for error analysis, showing how AI systems explain error detection and recovery strategies.',
+      },
+    },
+  },
 };
 
 export const ComplexReasoning: Story = {
@@ -451,6 +542,13 @@ export const ComplexReasoning: Story = {
       />
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Complex reasoning process with detailed, multi-step analysis showing how AI systems break down complex problems into manageable reasoning steps.',
+      },
+    },
+  },
 };
 
 export const DifferentIconsPerStep: Story = {
@@ -499,6 +597,13 @@ export const DifferentIconsPerStep: Story = {
       />
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Multiple reasoning blocks with different custom icons and colors, demonstrating visual differentiation between different types of reasoning processes.',
+      },
+    },
+  },
 };
 
 export const UnorderedSteps: Story = {
@@ -525,5 +630,12 @@ export const UnorderedSteps: Story = {
     ],
     title: 'Automatically Ordered Steps',
     defaultOpen: true,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Reasoning steps automatically sorted by their order property, even when provided in a different sequence, ensuring correct step ordering.',
+      },
+    },
   },
 };

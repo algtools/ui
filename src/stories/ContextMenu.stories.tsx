@@ -100,6 +100,13 @@ export const Default: Story = {
       </ContextMenuContent>
     </ContextMenu>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A basic context menu triggered by right-clicking, displaying common actions like copy, cut, paste, edit, and delete with keyboard shortcuts.',
+      },
+    },
+  },
 };
 
 export const WithCheckboxes: Story = {
@@ -147,6 +154,13 @@ export const WithCheckboxes: Story = {
       </ContextMenu>
     );
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'A context menu with checkbox items for toggling view options, demonstrating state management for multiple boolean settings.',
+      },
+    },
+  },
 };
 
 export const WithRadioGroup: Story = {
@@ -183,6 +197,13 @@ export const WithRadioGroup: Story = {
         </ContextMenuContent>
       </ContextMenu>
     );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'A context menu with radio group items for selecting single options from multiple choices, such as theme and layout preferences.',
+      },
+    },
   },
 };
 
@@ -259,6 +280,13 @@ export const WithSubmenus: Story = {
       </ContextMenuContent>
     </ContextMenu>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A context menu with nested submenus, allowing hierarchical organization of related actions and options.',
+      },
+    },
+  },
 };
 
 export const FileContextMenu: Story = {
@@ -355,6 +383,13 @@ export const FileContextMenu: Story = {
       </div>
     );
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'A file context menu displaying file-specific actions like open, edit, copy, share, and delete, with file type icons and keyboard shortcuts.',
+      },
+    },
+  },
 };
 
 export const ImageContextMenu: Story = {
@@ -448,6 +483,13 @@ export const ImageContextMenu: Story = {
       </ContextMenuContent>
     </ContextMenu>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'An image context menu with image-specific actions like rotate, zoom, crop, copy, and share, organized in submenus for related operations.',
+      },
+    },
+  },
 };
 
 export const TextContextMenu: Story = {
@@ -514,6 +556,13 @@ export const TextContextMenu: Story = {
         </ContextMenuContent>
       </ContextMenu>
     );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'A text selection context menu that dynamically shows different options based on whether text is selected, providing copy, cut, and paste actions.',
+      },
+    },
   },
 };
 
@@ -594,6 +643,13 @@ export const TableContextMenu: Story = {
       </div>
     );
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'A table row context menu displaying row-specific actions like view profile, edit user, copy email, and change status, with submenus for status options.',
+      },
+    },
+  },
 };
 
 export const DisabledItems: Story = {
@@ -637,6 +693,13 @@ export const DisabledItems: Story = {
       </ContextMenuContent>
     </ContextMenu>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A context menu with disabled items, demonstrating how to show unavailable actions with visual indicators and explanatory text for why they are disabled.',
+      },
+    },
+  },
 };
 
 export const CustomStyling: Story = {
@@ -669,4 +732,11 @@ export const CustomStyling: Story = {
       </ContextMenuContent>
     </ContextMenu>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A context menu with custom styling, demonstrating how to theme the menu with a coordinated color scheme and custom design.',
+      },
+    },
+  },
 };

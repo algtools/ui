@@ -112,6 +112,13 @@ export const Default: Story = {
       </TableFooter>
     </Table>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A default table with invoice data, including header, body rows, and footer with totals, demonstrating basic table structure.',
+      },
+    },
+  },
 };
 
 export const WithBadges: Story = {
@@ -175,6 +182,13 @@ export const WithBadges: Story = {
       </TableBody>
     </Table>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A table with badge components in cells, demonstrating how to display status indicators and labels in table cells.',
+      },
+    },
+  },
 };
 
 export const SortableTable: Story = {
@@ -249,6 +263,13 @@ export const SortableTable: Story = {
         </TableBody>
       </Table>
     );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'A sortable table with clickable column headers for sorting data, demonstrating interactive table functionality.',
+      },
+    },
   },
 };
 
@@ -326,6 +347,13 @@ export const WithActions: Story = {
       </TableBody>
     </Table>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A table with action buttons in cells, demonstrating how to add interactive elements like edit and delete buttons to table rows.',
+      },
+    },
+  },
 };
 
 export const UserManagement: Story = {
@@ -492,6 +520,13 @@ export const UserManagement: Story = {
       </CardContent>
     </Card>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A comprehensive user management table with user information, roles, status, and actions, demonstrating admin interface use cases.',
+      },
+    },
+  },
 };
 
 export const FinancialData: Story = {
@@ -597,6 +632,13 @@ export const FinancialData: Story = {
       </CardContent>
     </Card>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A financial data table displaying transactions, balances, and financial metrics, demonstrating financial data presentation.',
+      },
+    },
+  },
 };
 
 export const TaskManagement: Story = {
@@ -751,6 +793,13 @@ export const TaskManagement: Story = {
       </Card>
     );
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'A task management table with task details, priorities, status, and assignments, demonstrating project management use cases.',
+      },
+    },
+  },
 };
 
 export const EmptyState: Story = {
@@ -791,6 +840,13 @@ export const EmptyState: Story = {
       </CardContent>
     </Card>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A table with an empty state message, demonstrating how to handle tables with no data.',
+      },
+    },
+  },
 };
 
 export const LoadingState: Story = {
@@ -840,6 +896,13 @@ export const LoadingState: Story = {
       </CardContent>
     </Card>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A table in a loading state with skeleton loaders, demonstrating how to show loading indicators while data is being fetched.',
+      },
+    },
+  },
 };
 
 export const ECommerceOrders: Story = {
@@ -1014,6 +1077,13 @@ export const ECommerceOrders: Story = {
       </CardContent>
     </Card>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'An e-commerce orders table displaying order details, customer information, payment status, and order actions, demonstrating order management use cases.',
+      },
+    },
+  },
 };
 
 export const Responsive: Story = {
@@ -1077,4 +1147,11 @@ export const Responsive: Story = {
       </Table>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A responsive table that adapts to different screen sizes, hiding columns on smaller screens and showing essential information, demonstrating mobile-friendly table design.',
+      },
+    },
+  },
 };

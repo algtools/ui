@@ -76,6 +76,13 @@ export const Default: Story = {
       </div>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Default slider component for selecting a single value within a range, commonly used for volume, brightness, or other numeric settings.',
+      },
+    },
+  },
 };
 
 export const Range: Story = {
@@ -91,6 +98,13 @@ export const Range: Story = {
       </div>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Range slider allowing selection of a minimum and maximum value, useful for filtering, price ranges, and time periods.',
+      },
+    },
+  },
 };
 
 export const WithSteps: Story = {
@@ -120,6 +134,13 @@ export const WithSteps: Story = {
       </div>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Sliders with step increments, demonstrating discrete value selection (quality with step 25, rating with step 1) and visual step indicators.',
+      },
+    },
+  },
 };
 
 export const VerticalSlider: Story = {
@@ -161,6 +182,13 @@ export const VerticalSlider: Story = {
       </div>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Vertical sliders for volume, brightness, and temperature controls, demonstrating vertical orientation for compact layouts and control panels.',
+      },
+    },
+  },
 };
 
 export const DisabledState: Story = {
@@ -176,6 +204,13 @@ export const DisabledState: Story = {
       </div>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Disabled slider states for both single value and range sliders, showing the inactive appearance when controls are not available.',
+      },
+    },
+  },
 };
 
 export const VolumeControl: Story = {
@@ -221,6 +256,13 @@ export const VolumeControl: Story = {
       </Card>
     );
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Volume control with mute button integration, showing how to combine slider with toggle functionality and display current percentage value.',
+      },
+    },
+  },
 };
 
 export const PriceRangeFilter: Story = {
@@ -260,6 +302,13 @@ export const PriceRangeFilter: Story = {
         </CardContent>
       </Card>
     );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Price range filter with min/max display and summary badge, demonstrating e-commerce filtering patterns with range selection.',
+      },
+    },
   },
 };
 
@@ -302,6 +351,13 @@ export const TimeRangePicker: Story = {
         </CardContent>
       </Card>
     );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Time range picker using a slider to select working hours, with formatted time display (AM/PM) and visual time markers.',
+      },
+    },
   },
 };
 
@@ -365,6 +421,13 @@ export const SettingsPanel: Story = {
         </CardContent>
       </Card>
     );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'System settings panel with multiple sliders (brightness, volume, temperature, performance), each with icons, labels, and current value display.',
+      },
+    },
   },
 };
 
@@ -443,6 +506,13 @@ export const MediaPlayer: Story = {
       </Card>
     );
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Media player controls with progress bar (time display), volume control, and playback speed slider, demonstrating video/audio player interface patterns.',
+      },
+    },
+  },
 };
 
 export const AgeRangeFilter: Story = {
@@ -474,6 +544,13 @@ export const AgeRangeFilter: Story = {
         </CardContent>
       </Card>
     );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Age range filter with visual markers and summary display, demonstrating demographic filtering patterns for user search and matching.',
+      },
+    },
   },
 };
 
@@ -536,5 +613,12 @@ export const MultipleRanges: Story = {
         </CardContent>
       </Card>
     );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Multiple range filters (price, rating, year) with active filter badges, demonstrating advanced e-commerce filtering with multiple criteria.',
+      },
+    },
   },
 };

@@ -85,6 +85,14 @@ export const Default: Story = {
       <Input id="default-input" {...args} />
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Default text input component with label, ready for use in forms and data entry scenarios.',
+      },
+    },
+  },
 };
 
 export const InputTypes: Story = {
@@ -126,6 +134,14 @@ export const InputTypes: Story = {
       </div>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Various HTML input types (text, email, password, number, tel, url, search) demonstrating the different input types available.',
+      },
+    },
+  },
 };
 
 export const WithIcons: Story = {
@@ -164,6 +180,14 @@ export const WithIcons: Story = {
       </div>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Input fields with leading icons positioned on the left side, providing visual context and improving user experience.',
+      },
+    },
+  },
 };
 
 export const PasswordWithToggle: Story = {
@@ -196,6 +220,14 @@ export const PasswordWithToggle: Story = {
         </div>
       </div>
     );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Password input with toggle button to show/hide the password, improving usability while maintaining security.',
+      },
+    },
   },
 };
 
@@ -254,6 +286,14 @@ export const ValidationStates: Story = {
       </div>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Input fields in different validation states: normal, error (with error message), success (with checkmark), and disabled, demonstrating form validation patterns.',
+      },
+    },
+  },
 };
 
 export const DateTimeInputs: Story = {
@@ -285,6 +325,14 @@ export const DateTimeInputs: Story = {
       </div>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Date and time input types (date, time, datetime-local, month, week) for capturing temporal data with native browser date pickers.',
+      },
+    },
+  },
 };
 
 export const FileInput: Story = {
@@ -311,6 +359,14 @@ export const FileInput: Story = {
       </div>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'File input variations including single file, image-only, multiple files, and document-specific uploads with file type restrictions.',
+      },
+    },
+  },
 };
 
 export const SpecialInputs: Story = {
@@ -333,6 +389,14 @@ export const SpecialInputs: Story = {
       </div>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Special input types including color picker, range slider, and hidden input, demonstrating less common but useful input variations.',
+      },
+    },
+  },
 };
 
 export const FormExample: Story = {
@@ -457,6 +521,14 @@ export const FormExample: Story = {
       </Card>
     );
   },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Complete contact form example demonstrating real-world usage with multiple input types, icons, required fields, and form layout patterns.',
+      },
+    },
+  },
 };
 
 export const SearchExample: Story = {
@@ -517,6 +589,14 @@ export const SearchExample: Story = {
         )}
       </div>
     );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Search input with live filtering and results display, demonstrating how to implement a search interface with real-time filtering.',
+      },
+    },
   },
 };
 
@@ -637,6 +717,14 @@ export const PaymentForm: Story = {
       </Card>
     );
   },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Payment form with formatted inputs for card number and expiry date, demonstrating input formatting, masking, and secure payment data entry patterns.',
+      },
+    },
+  },
 };
 
 export const ControlledVsUncontrolled: Story = {
@@ -673,5 +761,13 @@ export const ControlledVsUncontrolled: Story = {
         </div>
       </div>
     );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Comparison of controlled (React state-managed) and uncontrolled (default value) input patterns, showing when to use each approach.',
+      },
+    },
   },
 };

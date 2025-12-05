@@ -52,6 +52,13 @@ export const Default: Story = {
       </PaginationContent>
     </Pagination>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A default pagination component with previous/next buttons and page numbers, showing the current active page.',
+      },
+    },
+  },
 };
 
 export const WithEllipsis: Story = {
@@ -84,6 +91,13 @@ export const WithEllipsis: Story = {
       </PaginationContent>
     </Pagination>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A pagination component using ellipsis to indicate skipped pages when there are many pages, showing a compact navigation pattern.',
+      },
+    },
+  },
 };
 
 export const FirstPage: Story = {
@@ -116,6 +130,13 @@ export const FirstPage: Story = {
       </PaginationContent>
     </Pagination>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A pagination component on the first page, with the previous button disabled and ellipsis indicating more pages ahead.',
+      },
+    },
+  },
 };
 
 export const LastPage: Story = {
@@ -148,6 +169,13 @@ export const LastPage: Story = {
       </PaginationContent>
     </Pagination>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A pagination component on the last page, with the next button disabled and ellipsis indicating previous pages.',
+      },
+    },
+  },
 };
 
 export const MiddlePage: Story = {
@@ -186,6 +214,13 @@ export const MiddlePage: Story = {
       </PaginationContent>
     </Pagination>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A pagination component in the middle of a page range, with ellipsis on both sides to indicate pages before and after.',
+      },
+    },
+  },
 };
 
 export const SinglePage: Story = {
@@ -206,6 +241,13 @@ export const SinglePage: Story = {
       </PaginationContent>
     </Pagination>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A pagination component for a single page, with both previous and next buttons disabled since there is only one page.',
+      },
+    },
+  },
 };
 
 export const FewPages: Story = {
@@ -385,6 +427,13 @@ export const ControlledPagination: Story = {
       </div>
     );
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'A fully controlled pagination component with state management, dynamically rendering page numbers and ellipsis based on the current page and total pages.',
+      },
+    },
+  },
 };
 
 export const SearchResults: Story = {
@@ -437,6 +486,13 @@ export const SearchResults: Story = {
       </Pagination>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A pagination component integrated into a search results page, showing how pagination works with content listings and search result counts.',
+      },
+    },
+  },
 };
 
 export const DataTable: Story = {
@@ -510,6 +566,13 @@ export const DataTable: Story = {
       </div>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A pagination component integrated into a data table, showing how pagination works with tabular data and record counts.',
+      },
+    },
+  },
 };
 
 export const BlogPosts: Story = {
@@ -571,6 +634,13 @@ export const BlogPosts: Story = {
       </div>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A pagination component integrated into a blog post listing, showing how pagination works with article grids and content listings.',
+      },
+    },
+  },
 };
 
 export const CompactMobile: Story = {
@@ -606,4 +676,11 @@ export const CompactMobile: Story = {
       </Pagination>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A compact pagination component optimized for mobile devices, showing a minimal number of page buttons suitable for smaller screens.',
+      },
+    },
+  },
 };

@@ -47,6 +47,13 @@ export const Pending: Story = {
     },
     showProgress: false,
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Task in pending state, waiting to be started, displayed without a progress bar.',
+      },
+    },
+  },
 };
 
 export const InProgress: Story = {
@@ -57,6 +64,13 @@ export const InProgress: Story = {
       progress: 45,
     },
     showProgress: true,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Task in progress with a progress bar showing 45% completion, indicating active work.',
+      },
+    },
   },
 };
 
@@ -69,6 +83,13 @@ export const Complete: Story = {
     },
     showProgress: true,
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Task completed successfully with progress bar at 100%, showing a finished state.',
+      },
+    },
+  },
 };
 
 export const Failed: Story = {
@@ -80,6 +101,13 @@ export const Failed: Story = {
     },
     showProgress: false,
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Task that has failed with an error message displayed, showing what went wrong.',
+      },
+    },
+  },
 };
 
 export const Cancelled: Story = {
@@ -89,6 +117,13 @@ export const Cancelled: Story = {
       status: 'cancelled',
     },
     showProgress: false,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Task that has been cancelled, typically by user action, displayed without progress.',
+      },
+    },
   },
 };
 
@@ -103,6 +138,13 @@ export const WithTimestamp: Story = {
     },
     showProgress: true,
     showTimestamp: true,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Task with timestamps displayed, showing when the task was created and last updated, useful for tracking task history.',
+      },
+    },
   },
 };
 

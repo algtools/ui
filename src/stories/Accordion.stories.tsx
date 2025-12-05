@@ -58,6 +58,14 @@ export const Default: Story = {
       </AccordionItem>
     </Accordion>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'A basic accordion component with single type selection and collapsible enabled, allowing one item to be open at a time.',
+      },
+    },
+  },
 };
 
 export const Single: Story = {
@@ -90,6 +98,14 @@ export const Single: Story = {
       </AccordionItem>
     </Accordion>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Demonstrates single type accordion behavior where only one item can be open at a time, with collapsible enabled.',
+      },
+    },
+  },
 };
 
 export const Multiple: Story = {
@@ -121,6 +137,14 @@ export const Multiple: Story = {
       </AccordionItem>
     </Accordion>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Demonstrates multiple type accordion behavior where multiple items can be open simultaneously, allowing independent expansion and collapse.',
+      },
+    },
+  },
 };
 
 export const WithRichContent: Story = {
@@ -182,6 +206,14 @@ export const WithRichContent: Story = {
       </AccordionItem>
     </Accordion>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'An accordion with rich content including lists, formatted text, and code examples, demonstrating the flexibility of accordion content.',
+      },
+    },
+  },
 };
 
 export const Disabled: Story = {
@@ -207,6 +239,14 @@ export const Disabled: Story = {
       </AccordionItem>
     </Accordion>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'A disabled accordion where all items are non-interactive and cannot be expanded or collapsed.',
+      },
+    },
+  },
 };
 
 export const FAQ: Story = {
@@ -248,4 +288,12 @@ export const FAQ: Story = {
       </AccordionItem>
     </Accordion>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'An accordion used as a FAQ section, demonstrating a common use case with multiple questions and answers.',
+      },
+    },
+  },
 };

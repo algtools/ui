@@ -43,6 +43,13 @@ export const Default: Story = {
       <AlertDescription>You can add components to your app using the cli.</AlertDescription>
     </Alert>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A default alert with an icon, title, and description, demonstrating basic alert functionality.',
+      },
+    },
+  },
 };
 
 export const Destructive: Story = {
@@ -56,6 +63,13 @@ export const Destructive: Story = {
       <AlertDescription>Your session has expired. Please log in again.</AlertDescription>
     </Alert>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A destructive alert for errors and critical issues, using a warning icon and destructive styling.',
+      },
+    },
+  },
 };
 
 export const Success: Story = {
@@ -69,6 +83,13 @@ export const Success: Story = {
       <AlertDescription>Your changes have been saved successfully.</AlertDescription>
     </Alert>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A success alert with green styling, indicating successful completion of an action.',
+      },
+    },
+  },
 };
 
 export const Warning: Story = {
@@ -84,6 +105,13 @@ export const Warning: Story = {
       </AlertDescription>
     </Alert>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A warning alert with yellow styling, indicating caution or important information that requires attention.',
+      },
+    },
+  },
 };
 
 export const WithoutIcon: Story = {
@@ -98,6 +126,13 @@ export const WithoutIcon: Story = {
       </AlertDescription>
     </Alert>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'An alert without an icon, showing just the title and description for a cleaner look.',
+      },
+    },
+  },
 };
 
 export const TitleOnly: Story = {
@@ -110,6 +145,13 @@ export const TitleOnly: Story = {
       <AlertTitle>New features are now available!</AlertTitle>
     </Alert>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'An alert with only a title and icon, demonstrating minimal alert content.',
+      },
+    },
+  },
 };
 
 export const DescriptionOnly: Story = {
@@ -125,6 +167,13 @@ export const DescriptionOnly: Story = {
       </AlertDescription>
     </Alert>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'An alert with only a description and icon, demonstrating description-only alerts.',
+      },
+    },
+  },
 };
 
 export const NetworkStatus: Story = {
@@ -148,6 +197,13 @@ export const NetworkStatus: Story = {
       </Alert>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Network status alerts showing connection status, demonstrating how to use alerts for system status indicators.',
+      },
+    },
+  },
 };
 
 export const SecurityAlert: Story = {
@@ -170,6 +226,13 @@ export const SecurityAlert: Story = {
       </AlertDescription>
     </Alert>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A security alert with action buttons, demonstrating how to include interactive elements in alerts.',
+      },
+    },
+  },
 };
 
 export const DownloadProgress: Story = {
@@ -190,6 +253,13 @@ export const DownloadProgress: Story = {
       </AlertDescription>
     </Alert>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A download progress alert with a progress bar, demonstrating how to show progress within alerts.',
+      },
+    },
+  },
 };
 
 export const TipAlert: Story = {
@@ -209,6 +279,13 @@ export const TipAlert: Story = {
       </AlertDescription>
     </Alert>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A tip alert with amber styling and keyboard shortcut information, demonstrating how to show helpful tips and shortcuts.',
+      },
+    },
+  },
 };
 
 export const MultipleAlerts: Story = {
@@ -239,4 +316,11 @@ export const MultipleAlerts: Story = {
       </Alert>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Multiple alerts displayed together, demonstrating how to show different types of alerts in a list.',
+      },
+    },
+  },
 };

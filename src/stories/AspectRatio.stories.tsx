@@ -35,6 +35,13 @@ export const Default: Story = {
       </AspectRatio>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Default aspect ratio component maintaining a 16:9 widescreen ratio for images and media content.',
+      },
+    },
+  },
 };
 
 export const Square: Story = {
@@ -52,6 +59,13 @@ export const Square: Story = {
       </AspectRatio>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A square aspect ratio (1:1) commonly used for profile pictures and social media images.',
+      },
+    },
+  },
 };
 
 export const Portrait: Story = {
@@ -69,6 +83,13 @@ export const Portrait: Story = {
       </AspectRatio>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A portrait aspect ratio (3:4) suitable for vertical images and portrait photography.',
+      },
+    },
+  },
 };
 
 export const UltraWide: Story = {
@@ -86,6 +107,13 @@ export const UltraWide: Story = {
       </AspectRatio>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'An ultra-wide aspect ratio (21:9) ideal for cinematic landscape images and panoramic views.',
+      },
+    },
+  },
 };
 
 export const VideoPlayer: Story = {
@@ -109,6 +137,13 @@ export const VideoPlayer: Story = {
       </AspectRatio>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'An aspect ratio container for video players, maintaining the standard 16:9 widescreen format.',
+      },
+    },
+  },
 };
 
 export const CardContent: Story = {
@@ -135,6 +170,13 @@ export const CardContent: Story = {
       </div>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'An aspect ratio component used within a card layout, maintaining a 4:3 standard ratio for card images.',
+      },
+    },
+  },
 };
 
 export const PlaceholderContent: Story = {
@@ -163,6 +205,13 @@ export const PlaceholderContent: Story = {
       </AspectRatio>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'An aspect ratio container with placeholder content, useful for loading states or empty image slots.',
+      },
+    },
+  },
 };
 
 export const ResponsiveGallery: Story = {
@@ -212,6 +261,13 @@ export const ResponsiveGallery: Story = {
       </AspectRatio>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A responsive image gallery using square aspect ratios in a grid layout that adapts to different screen sizes.',
+      },
+    },
+  },
 };
 
 export const CommonRatios: Story = {
@@ -263,4 +319,11 @@ export const CommonRatios: Story = {
       </div>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A showcase of common aspect ratios (16:9, 4:3, 1:1, 3:4, 21:9) demonstrating their visual differences.',
+      },
+    },
+  },
 };

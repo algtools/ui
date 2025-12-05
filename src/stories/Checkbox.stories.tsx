@@ -42,6 +42,13 @@ export const Default: Story = {
       <Label htmlFor="default">Accept terms and conditions</Label>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Default checkbox in unchecked state, typically used with a label for user input.',
+      },
+    },
+  },
 };
 
 export const Checked: Story = {
@@ -55,6 +62,13 @@ export const Checked: Story = {
       <Label htmlFor="checked">Receive notifications</Label>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Checkbox in checked state, showing the selected appearance.',
+      },
+    },
+  },
 };
 
 export const Disabled: Story = {
@@ -70,6 +84,13 @@ export const Disabled: Story = {
       </Label>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Disabled checkbox in unchecked state, showing how unavailable options are displayed.',
+      },
+    },
+  },
 };
 
 export const DisabledChecked: Story = {
@@ -85,6 +106,13 @@ export const DisabledChecked: Story = {
       </Label>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Disabled checkbox in checked state, useful for showing required features that cannot be toggled.',
+      },
+    },
+  },
 };
 
 export const WithDescription: Story = {
@@ -99,6 +127,13 @@ export const WithDescription: Story = {
       </p>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Checkbox with a descriptive text below the label, providing additional context for the option.',
+      },
+    },
+  },
 };
 
 export const CheckboxGroup: Story = {
@@ -153,6 +188,13 @@ export const CheckboxGroup: Story = {
         </div>
       </div>
     );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Group of checkboxes with independent state management, allowing users to select multiple options from a list.',
+      },
+    },
   },
 };
 
@@ -238,6 +280,13 @@ export const FormExample: Story = {
       </Card>
     );
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Checkboxes integrated into a complete form with validation, demonstrating real-world usage in preference settings.',
+      },
+    },
+  },
 };
 
 export const SelectAllExample: Story = {
@@ -296,6 +345,13 @@ export const SelectAllExample: Story = {
       </div>
     );
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Checkbox list with a "select all" master checkbox that toggles all items, commonly used in data tables and bulk actions.',
+      },
+    },
+  },
 };
 
 export const CustomStyling: Story = {
@@ -323,6 +379,13 @@ export const CustomStyling: Story = {
       </div>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Checkboxes with custom styling including different colors, shapes (rounded), and sizes, demonstrating full styling flexibility.',
+      },
+    },
+  },
 };
 
 export const ValidationStates: Story = {
@@ -359,6 +422,13 @@ export const ValidationStates: Story = {
       </div>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Checkboxes with validation states (valid, invalid, warning) and associated feedback messages, demonstrating form validation patterns.',
+      },
+    },
+  },
 };
 
 export const AccessibilityExample: Story = {
@@ -391,4 +461,11 @@ export const AccessibilityExample: Story = {
       </div>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Accessibility demonstration showing keyboard navigation, screen reader support, and proper label associations for inclusive design.',
+      },
+    },
+  },
 };

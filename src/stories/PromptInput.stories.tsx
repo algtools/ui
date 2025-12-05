@@ -74,6 +74,13 @@ export const Default: Story = {
       <PromptInput {...args} />
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Default prompt input with basic functionality, auto-resizing textarea and submit button.',
+      },
+    },
+  },
 };
 
 export const WithCharacterCount: Story = {
@@ -86,6 +93,13 @@ export const WithCharacterCount: Story = {
       <PromptInput {...args} />
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Prompt input with character count display, showing the current number of characters entered.',
+      },
+    },
+  },
 };
 
 export const WithMaxLength: Story = {
@@ -102,6 +116,13 @@ export const WithMaxLength: Story = {
       </p>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Prompt input with maximum character length limit (280 characters), showing warnings when the limit is exceeded.',
+      },
+    },
+  },
 };
 
 export const WithAttachments: Story = {
@@ -114,6 +135,13 @@ export const WithAttachments: Story = {
       <PromptInput {...args} onAttachmentClick={() => alert('Attachment button clicked!')} />
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Prompt input with attachment button enabled, allowing users to attach files alongside their messages.',
+      },
+    },
+  },
 };
 
 export const LoadingState: Story = {
@@ -128,6 +156,13 @@ export const LoadingState: Story = {
       <p className="mt-2 text-sm text-muted-foreground">The input is disabled while loading</p>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Prompt input in loading state, disabled while processing a request to prevent multiple submissions.',
+      },
+    },
+  },
 };
 
 export const DisabledState: Story = {
@@ -140,6 +175,13 @@ export const DisabledState: Story = {
       <PromptInput {...args} />
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Disabled prompt input, preventing user interaction when the input should not be editable.',
+      },
+    },
+  },
 };
 
 export const CustomHeight: Story = {
@@ -154,6 +196,13 @@ export const CustomHeight: Story = {
       <p className="mt-2 text-sm text-muted-foreground">Min height: 100px, Max height: 400px</p>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Prompt input with custom minimum and maximum height constraints, controlling the auto-resize behavior.',
+      },
+    },
+  },
 };
 
 export const Interactive: Story = {
@@ -234,6 +283,13 @@ export const Interactive: Story = {
         </CardContent>
       </Card>
     );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Interactive chat demo showing the prompt input in a real chat interface, with message history and simulated AI responses.',
+      },
+    },
   },
 };
 
@@ -324,6 +380,13 @@ export const WithAllFeatures: Story = {
       </div>
     );
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Complete prompt input with all features enabled: character count, max length, attachments, auto-resize, and keyboard shortcuts.',
+      },
+    },
+  },
 };
 
 export const MultipleInputs: Story = {
@@ -377,6 +440,13 @@ export const MultipleInputs: Story = {
       </div>
     );
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Multiple prompt inputs with different configurations (short, medium, large), demonstrating various use cases and size constraints.',
+      },
+    },
+  },
 };
 
 export const ErrorState: Story = {
@@ -402,6 +472,13 @@ export const ErrorState: Story = {
         </p>
       </div>
     );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Prompt input in error state when character limit is exceeded, showing visual feedback and preventing submission.',
+      },
+    },
   },
 };
 
@@ -445,5 +522,12 @@ export const AccessibilityDemo: Story = {
         </Card>
       </div>
     );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Accessibility demonstration showing all ARIA features, keyboard navigation, and screen reader support built into the component.',
+      },
+    },
   },
 };

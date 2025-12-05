@@ -45,12 +45,28 @@ export const Default: Story = {
     variant: 'default',
     children: 'Badge',
   },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Default badge variant with standard styling, suitable for general-purpose labels and tags.',
+      },
+    },
+  },
 };
 
 export const Secondary: Story = {
   args: {
     variant: 'secondary',
     children: 'Secondary',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Secondary badge variant with muted styling, ideal for less prominent labels or secondary information.',
+      },
+    },
   },
 };
 
@@ -59,12 +75,28 @@ export const Destructive: Story = {
     variant: 'destructive',
     children: 'Destructive',
   },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Destructive badge variant with red styling, typically used for errors, warnings, or critical status indicators.',
+      },
+    },
+  },
 };
 
 export const Outline: Story = {
   args: {
     variant: 'outline',
     children: 'Outline',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Outline badge variant with border-only styling, providing a subtle appearance for less emphasized labels.',
+      },
+    },
   },
 };
 
@@ -77,6 +109,14 @@ export const AllVariants: Story = {
       <Badge variant="outline">Outline</Badge>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'All available badge variants displayed together for easy comparison of styling options.',
+      },
+    },
+  },
 };
 
 export const WithIcons: Story = {
@@ -100,6 +140,13 @@ export const WithIcons: Story = {
       </Badge>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Badges with icons alongside text, enhancing visual communication and meaning.',
+      },
+    },
+  },
 };
 
 export const StatusBadges: Story = {
@@ -127,6 +174,14 @@ export const StatusBadges: Story = {
       </Badge>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Status badges with custom colors and icons, demonstrating how to create status indicators for different states (active, pending, draft, inactive, premium).',
+      },
+    },
+  },
 };
 
 export const NotificationBadges: Story = {
@@ -152,6 +207,14 @@ export const NotificationBadges: Story = {
       </div>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Badges used as notification counters and indicators, showing unread counts and status labels alongside menu items.',
+      },
+    },
+  },
 };
 
 export const CategoryTags: Story = {
@@ -191,6 +254,14 @@ export const CategoryTags: Story = {
       </div>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Badges used as category tags and skill labels, demonstrating how to organize and display categorical information.',
+      },
+    },
+  },
 };
 
 export const EventBadges: Story = {
@@ -243,6 +314,14 @@ export const EventBadges: Story = {
       </div>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Badges used in event cards to display status (live, upcoming) and metadata (date, time, location, attendees) with icons.',
+      },
+    },
+  },
 };
 
 export const PriorityBadges: Story = {
@@ -275,6 +354,14 @@ export const PriorityBadges: Story = {
       </div>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Priority badges used in task lists or issue trackers, indicating urgency levels from critical to low with color-coded styling.',
+      },
+    },
+  },
 };
 
 export const UserRoles: Story = {
@@ -323,6 +410,14 @@ export const UserRoles: Story = {
       </div>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Badges used to display user roles (admin, moderator, user, guest) in user lists, with custom colors and icons for different permission levels.',
+      },
+    },
+  },
 };
 
 export const CustomStyling: Story = {
@@ -351,6 +446,14 @@ export const CustomStyling: Story = {
       </Badge>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Badges with custom styling including gradients, dark themes, high contrast, and custom color schemes, demonstrating full styling flexibility.',
+      },
+    },
+  },
 };
 
 export const InteractiveBadges: Story = {
@@ -405,4 +508,12 @@ export const InteractiveBadges: Story = {
       </div>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Interactive badges that can be clicked or removed, using the asChild prop for composition and embedded close buttons for removable tags.',
+      },
+    },
+  },
 };

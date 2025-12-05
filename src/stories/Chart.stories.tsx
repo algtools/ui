@@ -163,6 +163,13 @@ export const Default: Story = {
       </ChartContainer>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A default bar chart displaying monthly data for desktop and mobile, demonstrating basic chart functionality.',
+      },
+    },
+  },
 };
 
 export const LineChartExample: Story = {
@@ -207,6 +214,13 @@ export const LineChartExample: Story = {
       </ChartContainer>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A line chart displaying trends over time, demonstrating how to visualize data with line charts.',
+      },
+    },
+  },
 };
 
 export const AreaChartExample: Story = {
@@ -253,6 +267,13 @@ export const AreaChartExample: Story = {
       </ChartContainer>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'An area chart with filled areas showing data trends, demonstrating area chart visualization.',
+      },
+    },
+  },
 };
 
 export const PieChartExample: Story = {
@@ -276,6 +297,13 @@ export const PieChartExample: Story = {
       </ChartContainer>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A pie chart displaying data distribution, demonstrating how to show proportional data.',
+      },
+    },
+  },
 };
 
 export const RadialBarChartExample: Story = {
@@ -289,6 +317,13 @@ export const RadialBarChartExample: Story = {
       </ChartContainer>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A radial bar chart displaying data in a circular format, demonstrating radial chart visualization.',
+      },
+    },
+  },
 };
 
 export const WithLegend: Story = {
@@ -312,6 +347,13 @@ export const WithLegend: Story = {
       </ChartContainer>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A chart with a legend showing data series labels, demonstrating how to add legends to charts.',
+      },
+    },
+  },
 };
 
 export const RevenueAnalysis: Story = {
@@ -331,6 +373,13 @@ export const RevenueAnalysis: Story = {
       </ChartContainer>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A revenue analysis chart displaying financial data and trends, demonstrating business analytics use cases.',
+      },
+    },
+  },
 };
 
 export const StackedAreaChart: Story = {
@@ -377,6 +426,13 @@ export const StackedAreaChart: Story = {
       </ChartContainer>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A stacked area chart showing multiple data series stacked on top of each other, demonstrating stacked visualizations.',
+      },
+    },
+  },
 };
 
 export const MultipleCharts: Story = {
@@ -434,6 +490,13 @@ export const MultipleCharts: Story = {
       </div>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Multiple charts displayed together, demonstrating how to show different chart types on the same page.',
+      },
+    },
+  },
 };
 
 export const CustomTooltip: Story = {
@@ -470,6 +533,13 @@ export const CustomTooltip: Story = {
       </ChartContainer>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A chart with custom tooltip content, demonstrating how to customize tooltip appearance and information.',
+      },
+    },
+  },
 };
 
 // Extended data with all 5 chart colors
@@ -530,6 +600,13 @@ export const AllChartColors: Story = {
       </ChartContainer>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A chart displaying all 5 chart theme colors (chart-1 through chart-5) in a single bar chart, demonstrating the full color palette.',
+      },
+    },
+  },
 };
 
 export const ChartColorPalette: Story = {
@@ -607,4 +684,11 @@ export const ChartColorPalette: Story = {
       </div>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A chart color palette showcase displaying all available chart colors with examples of line and pie charts using the color system.',
+      },
+    },
+  },
 };

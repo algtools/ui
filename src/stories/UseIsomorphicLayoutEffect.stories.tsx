@@ -203,27 +203,37 @@ type Story = StoryObj<typeof meta>;
  */
 export const DomMeasurement: Story = {
   render: () => <DomMeasurementDemo />,
+  parameters: {
+    docs: {
+      description: {
+        story: 'Demonstrates DOM measurement using useIsomorphicLayoutEffect to synchronously measure elements before the browser paints.',
+      },
+    },
+  },
 };
 
-/**
- * Demonstrates the synchronous nature of useIsomorphicLayoutEffect on the client.
- * The layout effect runs immediately after DOM mutations but before the browser paints.
- */
 export const SynchronousExecution: Story = {
   render: () => <SynchronousUpdateDemo />,
+  parameters: {
+    docs: {
+      description: {
+        story: 'Demonstrates the synchronous nature of useIsomorphicLayoutEffect on the client. The layout effect runs immediately after DOM mutations but before the browser paints.',
+      },
+    },
+  },
 };
 
-/**
- * Shows how to track scroll position with useIsomorphicLayoutEffect.
- * Event listeners are attached synchronously on the client.
- */
 export const ScrollTracking: Story = {
   render: () => <ScrollPositionDemo />,
+  parameters: {
+    docs: {
+      description: {
+        story: 'Shows how to track scroll position with useIsomorphicLayoutEffect. Event listeners are attached synchronously on the client.',
+      },
+    },
+  },
 };
 
-/**
- * Multiple instances of the hook can be used in the same component.
- */
 export const MultipleEffects: Story = {
   render: () => {
     function MultipleEffectsDemo() {
@@ -275,11 +285,15 @@ export const MultipleEffects: Story = {
 
     return <MultipleEffectsDemo />;
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Multiple instances of the hook can be used in the same component, demonstrating how multiple layout effects run synchronously in order.',
+      },
+    },
+  },
 };
 
-/**
- * Example showing cleanup function usage.
- */
 export const WithCleanup: Story = {
   render: () => {
     function CleanupDemo() {
@@ -346,5 +360,12 @@ export const WithCleanup: Story = {
     }
 
     return <CleanupDemo />;
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Example showing cleanup function usage with useIsomorphicLayoutEffect, demonstrating how to properly clean up resources when the effect is disabled or the component unmounts.',
+      },
+    },
   },
 };

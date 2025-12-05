@@ -79,6 +79,13 @@ export const Default: Story = {
       </HoverCardContent>
     </HoverCard>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A default hover card that appears on hover, displaying user information with avatar, username, and join date.',
+      },
+    },
+  },
 };
 
 export const UserProfile: Story = {
@@ -126,6 +133,13 @@ export const UserProfile: Story = {
       </HoverCardContent>
     </HoverCard>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A user profile hover card with detailed user information, demonstrating comprehensive profile previews.',
+      },
+    },
+  },
 };
 
 export const RepositoryPreview: Story = {
@@ -188,6 +202,13 @@ export const RepositoryPreview: Story = {
       </HoverCardContent>
     </HoverCard>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A repository preview hover card showing repository information like stars, forks, and description.',
+      },
+    },
+  },
 };
 
 export const ProductPreview: Story = {
@@ -247,6 +268,13 @@ export const ProductPreview: Story = {
       </HoverCardContent>
     </HoverCard>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A product preview hover card displaying product information, price, and details, demonstrating e-commerce use cases.',
+      },
+    },
+  },
 };
 
 export const HelpTooltip: Story = {
@@ -287,6 +315,13 @@ export const HelpTooltip: Story = {
       </HoverCard>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A help tooltip hover card providing contextual help and information, demonstrating help content display.',
+      },
+    },
+  },
 };
 
 export const TeamMember: Story = {
@@ -350,6 +385,13 @@ export const TeamMember: Story = {
       </HoverCardContent>
     </HoverCard>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A team member hover card displaying team member information, role, and contact details.',
+      },
+    },
+  },
 };
 
 export const ArticlePreview: Story = {
@@ -427,6 +469,13 @@ export const ArticlePreview: Story = {
       </HoverCardContent>
     </HoverCard>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'An article preview hover card showing article title, excerpt, and metadata, demonstrating content previews.',
+      },
+    },
+  },
 };
 
 export const CompanyInfo: Story = {
@@ -490,6 +539,13 @@ export const CompanyInfo: Story = {
       </HoverCardContent>
     </HoverCard>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A company info hover card displaying company details, location, and contact information.',
+      },
+    },
+  },
 };
 
 export const MultipleHoverCards: Story = {
@@ -549,4 +605,11 @@ export const MultipleHoverCards: Story = {
       </div>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Multiple hover cards displayed together, demonstrating how to manage multiple hover card instances on the same page.',
+      },
+    },
+  },
 };

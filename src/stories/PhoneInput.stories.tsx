@@ -37,6 +37,13 @@ export const Default: Story = {
       </div>
     );
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'A default phone input component with country selection, allowing users to enter phone numbers with international formatting.',
+      },
+    },
+  },
 };
 
 export const DefaultCountryMX: Story = {
@@ -55,6 +62,13 @@ export const DefaultCountryMX: Story = {
       </div>
     );
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'A phone input with Mexico (MX) set as the default country, demonstrating country-specific default configuration.',
+      },
+    },
+  },
 };
 
 export const InternationalizationES: Story = {
@@ -72,5 +86,12 @@ export const InternationalizationES: Story = {
         <div className="mt-3 text-sm text-muted-foreground">Valor: {value || '—'}</div>
       </div>
     );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'A phone input with Spanish (ES) internationalization, demonstrating how to localize the component for different languages.',
+      },
+    },
   },
 };

@@ -77,6 +77,13 @@ export const Default: Story = {
       </ResizablePanelGroup>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A basic resizable panel layout with two equal-sized panels that can be resized by dragging the handle between them.',
+      },
+    },
+  },
 };
 
 export const WithHandle: Story = {
@@ -97,6 +104,13 @@ export const WithHandle: Story = {
       </ResizablePanelGroup>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A resizable panel with a visible handle indicator, making it clearer where users can drag to resize panels.',
+      },
+    },
+  },
 };
 
 export const VerticalLayout: Story = {
@@ -117,6 +131,13 @@ export const VerticalLayout: Story = {
       </ResizablePanelGroup>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A vertical resizable layout with panels stacked top to bottom, useful for header/content or editor/terminal splits.',
+      },
+    },
+  },
 };
 
 export const ThreePanels: Story = {
@@ -143,6 +164,13 @@ export const ThreePanels: Story = {
       </ResizablePanelGroup>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A three-panel horizontal layout with a sidebar, main content area, and right panel, all independently resizable.',
+      },
+    },
+  },
 };
 
 export const NestedPanels: Story = {
@@ -219,9 +247,23 @@ export const NestedPanels: Story = {
       </ResizablePanelGroup>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Nested resizable panels creating a complex layout with horizontal and vertical splits, ideal for dashboard and editor interfaces.',
+      },
+    },
+  },
 };
 
 export const CodeEditor: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'A code editor layout with file explorer, code editor, terminal, and properties panel, demonstrating a real-world IDE interface.',
+      },
+    },
+  },
   render: () => (
     <div className="h-[600px] w-full border rounded-lg overflow-hidden">
       <ResizablePanelGroup direction="horizontal">
@@ -353,6 +395,13 @@ export const CodeEditor: Story = {
 };
 
 export const EmailClient: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'An email client interface with folders, message list, and email preview panels, showcasing a three-panel email application layout.',
+      },
+    },
+  },
   render: () => (
     <div className="h-[600px] w-full border rounded-lg overflow-hidden">
       <ResizablePanelGroup direction="horizontal">
@@ -534,6 +583,13 @@ export const EmailClient: Story = {
 };
 
 export const Dashboard: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'A comprehensive analytics dashboard with stats cards, charts, and activity feed, using nested resizable panels for flexible layouts.',
+      },
+    },
+  },
   render: () => (
     <div className="h-[600px] w-full">
       <ResizablePanelGroup direction="vertical">

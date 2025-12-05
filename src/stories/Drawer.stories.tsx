@@ -104,6 +104,13 @@ export const BottomDrawer: Story = {
       </DrawerContent>
     </Drawer>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A bottom drawer that slides up from the bottom of the screen, ideal for mobile interfaces, action sheets, and quick access tools.',
+      },
+    },
+  },
 };
 
 export const LeftDrawer: Story = {
@@ -165,6 +172,13 @@ export const LeftDrawer: Story = {
       </DrawerContent>
     </Drawer>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A left drawer that slides in from the left side, commonly used for navigation menus and sidebars.',
+      },
+    },
+  },
 };
 
 export const RightDrawer: Story = {
@@ -241,6 +255,13 @@ export const RightDrawer: Story = {
       </DrawerContent>
     </Drawer>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A right drawer that slides in from the right side, ideal for settings panels, filters, and secondary content.',
+      },
+    },
+  },
 };
 
 export const TopDrawer: Story = {
@@ -311,6 +332,13 @@ export const TopDrawer: Story = {
       </DrawerContent>
     </Drawer>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A top drawer that slides down from the top of the screen, useful for notifications, alerts, and quick messages.',
+      },
+    },
+  },
 };
 
 export const ShoppingCartDrawer: Story = {
@@ -410,6 +438,13 @@ export const ShoppingCartDrawer: Story = {
         </DrawerContent>
       </Drawer>
     );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'A shopping cart drawer displaying cart items with quantities, prices, and checkout functionality, demonstrating e-commerce use cases.',
+      },
+    },
   },
 };
 
@@ -544,6 +579,13 @@ export const FilterDrawer: Story = {
       </Drawer>
     );
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'A filter drawer with various filter options including checkboxes, sliders, and dropdowns, demonstrating how to implement filtering interfaces.',
+      },
+    },
+  },
 };
 
 export const ProfileDrawer: Story = {
@@ -655,6 +697,13 @@ export const ProfileDrawer: Story = {
       </DrawerContent>
     </Drawer>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A profile drawer displaying user information, settings, and account actions, demonstrating a comprehensive user profile interface.',
+      },
+    },
+  },
 };
 
 export const SearchDrawer: Story = {
@@ -754,6 +803,13 @@ export const SearchDrawer: Story = {
         </DrawerContent>
       </Drawer>
     );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'A search drawer with a search input, recent searches, and quick actions, demonstrating how to implement search functionality in a drawer.',
+      },
+    },
   },
 };
 
@@ -859,4 +915,11 @@ export const MobileMenuDrawer: Story = {
       <span className="text-sm text-muted-foreground">← Try the mobile menu</span>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A mobile menu drawer with navigation links, user profile, and settings, demonstrating a complete mobile navigation interface.',
+      },
+    },
+  },
 };

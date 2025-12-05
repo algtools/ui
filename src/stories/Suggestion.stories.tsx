@@ -73,6 +73,13 @@ export const Default: Story = {
   args: {
     text: 'Tell me more about this',
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Default suggestion chip with standard styling, ready for use in AI chat interfaces as follow-up prompts.',
+      },
+    },
+  },
 };
 
 /**

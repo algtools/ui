@@ -58,6 +58,13 @@ export const Default: Story = {
       </Carousel>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A basic horizontal carousel with navigation arrows, displaying a series of numbered cards.',
+      },
+    },
+  },
 };
 
 export const MultipleItems: Story = {
@@ -87,6 +94,13 @@ export const MultipleItems: Story = {
       </Carousel>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A carousel displaying multiple items per view with responsive breakpoints, showing 2 items on medium screens and 3 on large screens.',
+      },
+    },
+  },
 };
 
 export const ProductCarousel: Story = {
@@ -150,6 +164,13 @@ export const ProductCarousel: Story = {
         </Carousel>
       </div>
     );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'An e-commerce product carousel showcasing products with images, ratings, and pricing in a scrollable layout.',
+      },
+    },
   },
 };
 
@@ -215,6 +236,13 @@ export const TestimonialCarousel: Story = {
       </div>
     );
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'A testimonial carousel displaying customer reviews with quotes, author information, and avatars.',
+      },
+    },
+  },
 };
 
 export const ImageGallery: Story = {
@@ -263,6 +291,13 @@ export const ImageGallery: Story = {
         </Carousel>
       </div>
     );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'An image gallery carousel with media previews, titles, descriptions, and interactive elements like favorite buttons.',
+      },
+    },
   },
 };
 
@@ -339,6 +374,13 @@ export const EventCarousel: Story = {
       </div>
     );
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'An event carousel displaying upcoming events with date, location, pricing, and registration buttons.',
+      },
+    },
+  },
 };
 
 export const VerticalCarousel: Story = {
@@ -369,6 +411,13 @@ export const VerticalCarousel: Story = {
       </Carousel>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A vertical carousel that scrolls up and down, useful for mobile interfaces or vertical content layouts.',
+      },
+    },
+  },
 };
 
 export const WithDotIndicators: Story = {
@@ -424,6 +473,13 @@ export const WithDotIndicators: Story = {
       </div>
     );
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'A carousel with dot indicators showing the current slide position and allowing direct navigation to any slide.',
+      },
+    },
+  },
 };
 
 export const AutoplayCarousel: Story = {
@@ -476,6 +532,13 @@ export const AutoplayCarousel: Story = {
       </div>
     );
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'An auto-playing carousel that automatically advances slides every 3 seconds, useful for feature showcases.',
+      },
+    },
+  },
 };
 
 export const ResponsiveCarousel: Story = {
@@ -511,4 +574,11 @@ export const ResponsiveCarousel: Story = {
       </div>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A fully responsive carousel that adapts the number of visible items based on screen size, from 1 item on mobile to 5 on extra-large screens.',
+      },
+    },
+  },
 };

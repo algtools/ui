@@ -35,10 +35,24 @@ export const Default: Story = {
       <Skeleton className="w-[200px] h-6" />
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Default skeleton loaders in different widths, demonstrating basic skeleton loading states.',
+      },
+    },
+  },
 };
 
 export const SingleSkeleton: Story = {
   render: () => <Skeleton className="w-[250px] h-8 rounded-md" />,
+  parameters: {
+    docs: {
+      description: {
+        story: 'A single skeleton loader element, demonstrating minimal skeleton usage.',
+      },
+    },
+  },
 };
 
 export const Sizes: Story = {
@@ -64,6 +78,13 @@ export const Sizes: Story = {
       </div>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Skeleton loaders in different sizes (small, medium, large), demonstrating size variations.',
+      },
+    },
+  },
 };
 
 export const CardSkeleton: Story = {
@@ -95,6 +116,13 @@ export const CardSkeleton: Story = {
       </Card>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A card skeleton loader mimicking a card layout with image, title, and description placeholders.',
+      },
+    },
+  },
 };
 
 export const ListSkeleton: Story = {
@@ -112,6 +140,13 @@ export const ListSkeleton: Story = {
       ))}
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A list skeleton loader with multiple list item placeholders, demonstrating list loading states.',
+      },
+    },
+  },
 };
 
 export const TableSkeleton: Story = {
@@ -137,6 +172,13 @@ export const TableSkeleton: Story = {
       ))}
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A table skeleton loader with table rows and columns, demonstrating table loading states.',
+      },
+    },
+  },
 };
 
 export const FormSkeleton: Story = {
@@ -170,6 +212,13 @@ export const FormSkeleton: Story = {
       </div>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A form skeleton loader with input fields and labels, demonstrating form loading states.',
+      },
+    },
+  },
 };
 
 export const ProfileSkeleton: Story = {
@@ -224,6 +273,13 @@ export const ProfileSkeleton: Story = {
       </CardContent>
     </Card>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A profile skeleton loader with avatar, name, and bio placeholders, demonstrating profile loading states.',
+      },
+    },
+  },
 };
 
 export const ChatSkeleton: Story = {
@@ -270,6 +326,13 @@ export const ChatSkeleton: Story = {
       </div>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A chat skeleton loader with message bubbles and avatars, demonstrating chat interface loading states.',
+      },
+    },
+  },
 };
 
 export const DashboardSkeleton: Story = {
@@ -338,6 +401,13 @@ export const DashboardSkeleton: Story = {
       </div>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A dashboard skeleton loader with cards, charts, and widgets, demonstrating complex dashboard loading states.',
+      },
+    },
+  },
 };
 
 export const GallerySkeleton: Story = {
@@ -358,6 +428,13 @@ export const GallerySkeleton: Story = {
       </div>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A gallery skeleton loader with image grid placeholders, demonstrating gallery loading states.',
+      },
+    },
+  },
 };
 
 export const ArticleSkeleton: Story = {
@@ -407,6 +484,13 @@ export const ArticleSkeleton: Story = {
       </div>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'An article skeleton loader with header, featured image, content paragraphs, and tags, demonstrating article loading states.',
+      },
+    },
+  },
 };
 
 export const TimelineSkeleton: Story = {
@@ -431,4 +515,11 @@ export const TimelineSkeleton: Story = {
       ))}
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A timeline skeleton loader with timeline items and connecting lines, demonstrating timeline loading states.',
+      },
+    },
+  },
 };

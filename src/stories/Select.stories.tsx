@@ -86,6 +86,14 @@ export const Default: Story = {
       </SelectContent>
     </Select>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Default select component with a simple list of options, allowing users to choose from a dropdown menu.',
+      },
+    },
+  },
 };
 
 export const WithGroups: Story = {
@@ -118,6 +126,14 @@ export const WithGroups: Story = {
       </SelectContent>
     </Select>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Select with grouped options and separators, organizing items into categories (Fruits, Vegetables, Grains) for better navigation.',
+      },
+    },
+  },
 };
 
 export const WithIcons: Story = {
@@ -154,6 +170,14 @@ export const WithIcons: Story = {
       </SelectContent>
     </Select>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Select with color-coded icons for status options (success, warning, error, info), providing visual context for each choice.',
+      },
+    },
+  },
 };
 
 export const Countries: Story = {
@@ -248,6 +272,14 @@ export const Countries: Story = {
       </CardContent>
     </Card>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Location settings form with country and timezone selects, demonstrating grouped timezone options organized by region.',
+      },
+    },
+  },
 };
 
 export const TeamMember: Story = {
@@ -323,6 +355,14 @@ export const TeamMember: Story = {
       </CardContent>
     </Card>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Team member selection with avatars and role descriptions, demonstrating rich content in select options for user assignment scenarios.',
+      },
+    },
+  },
 };
 
 export const ProjectSettings: Story = {
@@ -468,6 +508,14 @@ export const ProjectSettings: Story = {
       </Card>
     );
   },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Project configuration form with multiple selects for priority (color indicators), category (grouped with icons), and visibility (with descriptions), demonstrating complex form scenarios.',
+      },
+    },
+  },
 };
 
 export const EcommerceForms: Story = {
@@ -600,6 +648,14 @@ export const EcommerceForms: Story = {
       </Card>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'E-commerce form with shipping and payment selects, featuring pricing badges, icons, and time slot options for checkout scenarios.',
+      },
+    },
+  },
 };
 
 export const SocialActions: Story = {
@@ -671,6 +727,14 @@ export const SocialActions: Story = {
       </CardContent>
     </Card>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Social media action menu with grouped options (Interactions, Sharing, Content Actions, Management), demonstrating organized action menus with color-coded icons.',
+      },
+    },
+  },
 };
 
 export const DisabledStates: Story = {
@@ -724,6 +788,14 @@ export const DisabledStates: Story = {
       </div>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Select disabled states: fully disabled component, and individual disabled items within an enabled select, demonstrating different disabled scenarios.',
+      },
+    },
+  },
 };
 
 export const SizeVariants: Story = {
@@ -758,4 +830,12 @@ export const SizeVariants: Story = {
       </div>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Select size variants (small and default), demonstrating how to adjust the component size for different layout contexts.',
+      },
+    },
+  },
 };

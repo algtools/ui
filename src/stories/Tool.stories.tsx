@@ -57,6 +57,13 @@ export const Pending: Story = {
     showParameters: false,
     showResult: false,
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Tool in pending state, waiting to be executed, displayed without parameters or results.',
+      },
+    },
+  },
 };
 
 export const InProgress: Story = {
@@ -73,6 +80,13 @@ export const InProgress: Story = {
     showParameters: true,
     showResult: false,
     defaultParametersExpanded: true,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Tool currently executing with parameters displayed and expanded, showing what inputs are being used.',
+      },
+    },
   },
 };
 
@@ -98,6 +112,13 @@ export const Complete: Story = {
     defaultParametersExpanded: false,
     defaultResultExpanded: true,
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Tool execution completed successfully with both parameters and results displayed, result section expanded by default.',
+      },
+    },
+  },
 };
 
 export const Failed: Story = {
@@ -117,6 +138,13 @@ export const Failed: Story = {
     defaultParametersExpanded: true,
     defaultResultExpanded: true,
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Tool execution failed with an error message in the result, showing both parameters and error details.',
+      },
+    },
+  },
 };
 
 export const Cancelled: Story = {
@@ -127,6 +155,13 @@ export const Cancelled: Story = {
       parameters: { query: 'test' },
     },
     showParameters: true,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Tool execution cancelled, typically by user action, with parameters displayed.',
+      },
+    },
   },
 };
 
@@ -141,6 +176,13 @@ export const WithoutDescription: Story = {
     showParameters: true,
     showResult: true,
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Tool without a description field, demonstrating how the component handles missing optional metadata.',
+      },
+    },
+  },
 };
 
 export const SimpleStringResult: Story = {
@@ -152,6 +194,13 @@ export const SimpleStringResult: Story = {
       result: '550e8400-e29b-41d4-a716-446655440000',
     },
     showResult: true,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Tool with a simple string result, demonstrating how primitive string values are displayed.',
+      },
+    },
   },
 };
 
@@ -167,6 +216,13 @@ export const NumericResult: Story = {
     showParameters: true,
     showResult: true,
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Tool with a numeric result, showing how numeric values are displayed in the result section.',
+      },
+    },
+  },
 };
 
 export const BooleanResult: Story = {
@@ -180,6 +236,13 @@ export const BooleanResult: Story = {
     },
     showParameters: true,
     showResult: true,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Tool with a boolean result, demonstrating how true/false values are displayed.',
+      },
+    },
   },
 };
 
@@ -212,6 +275,13 @@ export const ComplexParameters: Story = {
     showResult: true,
     defaultParametersExpanded: true,
     defaultResultExpanded: true,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Tool with complex nested parameters and results, demonstrating how deeply nested objects are displayed and formatted.',
+      },
+    },
   },
 };
 

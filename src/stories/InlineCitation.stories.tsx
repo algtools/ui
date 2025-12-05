@@ -118,6 +118,14 @@ export const Default: Story = {
     variant: 'default',
     showPreview: true,
   },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Default inline citation with hover preview, displaying source information when hovering over the citation marker.',
+      },
+    },
+  },
 };
 
 export const Variants: Story = {
@@ -150,6 +158,14 @@ export const Variants: Story = {
       </div>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'All three citation variants: default (bracketed), compact (smaller), and numbered (superscript), demonstrating different visual styles for inline citations.',
+      },
+    },
+  },
 };
 
 export const WithoutPreview: Story = {
@@ -165,6 +181,14 @@ export const WithoutPreview: Story = {
       </p>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Citation without hover preview functionality, displaying only the inline marker without additional information on hover.',
+      },
+    },
+  },
 };
 
 export const ExpandedState: Story = {
@@ -180,6 +204,14 @@ export const ExpandedState: Story = {
       </p>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Citation in expanded state with highlighted styling, useful for indicating active or selected citations.',
+      },
+    },
+  },
 };
 
 export const InteractiveCitation: Story = {
@@ -223,6 +255,14 @@ export const InteractiveCitation: Story = {
       </div>
     );
   },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Interactive citations with click handlers, allowing users to expand and collapse citations to view details.',
+      },
+    },
+  },
 };
 
 export const RichPreviewContent: Story = {
@@ -237,6 +277,14 @@ export const RichPreviewContent: Story = {
       </p>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Citation with rich preview content showing detailed metadata like author, year, publisher, and other academic information.',
+      },
+    },
+  },
 };
 
 export const MinimalCitation: Story = {
@@ -251,6 +299,14 @@ export const MinimalCitation: Story = {
       </p>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Citation with minimal information, demonstrating how the component handles citations with only basic title data.',
+      },
+    },
+  },
 };
 
 export const InTextUsage: Story = {
@@ -289,6 +345,14 @@ export const InTextUsage: Story = {
         </CardContent>
       </Card>
     );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Real-world usage example showing inline citations embedded in article text with a complete reference list at the bottom.',
+      },
+    },
   },
 };
 
@@ -336,6 +400,14 @@ export const CitationListDemo: Story = {
       </Card>
     );
   },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Complete citation list component displaying all references in a formatted list, typically shown at the end of articles or papers.',
+      },
+    },
+  },
 };
 
 export const CustomTitleList: Story = {
@@ -363,6 +435,14 @@ export const CustomTitleList: Story = {
         </Card>
       </div>
     );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Citation lists with custom titles, demonstrating how to customize the section heading for different use cases (Sources, Bibliography, Further Reading).',
+      },
+    },
   },
 };
 
@@ -473,6 +553,14 @@ export const DifferentContentTypes: Story = {
       </Card>
     );
   },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Citations from different content types (books, articles, videos, documentation), showing how the component handles varied source metadata.',
+      },
+    },
+  },
 };
 
 export const LongContentWithManyCitations: Story = {
@@ -533,6 +621,14 @@ export const LongContentWithManyCitations: Story = {
       </Card>
     );
   },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Long-form content with many citations (12+), demonstrating how the component handles extensive citation lists in academic or research contexts.',
+      },
+    },
+  },
 };
 
 export const EmptyCitationList: Story = {
@@ -551,4 +647,12 @@ export const EmptyCitationList: Story = {
       </CardContent>
     </Card>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Empty citation list demonstrating graceful handling when no citations are provided, rendering nothing instead of showing an empty list.',
+      },
+    },
+  },
 };

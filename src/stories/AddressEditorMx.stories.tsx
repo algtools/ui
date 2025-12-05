@@ -142,6 +142,13 @@ export const Default: Story = {
     enableSuggestions: true,
     initialAddress: {},
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'A default Mexican address editor with address suggestions enabled, allowing users to search and select addresses from a provider.',
+      },
+    },
+  },
 };
 
 export const ManualOnly: Story = {
@@ -152,6 +159,13 @@ export const ManualOnly: Story = {
   ),
   args: {
     initialAddress: {},
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'A Mexican address editor with suggestions disabled, requiring users to manually enter all address fields.',
+      },
+    },
   },
 };
 
@@ -174,6 +188,13 @@ export const PrefilledAddress: Story = {
       />
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A Mexican address editor with a prefilled address, demonstrating how to initialize the component with existing address data.',
+      },
+    },
+  },
 };
 
 export const ManySuggestions: Story = {
@@ -201,5 +222,12 @@ export const ManySuggestions: Story = {
   },
   args: {
     enableSuggestions: true,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'A Mexican address editor with many suggestions, demonstrating keyboard navigation through a large list of address suggestions.',
+      },
+    },
   },
 };

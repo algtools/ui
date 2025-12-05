@@ -50,6 +50,13 @@ export const Default: Story = {
   args: {
     children: 'Button',
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Default button with standard styling, ready for use in most scenarios.',
+      },
+    },
+  },
 };
 
 export const Variants: Story = {

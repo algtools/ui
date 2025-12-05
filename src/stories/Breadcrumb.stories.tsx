@@ -46,6 +46,13 @@ export const Default: Story = {
       </BreadcrumbList>
     </Breadcrumb>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A basic breadcrumb navigation showing the current page location within the site hierarchy.',
+      },
+    },
+  },
 };
 
 export const WithHomeIcon: Story = {
@@ -73,6 +80,13 @@ export const WithHomeIcon: Story = {
       </BreadcrumbList>
     </Breadcrumb>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A breadcrumb with a home icon for the root navigation item, providing a visual indicator for the home page.',
+      },
+    },
+  },
 };
 
 export const WithEllipsis: Story = {
@@ -101,9 +115,23 @@ export const WithEllipsis: Story = {
       </BreadcrumbList>
     </Breadcrumb>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A breadcrumb with an ellipsis indicator to collapse intermediate navigation levels, useful for long navigation paths.',
+      },
+    },
+  },
 };
 
 export const CustomSeparators: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Breadcrumbs with custom separator styles including slashes, dots, arrows, and text separators for different design aesthetics.',
+      },
+    },
+  },
   render: () => (
     <div className="space-y-4">
       <div>
@@ -202,6 +230,13 @@ export const CustomSeparators: Story = {
 };
 
 export const FileSystemNavigation: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'A breadcrumb navigation for file system paths, displaying folders and files with appropriate icons for each level.',
+      },
+    },
+  },
   render: () => (
     <Breadcrumb>
       <BreadcrumbList>
@@ -244,6 +279,13 @@ export const FileSystemNavigation: Story = {
 };
 
 export const EcommerceBreadcrumb: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'E-commerce breadcrumbs for product categories, including responsive ellipsis for mobile views to handle long category paths.',
+      },
+    },
+  },
   render: () => (
     <div className="space-y-4">
       <div>
@@ -307,6 +349,13 @@ export const EcommerceBreadcrumb: Story = {
 };
 
 export const AdminDashboard: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Admin dashboard breadcrumbs with icons for different sections like user management and content management, using ellipsis for deep navigation.',
+      },
+    },
+  },
   render: () => (
     <div className="space-y-4">
       <div>
@@ -365,6 +414,13 @@ export const AdminDashboard: Story = {
 };
 
 export const SimpleBreadcrumbs: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Simple breadcrumb examples with minimal navigation levels, including two-level and single-page breadcrumbs.',
+      },
+    },
+  },
   render: () => (
     <div className="space-y-4">
       <div>
@@ -397,6 +453,13 @@ export const SimpleBreadcrumbs: Story = {
 };
 
 export const ComplexNavigation: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'A complex breadcrumb navigation with multiple levels, icons, and ellipsis, demonstrating deep hierarchical navigation paths.',
+      },
+    },
+  },
   render: () => (
     <Breadcrumb>
       <BreadcrumbList>
@@ -436,6 +499,13 @@ export const ComplexNavigation: Story = {
 };
 
 export const InteractiveBreadcrumb: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'An interactive breadcrumb using buttons instead of links, allowing custom click handlers for navigation actions.',
+      },
+    },
+  },
   render: () => (
     <Breadcrumb>
       <BreadcrumbList>

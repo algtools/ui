@@ -70,6 +70,13 @@ export const Default: Story = {
       </CardFooter>
     </Card>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A basic card component with header, content, and footer sections.',
+      },
+    },
+  },
 };
 
 export const WithAction: Story = {
@@ -102,6 +109,13 @@ export const WithAction: Story = {
       </CardContent>
     </Card>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A card with an action button in the header, demonstrating the CardAction component for additional controls.',
+      },
+    },
+  },
 };
 
 export const BlogPost: Story = {
@@ -144,6 +158,13 @@ export const BlogPost: Story = {
       </CardFooter>
     </Card>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A blog post card with media preview, engagement metrics, and social sharing actions.',
+      },
+    },
+  },
 };
 
 export const ProductCard: Story = {
@@ -184,6 +205,13 @@ export const ProductCard: Story = {
       </CardFooter>
     </Card>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'An e-commerce product card with image, ratings, pricing, and a call-to-action button.',
+      },
+    },
+  },
 };
 
 export const UserProfile: Story = {
@@ -228,6 +256,13 @@ export const UserProfile: Story = {
       </CardContent>
     </Card>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A user profile card displaying avatar, bio, social statistics, and a follow action button.',
+      },
+    },
+  },
 };
 
 export const StatsCard: Story = {
@@ -302,6 +337,13 @@ export const StatsCard: Story = {
       </Card>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A grid of statistics cards displaying key metrics with trend indicators and icons, commonly used in dashboards.',
+      },
+    },
+  },
 };
 
 export const EventCard: Story = {
@@ -342,6 +384,13 @@ export const EventCard: Story = {
       </CardFooter>
     </Card>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'An event card displaying event details including date, time, location, pricing, and registration actions.',
+      },
+    },
+  },
 };
 
 export const ProjectCard: Story = {
@@ -386,6 +435,13 @@ export const ProjectCard: Story = {
       </CardFooter>
     </Card>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A project management card showing progress, team members, due date, and project details.',
+      },
+    },
+  },
 };
 
 export const DownloadCard: Story = {
@@ -423,6 +479,13 @@ export const DownloadCard: Story = {
       </CardFooter>
     </Card>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'An app download card with app icon, ratings, file size, and a prominent download button.',
+      },
+    },
+  },
 };
 
 export const CardGrid: Story = {
@@ -492,4 +555,11 @@ export const CardGrid: Story = {
       </Card>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A responsive grid layout of cards showcasing different card use cases including analytics, quick actions, and activity feeds.',
+      },
+    },
+  },
 };

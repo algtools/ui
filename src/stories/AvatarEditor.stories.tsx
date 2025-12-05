@@ -63,6 +63,13 @@ export const Default: Story = {
     onSave: mockSave,
     onDiscard: mockDiscard,
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'A default avatar editor with a circular shape, allowing users to upload, crop, and adjust their avatar image.',
+      },
+    },
+  },
 };
 
 export const Square: Story = {
@@ -73,6 +80,13 @@ export const Square: Story = {
     quality: 0.9,
     onSave: mockSave,
     onDiscard: mockDiscard,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'A square avatar editor with no border radius, demonstrating how to create square avatars.',
+      },
+    },
   },
 };
 
@@ -85,6 +99,13 @@ export const Large: Story = {
     onSave: mockSave,
     onDiscard: mockDiscard,
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'A large avatar editor with increased size, demonstrating how to create larger avatar images.',
+      },
+    },
+  },
 };
 
 export const Small: Story = {
@@ -95,6 +116,13 @@ export const Small: Story = {
     quality: 0.9,
     onSave: mockSave,
     onDiscard: mockDiscard,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'A small avatar editor with reduced size, demonstrating how to create compact avatar images.',
+      },
+    },
   },
 };
 
@@ -107,6 +135,13 @@ export const NoImage: Story = {
     onSave: mockSave,
     onDiscard: mockDiscard,
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'An avatar editor with no initial image, demonstrating how the component handles empty states and new avatar uploads.',
+      },
+    },
+  },
 };
 
 export const LargeSquare: Story = {
@@ -117,6 +152,13 @@ export const LargeSquare: Story = {
     quality: 0.9,
     onSave: mockSave,
     onDiscard: mockDiscard,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'A large square avatar editor combining large size with square shape, demonstrating size and shape combinations.',
+      },
+    },
   },
 };
 
@@ -129,6 +171,13 @@ export const HighQuality: Story = {
     quality: 1.0,
     onSave: mockSave,
     onDiscard: mockDiscard,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'An avatar editor with maximum quality settings (quality: 1.0), demonstrating how to configure high-quality image output.',
+      },
+    },
   },
 };
 
@@ -150,6 +199,13 @@ export const CustomLabels: Story = {
       zoomOut: 'Zoom Out',
       rotateClockwise: 'Rotate Right',
       rotateCounterClockwise: 'Rotate Left',
+    },
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'An avatar editor with custom labels for all UI text, demonstrating how to customize button labels and messages.',
+      },
     },
   },
 };
@@ -176,6 +232,13 @@ export const ProfileSetup: Story = {
     quality: 0.9,
     onSave: mockSave,
     onDiscard: mockDiscard,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'An avatar editor integrated into a profile setup flow, demonstrating how to use the component in a complete user onboarding experience.',
+      },
+    },
   },
 };
 
@@ -229,6 +292,13 @@ export const ComparisonSizes: Story = {
       </div>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A comparison of avatar editors in different sizes (small, medium, large, extra large), demonstrating size variations side by side.',
+      },
+    },
+  },
 };
 
 export const ComparisonShapes: Story = {
@@ -270,6 +340,13 @@ export const ComparisonShapes: Story = {
       </div>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A comparison of avatar editors with different shapes (circle, rounded square, square), demonstrating border radius variations side by side.',
+      },
+    },
+  },
 };
 
 export const LivePreviewOnChange: Story = {
@@ -305,5 +382,12 @@ export const LivePreviewOnChange: Story = {
     size: 300,
     quality: 0.9,
     onDiscard: mockDiscard,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'An avatar editor with live preview that updates on change, demonstrating real-time preview functionality without requiring a save action.',
+      },
+    },
   },
 };

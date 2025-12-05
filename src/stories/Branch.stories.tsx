@@ -79,6 +79,14 @@ export const Default: Story = {
     branches: simpleBranches,
     showIndicators: true,
   },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Default Branch component displaying multiple AI response variations with branch indicators.',
+      },
+    },
+  },
 };
 
 export const WithoutIndicators: Story = {
@@ -86,12 +94,28 @@ export const WithoutIndicators: Story = {
     branches: simpleBranches,
     showIndicators: false,
   },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Branch component without visual indicators, providing a cleaner interface for branch navigation.',
+      },
+    },
+  },
 };
 
 export const TwoBranches: Story = {
   args: {
     branches: simpleBranches.slice(0, 2),
     showIndicators: true,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Branch component with two response variations, demonstrating the simplest use case.',
+      },
+    },
   },
 };
 
@@ -106,6 +130,14 @@ export const ManyBranches: Story = {
     ],
     showIndicators: true,
   },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Branch component handling multiple response variations, showing how it scales with many options.',
+      },
+    },
+  },
 };
 
 export const CustomLabels: Story = {
@@ -117,6 +149,14 @@ export const CustomLabels: Story = {
         {branch.title}
       </span>
     ),
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Branch component with custom label rendering, allowing for numbered badges and custom styling.',
+      },
+    },
   },
 };
 
@@ -136,6 +176,14 @@ export const CustomContent: Story = {
         </CardContent>
       </Card>
     ),
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Branch component with custom content rendering using Card components, showing metadata and structured layout.',
+      },
+    },
   },
 };
 
@@ -196,6 +244,14 @@ console.log(result); // 8`,
         />
       </div>
     );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Branch component used for comparing different code implementations, with syntax-highlighted code blocks and custom labels.',
+      },
+    },
   },
 };
 
@@ -306,6 +362,14 @@ Key features include:
       </div>
     );
   },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Complete AI response variations interface with timestamps, action buttons, and badges, demonstrating a full-featured branch selection experience.',
+      },
+    },
+  },
 };
 
 export const DocumentVersions: Story = {
@@ -367,6 +431,14 @@ export const DocumentVersions: Story = {
       </div>
     );
   },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Branch component used for document version control, displaying different document versions with modification dates and status badges.',
+      },
+    },
+  },
 };
 
 export const ControlledMode: Story = {
@@ -406,6 +478,14 @@ export const ControlledMode: Story = {
       </div>
     );
   },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Branch component in controlled mode, where the active branch is managed externally through state, allowing for custom selection controls.',
+      },
+    },
+  },
 };
 
 export const EmptyState: Story = {
@@ -430,6 +510,14 @@ export const EmptyState: Story = {
         </Card>
       </div>
     );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Branch component with an empty branches array, demonstrating graceful handling when no branches are available.',
+      },
+    },
   },
 };
 
@@ -497,5 +585,13 @@ Performance Considerations:
         <Branch branches={longBranches} />
       </div>
     );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Branch component handling long-form content, from brief summaries to comprehensive articles and technical deep dives.',
+      },
+    },
   },
 };

@@ -86,6 +86,13 @@ export const Default: Story = {
       <p className="text-sm text-muted-foreground">Enter your message above</p>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Default textarea component with a label and helper text, suitable for multi-line text input in forms.',
+      },
+    },
+  },
 };
 
 export const WithRows: Story = {
@@ -106,6 +113,13 @@ export const WithRows: Story = {
       </div>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Textarea components with different row sizes (small 3 rows, medium 5 rows, large 8 rows), demonstrating how to control the initial visible height.',
+      },
+    },
+  },
 };
 
 export const WithCharacterCount: Story = {
@@ -135,6 +149,13 @@ export const WithCharacterCount: Story = {
         </div>
       </div>
     );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Textarea with character count display and maxLength constraint, showing a warning color when approaching the limit (like Twitter character limits).',
+      },
+    },
   },
 };
 
@@ -198,6 +219,13 @@ export const ValidationStates: Story = {
       </div>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Textarea validation states: normal, error (with destructive styling), success (with green border), disabled, and read-only, demonstrating different form field states.',
+      },
+    },
+  },
 };
 
 export const ContactForm: Story = {
@@ -288,6 +316,13 @@ export const ContactForm: Story = {
       </Card>
     );
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Contact form with textarea for message input, demonstrating a complete form with name, email, subject, and message fields in a card layout.',
+      },
+    },
+  },
 };
 
 export const ReviewForm: Story = {
@@ -359,6 +394,13 @@ export const ReviewForm: Story = {
         </CardContent>
       </Card>
     );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Product review form with star rating, textarea for review text with character count, recommendation buttons, and validation (minimum 10 characters).',
+      },
+    },
   },
 };
 
@@ -497,6 +539,13 @@ export const BlogEditor: Story = {
       </Card>
     );
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Blog post editor with title, excerpt, main content textarea (with formatting toolbar and word/character count), and tags field, demonstrating a rich text editing interface.',
+      },
+    },
+  },
 };
 
 export const SupportTicket: Story = {
@@ -587,6 +636,13 @@ export const SupportTicket: Story = {
         </CardContent>
       </Card>
     );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Support ticket form with priority and category selects, detailed description textarea with character count, alert message, and file attachment option.',
+      },
+    },
   },
 };
 
@@ -695,6 +751,13 @@ export const CommentSystem: Story = {
       </Card>
     );
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Comment system with existing comments display and a textarea for adding new comments, featuring emoji, attachment, and image buttons, with validation (non-empty required).',
+      },
+    },
+  },
 };
 
 export const EventDescription: Story = {
@@ -781,6 +844,13 @@ export const EventDescription: Story = {
       </Card>
     );
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Event creation form with title, date/time, location, and description textarea, demonstrating event planning and organization interfaces.',
+      },
+    },
+  },
 };
 
 export const AutoResizing: Story = {
@@ -811,5 +881,12 @@ export const AutoResizing: Story = {
         </div>
       </div>
     );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Auto-resizing textarea that dynamically adjusts its height as content is typed, providing a seamless editing experience without manual scrolling.',
+      },
+    },
   },
 };

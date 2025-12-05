@@ -80,7 +80,7 @@ Here's a basic example:
 useEffect(() => {
   // Side effect code here
   console.log('Component mounted or updated');
-  
+
   // Cleanup function (optional)
   return () => {
     console.log('Component will unmount');
@@ -169,6 +169,14 @@ export const Default: Story = {
     isLoading: false,
     height: '600px',
   },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Default conversation component displaying a typical chat interface with user and assistant messages, avatars, and timestamps.',
+      },
+    },
+  },
 };
 
 export const Empty: Story = {
@@ -176,6 +184,14 @@ export const Empty: Story = {
     messages: [],
     isLoading: false,
     height: '400px',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Empty conversation state with no messages, showing the default empty state message.',
+      },
+    },
   },
 };
 
@@ -191,6 +207,14 @@ export const CustomEmptyState: Story = {
       </div>
     ),
   },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Conversation with a custom empty state component, allowing for branded welcome messages or instructions.',
+      },
+    },
+  },
 };
 
 export const Loading: Story = {
@@ -198,6 +222,14 @@ export const Loading: Story = {
     messages: mockMessages,
     isLoading: true,
     height: '600px',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Conversation in loading state while streaming a response, showing the loading indicator at the bottom.',
+      },
+    },
   },
 };
 
@@ -207,6 +239,14 @@ export const LoadingOnly: Story = {
     isLoading: true,
     height: '400px',
   },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Empty conversation showing only the loading state, useful for initial connection or first message scenarios.',
+      },
+    },
+  },
 };
 
 export const WithoutAvatars: Story = {
@@ -214,6 +254,13 @@ export const WithoutAvatars: Story = {
     messages: mockMessages,
     showAvatars: false,
     height: '600px',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Conversation without avatars, providing a cleaner, more compact message display.',
+      },
+    },
   },
 };
 
@@ -223,6 +270,14 @@ export const WithoutTimestamps: Story = {
     showTimestamps: false,
     height: '600px',
   },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Conversation without timestamp display, creating a more streamlined chat interface.',
+      },
+    },
+  },
 };
 
 export const WithSenderNames: Story = {
@@ -231,12 +286,28 @@ export const WithSenderNames: Story = {
     showSenderNames: true,
     height: '600px',
   },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Conversation with sender names displayed, useful for multi-user chat scenarios or when clarity is needed.',
+      },
+    },
+  },
 };
 
 export const CustomHeight: Story = {
   args: {
     messages: mockMessages,
     height: '400px',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Conversation with custom height set to 400px, demonstrating how to control the container size.',
+      },
+    },
   },
 };
 
@@ -245,6 +316,14 @@ export const TallHeight: Story = {
     messages: mockMessages,
     height: '800px',
   },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Conversation with tall height (800px), providing more vertical space for longer conversations.',
+      },
+    },
+  },
 };
 
 export const ShortConversation: Story = {
@@ -252,12 +331,28 @@ export const ShortConversation: Story = {
     messages: shortMessages,
     height: '300px',
   },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Short conversation with just a few messages, demonstrating the component with minimal content.',
+      },
+    },
+  },
 };
 
 export const LongConversation: Story = {
   args: {
     messages: longMessages,
     height: '600px',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Long conversation with many messages, showing how the component handles scrolling and performance with extended chat history.',
+      },
+    },
   },
 };
 
@@ -268,6 +363,14 @@ export const CustomAvatars: Story = {
     assistantAvatarUrl: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=150',
     height: '600px',
   },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Conversation with custom avatar URLs for both user and assistant, allowing for personalized branding.',
+      },
+    },
+  },
 };
 
 export const WithoutAutoScroll: Story = {
@@ -276,6 +379,14 @@ export const WithoutAutoScroll: Story = {
     autoScroll: false,
     height: '600px',
   },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Conversation with auto-scroll disabled, allowing users to manually control scroll position while new messages arrive.',
+      },
+    },
+  },
 };
 
 export const CustomScrollThreshold: Story = {
@@ -283,6 +394,14 @@ export const CustomScrollThreshold: Story = {
     messages: longMessages,
     scrollThreshold: 200,
     height: '600px',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Conversation with custom scroll threshold (200px), controlling when the scroll-to-bottom button appears.',
+      },
+    },
   },
 };
 
@@ -297,6 +416,14 @@ export const AllCustomizations: Story = {
     userAvatarUrl: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150',
     assistantAvatarUrl: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=150',
   },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Conversation with all customization options enabled, showcasing avatars, timestamps, sender names, and custom avatar URLs.',
+      },
+    },
+  },
 };
 
 export const MinimalStyle: Story = {
@@ -305,6 +432,14 @@ export const MinimalStyle: Story = {
     showAvatars: false,
     showTimestamps: false,
     height: '600px',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Minimal conversation style without avatars or timestamps, providing the cleanest possible chat interface.',
+      },
+    },
   },
 };
 
@@ -343,6 +478,14 @@ export const SystemMessages: Story = {
       },
     ],
     height: '600px',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Conversation including system messages for status updates, connection events, and other non-user/assistant notifications.',
+      },
+    },
   },
 };
 
@@ -398,6 +541,14 @@ export const Interactive: Story = {
         <Conversation messages={messages} isLoading={isLoading} height="500px" />
       </div>
     );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Interactive conversation with controls to add messages, toggle loading state, and clear the chat, demonstrating dynamic message management.',
+      },
+    },
   },
 };
 
@@ -466,6 +617,14 @@ export const StreamingSimulation: Story = {
       </div>
     );
   },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Simulated streaming conversation where messages appear word-by-word, demonstrating real-time AI response streaming behavior.',
+      },
+    },
+  },
 };
 
 export const MultipleConversations: Story = {
@@ -481,6 +640,14 @@ export const MultipleConversations: Story = {
       </div>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Multiple conversation components displayed side-by-side, useful for comparison views or multi-threaded chat interfaces.',
+      },
+    },
+  },
 };
 
 export const DifferentHeights: Story = {
@@ -500,4 +667,12 @@ export const DifferentHeights: Story = {
       </div>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Conversation components with different height configurations, demonstrating how the component adapts to various container sizes.',
+      },
+    },
+  },
 };

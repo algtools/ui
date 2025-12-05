@@ -69,6 +69,13 @@ export const Default: Story = {
       </div>
     </ScrollArea>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A basic scroll area component with custom styling, displaying a list of items that can be scrolled vertically.',
+      },
+    },
+  },
 };
 
 export const LongContent: Story = {
@@ -125,6 +132,13 @@ export const LongContent: Story = {
       </div>
     </ScrollArea>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A scroll area containing long-form text content with headings and paragraphs, demonstrating scrolling for article-style content.',
+      },
+    },
+  },
 };
 
 export const HorizontalScroll: Story = {
@@ -147,6 +161,13 @@ export const HorizontalScroll: Story = {
       </ScrollArea>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A horizontal scroll area displaying a row of cards that can be scrolled left and right, useful for galleries and carousels.',
+      },
+    },
+  },
 };
 
 export const ChatMessages: Story = {
@@ -257,6 +278,13 @@ export const ChatMessages: Story = {
       </CardContent>
     </Card>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A chat interface with scrollable message history, displaying conversations with avatars, timestamps, and message bubbles.',
+      },
+    },
+  },
 };
 
 export const FileExplorer: Story = {
@@ -352,6 +380,13 @@ export const FileExplorer: Story = {
       </CardContent>
     </Card>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A file explorer interface with scrollable file and folder listings, showing file types, sizes, and modification dates.',
+      },
+    },
+  },
 };
 
 export const NotificationsFeed: Story = {
@@ -483,6 +518,13 @@ export const NotificationsFeed: Story = {
       </CardContent>
     </Card>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A notifications feed with scrollable list of system notifications, showing different types (success, warning, info) with icons and timestamps.',
+      },
+    },
+  },
 };
 
 export const ContactsList: Story = {
@@ -620,6 +662,13 @@ export const ContactsList: Story = {
       </CardContent>
     </Card>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A contacts list with scrollable user profiles, displaying avatars, contact information, and online status indicators.',
+      },
+    },
+  },
 };
 
 export const CodeBlock: Story = {
@@ -796,6 +845,13 @@ export const CodeBlock: Story = {
       </CardContent>
     </Card>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A scrollable code block with syntax highlighting, displaying formatted source code with proper indentation and color coding.',
+      },
+    },
+  },
 };
 
 export const SocialFeed: Story = {
@@ -905,4 +961,11 @@ export const SocialFeed: Story = {
       </CardContent>
     </Card>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A social media feed with scrollable posts, displaying user avatars, content, engagement metrics (likes, comments, shares), and timestamps.',
+      },
+    },
+  },
 };

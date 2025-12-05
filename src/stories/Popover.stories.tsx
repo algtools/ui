@@ -83,6 +83,13 @@ export const Default: Story = {
       </PopoverContent>
     </Popover>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A default popover with form inputs for dimensions, demonstrating basic popover functionality with content overlay.',
+      },
+    },
+  },
 };
 
 export const UserProfile: Story = {
@@ -136,6 +143,13 @@ export const UserProfile: Story = {
       </PopoverContent>
     </Popover>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A user profile popover displaying user information, avatar, and quick actions, demonstrating profile card functionality.',
+      },
+    },
+  },
 };
 
 export const QuickActions: Story = {
@@ -173,6 +187,13 @@ export const QuickActions: Story = {
       </PopoverContent>
     </Popover>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A quick actions popover with a list of common actions like edit, delete, and share, demonstrating action menus.',
+      },
+    },
+  },
 };
 
 export const ContactInfo: Story = {
@@ -223,6 +244,13 @@ export const ContactInfo: Story = {
       </PopoverContent>
     </Popover>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A contact info popover displaying contact details like email, phone, and address, demonstrating information display.',
+      },
+    },
+  },
 };
 
 export const AddNewItem: Story = {
@@ -276,6 +304,13 @@ export const AddNewItem: Story = {
       </Popover>
     );
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'An add new item popover with a form for creating new items, demonstrating how to use popovers for input forms.',
+      },
+    },
+  },
 };
 
 export const HelpTooltip: Story = {
@@ -312,6 +347,13 @@ export const HelpTooltip: Story = {
       </Popover>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A help tooltip popover providing contextual help and information, demonstrating how to show help content.',
+      },
+    },
+  },
 };
 
 export const Notifications: Story = {
@@ -365,6 +407,13 @@ export const Notifications: Story = {
       </PopoverContent>
     </Popover>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A notifications popover displaying a list of notifications with actions, demonstrating notification management.',
+      },
+    },
+  },
 };
 
 export const CalendarPreview: Story = {
@@ -405,6 +454,13 @@ export const CalendarPreview: Story = {
       </PopoverContent>
     </Popover>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A calendar preview popover showing a mini calendar view, demonstrating how to preview calendar content.',
+      },
+    },
+  },
 };
 
 export const ShareOptions: Story = {
@@ -456,6 +512,13 @@ export const ShareOptions: Story = {
       </PopoverContent>
     </Popover>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A share options popover with social media and sharing options, demonstrating sharing functionality.',
+      },
+    },
+  },
 };
 
 export const InfoPopover: Story = {
@@ -484,6 +547,13 @@ export const InfoPopover: Story = {
       </Popover>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'An info popover displaying additional information and details, demonstrating informational content display.',
+      },
+    },
+  },
 };
 
 export const MultiplePopovers: Story = {
@@ -551,4 +621,11 @@ export const MultiplePopovers: Story = {
       </Popover>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Multiple popovers displayed simultaneously, demonstrating how to manage multiple popover instances on the same page.',
+      },
+    },
+  },
 };

@@ -73,6 +73,13 @@ export const Default: Story = {
       </div>
     );
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Default tags component with searchable tag selection, allowing users to select multiple tags and remove them individually from the trigger.',
+      },
+    },
+  },
 };
 
 export const WithGroups: Story = {
@@ -135,6 +142,13 @@ export const WithGroups: Story = {
       </div>
     );
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Tags component with grouped options (Development, Design, Product, Priority), demonstrating organized tag selection with category headings.',
+      },
+    },
+  },
 };
 
 export const DisabledItems: Story = {
@@ -183,5 +197,12 @@ export const DisabledItems: Story = {
         </Tags>
       </div>
     );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Tags component with disabled items, showing how certain tags can be made unavailable for selection while still displaying them in the list.',
+      },
+    },
   },
 };

@@ -78,6 +78,14 @@ console.log(message);`,
     showCopyButton: true,
     showLanguage: true,
   },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Basic code block with JavaScript syntax highlighting, copy button, and language label.',
+      },
+    },
+  },
 };
 
 /**
@@ -106,6 +114,14 @@ console.log(user.name);`,
     filename: 'user-api.ts',
     showCopyButton: true,
   },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'TypeScript code block with filename display, showing how to display file context in code examples.',
+      },
+    },
+  },
 };
 
 /**
@@ -117,11 +133,11 @@ export const PythonWithLineNumbers: Story = {
     """Generate Fibonacci sequence up to n terms."""
     fib_sequence = []
     a, b = 0, 1
-    
+
     for _ in range(n):
         fib_sequence.append(a)
         a, b = b, a + b
-    
+
     return fib_sequence
 
 # Generate first 10 Fibonacci numbers
@@ -131,6 +147,14 @@ print(result)`,
     filename: 'fibonacci.py',
     showLineNumbers: true,
     showCopyButton: true,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Python code block with line numbers enabled, useful for referencing specific lines in documentation or tutorials.',
+      },
+    },
   },
 };
 
@@ -166,6 +190,14 @@ export function Counter() {
     highlightLines: [6, 7, 8],
     showCopyButton: true,
   },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'React/TSX code block with specific lines highlighted, perfect for drawing attention to important code sections.',
+      },
+    },
+  },
 };
 
 /**
@@ -192,6 +224,14 @@ export const JSON: Story = {
     filename: 'package.json',
     showCopyButton: true,
   },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'JSON code block displaying configuration files with proper syntax highlighting and formatting.',
+      },
+    },
+  },
 };
 
 /**
@@ -207,12 +247,12 @@ export const CSS: Story = {
   border-radius: 0.375rem;
   font-weight: 500;
   transition: all 0.2s;
-  
+
   &:hover {
     opacity: 0.8;
     transform: translateY(-1px);
   }
-  
+
   &:disabled {
     opacity: 0.5;
     cursor: not-allowed;
@@ -222,6 +262,14 @@ export const CSS: Story = {
     filename: 'button.css',
     showCopyButton: true,
   },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'CSS/SCSS code block with styling examples, demonstrating syntax highlighting for stylesheets.',
+      },
+    },
+  },
 };
 
 /**
@@ -230,7 +278,7 @@ export const CSS: Story = {
 export const SQL: Story = {
   args: {
     code: `-- Get users with their order counts
-SELECT 
+SELECT
   u.id,
   u.name,
   u.email,
@@ -248,6 +296,14 @@ LIMIT 10;`,
     filename: 'user-orders.sql',
     showLineNumbers: true,
     showCopyButton: true,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'SQL query code block with line numbers, ideal for displaying database queries and stored procedures.',
+      },
+    },
   },
 };
 
@@ -280,6 +336,14 @@ fi`,
     filename: 'deploy.sh',
     showLineNumbers: true,
     showCopyButton: true,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Bash shell script code block with syntax highlighting for command-line scripts and automation.',
+      },
+    },
   },
 };
 
@@ -318,6 +382,14 @@ import { CodeBlock } from '@algtools/ui';
     filename: 'README.md',
     showCopyButton: true,
   },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Markdown code block displaying documentation content with proper formatting and syntax highlighting.',
+      },
+    },
+  },
 };
 
 /**
@@ -337,7 +409,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
         http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
         return
     }
-    
+
     fmt.Fprintf(w, "Hello, World!")
 }
 
@@ -352,6 +424,14 @@ func main() {
     highlightLines: [10, 11, 12],
     showCopyButton: true,
   },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Go code block with highlighted error handling lines, demonstrating how to emphasize important code sections.',
+      },
+    },
+  },
 };
 
 /**
@@ -363,19 +443,26 @@ export const Rust: Story = {
 
 fn main() {
     let mut scores = HashMap::new();
-    
+
     scores.insert(String::from("Blue"), 10);
     scores.insert(String::from("Red"), 50);
-    
+
     let team_name = String::from("Blue");
     let score = scores.get(&team_name).copied().unwrap_or(0);
-    
+
     println!("Score for {}: {}", team_name, score);
 }`,
     language: 'rust',
     filename: 'hashmap.rs',
     showLineNumbers: true,
     showCopyButton: true,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Rust code block with syntax highlighting for systems programming examples.',
+      },
+    },
   },
 };
 
@@ -412,6 +499,14 @@ export const WithMaxHeight: Story = {
     maxHeight: '300px',
     showCopyButton: true,
   },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Code block with maximum height constraint, enabling scrolling for long code snippets while maintaining a compact display.',
+      },
+    },
+  },
 };
 
 /**
@@ -424,6 +519,14 @@ console.log(readOnlyCode);`,
     language: 'javascript',
     showCopyButton: false,
     showLanguage: true,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Code block without copy functionality, useful for read-only displays or when copying should be disabled.',
+      },
+    },
   },
 };
 
@@ -443,6 +546,14 @@ Ready to accept connections`,
     showCopyButton: true,
     showLanguage: true,
   },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Plain text code block without syntax highlighting, ideal for displaying logs, output, or unformatted text content.',
+      },
+    },
+  },
 };
 
 /**
@@ -454,6 +565,14 @@ export const Minimal: Story = {
     language: 'javascript',
     showCopyButton: false,
     showLanguage: false,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Minimal code block without headers, language labels, or copy buttons, providing a clean inline code display.',
+      },
+    },
   },
 };
 
@@ -475,7 +594,7 @@ export const HTML: Story = {
     <p>This is a code block component demonstration.</p>
     <button onclick="handleClick()">Click Me</button>
   </div>
-  
+
   <script>
     function handleClick() {
       alert('Button clicked!');
@@ -487,6 +606,14 @@ export const HTML: Story = {
     filename: 'index.html',
     showLineNumbers: true,
     showCopyButton: true,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'HTML code block with syntax highlighting for markup and embedded scripts, perfect for web development examples.',
+      },
+    },
   },
 };
 
@@ -522,5 +649,13 @@ jobs:
     filename: '.github/workflows/ci.yml',
     showLineNumbers: true,
     showCopyButton: true,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'YAML code block displaying configuration files like CI/CD pipelines, with proper indentation and syntax highlighting.',
+      },
+    },
   },
 };

@@ -107,6 +107,13 @@ export const Default: Story = {
       </DropdownMenuContent>
     </DropdownMenu>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A basic dropdown menu triggered by a button, displaying account-related actions like profile, billing, settings, and logout.',
+      },
+    },
+  },
 };
 
 export const WithKeyboardShortcuts: Story = {
@@ -145,6 +152,13 @@ export const WithKeyboardShortcuts: Story = {
       </DropdownMenuContent>
     </DropdownMenu>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A dropdown menu with keyboard shortcuts displayed next to menu items, providing quick access hints for power users.',
+      },
+    },
+  },
 };
 
 export const WithCheckboxes: Story = {
@@ -173,6 +187,13 @@ export const WithCheckboxes: Story = {
         </DropdownMenuContent>
       </DropdownMenu>
     );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'A dropdown menu with checkbox items for toggling multiple view options, demonstrating state management for boolean settings.',
+      },
+    },
   },
 };
 
@@ -208,6 +229,13 @@ export const WithRadioGroup: Story = {
         </DropdownMenuContent>
       </DropdownMenu>
     );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'A dropdown menu with radio group items for selecting a single option from multiple choices, such as device preview modes.',
+      },
+    },
   },
 };
 
@@ -281,6 +309,13 @@ export const WithSubmenus: Story = {
       </DropdownMenuContent>
     </DropdownMenu>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A dropdown menu with nested submenus for organizing related actions, including theme selection and user invitation options.',
+      },
+    },
+  },
 };
 
 export const UserProfileDropdown: Story = {
@@ -339,6 +374,13 @@ export const UserProfileDropdown: Story = {
       </DropdownMenuContent>
     </DropdownMenu>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A user profile dropdown menu triggered by an avatar button, displaying user information, account actions, and grouped menu items.',
+      },
+    },
+  },
 };
 
 export const FileContextMenu: Story = {
@@ -406,6 +448,13 @@ export const FileContextMenu: Story = {
       </DropdownMenuContent>
     </DropdownMenu>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A file actions dropdown menu with file operations like open, copy, share, download, and move, including nested submenus for folder selection.',
+      },
+    },
+  },
 };
 
 export const NotificationDropdown: Story = {
@@ -466,6 +515,13 @@ export const NotificationDropdown: Story = {
       </DropdownMenuContent>
     </DropdownMenu>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A notification dropdown menu with a badge indicator, displaying notification items with timestamps and action details in a structured format.',
+      },
+    },
+  },
 };
 
 export const SettingsDropdown: Story = {
@@ -515,6 +571,13 @@ export const SettingsDropdown: Story = {
       </DropdownMenu>
     );
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'A settings dropdown menu with checkbox preferences and nested security submenu, demonstrating complex settings organization.',
+      },
+    },
+  },
 };
 
 export const ActionsDropdown: Story = {
@@ -546,6 +609,13 @@ export const ActionsDropdown: Story = {
       </DropdownMenuContent>
     </DropdownMenu>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A compact actions dropdown menu triggered by a more options icon button, displaying common item actions like edit, copy, share, and delete.',
+      },
+    },
+  },
 };
 
 export const MultipleDropdowns: Story = {
@@ -590,4 +660,11 @@ export const MultipleDropdowns: Story = {
       </DropdownMenu>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Multiple dropdown menus displayed side-by-side, demonstrating how multiple menu instances can coexist in the same interface.',
+      },
+    },
+  },
 };
