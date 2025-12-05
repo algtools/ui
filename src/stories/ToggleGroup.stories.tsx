@@ -120,7 +120,8 @@ export const Default: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Default toggle group with single selection mode, allowing users to choose one option from multiple related toggles (commonly used for alignment, view modes, etc.).',
+        story:
+          'Default toggle group with single selection mode, allowing users to choose one option from multiple related toggles (commonly used for alignment, view modes, etc.).',
       },
     },
   },
@@ -164,7 +165,8 @@ export const Variants: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Toggle group variants (default and outline) demonstrating different visual styles for grouped toggle buttons.',
+        story:
+          'Toggle group variants (default and outline) demonstrating different visual styles for grouped toggle buttons.',
       },
     },
   },
@@ -223,7 +225,8 @@ export const Sizes: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Toggle group size variants (small, default, large) demonstrating how to adjust the component size for different layout contexts and toolbars.',
+        story:
+          'Toggle group size variants (small, default, large) demonstrating how to adjust the component size for different layout contexts and toolbars.',
       },
     },
   },
@@ -272,7 +275,8 @@ export const MultipleSelection: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Toggle group with multiple selection mode, allowing users to select multiple options simultaneously (useful for text formatting where multiple styles can be active).',
+        story:
+          'Toggle group with multiple selection mode, allowing users to select multiple options simultaneously (useful for text formatting where multiple styles can be active).',
       },
     },
   },
@@ -322,7 +326,8 @@ export const WithText: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Toggle groups with text labels alongside icons, providing clearer context for users when icons alone might be ambiguous (view modes, file type filters).',
+        story:
+          'Toggle groups with text labels alongside icons, providing clearer context for users when icons alone might be ambiguous (view modes, file type filters).',
       },
     },
   },
@@ -450,7 +455,8 @@ export const TextEditor: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Rich text editor toolbar with multiple toggle groups for formatting (multiple selection), alignment (single selection), lists (single selection), and actions, demonstrating a complete editor interface.',
+        story:
+          'Rich text editor toolbar with multiple toggle groups for formatting (multiple selection), alignment (single selection), lists (single selection), and actions, demonstrating a complete editor interface.',
       },
     },
   },
@@ -551,7 +557,8 @@ export const MediaPlayer: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Media player controls with toggle groups for playback (prev/play/next), volume (on/off), repeat mode (shuffle/repeat), and actions (favorite/share/download), demonstrating audio/video player interfaces.',
+        story:
+          'Media player controls with toggle groups for playback (prev/play/next), volume (on/off), repeat mode (shuffle/repeat), and actions (favorite/share/download), demonstrating audio/video player interfaces.',
       },
     },
   },
@@ -648,7 +655,8 @@ export const Dashboard: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Analytics dashboard with toggle groups for chart type selection (single), time period (single), and data filters (multiple), demonstrating dashboard configuration interfaces.',
+        story:
+          'Analytics dashboard with toggle groups for chart type selection (single), time period (single), and data filters (multiple), demonstrating dashboard configuration interfaces.',
       },
     },
   },
@@ -724,7 +732,8 @@ export const ResponsiveDesign: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Responsive design preview tool with toggle groups for device type (mobile/tablet/desktop) and orientation (portrait/landscape), demonstrating design testing interfaces.',
+        story:
+          'Responsive design preview tool with toggle groups for device type (mobile/tablet/desktop) and orientation (portrait/landscape), demonstrating design testing interfaces.',
       },
     },
   },
@@ -769,7 +778,8 @@ export const DisabledState: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Toggle group disabled states: fully disabled group and individual disabled items within an enabled group, demonstrating different disabled scenarios.',
+        story:
+          'Toggle group disabled states: fully disabled group and individual disabled items within an enabled group, demonstrating different disabled scenarios.',
       },
     },
   },
@@ -873,7 +883,8 @@ export const WeatherWidget: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Weather widget settings with toggle groups for location selection (single), temperature units (single), weather conditions (single), and display options (multiple), demonstrating widget configuration interfaces.',
+        story:
+          'Weather widget settings with toggle groups for location selection (single), temperature units (single), weather conditions (single), and display options (multiple), demonstrating widget configuration interfaces.',
       },
     },
   },

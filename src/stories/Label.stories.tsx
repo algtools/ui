@@ -75,7 +75,8 @@ export const Default: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Default label component associated with an input field using the htmlFor attribute for proper accessibility.',
+        story:
+          'Default label component associated with an input field using the htmlFor attribute for proper accessibility.',
       },
     },
   },
@@ -108,7 +109,8 @@ export const BasicLabels: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Basic label examples for different input types (text, email, password, textarea), demonstrating standard form labeling patterns.',
+        story:
+          'Basic label examples for different input types (text, email, password, textarea), demonstrating standard form labeling patterns.',
       },
     },
   },
@@ -148,7 +150,8 @@ export const RequiredAndOptional: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Labels indicating required fields (with asterisk) and optional fields (with badge or text), helping users understand form requirements.',
+        story:
+          'Labels indicating required fields (with asterisk) and optional fields (with badge or text), helping users understand form requirements.',
       },
     },
   },
@@ -194,7 +197,8 @@ export const WithIcons: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Labels with icons providing visual context for different input types, enhancing user understanding and form aesthetics.',
+        story:
+          'Labels with icons providing visual context for different input types, enhancing user understanding and form aesthetics.',
       },
     },
   },
@@ -234,7 +238,8 @@ export const WithDescriptions: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Labels with descriptive helper text below inputs, providing guidance on input requirements and format expectations.',
+        story:
+          'Labels with descriptive helper text below inputs, providing guidance on input requirements and format expectations.',
       },
     },
   },
@@ -285,7 +290,8 @@ export const ValidationStates: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Labels styled to reflect validation states (valid, error, disabled), providing visual feedback on form field status.',
+        story:
+          'Labels styled to reflect validation states (valid, error, disabled), providing visual feedback on form field status.',
       },
     },
   },
@@ -347,7 +353,8 @@ export const FormControlTypes: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Labels used with different form control types (checkbox, radio group, switch, select), demonstrating proper labeling for various input components.',
+        story:
+          'Labels used with different form control types (checkbox, radio group, switch, select), demonstrating proper labeling for various input components.',
       },
     },
   },
@@ -386,7 +393,8 @@ export const LabelSizes: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Labels in different sizes (small, default, large, extra large) with varying font weights, demonstrating typography options for different design needs.',
+        story:
+          'Labels in different sizes (small, default, large, extra large) with varying font weights, demonstrating typography options for different design needs.',
       },
     },
   },
@@ -490,7 +498,8 @@ export const ComplexForm: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Complete registration form example demonstrating labels with icons, required indicators, optional badges, descriptions, and checkbox labels in a real-world scenario.',
+        story:
+          'Complete registration form example demonstrating labels with icons, required indicators, optional badges, descriptions, and checkbox labels in a real-world scenario.',
       },
     },
   },
@@ -565,7 +574,8 @@ export const PaymentLabels: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Payment form with labels featuring security-focused icons and required indicators, demonstrating labels in a financial transaction context.',
+        story:
+          'Payment form with labels featuring security-focused icons and required indicators, demonstrating labels in a financial transaction context.',
       },
     },
   },
@@ -636,7 +646,8 @@ export const AccessibilityExample: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Accessible labels with screen reader support using sr-only text, aria-describedby attributes, and proper semantic HTML for assistive technologies.',
+        story:
+          'Accessible labels with screen reader support using sr-only text, aria-describedby attributes, and proper semantic HTML for assistive technologies.',
       },
     },
   },
@@ -678,7 +689,8 @@ export const LabelWithTooltip: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Labels with help icons and advanced badges, providing additional context and indicating complex or optional features in technical forms.',
+        story:
+          'Labels with help icons and advanced badges, providing additional context and indicating complex or optional features in technical forms.',
       },
     },
   },

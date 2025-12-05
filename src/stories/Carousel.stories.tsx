@@ -67,7 +67,8 @@ export const Default: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A basic horizontal carousel with navigation arrows, displaying a series of numbered cards.',
+        story:
+          'A basic horizontal carousel with navigation arrows, displaying a series of numbered cards.',
       },
     },
   },
@@ -103,7 +104,8 @@ export const MultipleItems: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A carousel displaying multiple items per view with responsive breakpoints, showing 2 items on medium screens and 3 on large screens.',
+        story:
+          'A carousel displaying multiple items per view with responsive breakpoints, showing 2 items on medium screens and 3 on large screens.',
       },
     },
   },
@@ -174,7 +176,8 @@ export const ProductCarousel: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'An e-commerce product carousel showcasing products with images, ratings, and pricing in a scrollable layout.',
+        story:
+          'An e-commerce product carousel showcasing products with images, ratings, and pricing in a scrollable layout.',
       },
     },
   },
@@ -245,7 +248,8 @@ export const TestimonialCarousel: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A testimonial carousel displaying customer reviews with quotes, author information, and avatars.',
+        story:
+          'A testimonial carousel displaying customer reviews with quotes, author information, and avatars.',
       },
     },
   },
@@ -301,7 +305,8 @@ export const ImageGallery: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'An image gallery carousel with media previews, titles, descriptions, and interactive elements like favorite buttons.',
+        story:
+          'An image gallery carousel with media previews, titles, descriptions, and interactive elements like favorite buttons.',
       },
     },
   },
@@ -383,7 +388,8 @@ export const EventCarousel: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'An event carousel displaying upcoming events with date, location, pricing, and registration buttons.',
+        story:
+          'An event carousel displaying upcoming events with date, location, pricing, and registration buttons.',
       },
     },
   },
@@ -420,7 +426,8 @@ export const VerticalCarousel: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A vertical carousel that scrolls up and down, useful for mobile interfaces or vertical content layouts.',
+        story:
+          'A vertical carousel that scrolls up and down, useful for mobile interfaces or vertical content layouts.',
       },
     },
   },
@@ -482,7 +489,8 @@ export const WithDotIndicators: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A carousel with dot indicators showing the current slide position and allowing direct navigation to any slide.',
+        story:
+          'A carousel with dot indicators showing the current slide position and allowing direct navigation to any slide.',
       },
     },
   },
@@ -541,7 +549,8 @@ export const AutoplayCarousel: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'An auto-playing carousel that automatically advances slides every 3 seconds, useful for feature showcases.',
+        story:
+          'An auto-playing carousel that automatically advances slides every 3 seconds, useful for feature showcases.',
       },
     },
   },
@@ -583,7 +592,8 @@ export const ResponsiveCarousel: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A fully responsive carousel that adapts the number of visible items based on screen size, from 1 item on mobile to 5 on extra-large screens.',
+        story:
+          'A fully responsive carousel that adapts the number of visible items based on screen size, from 1 item on mobile to 5 on extra-large screens.',
       },
     },
   },

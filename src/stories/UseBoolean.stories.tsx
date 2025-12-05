@@ -190,6 +190,24 @@ export const Basic: Story = {
       description: {
         story: 'Basic usage of the useBoolean hook showing all available methods.',
       },
+      source: {
+        code: `import { useBoolean } from '@algtools/ui';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const { value, setTrue, setFalse, toggle } = useBoolean(false);
+
+  return (
+    <>
+      <p>Value: {value ? 'True' : 'False'}</p>
+      <Button onClick={setTrue}>Set True</Button>
+      <Button onClick={setFalse}>Set False</Button>
+      <Button onClick={toggle}>Toggle</Button>
+    </>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -200,6 +218,24 @@ export const VisibilityToggle: Story = {
     docs: {
       description: {
         story: 'A common use case: toggling visibility of content.',
+      },
+      source: {
+        code: `import { useBoolean } from '@algtools/ui';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const { value: isVisible, toggle } = useBoolean(true);
+
+  return (
+    <>
+      <Button onClick={toggle}>
+        {isVisible ? 'Hide' : 'Show'}
+      </Button>
+      {isVisible && <div>This content can be toggled!</div>}
+    </>
+  );
+}`,
+        language: 'tsx',
       },
     },
   },
@@ -212,6 +248,27 @@ export const ModalControl: Story = {
       description: {
         story: 'Using useBoolean to control modal/dialog open/close state.',
       },
+      source: {
+        code: `import { useBoolean } from '@algtools/ui';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const { value: isOpen, setTrue: open, setFalse: close } = useBoolean(false);
+
+  return (
+    <>
+      <Button onClick={open}>Open Modal</Button>
+      {isOpen && (
+        <div>
+          <p>Modal content</p>
+          <Button onClick={close}>Close</Button>
+        </div>
+      )}
+    </>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -222,6 +279,28 @@ export const LoadingState: Story = {
     docs: {
       description: {
         story: 'Managing loading states with useBoolean hook.',
+      },
+      source: {
+        code: `import { useBoolean } from '@algtools/ui';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const { value: isLoading, setTrue: startLoading, setFalse: stopLoading } = useBoolean(false);
+
+  const handleClick = () => {
+    startLoading();
+    setTimeout(() => {
+      stopLoading();
+    }, 2000);
+  };
+
+  return (
+    <Button onClick={handleClick} disabled={isLoading}>
+      {isLoading ? 'Loading...' : 'Start Action'}
+    </Button>
+  );
+}`,
+        language: 'tsx',
       },
     },
   },

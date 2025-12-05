@@ -413,6 +413,26 @@ export const Basic: Story = {
         story:
           'Basic usage of the useHover hook showing immediate hover detection. The hook returns a boolean that tracks whether the element is currently being hovered.',
       },
+      source: {
+        code: `import { useHover } from '@algtools/ui';
+import { useRef } from 'react';
+
+function MyComponent() {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const isHovered = useHover(cardRef);
+
+  return (
+    <div
+      ref={cardRef}
+      className={isHovered ? 'border-primary bg-primary/10' : 'border-muted bg-muted/50'}
+    >
+      <p>{isHovered ? 'Hovering!' : 'Hover me'}</p>
+      <p>Hover state: {isHovered ? 'true' : 'false'}</p>
+    </div>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -424,6 +444,28 @@ export const DelayedTooltip: Story = {
       description: {
         story:
           'Tooltip that only appears after hovering for 500ms. This prevents accidental tooltip triggers when the user quickly moves their mouse across the screen.',
+      },
+      source: {
+        code: `import { useHover } from '@algtools/ui';
+import { useRef } from 'react';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const isHovered = useHover(buttonRef, { delayEnter: 500 });
+
+  return (
+    <>
+      <Button ref={buttonRef}>Hover me</Button>
+      {isHovered && (
+        <div className="tooltip">
+          This tooltip only appears after hovering for 500ms
+        </div>
+      )}
+    </>
+  );
+}`,
+        language: 'tsx',
       },
     },
   },
@@ -437,6 +479,31 @@ export const SmoothTooltip: Story = {
         story:
           'Tooltip with both enter and leave delays for the smoothest user experience. The enter delay prevents accidental triggers, while the leave delay prevents the tooltip from disappearing when the user briefly moves their mouse away.',
       },
+      source: {
+        code: `import { useHover } from '@algtools/ui';
+import { useRef } from 'react';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const isHovered = useHover(buttonRef, {
+    delayEnter: 300,
+    delayLeave: 200,
+  });
+
+  return (
+    <>
+      <Button ref={buttonRef}>Hover me</Button>
+      {isHovered && (
+        <div className="tooltip">
+          Smooth tooltip with enter and leave delays
+        </div>
+      )}
+    </>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -448,6 +515,44 @@ export const InteractiveCards: Story = {
       description: {
         story:
           'Multiple cards using independent useHover hooks. Each card responds to hover with custom animations and styling, perfect for dashboards and grid layouts.',
+      },
+      source: {
+        code: `import { useHover } from '@algtools/ui';
+import { useRef } from 'react';
+
+function MyComponent() {
+  const card1Ref = useRef<HTMLDivElement>(null);
+  const card2Ref = useRef<HTMLDivElement>(null);
+  const card3Ref = useRef<HTMLDivElement>(null);
+
+  const isHovered1 = useHover(card1Ref);
+  const isHovered2 = useHover(card2Ref);
+  const isHovered3 = useHover(card3Ref);
+
+  return (
+    <div className="grid grid-cols-3 gap-4">
+      <div
+        ref={card1Ref}
+        className={isHovered1 ? 'scale-105 shadow-lg' : ''}
+      >
+        Card 1
+      </div>
+      <div
+        ref={card2Ref}
+        className={isHovered2 ? 'scale-105 shadow-lg' : ''}
+      >
+        Card 2
+      </div>
+      <div
+        ref={card3Ref}
+        className={isHovered3 ? 'scale-105 shadow-lg' : ''}
+      >
+        Card 3
+      </div>
+    </div>
+  );
+}`,
+        language: 'tsx',
       },
     },
   },
@@ -461,6 +566,28 @@ export const ContentReveal: Story = {
         story:
           'Progressive disclosure pattern where additional content is revealed on hover. Great for keeping interfaces clean while making detailed information easily accessible.',
       },
+      source: {
+        code: `import { useHover } from '@algtools/ui';
+import { useRef } from 'react';
+
+function MyComponent() {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const isHovered = useHover(cardRef);
+
+  return (
+    <div ref={cardRef}>
+      <p>Basic Content</p>
+      {isHovered && (
+        <div className="additional-content">
+          <p>Additional details revealed on hover</p>
+          <p>More information here</p>
+        </div>
+      )}
+    </div>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -473,6 +600,27 @@ export const ButtonHover: Story = {
         story:
           'Custom button hover effects that go beyond CSS :hover. Track hover state for complex interactions, animations, or analytics.',
       },
+      source: {
+        code: `import { useHover } from '@algtools/ui';
+import { useRef } from 'react';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const isHovered = useHover(buttonRef);
+
+  return (
+    <Button
+      ref={buttonRef}
+      className={isHovered ? 'scale-110 shadow-lg' : ''}
+      onMouseEnter={() => console.log('Button hovered')}
+    >
+      {isHovered ? 'Hovering!' : 'Hover me'}
+    </Button>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -484,6 +632,28 @@ export const ImageZoom: Story = {
       description: {
         story:
           'Image zoom effect on hover with smooth transitions. The delays provide a polished feel by preventing jarring state changes.',
+      },
+      source: {
+        code: `import { useHover } from '@algtools/ui';
+import { useRef } from 'react';
+
+function MyComponent() {
+  const imageRef = useRef<HTMLImageElement>(null);
+  const isHovered = useHover(imageRef, {
+    delayEnter: 200,
+    delayLeave: 300,
+  });
+
+  return (
+    <img
+      ref={imageRef}
+      src="/image.jpg"
+      alt="Hover to zoom"
+      className={\`transition-transform duration-300 \${isHovered ? 'scale-110' : 'scale-100'}\`}
+    />
+  );
+}`,
+        language: 'tsx',
       },
     },
   },

@@ -436,6 +436,36 @@ export const ClickCounter: Story = {
         story:
           'Basic click counter that tracks all clicks on the page. Shows the total count and the coordinates of the last click.',
       },
+      source: {
+        code: `import { useClickAnyWhere } from '@algtools/ui';
+import { useState } from 'react';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const [clickCount, setClickCount] = useState(0);
+  const [lastClick, setLastClick] = useState<{ x: number; y: number } | null>(null);
+
+  useClickAnyWhere((event) => {
+    setClickCount((count) => count + 1);
+    if ('clientX' in event && 'clientY' in event) {
+      setLastClick({ x: event.clientX, y: event.clientY });
+    }
+  });
+
+  return (
+    <>
+      <p>Total Clicks: {clickCount}</p>
+      {lastClick && (
+        <p>Last click: ({lastClick.x}, {lastClick.y})</p>
+      )}
+      <Button onClick={() => { setClickCount(0); setLastClick(null); }}>
+        Reset Counter
+      </Button>
+    </>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -447,6 +477,37 @@ export const AnalyticsTracking: Story = {
       description: {
         story:
           'Analytics tracker that logs click events with timestamps and target elements. Can be enabled or disabled dynamically.',
+      },
+      source: {
+        code: `import { useClickAnyWhere } from '@algtools/ui';
+import { useState } from 'react';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const [events, setEvents] = useState<string[]>([]);
+  const [isTracking, setIsTracking] = useState(true);
+
+  useClickAnyWhere((event) => {
+    const timestamp = new Date().toLocaleTimeString();
+    const target = (event.target as HTMLElement).tagName.toLowerCase();
+    const eventDescription = \`\${timestamp} - click on <\${target}>\`;
+    setEvents((prev) => [eventDescription, ...prev].slice(0, 10));
+  }, isTracking);
+
+  return (
+    <>
+      <Button onClick={() => setIsTracking(!isTracking)}>
+        {isTracking ? 'Stop Tracking' : 'Start Tracking'}
+      </Button>
+      <ul>
+        {events.map((event, i) => (
+          <li key={i}>{event}</li>
+        ))}
+      </ul>
+    </>
+  );
+}`,
+        language: 'tsx',
       },
     },
   },
@@ -460,6 +521,31 @@ export const ConditionalTracking: Story = {
         story:
           'Demonstrates the optional `enabled` parameter. When disabled, all click events are ignored. Useful for pausing tracking or implementing privacy controls.',
       },
+      source: {
+        code: `import { useClickAnyWhere } from '@algtools/ui';
+import { useState } from 'react';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const [enabled, setEnabled] = useState(true);
+  const [count, setCount] = useState(0);
+
+  useClickAnyWhere(() => {
+    setCount((c) => c + 1);
+  }, enabled);
+
+  return (
+    <>
+      <Button onClick={() => setEnabled(!enabled)}>
+        {enabled ? 'Disable' : 'Enable'} Tracking
+      </Button>
+      <p>Clicks: {count}</p>
+      <p>Status: {enabled ? 'Tracking active' : 'Tracking disabled'}</p>
+    </>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -471,6 +557,37 @@ export const ClickHeatmap: Story = {
       description: {
         story:
           'Visualizes click positions to create a simple heatmap. Records the coordinates of each click for analysis.',
+      },
+      source: {
+        code: `import { useClickAnyWhere } from '@algtools/ui';
+import { useState } from 'react';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const [clicks, setClicks] = useState<Array<{ x: number; y: number }>>([]);
+
+  useClickAnyWhere((event) => {
+    if ('clientX' in event && 'clientY' in event) {
+      setClicks((prev) => [...prev, { x: event.clientX, y: event.clientY }].slice(-50));
+    }
+  });
+
+  return (
+    <>
+      <div className="relative w-full h-screen">
+        {clicks.map((click, i) => (
+          <div
+            key={i}
+            className="absolute w-4 h-4 bg-red-500 rounded-full opacity-50"
+            style={{ left: click.x, top: click.y, transform: 'translate(-50%, -50%)' }}
+          />
+        ))}
+      </div>
+      <Button onClick={() => setClicks([])}>Clear Heatmap</Button>
+    </>
+  );
+}`,
+        language: 'tsx',
       },
     },
   },
@@ -484,6 +601,30 @@ export const ActivityMonitor: Story = {
         story:
           'Monitors user activity by tracking clicks. Shows total interactions and time since last activity.',
       },
+      source: {
+        code: `import { useClickAnyWhere } from '@algtools/ui';
+import { useState, useEffect } from 'react';
+
+function MyComponent() {
+  const [totalClicks, setTotalClicks] = useState(0);
+  const [lastActivity, setLastActivity] = useState<Date | null>(null);
+
+  useClickAnyWhere(() => {
+    setTotalClicks((c) => c + 1);
+    setLastActivity(new Date());
+  });
+
+  return (
+    <>
+      <p>Total Clicks: {totalClicks}</p>
+      {lastActivity && (
+        <p>Last Activity: {lastActivity.toLocaleTimeString()}</p>
+      )}
+    </>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -495,6 +636,31 @@ export const TouchSupport: Story = {
       description: {
         story:
           'Demonstrates support for both mouse and touch events. Automatically detects and handles both input methods.',
+      },
+      source: {
+        code: `import { useClickAnyWhere } from '@algtools/ui';
+import { useState } from 'react';
+
+function MyComponent() {
+  const [events, setEvents] = useState<string[]>([]);
+
+  useClickAnyWhere((event) => {
+    const eventType = event.type; // 'click' or 'touchstart'
+    setEvents((prev) => [\`\${eventType} detected\`, ...prev].slice(0, 10));
+  });
+
+  return (
+    <>
+      <p>Supports both mouse clicks and touch events</p>
+      <ul>
+        {events.map((event, i) => (
+          <li key={i}>{event}</li>
+        ))}
+      </ul>
+    </>
+  );
+}`,
+        language: 'tsx',
       },
     },
   },

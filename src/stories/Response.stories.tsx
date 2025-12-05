@@ -154,7 +154,8 @@ export const Default: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Default response component rendering simple markdown content with basic formatting like headings, bold, and italic text.',
+        story:
+          'Default response component rendering simple markdown content with basic formatting like headings, bold, and italic text.',
       },
     },
   },

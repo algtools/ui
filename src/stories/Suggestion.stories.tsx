@@ -76,7 +76,8 @@ export const Default: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Default suggestion chip with standard styling, ready for use in AI chat interfaces as follow-up prompts.',
+        story:
+          'Default suggestion chip with standard styling, ready for use in AI chat interfaces as follow-up prompts.',
       },
     },
   },

@@ -149,7 +149,8 @@ export const Default: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Default sources component collapsed by default, displaying a list of referenced sources with icons and descriptions.',
+        story:
+          'Default sources component collapsed by default, displaying a list of referenced sources with icons and descriptions.',
       },
     },
   },
@@ -165,7 +166,8 @@ export const DefaultOpen: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Sources component expanded by default, immediately showing all referenced sources without requiring user interaction.',
+        story:
+          'Sources component expanded by default, immediately showing all referenced sources without requiring user interaction.',
       },
     },
   },
@@ -181,7 +183,8 @@ export const CompactVariant: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Compact variant of the sources component with reduced spacing, ideal for dense layouts or when space is limited.',
+        story:
+          'Compact variant of the sources component with reduced spacing, ideal for dense layouts or when space is limited.',
       },
     },
   },
@@ -197,7 +200,8 @@ export const WithoutIcons: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Sources component without icons, providing a cleaner text-only display when icons are not needed or available.',
+        story:
+          'Sources component without icons, providing a cleaner text-only display when icons are not needed or available.',
       },
     },
   },
@@ -214,7 +218,8 @@ export const WithCustomTitle: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Sources component with a custom title, allowing for personalized section headings like "Referenced 2 articles" or "Sources used".',
+        story:
+          'Sources component with a custom title, allowing for personalized section headings like "Referenced 2 articles" or "Sources used".',
       },
     },
   },
@@ -232,7 +237,8 @@ export const WithCustomIcon: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Sources component with a custom header icon, allowing for visual branding or categorization of different source types.',
+        story:
+          'Sources component with a custom header icon, allowing for visual branding or categorization of different source types.',
       },
     },
   },
@@ -249,7 +255,8 @@ export const WithMaxDisplayed: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Sources component with maximum displayed limit (3), showing a "show more" button when there are additional sources beyond the limit.',
+        story:
+          'Sources component with maximum displayed limit (3), showing a "show more" button when there are additional sources beyond the limit.',
       },
     },
   },
@@ -265,7 +272,8 @@ export const SingleSource: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Sources component with a single source, demonstrating how it handles minimal source lists.',
+        story:
+          'Sources component with a single source, demonstrating how it handles minimal source lists.',
       },
     },
   },
@@ -281,7 +289,8 @@ export const SourcesWithoutUrls: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Sources without URLs, useful for internal documents or proprietary sources that are not publicly accessible.',
+        story:
+          'Sources without URLs, useful for internal documents or proprietary sources that are not publicly accessible.',
       },
     },
   },
@@ -297,7 +306,8 @@ export const SourcesWithoutIconUrls: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Sources without icon URLs, showing how the component handles missing favicons with fallback display.',
+        story:
+          'Sources without icon URLs, showing how the component handles missing favicons with fallback display.',
       },
     },
   },
@@ -336,7 +346,8 @@ export const LargeSourceList: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Sources component with a large list (8+ sources), demonstrating how it handles extensive source collections.',
+        story:
+          'Sources component with a large list (8+ sources), demonstrating how it handles extensive source collections.',
       },
     },
   },
@@ -372,7 +383,8 @@ export const WithCallback: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Sources component with click callback handler, allowing for custom behavior when users interact with source links.',
+        story:
+          'Sources component with click callback handler, allowing for custom behavior when users interact with source links.',
       },
     },
   },
@@ -415,7 +427,8 @@ export const Controlled: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Sources component in controlled mode, where the open/closed state is managed externally through React state and custom buttons.',
+        story:
+          'Sources component in controlled mode, where the open/closed state is managed externally through React state and custom buttons.',
       },
     },
   },
@@ -455,7 +468,8 @@ export const AIResponseExample: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Sources component integrated into an AI response context, showing how referenced sources appear below AI-generated content.',
+        story:
+          'Sources component integrated into an AI response context, showing how referenced sources appear below AI-generated content.',
       },
     },
   },
@@ -503,7 +517,8 @@ export const MultipleSourcesSections: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Multiple sources sections displayed together, each categorized by type (frameworks, languages, styling), demonstrating organization of different source collections.',
+        story:
+          'Multiple sources sections displayed together, each categorized by type (frameworks, languages, styling), demonstrating organization of different source collections.',
       },
     },
   },
@@ -534,7 +549,8 @@ export const EmptySources: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Sources component with empty sources array, demonstrating graceful handling when no sources are available (component renders nothing).',
+        story:
+          'Sources component with empty sources array, demonstrating graceful handling when no sources are available (component renders nothing).',
       },
     },
   },
@@ -575,7 +591,8 @@ export const MixedContentTypes: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Sources with mixed content types, some with all fields, some missing descriptions, icons, or URLs, demonstrating flexible handling of incomplete source data.',
+        story:
+          'Sources with mixed content types, some with all fields, some missing descriptions, icons, or URLs, demonstrating flexible handling of incomplete source data.',
       },
     },
   },
@@ -607,7 +624,8 @@ export const ResponsiveExample: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Responsive layout showing both default and compact variants side-by-side, demonstrating how sources adapt to different screen sizes and layout constraints.',
+        story:
+          'Responsive layout showing both default and compact variants side-by-side, demonstrating how sources adapt to different screen sizes and layout constraints.',
       },
     },
   },

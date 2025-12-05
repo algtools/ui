@@ -243,6 +243,24 @@ export const Basic: Story = {
       description: {
         story: 'Basic usage of the useToggle hook showing all available methods.',
       },
+      source: {
+        code: `import { useToggle } from '@algtools/ui';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const { value, setTrue, setFalse, toggle } = useToggle(false);
+
+  return (
+    <>
+      <p>Value: {value ? 'ON' : 'OFF'}</p>
+      <Button onClick={setTrue}>Turn On</Button>
+      <Button onClick={setFalse}>Turn Off</Button>
+      <Button onClick={toggle}>Toggle</Button>
+    </>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -255,6 +273,25 @@ export const WithCallbacks: Story = {
         story:
           'Toggle with callback functions. Open the browser console to see callbacks being triggered.',
       },
+      source: {
+        code: `import { useToggle } from '@algtools/ui';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const { value, toggle } = useToggle(false, {
+    onToggleOn: () => console.log('Turned ON'),
+    onToggleOff: () => console.log('Turned OFF'),
+    onChange: (newValue) => console.log('Changed to:', newValue),
+  });
+
+  return (
+    <Button onClick={toggle}>
+      Toggle & Check Console
+    </Button>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -265,6 +302,27 @@ export const NotificationToggle: Story = {
     docs: {
       description: {
         story: 'A common use case: toggling notifications on/off with visual feedback.',
+      },
+      source: {
+        code: `import { useToggle } from '@algtools/ui';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const { value: isEnabled, toggle } = useToggle(true, {
+    onToggleOn: () => console.log('Notifications enabled'),
+    onToggleOff: () => console.log('Notifications disabled'),
+  });
+
+  return (
+    <>
+      <Button onClick={toggle}>
+        {isEnabled ? 'Disable' : 'Enable'} Notifications
+      </Button>
+      <p>Notifications are {isEnabled ? 'enabled' : 'disabled'}</p>
+    </>
+  );
+}`,
+        language: 'tsx',
       },
     },
   },
@@ -277,6 +335,26 @@ export const DarkModeToggle: Story = {
       description: {
         story: 'Theme toggling example showing visual preview of the current mode.',
       },
+      source: {
+        code: `import { useToggle } from '@algtools/ui';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const { value: isDark, toggle } = useToggle(false);
+
+  return (
+    <>
+      <div className={isDark ? 'bg-slate-900 text-white' : 'bg-white text-slate-900'}>
+        <p>This is {isDark ? 'dark' : 'light'} mode</p>
+      </div>
+      <Button onClick={toggle}>
+        Switch to {isDark ? 'Light' : 'Dark'} Mode
+      </Button>
+    </>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -287,6 +365,40 @@ export const FeatureFlags: Story = {
     docs: {
       description: {
         story: 'Multiple independent toggles for managing feature flags.',
+      },
+      source: {
+        code: `import { useToggle } from '@algtools/ui';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const { value: feature1, toggle: toggleFeature1 } = useToggle(false);
+  const { value: feature2, toggle: toggleFeature2 } = useToggle(true);
+  const { value: feature3, toggle: toggleFeature3 } = useToggle(false);
+
+  return (
+    <>
+      <div>
+        <p>New Dashboard</p>
+        <Button onClick={toggleFeature1} variant={feature1 ? 'default' : 'outline'}>
+          {feature1 ? 'ON' : 'OFF'}
+        </Button>
+      </div>
+      <div>
+        <p>Advanced Analytics</p>
+        <Button onClick={toggleFeature2} variant={feature2 ? 'default' : 'outline'}>
+          {feature2 ? 'ON' : 'OFF'}
+        </Button>
+      </div>
+      <div>
+        <p>Beta Features</p>
+        <Button onClick={toggleFeature3} variant={feature3 ? 'default' : 'outline'}>
+          {feature3 ? 'ON' : 'OFF'}
+        </Button>
+      </div>
+    </>
+  );
+}`,
+        language: 'tsx',
       },
     },
   },

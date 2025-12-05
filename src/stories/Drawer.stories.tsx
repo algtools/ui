@@ -113,7 +113,8 @@ export const BottomDrawer: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A bottom drawer that slides up from the bottom of the screen, ideal for mobile interfaces, action sheets, and quick access tools.',
+        story:
+          'A bottom drawer that slides up from the bottom of the screen, ideal for mobile interfaces, action sheets, and quick access tools.',
       },
     },
   },
@@ -181,7 +182,8 @@ export const LeftDrawer: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A left drawer that slides in from the left side, commonly used for navigation menus and sidebars.',
+        story:
+          'A left drawer that slides in from the left side, commonly used for navigation menus and sidebars.',
       },
     },
   },
@@ -264,7 +266,8 @@ export const RightDrawer: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A right drawer that slides in from the right side, ideal for settings panels, filters, and secondary content.',
+        story:
+          'A right drawer that slides in from the right side, ideal for settings panels, filters, and secondary content.',
       },
     },
   },
@@ -341,7 +344,8 @@ export const TopDrawer: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A top drawer that slides down from the top of the screen, useful for notifications, alerts, and quick messages.',
+        story:
+          'A top drawer that slides down from the top of the screen, useful for notifications, alerts, and quick messages.',
       },
     },
   },
@@ -448,7 +452,8 @@ export const ShoppingCartDrawer: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A shopping cart drawer displaying cart items with quantities, prices, and checkout functionality, demonstrating e-commerce use cases.',
+        story:
+          'A shopping cart drawer displaying cart items with quantities, prices, and checkout functionality, demonstrating e-commerce use cases.',
       },
     },
   },
@@ -588,7 +593,8 @@ export const FilterDrawer: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A filter drawer with various filter options including checkboxes, sliders, and dropdowns, demonstrating how to implement filtering interfaces.',
+        story:
+          'A filter drawer with various filter options including checkboxes, sliders, and dropdowns, demonstrating how to implement filtering interfaces.',
       },
     },
   },
@@ -706,7 +712,8 @@ export const ProfileDrawer: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A profile drawer displaying user information, settings, and account actions, demonstrating a comprehensive user profile interface.',
+        story:
+          'A profile drawer displaying user information, settings, and account actions, demonstrating a comprehensive user profile interface.',
       },
     },
   },
@@ -813,7 +820,8 @@ export const SearchDrawer: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A search drawer with a search input, recent searches, and quick actions, demonstrating how to implement search functionality in a drawer.',
+        story:
+          'A search drawer with a search input, recent searches, and quick actions, demonstrating how to implement search functionality in a drawer.',
       },
     },
   },
@@ -924,7 +932,8 @@ export const MobileMenuDrawer: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A mobile menu drawer with navigation links, user profile, and settings, demonstrating a complete mobile navigation interface.',
+        story:
+          'A mobile menu drawer with navigation links, user profile, and settings, demonstrating a complete mobile navigation interface.',
       },
     },
   },

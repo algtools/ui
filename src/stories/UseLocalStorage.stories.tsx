@@ -484,6 +484,29 @@ export const Basic: Story = {
       description: {
         story: 'Basic usage of the useLocalStorage hook with string values.',
       },
+      source: {
+        code: `import { useLocalStorage } from '@algtools/ui';
+import { Input } from '@algtools/ui';
+
+function MyComponent() {
+  const { value, setValue, removeValue, error } = useLocalStorage('demo-text', 'Hello, World!');
+
+  return (
+    <>
+      {error && <p>Error: {error.message}</p>}
+      <Input
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        placeholder="Type something..."
+      />
+      <p>Current Value: {value}</p>
+      <Button onClick={removeValue}>Clear</Button>
+      <Button onClick={() => setValue('Hello, World!')}>Reset</Button>
+    </>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -495,6 +518,24 @@ export const Counter: Story = {
       description: {
         story:
           'A persistent counter that survives page refreshes. Demonstrates numeric value storage.',
+      },
+      source: {
+        code: `import { useLocalStorage } from '@algtools/ui';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const { value: count, setValue: setCount } = useLocalStorage('counter', 0);
+
+  return (
+    <>
+      <p className="text-6xl font-bold">{count}</p>
+      <Button onClick={() => setCount((c) => c - 1)}>-1</Button>
+      <Button onClick={() => setCount(0)}>Reset</Button>
+      <Button onClick={() => setCount((c) => c + 1)}>+1</Button>
+    </>
+  );
+}`,
+        language: 'tsx',
       },
     },
   },
@@ -508,6 +549,51 @@ export const UserPreferences: Story = {
         story:
           'Complex object storage for user preferences. Shows how to work with typed interfaces.',
       },
+      source: {
+        code: `import { useLocalStorage } from '@algtools/ui';
+
+interface Preferences {
+  notifications: boolean;
+  autoSave: boolean;
+  theme: 'light' | 'dark' | 'system';
+  language: string;
+}
+
+function MyComponent() {
+  const {
+    value: prefs,
+    setValue: setPrefs,
+    removeValue,
+  } = useLocalStorage<Preferences>('user-preferences', {
+    notifications: true,
+    autoSave: false,
+    theme: 'system',
+    language: 'en',
+  });
+
+  const updatePref = <K extends keyof Preferences>(key: K, value: Preferences[K]) => {
+    setPrefs((prev) => ({ ...prev, [key]: value }));
+  };
+
+  return (
+    <>
+      <Switch
+        checked={prefs.notifications}
+        onCheckedChange={(checked) => updatePref('notifications', checked)}
+      />
+      <select
+        value={prefs.theme}
+        onChange={(e) => updatePref('theme', e.target.value as Preferences['theme'])}
+      >
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+        <option value="system">System</option>
+      </select>
+    </>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -520,6 +606,54 @@ export const ShoppingCart: Story = {
         story:
           'A shopping cart that persists items across sessions. Demonstrates array storage and manipulation.',
       },
+      source: {
+        code: `import { useLocalStorage } from '@algtools/ui';
+
+interface CartItem {
+  id: number;
+  name: string;
+  price: number;
+  quantity: number;
+}
+
+function MyComponent() {
+  const {
+    value: cart,
+    setValue: setCart,
+    removeValue,
+  } = useLocalStorage<CartItem[]>('shopping-cart', []);
+
+  const addItem = () => {
+    const newItem: CartItem = {
+      id: Date.now(),
+      name: \`Item \${cart.length + 1}\`,
+      price: Math.floor(Math.random() * 50) + 10,
+      quantity: 1,
+    };
+    setCart((prev) => [...prev, newItem]);
+  };
+
+  const removeItem = (id: number) => {
+    setCart((prev) => prev.filter((item) => item.id !== id));
+  };
+
+  const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+  return (
+    <>
+      {cart.map((item) => (
+        <div key={item.id}>
+          <p>{item.name} - ${item.price} x {item.quantity}</p>
+          <Button onClick={() => removeItem(item.id)}>Remove</Button>
+        </div>
+      ))}
+      <Button onClick={addItem}>Add Item</Button>
+      <p>Total: ${total.toFixed(2)}</p>
+    </>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -531,6 +665,40 @@ export const FormPersistence: Story = {
       description: {
         story: 'Auto-saving form data to prevent loss on accidental page refresh or navigation.',
       },
+      source: {
+        code: `import { useLocalStorage } from '@algtools/ui';
+import { Input } from '@algtools/ui';
+
+function MyComponent() {
+  const { value: formData, setValue: setFormData } = useLocalStorage('form-data', {
+    name: '',
+    email: '',
+    message: '',
+  });
+
+  return (
+    <>
+      <Input
+        value={formData.name}
+        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+        placeholder="Name"
+      />
+      <Input
+        value={formData.email}
+        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+        placeholder="Email"
+      />
+      <textarea
+        value={formData.message}
+        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+        placeholder="Message"
+      />
+      <p>Form data is automatically saved to localStorage</p>
+    </>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -541,6 +709,29 @@ export const ErrorHandling: Story = {
     docs: {
       description: {
         story: 'Demonstration of error handling for storage quota and other localStorage failures.',
+      },
+      source: {
+        code: `import { useLocalStorage } from '@algtools/ui';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const { value, setValue, error, removeValue } = useLocalStorage('data', 'initial');
+
+  return (
+    <>
+      {error && (
+        <div className="error">
+          <p>Error: {error.message}</p>
+          <p>Storage may be full or unavailable</p>
+        </div>
+      )}
+      <Button onClick={() => setValue('test')}>Set Value</Button>
+      <Button onClick={removeValue}>Clear</Button>
+      <p>Current value: {value}</p>
+    </>
+  );
+}`,
+        language: 'tsx',
       },
     },
   },

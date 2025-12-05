@@ -209,6 +209,24 @@ export const Basic: Story = {
       description: {
         story: 'Basic usage of the useIsMounted hook showing how to check mount state.',
       },
+      source: {
+        code: `import { useIsMounted } from '@algtools/ui';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const isMounted = useIsMounted();
+
+  return (
+    <>
+      <p>Component is {isMounted() ? 'mounted' : 'not mounted'}</p>
+      <Button onClick={() => console.log('Mounted:', isMounted())}>
+        Check Mount State
+      </Button>
+    </>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -221,6 +239,41 @@ export const AsyncSafety: Story = {
         story:
           'Demonstrates how useIsMounted prevents state updates after component unmounts during async operations.',
       },
+      source: {
+        code: `import { useIsMounted } from '@algtools/ui';
+import { useState } from 'react';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const isMounted = useIsMounted();
+  const [data, setData] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+
+  const fetchData = async () => {
+    setLoading(true);
+    setData(null);
+
+    // Simulate API call
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+
+    // Only update state if component is still mounted
+    if (isMounted()) {
+      setData('Data fetched successfully!');
+      setLoading(false);
+    }
+  };
+
+  return (
+    <>
+      <Button onClick={fetchData} disabled={loading}>
+        {loading ? 'Loading...' : 'Fetch Data'}
+      </Button>
+      {data && <p>{data}</p>}
+    </>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -232,6 +285,29 @@ export const ConditionalUpdates: Story = {
       description: {
         story:
           'Shows how to use useIsMounted with intervals and timers to ensure updates only happen when mounted.',
+      },
+      source: {
+        code: `import { useIsMounted } from '@algtools/ui';
+import { useState, useEffect } from 'react';
+
+function MyComponent() {
+  const isMounted = useIsMounted();
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      // Only update if component is still mounted
+      if (isMounted()) {
+        setCount((c) => c + 1);
+      }
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [isMounted]);
+
+  return <p>Count: {count}</p>;
+}`,
+        language: 'tsx',
       },
     },
   },

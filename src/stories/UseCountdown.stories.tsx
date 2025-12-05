@@ -605,6 +605,30 @@ export const Basic: Story = {
         story:
           'Basic usage of the useCountdown hook showing start, pause, and reset functionality.',
       },
+      source: {
+        code: `import { useCountdown } from '@algtools/ui';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const { timeRemaining, isRunning, toggle, reset } = useCountdown(60000); // 60 seconds
+
+  const minutes = Math.floor(timeRemaining / 60000);
+  const seconds = Math.floor((timeRemaining % 60000) / 1000);
+
+  return (
+    <>
+      <p className="text-6xl font-bold font-mono">
+        {String(minutes).padStart(2, '0')}:{String(seconds).padStart(2, '0')}
+      </p>
+      <Button onClick={toggle}>
+        {isRunning ? 'Pause' : 'Start'}
+      </Button>
+      <Button onClick={reset}>Reset</Button>
+    </>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -616,6 +640,34 @@ export const PomodoroTimer: Story = {
       description: {
         story:
           'Pomodoro timer implementation with work/break cycles and completion tracking. Demonstrates onComplete callback and dynamic duration switching.',
+      },
+      source: {
+        code: `import { useCountdown } from '@algtools/ui';
+import { useState } from 'react';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const [isWork, setIsWork] = useState(true);
+  const { timeRemaining, isRunning, toggle, reset, setDuration } = useCountdown(
+    isWork ? 25 * 60 * 1000 : 5 * 60 * 1000,
+    {
+      onComplete: () => {
+        setIsWork(!isWork);
+        setDuration(isWork ? 5 * 60 * 1000 : 25 * 60 * 1000);
+      },
+    }
+  );
+
+  return (
+    <>
+      <p>Mode: {isWork ? 'Work' : 'Break'}</p>
+      <p>Time: {Math.floor(timeRemaining / 60000)}:{(Math.floor((timeRemaining % 60000) / 1000)).toString().padStart(2, '0')}</p>
+      <Button onClick={toggle}>{isRunning ? 'Pause' : 'Start'}</Button>
+      <Button onClick={reset}>Reset</Button>
+    </>
+  );
+}`,
+        language: 'tsx',
       },
     },
   },
@@ -629,6 +681,26 @@ export const CookingTimer: Story = {
         story:
           'Cooking timer with preset durations and time adjustment. Shows practical use of setDuration for quick preset selection.',
       },
+      source: {
+        code: `import { useCountdown } from '@algtools/ui';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const { timeRemaining, isRunning, toggle, reset, setDuration } = useCountdown(0);
+
+  return (
+    <>
+      <Button onClick={() => setDuration(5 * 60 * 1000)}>5 min</Button>
+      <Button onClick={() => setDuration(10 * 60 * 1000)}>10 min</Button>
+      <Button onClick={() => setDuration(15 * 60 * 1000)}>15 min</Button>
+      <p>Time: {Math.floor(timeRemaining / 60000)}:{(Math.floor((timeRemaining % 60000) / 1000)).toString().padStart(2, '0')}</p>
+      <Button onClick={toggle}>{isRunning ? 'Pause' : 'Start'}</Button>
+      <Button onClick={reset}>Reset</Button>
+    </>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -640,6 +712,33 @@ export const WorkoutTimer: Story = {
       description: {
         story:
           'Interval training workout timer that cycles through exercises. Demonstrates chaining countdowns with automatic progression.',
+      },
+      source: {
+        code: `import { useCountdown } from '@algtools/ui';
+import { useState } from 'react';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const [exercise, setExercise] = useState(0);
+  const exercises = ['Push-ups', 'Squats', 'Plank'];
+
+  const { timeRemaining, isRunning, toggle, reset, setDuration } = useCountdown(30 * 1000, {
+    onComplete: () => {
+      setExercise((e) => (e + 1) % exercises.length);
+      setDuration(30 * 1000);
+    },
+  });
+
+  return (
+    <>
+      <p>Exercise: {exercises[exercise]}</p>
+      <p>Time: {Math.floor(timeRemaining / 1000)}s</p>
+      <Button onClick={toggle}>{isRunning ? 'Pause' : 'Start'}</Button>
+      <Button onClick={reset}>Reset</Button>
+    </>
+  );
+}`,
+        language: 'tsx',
       },
     },
   },
@@ -653,6 +752,29 @@ export const MeetingTimer: Story = {
         story:
           'Meeting timer with warning threshold and quick duration presets. Shows visual feedback for time-critical situations.',
       },
+      source: {
+        code: `import { useCountdown } from '@algtools/ui';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const { timeRemaining, isRunning, toggle, reset, setDuration } = useCountdown(30 * 60 * 1000);
+  const isWarning = timeRemaining < 5 * 60 * 1000;
+
+  return (
+    <>
+      <div className={isWarning ? 'text-red-500' : ''}>
+        <p>Time: {Math.floor(timeRemaining / 60000)}:{(Math.floor((timeRemaining % 60000) / 1000)).toString().padStart(2, '0')}</p>
+      </div>
+      <Button onClick={() => setDuration(15 * 60 * 1000)}>15 min</Button>
+      <Button onClick={() => setDuration(30 * 60 * 1000)}>30 min</Button>
+      <Button onClick={() => setDuration(60 * 60 * 1000)}>1 hour</Button>
+      <Button onClick={toggle}>{isRunning ? 'Pause' : 'Start'}</Button>
+      <Button onClick={reset}>Reset</Button>
+    </>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -664,6 +786,26 @@ export const CustomInterval: Story = {
       description: {
         story:
           'Demonstrates custom interval configuration for different update frequencies. Useful for smooth animations or precise timing.',
+      },
+      source: {
+        code: `import { useCountdown } from '@algtools/ui';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  // Update every 100ms for smooth animations
+  const { timeRemaining, isRunning, toggle, reset } = useCountdown(60000, {
+    interval: 100,
+  });
+
+  return (
+    <>
+      <p>Time: {(timeRemaining / 1000).toFixed(1)}s</p>
+      <Button onClick={toggle}>{isRunning ? 'Pause' : 'Start'}</Button>
+      <Button onClick={reset}>Reset</Button>
+    </>
+  );
+}`,
+        language: 'tsx',
       },
     },
   },

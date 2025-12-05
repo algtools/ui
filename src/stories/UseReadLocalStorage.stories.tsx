@@ -448,6 +448,22 @@ export const Basic: Story = {
         story:
           "Basic usage of the useReadLocalStorage hook. Demonstrates read-only access with simulated cross-tab updates. The button manually dispatches a storage event to demonstrate the hook's reactivity.",
       },
+      source: {
+        code: `import { useReadLocalStorage } from '@algtools/ui';
+
+function MyComponent() {
+  const { value, error } = useReadLocalStorage('my-key', 'Default Value');
+
+  return (
+    <>
+      {error && <p>Error: {error.message}</p>}
+      <p>Value: {value}</p>
+      <p>This value syncs across browser tabs automatically</p>
+    </>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -459,6 +475,19 @@ export const ReadOnlyNature: Story = {
       description: {
         story:
           'Demonstrates the read-only nature of the hook. No write methods are exposed, making it perfect for display-only components that need to read shared state.',
+      },
+      source: {
+        code: `import { useReadLocalStorage } from '@algtools/ui';
+
+function MyComponent() {
+  // Read-only - no setValue, removeValue, etc.
+  const { value } = useReadLocalStorage('shared-state', null);
+
+  return (
+    <p>Read-only value: {value || 'Not set'}</p>
+  );
+}`,
+        language: 'tsx',
       },
     },
   },
@@ -473,6 +502,30 @@ export const CrossTabSync: Story = {
         story:
           'Demonstrates automatic synchronization between reader and writer components. **To test**: Open this story in multiple browser tabs and watch values sync automatically when you make changes in one tab!',
       },
+      source: {
+        code: `import { useReadLocalStorage } from '@algtools/ui';
+import { useLocalStorage } from '@algtools/ui';
+import { Input } from '@algtools/ui';
+
+// Writer component
+function Writer() {
+  const { value, setValue } = useLocalStorage('shared-key', '');
+  return (
+    <Input
+      value={value}
+      onChange={(e) => setValue(e.target.value)}
+      placeholder="Type here..."
+    />
+  );
+}
+
+// Reader component (syncs automatically)
+function Reader() {
+  const { value } = useReadLocalStorage('shared-key', '');
+  return <p>Value: {value}</p>;
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -485,6 +538,21 @@ export const ThemeMonitor: Story = {
       description: {
         story:
           'Monitor theme configuration in read-only mode. Open in multiple tabs to see theme changes sync automatically. Perfect for display components that need to reflect settings from a central store.',
+      },
+      source: {
+        code: `import { useReadLocalStorage } from '@algtools/ui';
+
+function MyComponent() {
+  const { value: theme } = useReadLocalStorage('theme', 'light');
+
+  return (
+    <div className={theme === 'dark' ? 'bg-slate-900 text-white' : 'bg-white text-slate-900'}>
+      <p>Current theme: {theme}</p>
+      <p>This syncs automatically across tabs</p>
+    </div>
+  );
+}`,
+        language: 'tsx',
       },
     },
   },

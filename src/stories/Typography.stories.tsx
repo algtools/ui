@@ -38,7 +38,8 @@ export const Headings: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Typography headings from H1 to H6, demonstrating different heading levels with their default font weights and sizes.',
+        story:
+          'Typography headings from H1 to H6, demonstrating different heading levels with their default font weights and sizes.',
       },
     },
   },
@@ -68,7 +69,8 @@ export const BodyText: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Body text examples with different paragraph styles, demonstrating standard text formatting for content.',
+        story:
+          'Body text examples with different paragraph styles, demonstrating standard text formatting for content.',
       },
     },
   },
@@ -91,7 +93,8 @@ export const FontWeights: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Typography examples with different font weights (light, normal, medium, semibold, bold), demonstrating weight variations.',
+        story:
+          'Typography examples with different font weights (light, normal, medium, semibold, bold), demonstrating weight variations.',
       },
     },
   },
@@ -143,7 +146,8 @@ export default function Example() {
   parameters: {
     docs: {
       description: {
-        story: 'Monospace and code typography examples, demonstrating how to display code snippets and technical content.',
+        story:
+          'Monospace and code typography examples, demonstrating how to display code snippets and technical content.',
       },
     },
   },
@@ -166,7 +170,8 @@ export const TextColors: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Typography examples with different text colors, demonstrating color variations for text content.',
+        story:
+          'Typography examples with different text colors, demonstrating color variations for text content.',
       },
     },
   },
@@ -189,7 +194,8 @@ export const TextSizes: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Typography examples with different text sizes (xs, sm, base, lg, xl, 2xl, etc.), demonstrating size variations.',
+        story:
+          'Typography examples with different text sizes (xs, sm, base, lg, xl, 2xl, etc.), demonstrating size variations.',
       },
     },
   },
@@ -229,7 +235,8 @@ export const LineHeight: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Typography examples with different line heights, demonstrating how line height affects text readability and spacing.',
+        story:
+          'Typography examples with different line heights, demonstrating how line height affects text readability and spacing.',
       },
     },
   },
@@ -311,7 +318,8 @@ if (condition1 && condition2 || fallback) {
   parameters: {
     docs: {
       description: {
-        story: 'Typography examples demonstrating font ligatures, showing how certain character combinations are rendered with special glyphs.',
+        story:
+          'Typography examples demonstrating font ligatures, showing how certain character combinations are rendered with special glyphs.',
       },
     },
   },
@@ -331,7 +339,8 @@ export const LetterSpacing: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Typography examples with different letter spacing values, demonstrating how letter spacing affects text appearance.',
+        story:
+          'Typography examples with different letter spacing values, demonstrating how letter spacing affects text appearance.',
       },
     },
   },
@@ -376,7 +385,8 @@ export const Lists: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Typography examples for lists including ordered and unordered lists, demonstrating list formatting.',
+        story:
+          'Typography examples for lists including ordered and unordered lists, demonstrating list formatting.',
       },
     },
   },
@@ -401,7 +411,8 @@ export const Blockquote: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Typography examples for blockquotes, demonstrating how to format quoted text and citations.',
+        story:
+          'Typography examples for blockquotes, demonstrating how to format quoted text and citations.',
       },
     },
   },
@@ -505,7 +516,8 @@ console.log(message);`}
   parameters: {
     docs: {
       description: {
-        story: 'A comprehensive showcase of all typography styles including headings, body text, lists, blockquotes, and code, demonstrating the complete typography system.',
+        story:
+          'A comprehensive showcase of all typography styles including headings, body text, lists, blockquotes, and code, demonstrating the complete typography system.',
       },
     },
   },

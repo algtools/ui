@@ -206,7 +206,35 @@ export const DomMeasurement: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Demonstrates DOM measurement using useIsomorphicLayoutEffect to synchronously measure elements before the browser paints.',
+        story:
+          'Demonstrates DOM measurement using useIsomorphicLayoutEffect to synchronously measure elements before the browser paints.',
+      },
+      source: {
+        code: `import { useIsomorphicLayoutEffect } from '@algtools/ui';
+import { useRef, useState } from 'react';
+
+function MyComponent() {
+  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+  const boxRef = useRef<HTMLDivElement>(null);
+
+  useIsomorphicLayoutEffect(() => {
+    if (boxRef.current) {
+      const rect = boxRef.current.getBoundingClientRect();
+      setDimensions({
+        width: rect.width,
+        height: rect.height,
+      });
+    }
+  }, []);
+
+  return (
+    <div ref={boxRef}>
+      <p>Width: {dimensions.width}px</p>
+      <p>Height: {dimensions.height}px</p>
+    </div>
+  );
+}`,
+        language: 'tsx',
       },
     },
   },
@@ -217,7 +245,8 @@ export const SynchronousExecution: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Demonstrates the synchronous nature of useIsomorphicLayoutEffect on the client. The layout effect runs immediately after DOM mutations but before the browser paints.',
+        story:
+          'Demonstrates the synchronous nature of useIsomorphicLayoutEffect on the client. The layout effect runs immediately after DOM mutations but before the browser paints.',
       },
     },
   },
@@ -228,7 +257,8 @@ export const ScrollTracking: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Shows how to track scroll position with useIsomorphicLayoutEffect. Event listeners are attached synchronously on the client.',
+        story:
+          'Shows how to track scroll position with useIsomorphicLayoutEffect. Event listeners are attached synchronously on the client.',
       },
     },
   },
@@ -288,7 +318,8 @@ export const MultipleEffects: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Multiple instances of the hook can be used in the same component, demonstrating how multiple layout effects run synchronously in order.',
+        story:
+          'Multiple instances of the hook can be used in the same component, demonstrating how multiple layout effects run synchronously in order.',
       },
     },
   },
@@ -364,7 +395,8 @@ export const WithCleanup: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Example showing cleanup function usage with useIsomorphicLayoutEffect, demonstrating how to properly clean up resources when the effect is disabled or the component unmounts.',
+        story:
+          'Example showing cleanup function usage with useIsomorphicLayoutEffect, demonstrating how to properly clean up resources when the effect is disabled or the component unmounts.',
       },
     },
   },

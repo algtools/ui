@@ -263,6 +263,24 @@ export const BinaryMode: Story = {
         story:
           'Simple binary dark mode hook with light and dark options. Perfect for basic theme switching.',
       },
+      source: {
+        code: `import { useDarkMode } from '@algtools/ui';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const { isDarkMode, enable, disable, toggle } = useDarkMode();
+
+  return (
+    <>
+      <p>Current mode: {isDarkMode ? 'Dark' : 'Light'}</p>
+      <Button onClick={enable}>Enable Dark Mode</Button>
+      <Button onClick={disable}>Enable Light Mode</Button>
+      <Button onClick={toggle}>Toggle Mode</Button>
+    </>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -274,6 +292,26 @@ export const TernaryMode: Story = {
       description: {
         story:
           'Advanced ternary dark mode hook with light, dark, and system options. System mode automatically follows OS preferences.',
+      },
+      source: {
+        code: `import { useTernaryDarkMode } from '@algtools/ui';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const { mode, isDarkMode, setLight, setDark, setSystem, toggle } = useTernaryDarkMode();
+
+  return (
+    <>
+      <p>Mode: {mode}</p>
+      <p>Is Dark: {isDarkMode ? 'Yes' : 'No'}</p>
+      <Button onClick={setLight}>Light</Button>
+      <Button onClick={setDark}>Dark</Button>
+      <Button onClick={setSystem}>System</Button>
+      <Button onClick={toggle}>Toggle</Button>
+    </>
+  );
+}`,
+        language: 'tsx',
       },
     },
   },
@@ -297,6 +335,30 @@ export const DropdownSelector: Story = {
       description: {
         story: 'Using the ternary dark mode hook with a dropdown selector.',
       },
+      source: {
+        code: `import { useTernaryDarkMode } from '@algtools/ui';
+
+function MyComponent() {
+  const { mode, setLight, setDark, setSystem } = useTernaryDarkMode();
+
+  return (
+    <select
+      value={mode}
+      onChange={(e) => {
+        const value = e.target.value;
+        if (value === 'light') setLight();
+        else if (value === 'dark') setDark();
+        else setSystem();
+      }}
+    >
+      <option value="light">Light</option>
+      <option value="dark">Dark</option>
+      <option value="system">System</option>
+    </select>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -308,6 +370,21 @@ export const ThemeAwareContent: Story = {
       description: {
         story:
           'Example showing how dark mode affects theme-aware content and Tailwind CSS color tokens.',
+      },
+      source: {
+        code: `import { useDarkMode } from '@algtools/ui';
+
+function MyComponent() {
+  const { isDarkMode } = useDarkMode();
+
+  return (
+    <div className={isDarkMode ? 'bg-slate-900 text-white' : 'bg-white text-slate-900'}>
+      <p>Theme-aware content</p>
+      <p>Current mode: {isDarkMode ? 'Dark' : 'Light'}</p>
+    </div>
+  );
+}`,
+        language: 'tsx',
       },
     },
   },

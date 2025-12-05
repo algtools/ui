@@ -93,7 +93,8 @@ export const Disabled: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Disabled checkbox in unchecked state, showing how unavailable options are displayed.',
+        story:
+          'Disabled checkbox in unchecked state, showing how unavailable options are displayed.',
       },
     },
   },
@@ -115,7 +116,8 @@ export const DisabledChecked: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Disabled checkbox in checked state, useful for showing required features that cannot be toggled.',
+        story:
+          'Disabled checkbox in checked state, useful for showing required features that cannot be toggled.',
       },
     },
   },
@@ -136,7 +138,8 @@ export const WithDescription: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Checkbox with a descriptive text below the label, providing additional context for the option.',
+        story:
+          'Checkbox with a descriptive text below the label, providing additional context for the option.',
       },
     },
   },
@@ -198,7 +201,8 @@ export const CheckboxGroup: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Group of checkboxes with independent state management, allowing users to select multiple options from a list.',
+        story:
+          'Group of checkboxes with independent state management, allowing users to select multiple options from a list.',
       },
     },
   },
@@ -289,7 +293,8 @@ export const FormExample: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Checkboxes integrated into a complete form with validation, demonstrating real-world usage in preference settings.',
+        story:
+          'Checkboxes integrated into a complete form with validation, demonstrating real-world usage in preference settings.',
       },
     },
   },
@@ -354,7 +359,8 @@ export const SelectAllExample: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Checkbox list with a "select all" master checkbox that toggles all items, commonly used in data tables and bulk actions.',
+        story:
+          'Checkbox list with a "select all" master checkbox that toggles all items, commonly used in data tables and bulk actions.',
       },
     },
   },
@@ -388,7 +394,8 @@ export const CustomStyling: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Checkboxes with custom styling including different colors, shapes (rounded), and sizes, demonstrating full styling flexibility.',
+        story:
+          'Checkboxes with custom styling including different colors, shapes (rounded), and sizes, demonstrating full styling flexibility.',
       },
     },
   },
@@ -431,7 +438,8 @@ export const ValidationStates: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Checkboxes with validation states (valid, invalid, warning) and associated feedback messages, demonstrating form validation patterns.',
+        story:
+          'Checkboxes with validation states (valid, invalid, warning) and associated feedback messages, demonstrating form validation patterns.',
       },
     },
   },
@@ -470,7 +478,8 @@ export const AccessibilityExample: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Accessibility demonstration showing keyboard navigation, screen reader support, and proper label associations for inclusive design.',
+        story:
+          'Accessibility demonstration showing keyboard navigation, screen reader support, and proper label associations for inclusive design.',
       },
     },
   },

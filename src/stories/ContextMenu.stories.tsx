@@ -109,7 +109,8 @@ export const Default: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A basic context menu triggered by right-clicking, displaying common actions like copy, cut, paste, edit, and delete with keyboard shortcuts.',
+        story:
+          'A basic context menu triggered by right-clicking, displaying common actions like copy, cut, paste, edit, and delete with keyboard shortcuts.',
       },
     },
   },
@@ -163,7 +164,8 @@ export const WithCheckboxes: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A context menu with checkbox items for toggling view options, demonstrating state management for multiple boolean settings.',
+        story:
+          'A context menu with checkbox items for toggling view options, demonstrating state management for multiple boolean settings.',
       },
     },
   },
@@ -207,7 +209,8 @@ export const WithRadioGroup: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A context menu with radio group items for selecting single options from multiple choices, such as theme and layout preferences.',
+        story:
+          'A context menu with radio group items for selecting single options from multiple choices, such as theme and layout preferences.',
       },
     },
   },
@@ -289,7 +292,8 @@ export const WithSubmenus: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A context menu with nested submenus, allowing hierarchical organization of related actions and options.',
+        story:
+          'A context menu with nested submenus, allowing hierarchical organization of related actions and options.',
       },
     },
   },
@@ -392,7 +396,8 @@ export const FileContextMenu: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A file context menu displaying file-specific actions like open, edit, copy, share, and delete, with file type icons and keyboard shortcuts.',
+        story:
+          'A file context menu displaying file-specific actions like open, edit, copy, share, and delete, with file type icons and keyboard shortcuts.',
       },
     },
   },
@@ -492,7 +497,8 @@ export const ImageContextMenu: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'An image context menu with image-specific actions like rotate, zoom, crop, copy, and share, organized in submenus for related operations.',
+        story:
+          'An image context menu with image-specific actions like rotate, zoom, crop, copy, and share, organized in submenus for related operations.',
       },
     },
   },
@@ -566,7 +572,8 @@ export const TextContextMenu: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A text selection context menu that dynamically shows different options based on whether text is selected, providing copy, cut, and paste actions.',
+        story:
+          'A text selection context menu that dynamically shows different options based on whether text is selected, providing copy, cut, and paste actions.',
       },
     },
   },
@@ -652,7 +659,8 @@ export const TableContextMenu: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A table row context menu displaying row-specific actions like view profile, edit user, copy email, and change status, with submenus for status options.',
+        story:
+          'A table row context menu displaying row-specific actions like view profile, edit user, copy email, and change status, with submenus for status options.',
       },
     },
   },
@@ -702,7 +710,8 @@ export const DisabledItems: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A context menu with disabled items, demonstrating how to show unavailable actions with visual indicators and explanatory text for why they are disabled.',
+        story:
+          'A context menu with disabled items, demonstrating how to show unavailable actions with visual indicators and explanatory text for why they are disabled.',
       },
     },
   },
@@ -741,7 +750,8 @@ export const CustomStyling: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A context menu with custom styling, demonstrating how to theme the menu with a coordinated color scheme and custom design.',
+        story:
+          'A context menu with custom styling, demonstrating how to theme the menu with a coordinated color scheme and custom design.',
       },
     },
   },

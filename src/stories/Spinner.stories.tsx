@@ -41,7 +41,8 @@ export const Default: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Default spinner component in medium size, providing visual feedback during loading states.',
+        story:
+          'Default spinner component in medium size, providing visual feedback during loading states.',
       },
     },
   },

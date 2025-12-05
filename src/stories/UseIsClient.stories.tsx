@@ -299,6 +299,22 @@ export const Basic: Story = {
       description: {
         story: 'Basic usage of the useIsClient hook showing how to detect client-side environment.',
       },
+      source: {
+        code: `import { useIsClient } from '@algtools/ui';
+
+function MyComponent() {
+  const isClient = useIsClient();
+
+  return (
+    <>
+      <p>Environment: {isClient ? 'Client-Side' : 'Server-Side'}</p>
+      <p>Can access window: {isClient ? 'Yes' : 'No'}</p>
+      <p>Can use localStorage: {isClient ? 'Yes' : 'No'}</p>
+    </>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -310,6 +326,34 @@ export const BrowserAPI: Story = {
       description: {
         story:
           'Demonstrates safe access to browser APIs like window, navigator, and DOM after client-side detection.',
+      },
+      source: {
+        code: `import { useIsClient } from '@algtools/ui';
+import { useState, useEffect } from 'react';
+
+function MyComponent() {
+  const isClient = useIsClient();
+  const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
+
+  useEffect(() => {
+    if (isClient) {
+      const updateSize = () => {
+        setWindowSize({
+          width: window.innerWidth,
+          height: window.innerHeight,
+        });
+      };
+      updateSize();
+      window.addEventListener('resize', updateSize);
+      return () => window.removeEventListener('resize', updateSize);
+    }
+  }, [isClient]);
+
+  return (
+    <p>Window size: {windowSize.width} x {windowSize.height}</p>
+  );
+}`,
+        language: 'tsx',
       },
     },
   },
@@ -323,6 +367,37 @@ export const LocalStorage: Story = {
         story:
           'Shows how to safely use localStorage with useIsClient to prevent SSR errors and hydration issues.',
       },
+      source: {
+        code: `import { useIsClient } from '@algtools/ui';
+import { useState, useEffect } from 'react';
+
+function MyComponent() {
+  const isClient = useIsClient();
+  const [value, setValue] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (isClient) {
+      const stored = localStorage.getItem('myKey');
+      setValue(stored);
+    }
+  }, [isClient]);
+
+  const handleSave = () => {
+    if (isClient) {
+      localStorage.setItem('myKey', 'myValue');
+      setValue('myValue');
+    }
+  };
+
+  return (
+    <>
+      <p>Stored value: {value || 'Not set'}</p>
+      <Button onClick={handleSave}>Save to localStorage</Button>
+    </>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -334,6 +409,26 @@ export const ConditionalRendering: Story = {
       description: {
         story:
           'Illustrates conditional rendering based on client detection to prevent hydration mismatches.',
+      },
+      source: {
+        code: `import { useIsClient } from '@algtools/ui';
+
+function MyComponent() {
+  const isClient = useIsClient();
+
+  // Only render client-specific content after hydration
+  if (!isClient) {
+    return <div>Loading...</div>;
+  }
+
+  return (
+    <div>
+      <p>This content only renders on the client</p>
+      <p>Window location: {window.location.href}</p>
+    </div>
+  );
+}`,
+        language: 'tsx',
       },
     },
   },

@@ -329,6 +329,35 @@ export const ResizeTracker: Story = {
       description: {
         story: 'Track window resize events to monitor the browser window dimensions in real-time.',
       },
+      source: {
+        code: `import { useEventListener } from '@algtools/ui';
+import { useState } from 'react';
+
+function MyComponent() {
+  const [size, setSize] = useState({
+    width: typeof window !== 'undefined' ? window.innerWidth : 0,
+    height: typeof window !== 'undefined' ? window.innerHeight : 0,
+  });
+
+  useEventListener({
+    eventName: 'resize',
+    handler: () => {
+      setSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    },
+  });
+
+  return (
+    <>
+      <p>Width: {size.width}px</p>
+      <p>Height: {size.height}px</p>
+    </>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -340,6 +369,32 @@ export const KeyboardTracker: Story = {
       description: {
         story:
           'Listen to keyboard events on the document to track key presses. Useful for keyboard shortcuts and navigation.',
+      },
+      source: {
+        code: `import { useEventListener } from '@algtools/ui';
+import { useState } from 'react';
+
+function MyComponent() {
+  const [lastKey, setLastKey] = useState<string>('');
+  const [pressCount, setPressCount] = useState(0);
+
+  useEventListener({
+    eventName: 'keydown',
+    handler: (event: KeyboardEvent) => {
+      setLastKey(event.key);
+      setPressCount((c) => c + 1);
+    },
+    element: document,
+  });
+
+  return (
+    <>
+      <p>Last key: {lastKey}</p>
+      <p>Total presses: {pressCount}</p>
+    </>
+  );
+}`,
+        language: 'tsx',
       },
     },
   },
@@ -353,6 +408,34 @@ export const MouseTracker: Story = {
         story:
           'Track mouse position with the ability to enable/disable tracking dynamically. Demonstrates the enabled parameter.',
       },
+      source: {
+        code: `import { useEventListener } from '@algtools/ui';
+import { useState } from 'react';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [enabled, setEnabled] = useState(true);
+
+  useEventListener({
+    eventName: 'mousemove',
+    handler: (event: MouseEvent) => {
+      setPosition({ x: event.clientX, y: event.clientY });
+    },
+    enabled,
+  });
+
+  return (
+    <>
+      <Button onClick={() => setEnabled(!enabled)}>
+        {enabled ? 'Disable' : 'Enable'} Tracking
+      </Button>
+      <p>Position: ({position.x}, {position.y})</p>
+    </>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -364,6 +447,30 @@ export const ElementClickTracker: Story = {
       description: {
         story:
           'Track clicks on a specific element using a ref. Only clicks on the target element trigger the handler.',
+      },
+      source: {
+        code: `import { useEventListener } from '@algtools/ui';
+import { useRef, useState } from 'react';
+
+function MyComponent() {
+  const [clickCount, setClickCount] = useState(0);
+  const elementRef = useRef<HTMLDivElement>(null);
+
+  useEventListener({
+    eventName: 'click',
+    handler: () => {
+      setClickCount((c) => c + 1);
+    },
+    element: elementRef,
+  });
+
+  return (
+    <div ref={elementRef} className="border p-4 cursor-pointer">
+      <p>Click me! Count: {clickCount}</p>
+    </div>
+  );
+}`,
+        language: 'tsx',
       },
     },
   },
@@ -377,6 +484,30 @@ export const StableCallback: Story = {
         story:
           'Demonstrates useEventCallback providing a stable callback reference that always uses the latest closure values. The callback never changes but accesses the current count.',
       },
+      source: {
+        code: `import { useEventListener } from '@algtools/ui';
+import { useEventCallback } from '@algtools/ui';
+import { useState } from 'react';
+
+function MyComponent() {
+  const [count, setCount] = useState(0);
+
+  const handleClick = useEventCallback(() => {
+    // This callback always has access to the latest count value
+    console.log('Current count:', count);
+    setCount((c) => c + 1);
+  });
+
+  useEventListener({
+    eventName: 'click',
+    handler: handleClick,
+    element: document,
+  });
+
+  return <p>Count: {count}</p>;
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -388,6 +519,34 @@ export const ScrollTracker: Story = {
       description: {
         story:
           'Track scroll position with dynamic enable/disable functionality. Shows how to conditionally attach event listeners.',
+      },
+      source: {
+        code: `import { useEventListener } from '@algtools/ui';
+import { useState } from 'react';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const [scrollY, setScrollY] = useState(0);
+  const [enabled, setEnabled] = useState(true);
+
+  useEventListener({
+    eventName: 'scroll',
+    handler: () => {
+      setScrollY(window.scrollY);
+    },
+    enabled,
+  });
+
+  return (
+    <>
+      <Button onClick={() => setEnabled(!enabled)}>
+        {enabled ? 'Disable' : 'Enable'} Scroll Tracking
+      </Button>
+      <p>Scroll position: {scrollY}px</p>
+    </>
+  );
+}`,
+        language: 'tsx',
       },
     },
   },

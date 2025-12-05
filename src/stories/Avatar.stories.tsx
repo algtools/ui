@@ -36,7 +36,8 @@ export const Default: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Default avatar component displaying a user image with a fallback showing initials when the image loads.',
+        story:
+          'Default avatar component displaying a user image with a fallback showing initials when the image loads.',
       },
     },
   },
@@ -52,7 +53,8 @@ export const WithFallback: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Avatar with a broken image URL, demonstrating how the fallback automatically displays when the image fails to load.',
+        story:
+          'Avatar with a broken image URL, demonstrating how the fallback automatically displays when the image fails to load.',
       },
     },
   },
@@ -67,7 +69,8 @@ export const FallbackOnly: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Avatar using only the fallback without an image, useful when no profile picture is available.',
+        story:
+          'Avatar using only the fallback without an image, useful when no profile picture is available.',
       },
     },
   },
@@ -110,7 +113,8 @@ export const Sizes: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Avatars in different sizes from small (24px) to extra large (80px), demonstrating size customization through className.',
+        story:
+          'Avatars in different sizes from small (24px) to extra large (80px), demonstrating size customization through className.',
       },
     },
   },
@@ -141,7 +145,8 @@ export const WithIcons: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Avatars using icons in the fallback instead of text, providing visual alternatives when no image or initials are available.',
+        story:
+          'Avatars using icons in the fallback instead of text, providing visual alternatives when no image or initials are available.',
       },
     },
   },
@@ -174,7 +179,8 @@ export const CustomColors: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Avatars with custom colored fallbacks, allowing for personalized styling and visual differentiation.',
+        story:
+          'Avatars with custom colored fallbacks, allowing for personalized styling and visual differentiation.',
       },
     },
   },
@@ -226,7 +232,8 @@ export const UserProfiles: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Avatars integrated into user profile displays, showing how they work alongside user names and email addresses.',
+        story:
+          'Avatars integrated into user profile displays, showing how they work alongside user names and email addresses.',
       },
     },
   },
@@ -290,7 +297,8 @@ export const CommentSection: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Avatars used in a comment section, demonstrating how they appear alongside user comments and timestamps.',
+        story:
+          'Avatars used in a comment section, demonstrating how they appear alongside user comments and timestamps.',
       },
     },
   },
@@ -368,7 +376,8 @@ export const AvatarGroup: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Groups of overlapping avatars with negative spacing, commonly used to display team members or contributors with a "+N" indicator for additional members.',
+        story:
+          'Groups of overlapping avatars with negative spacing, commonly used to display team members or contributors with a "+N" indicator for additional members.',
       },
     },
   },
@@ -425,7 +434,8 @@ export const StatusIndicators: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Avatars with status indicators (online, away, offline, do not disturb) displayed as colored badges in the bottom-right corner.',
+        story:
+          'Avatars with status indicators (online, away, offline, do not disturb) displayed as colored badges in the bottom-right corner.',
       },
     },
   },

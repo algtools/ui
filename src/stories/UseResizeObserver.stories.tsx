@@ -351,6 +351,23 @@ export const Basic: Story = {
       description: {
         story: 'Basic usage of the useResizeObserver hook showing real-time dimension tracking.',
       },
+      source: {
+        code: `import { useResizeObserver } from '@algtools/ui';
+import { useState } from 'react';
+
+function MyComponent() {
+  const [ref, size] = useResizeObserver<HTMLDivElement>();
+
+  return (
+    <div ref={ref} className="border p-4">
+      <p>Width: {size.width}px</p>
+      <p>Height: {size.height}px</p>
+      <p>Dimensions: {size.width} × {size.height}</p>
+    </div>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -361,6 +378,26 @@ export const ResponsiveBreakpoints: Story = {
     docs: {
       description: {
         story: 'Using useResizeObserver to detect responsive breakpoints and adapt UI accordingly.',
+      },
+      source: {
+        code: `import { useResizeObserver } from '@algtools/ui';
+
+function MyComponent() {
+  const [ref, size] = useResizeObserver<HTMLDivElement>();
+
+  const isMobile = size.width < 768;
+  const isTablet = size.width >= 768 && size.width < 1024;
+  const isDesktop = size.width >= 1024;
+
+  return (
+    <div ref={ref}>
+      {isMobile && <p>Mobile layout</p>}
+      {isTablet && <p>Tablet layout</p>}
+      {isDesktop && <p>Desktop layout</p>}
+    </div>
+  );
+}`,
+        language: 'tsx',
       },
     },
   },
@@ -374,6 +411,26 @@ export const WithCallback: Story = {
         story:
           'Example showing how to use the optional callback parameter to react to size changes.',
       },
+      source: {
+        code: `import { useResizeObserver } from '@algtools/ui';
+
+function MyComponent() {
+  const [ref, size] = useResizeObserver<HTMLDivElement>({
+    callback: (entry) => {
+      console.log('Size changed:', entry.contentRect);
+      // Perform custom logic on resize
+    },
+  });
+
+  return (
+    <div ref={ref}>
+      <p>Width: {size.width}px</p>
+      <p>Height: {size.height}px</p>
+    </div>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -384,6 +441,24 @@ export const AspectRatioTracking: Story = {
     docs: {
       description: {
         story: 'Tracking aspect ratio and orientation changes using useResizeObserver.',
+      },
+      source: {
+        code: `import { useResizeObserver } from '@algtools/ui';
+
+function MyComponent() {
+  const [ref, size] = useResizeObserver<HTMLDivElement>();
+  const aspectRatio = size.width / size.height;
+
+  return (
+    <div ref={ref}>
+      <p>Width: {size.width}px</p>
+      <p>Height: {size.height}px</p>
+      <p>Aspect Ratio: {aspectRatio.toFixed(2)}</p>
+      {aspectRatio > 1 ? <p>Landscape</p> : <p>Portrait</p>}
+    </div>
+  );
+}`,
+        language: 'tsx',
       },
     },
   },

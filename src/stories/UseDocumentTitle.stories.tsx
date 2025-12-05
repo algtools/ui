@@ -433,6 +433,16 @@ export const Basic: Story = {
         story:
           'Basic usage of the useDocumentTitle hook. The document title is set to a static value.',
       },
+      source: {
+        code: `import { useDocumentTitle } from '@algtools/ui';
+
+function MyComponent() {
+  useDocumentTitle('My Page Title');
+
+  return <p>Page content</p>;
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -443,6 +453,29 @@ export const DynamicTitle: Story = {
     docs: {
       description: {
         story: 'Dynamic title updates - the document title changes based on user input or actions.',
+      },
+      source: {
+        code: `import { useDocumentTitle } from '@algtools/ui';
+import { useState } from 'react';
+import { Input } from '@algtools/ui';
+
+function MyComponent() {
+  const [title, setTitle] = useState('Dynamic Page Title');
+
+  useDocumentTitle(title);
+
+  return (
+    <>
+      <Input
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+        placeholder="Enter page title"
+      />
+      <p>Document title will update as you type</p>
+    </>
+  );
+}`,
+        language: 'tsx',
       },
     },
   },
@@ -456,6 +489,20 @@ export const WithPrefixAndSuffix: Story = {
         story:
           'Using prefix and suffix options to maintain consistent branding. Perfect for adding site names or version info to page titles.',
       },
+      source: {
+        code: `import { useDocumentTitle } from '@algtools/ui';
+
+function MyComponent() {
+  useDocumentTitle('Dashboard', {
+    prefix: 'My App',
+    suffix: 'v2.0',
+  });
+
+  // Document title will be: "My App - Dashboard - v2.0"
+  return <p>Dashboard content</p>;
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -467,6 +514,36 @@ export const RestoreOnUnmount: Story = {
       description: {
         story:
           'Demonstrates the restoreOnUnmount option - the original title is restored when the component unmounts. Useful for modals, temporary views, or notification states.',
+      },
+      source: {
+        code: `import { useDocumentTitle } from '@algtools/ui';
+import { useState } from 'react';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const [showModal, setShowModal] = useState(false);
+
+  return (
+    <>
+      <Button onClick={() => setShowModal(true)}>Open Modal</Button>
+      {showModal && (
+        <Modal onClose={() => setShowModal(false)} />
+      )}
+    </>
+  );
+}
+
+function Modal({ onClose }: { onClose: () => void }) {
+  useDocumentTitle('New Message', { restoreOnUnmount: true });
+
+  return (
+    <div>
+      <p>Modal content</p>
+      <Button onClick={onClose}>Close</Button>
+    </div>
+  );
+}`,
+        language: 'tsx',
       },
     },
   },
@@ -480,6 +557,32 @@ export const MultiPageApp: Story = {
         story:
           'Simulates a multi-page application where each page has its own title with consistent prefix and suffix.',
       },
+      source: {
+        code: `import { useDocumentTitle } from '@algtools/ui';
+import { useState } from 'react';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const [page, setPage] = useState('home');
+
+  useDocumentTitle(
+    page === 'home' ? 'Home' : page === 'about' ? 'About' : 'Contact',
+    {
+      prefix: 'My App',
+      suffix: 'v2.0',
+    }
+  );
+
+  return (
+    <>
+      <Button onClick={() => setPage('home')}>Home</Button>
+      <Button onClick={() => setPage('about')}>About</Button>
+      <Button onClick={() => setPage('contact')}>Contact</Button>
+    </>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -491,6 +594,32 @@ export const NotificationCounter: Story = {
       description: {
         story:
           'Shows how to use the hook for notification counters - displaying unread message counts in the browser tab.',
+      },
+      source: {
+        code: `import { useDocumentTitle } from '@algtools/ui';
+import { useState } from 'react';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const [unreadCount, setUnreadCount] = useState(0);
+
+  useDocumentTitle(
+    unreadCount > 0 ? \`(\${unreadCount}) Messages\` : 'Messages',
+    {
+      prefix: 'My App',
+    }
+  );
+
+  return (
+    <>
+      <Button onClick={() => setUnreadCount((c) => c + 1)}>
+        Add Notification
+      </Button>
+      <p>Unread: {unreadCount}</p>
+    </>
+  );
+}`,
+        language: 'tsx',
       },
     },
   },

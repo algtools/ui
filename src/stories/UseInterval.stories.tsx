@@ -434,6 +434,29 @@ export const Basic: Story = {
         story:
           'Basic usage of the useInterval hook showing pause, resume, and reset functionality.',
       },
+      source: {
+        code: `import { useInterval } from '@algtools/ui';
+import { useState } from 'react';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const [count, setCount] = useState(0);
+  const { isRunning, toggle, reset } = useInterval(() => setCount((c) => c + 1), 1000);
+
+  return (
+    <>
+      <p className="text-6xl font-bold">{count}</p>
+      <Button onClick={toggle}>
+        {isRunning ? 'Pause' : 'Resume'}
+      </Button>
+      <Button onClick={() => { setCount(0); reset(); }}>
+        Reset
+      </Button>
+    </>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -446,6 +469,38 @@ export const Stopwatch: Story = {
         story:
           'A stopwatch implementation using useInterval with manual start control (autoStart: false).',
       },
+      source: {
+        code: `import { useInterval } from '@algtools/ui';
+import { useState } from 'react';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const [seconds, setSeconds] = useState(0);
+  const { isRunning, start, pause, reset } = useInterval(
+    () => setSeconds((s) => s + 1),
+    1000,
+    { autoStart: false }
+  );
+
+  const minutes = Math.floor(seconds / 60);
+  const secs = seconds % 60;
+
+  return (
+    <>
+      <p className="text-6xl font-bold font-mono">
+        {String(minutes).padStart(2, '0')}:{String(secs).padStart(2, '0')}
+      </p>
+      {!isRunning ? (
+        <Button onClick={start}>Start</Button>
+      ) : (
+        <Button onClick={pause}>Pause</Button>
+      )}
+      <Button onClick={() => { setSeconds(0); reset(); }}>Reset</Button>
+    </>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -456,6 +511,39 @@ export const CountdownTimer: Story = {
     docs: {
       description: {
         story: 'A countdown timer that stops automatically when reaching zero.',
+      },
+      source: {
+        code: `import { useInterval } from '@algtools/ui';
+import { useState, useEffect } from 'react';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const [timeLeft, setTimeLeft] = useState(60);
+  const { isRunning, start, pause, reset } = useInterval(
+    () => setTimeLeft((t) => Math.max(0, t - 1)),
+    1000,
+    { autoStart: false }
+  );
+
+  useEffect(() => {
+    if (timeLeft === 0) {
+      pause();
+    }
+  }, [timeLeft, pause]);
+
+  return (
+    <>
+      <p className="text-6xl font-bold">{timeLeft}</p>
+      {!isRunning ? (
+        <Button onClick={start}>Start</Button>
+      ) : (
+        <Button onClick={pause}>Pause</Button>
+      )}
+      <Button onClick={() => { setTimeLeft(60); reset(); }}>Reset</Button>
+    </>
+  );
+}`,
+        language: 'tsx',
       },
     },
   },
@@ -468,6 +556,34 @@ export const AutoRefresh: Story = {
       description: {
         story: 'Auto-refresh data every 2 seconds with toggle functionality.',
       },
+      source: {
+        code: `import { useInterval } from '@algtools/ui';
+import { useState } from 'react';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const [data, setData] = useState(null);
+  const { isRunning, toggle } = useInterval(
+    async () => {
+      // Fetch fresh data
+      const response = await fetch('/api/data');
+      const newData = await response.json();
+      setData(newData);
+    },
+    2000
+  );
+
+  return (
+    <>
+      <Button onClick={toggle}>
+        {isRunning ? 'Stop Auto-Refresh' : 'Start Auto-Refresh'}
+      </Button>
+      {data && <div>{/* Render data */}</div>}
+    </>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -478,6 +594,48 @@ export const ProgressBar: Story = {
     docs: {
       description: {
         story: 'Progress bar that increments automatically using useInterval.',
+      },
+      source: {
+        code: `import { useInterval } from '@algtools/ui';
+import { useState, useRef } from 'react';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const [progress, setProgress] = useState(0);
+  const pauseRef = useRef<(() => void) | null>(null);
+
+  const { start, pause, reset } = useInterval(
+    () => {
+      setProgress((p) => {
+        if (p >= 100) {
+          pauseRef.current?.();
+          return 100;
+        }
+        return p + 1;
+      });
+    },
+    100,
+    { autoStart: false }
+  );
+
+  pauseRef.current = pause;
+
+  return (
+    <>
+      <div className="w-full bg-secondary rounded-full h-4">
+        <div
+          className="bg-primary h-full transition-all"
+          style={{ width: \`\${progress}%\` }}
+        />
+      </div>
+      <p>{progress}%</p>
+      <Button onClick={start} disabled={progress === 100}>Start</Button>
+      <Button onClick={pause}>Pause</Button>
+      <Button onClick={() => { setProgress(0); reset(); }}>Reset</Button>
+    </>
+  );
+}`,
+        language: 'tsx',
       },
     },
   },

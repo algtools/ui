@@ -657,6 +657,44 @@ export const SearchInput: Story = {
         story:
           'Debounce search API calls to prevent requests on every keystroke. Includes cancel button to abort pending searches and a flush button to execute search immediately.',
       },
+      source: {
+        code: `import { useDebounceCallback } from '@algtools/ui';
+import { useState } from 'react';
+import { Input, Button } from '@algtools/ui';
+
+function MyComponent() {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [searchResults, setSearchResults] = useState<string[]>([]);
+
+  const performSearch = (query: string) => {
+    // Perform API call
+    fetch(\`/api/search?q=\${query}\`)
+      .then((res) => res.json())
+      .then(setSearchResults);
+  };
+
+  const { callback: debouncedSearch, cancel, flush } = useDebounceCallback(performSearch, 500);
+
+  return (
+    <>
+      <Input
+        value={searchTerm}
+        onChange={(e) => {
+          setSearchTerm(e.target.value);
+          debouncedSearch(e.target.value);
+        }}
+        placeholder="Search..."
+      />
+      <Button onClick={cancel}>Cancel</Button>
+      <Button onClick={flush}>Search Now</Button>
+      {searchResults.map((result, i) => (
+        <p key={i}>{result}</p>
+      ))}
+    </>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -668,6 +706,40 @@ export const AutoSave: Story = {
       description: {
         story:
           'Auto-save text content with debouncing. Shows how to create an editor that automatically saves after a pause in typing, with manual save and discard options.',
+      },
+      source: {
+        code: `import { useDebounceCallback } from '@algtools/ui';
+import { useState } from 'react';
+import { Textarea, Button } from '@algtools/ui';
+
+function MyComponent() {
+  const [content, setContent] = useState('');
+
+  const saveContent = (text: string) => {
+    // Auto-save to server
+    fetch('/api/save', {
+      method: 'POST',
+      body: JSON.stringify({ content: text }),
+    });
+  };
+
+  const { callback: debouncedSave, flush, cancel } = useDebounceCallback(saveContent, 1000);
+
+  return (
+    <>
+      <Textarea
+        value={content}
+        onChange={(e) => {
+          setContent(e.target.value);
+          debouncedSave(e.target.value);
+        }}
+      />
+      <Button onClick={() => flush()}>Save Now</Button>
+      <Button onClick={() => cancel()}>Discard</Button>
+    </>
+  );
+}`,
+        language: 'tsx',
       },
     },
   },
@@ -681,6 +753,32 @@ export const WindowResize: Story = {
         story:
           'Debounce window resize events to prevent excessive handler calls. Updates dimensions only after the user stops resizing.',
       },
+      source: {
+        code: `import { useDebounceCallback } from '@algtools/ui';
+import { useState, useEffect } from 'react';
+
+function MyComponent() {
+  const [size, setSize] = useState({ width: 0, height: 0 });
+
+  const handleResize = (width: number, height: number) => {
+    setSize({ width, height });
+    // Perform expensive resize operations
+  };
+
+  const { callback: debouncedResize } = useDebounceCallback(handleResize, 300);
+
+  useEffect(() => {
+    const updateSize = () => {
+      debouncedResize(window.innerWidth, window.innerHeight);
+    };
+    window.addEventListener('resize', updateSize);
+    return () => window.removeEventListener('resize', updateSize);
+  }, [debouncedResize]);
+
+  return <p>Size: {size.width} × {size.height}</p>;
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -692,6 +790,40 @@ export const FormValidation: Story = {
       description: {
         story:
           'Debounce form validation to reduce server load. Validates email format after user stops typing, preventing validation on every keystroke.',
+      },
+      source: {
+        code: `import { useDebounceCallback } from '@algtools/ui';
+import { useState } from 'react';
+import { Input } from '@algtools/ui';
+
+function MyComponent() {
+  const [email, setEmail] = useState('');
+  const [isValid, setIsValid] = useState<boolean | null>(null);
+
+  const validateEmail = (email: string) => {
+    const valid = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email);
+    setIsValid(valid);
+  };
+
+  const { callback: debouncedValidate } = useDebounceCallback(validateEmail, 500);
+
+  return (
+    <>
+      <Input
+        value={email}
+        onChange={(e) => {
+          setEmail(e.target.value);
+          debouncedValidate(e.target.value);
+        }}
+        placeholder="Email"
+      />
+      {isValid !== null && (
+        <p>{isValid ? 'Valid email' : 'Invalid email'}</p>
+      )}
+    </>
+  );
+}`,
+        language: 'tsx',
       },
     },
   },
@@ -705,6 +837,32 @@ export const DelayComparison: Story = {
         story:
           'Compare different debounce delay values (100ms, 500ms, 1000ms) to see how they affect callback execution timing.',
       },
+      source: {
+        code: `import { useDebounceCallback } from '@algtools/ui';
+import { useState } from 'react';
+import { Input } from '@algtools/ui';
+
+function MyComponent() {
+  const [input, setInput] = useState('');
+
+  const handle100 = useDebounceCallback(() => console.log('100ms'), 100).callback;
+  const handle500 = useDebounceCallback(() => console.log('500ms'), 500).callback;
+  const handle1000 = useDebounceCallback(() => console.log('1000ms'), 1000).callback;
+
+  return (
+    <Input
+      value={input}
+      onChange={(e) => {
+        setInput(e.target.value);
+        handle100();
+        handle500();
+        handle1000();
+      }}
+    />
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -716,6 +874,40 @@ export const CancelAndFlush: Story = {
       description: {
         story:
           'Demonstrates cancel and flush functionality. Cancel aborts pending callbacks, while flush executes them immediately. Watch the event log to see the timing of operations.',
+      },
+      source: {
+        code: `import { useDebounceCallback } from '@algtools/ui';
+import { useState } from 'react';
+import { Input, Button } from '@algtools/ui';
+
+function MyComponent() {
+  const [value, setValue] = useState('');
+  const [log, setLog] = useState<string[]>([]);
+
+  const handleAction = (val: string) => {
+    setLog((prev) => [...prev, \`Executed: \${val}\`]);
+  };
+
+  const { callback: debouncedAction, cancel, flush } = useDebounceCallback(handleAction, 1000);
+
+  return (
+    <>
+      <Input
+        value={value}
+        onChange={(e) => {
+          setValue(e.target.value);
+          debouncedAction(e.target.value);
+        }}
+      />
+      <Button onClick={cancel}>Cancel</Button>
+      <Button onClick={flush}>Flush (Execute Now)</Button>
+      {log.map((entry, i) => (
+        <p key={i}>{entry}</p>
+      ))}
+    </>
+  );
+}`,
+        language: 'tsx',
       },
     },
   },

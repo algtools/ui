@@ -68,7 +68,8 @@ export const Default: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A default alert dialog with a title, description, and action buttons, demonstrating basic alert dialog functionality.',
+        story:
+          'A default alert dialog with a title, description, and action buttons, demonstrating basic alert dialog functionality.',
       },
     },
   },
@@ -101,7 +102,8 @@ export const Destructive: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A destructive alert dialog for critical actions like deleting an account, with a destructive action button.',
+        story:
+          'A destructive alert dialog for critical actions like deleting an account, with a destructive action button.',
       },
     },
   },
@@ -130,7 +132,8 @@ export const Confirmation: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A confirmation dialog for saving changes, demonstrating how to confirm user actions before proceeding.',
+        story:
+          'A confirmation dialog for saving changes, demonstrating how to confirm user actions before proceeding.',
       },
     },
   },
@@ -162,7 +165,8 @@ export const Warning: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A warning alert dialog with orange styling, indicating potential risks or important warnings that require user acknowledgment.',
+        story:
+          'A warning alert dialog with orange styling, indicating potential risks or important warnings that require user acknowledgment.',
       },
     },
   },
@@ -192,7 +196,8 @@ export const Information: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'An informational alert dialog displaying important information like subscription expiration, demonstrating informational dialogs.',
+        story:
+          'An informational alert dialog displaying important information like subscription expiration, demonstrating informational dialogs.',
       },
     },
   },
@@ -221,7 +226,8 @@ export const SingleAction: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'An alert dialog with a single action button, demonstrating how to show informational dialogs without a cancel option.',
+        story:
+          'An alert dialog with a single action button, demonstrating how to show informational dialogs without a cancel option.',
       },
     },
   },
@@ -280,7 +286,8 @@ export const LongContent: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'An alert dialog with long scrollable content like terms and conditions, demonstrating how to handle lengthy content in dialogs.',
+        story:
+          'An alert dialog with long scrollable content like terms and conditions, demonstrating how to handle lengthy content in dialogs.',
       },
     },
   },
@@ -316,7 +323,8 @@ export const CustomStyling: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'An alert dialog with custom styling including gradients and custom colors, demonstrating how to customize alert dialog appearance.',
+        story:
+          'An alert dialog with custom styling including gradients and custom colors, demonstrating how to customize alert dialog appearance.',
       },
     },
   },

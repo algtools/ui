@@ -88,7 +88,8 @@ export const Default: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A default hover card that appears on hover, displaying user information with avatar, username, and join date.',
+        story:
+          'A default hover card that appears on hover, displaying user information with avatar, username, and join date.',
       },
     },
   },
@@ -142,7 +143,8 @@ export const UserProfile: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A user profile hover card with detailed user information, demonstrating comprehensive profile previews.',
+        story:
+          'A user profile hover card with detailed user information, demonstrating comprehensive profile previews.',
       },
     },
   },
@@ -211,7 +213,8 @@ export const RepositoryPreview: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A repository preview hover card showing repository information like stars, forks, and description.',
+        story:
+          'A repository preview hover card showing repository information like stars, forks, and description.',
       },
     },
   },
@@ -277,7 +280,8 @@ export const ProductPreview: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A product preview hover card displaying product information, price, and details, demonstrating e-commerce use cases.',
+        story:
+          'A product preview hover card displaying product information, price, and details, demonstrating e-commerce use cases.',
       },
     },
   },
@@ -324,7 +328,8 @@ export const HelpTooltip: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A help tooltip hover card providing contextual help and information, demonstrating help content display.',
+        story:
+          'A help tooltip hover card providing contextual help and information, demonstrating help content display.',
       },
     },
   },
@@ -394,7 +399,8 @@ export const TeamMember: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A team member hover card displaying team member information, role, and contact details.',
+        story:
+          'A team member hover card displaying team member information, role, and contact details.',
       },
     },
   },
@@ -478,7 +484,8 @@ export const ArticlePreview: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'An article preview hover card showing article title, excerpt, and metadata, demonstrating content previews.',
+        story:
+          'An article preview hover card showing article title, excerpt, and metadata, demonstrating content previews.',
       },
     },
   },
@@ -548,7 +555,8 @@ export const CompanyInfo: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A company info hover card displaying company details, location, and contact information.',
+        story:
+          'A company info hover card displaying company details, location, and contact information.',
       },
     },
   },
@@ -614,7 +622,8 @@ export const MultipleHoverCards: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Multiple hover cards displayed together, demonstrating how to manage multiple hover card instances on the same page.',
+        story:
+          'Multiple hover cards displayed together, demonstrating how to manage multiple hover card instances on the same page.',
       },
     },
   },

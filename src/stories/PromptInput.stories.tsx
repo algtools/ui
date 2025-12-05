@@ -77,7 +77,8 @@ export const Default: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Default prompt input with basic functionality, auto-resizing textarea and submit button.',
+        story:
+          'Default prompt input with basic functionality, auto-resizing textarea and submit button.',
       },
     },
   },
@@ -96,7 +97,8 @@ export const WithCharacterCount: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Prompt input with character count display, showing the current number of characters entered.',
+        story:
+          'Prompt input with character count display, showing the current number of characters entered.',
       },
     },
   },
@@ -119,7 +121,8 @@ export const WithMaxLength: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Prompt input with maximum character length limit (280 characters), showing warnings when the limit is exceeded.',
+        story:
+          'Prompt input with maximum character length limit (280 characters), showing warnings when the limit is exceeded.',
       },
     },
   },
@@ -138,7 +141,8 @@ export const WithAttachments: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Prompt input with attachment button enabled, allowing users to attach files alongside their messages.',
+        story:
+          'Prompt input with attachment button enabled, allowing users to attach files alongside their messages.',
       },
     },
   },
@@ -159,7 +163,8 @@ export const LoadingState: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Prompt input in loading state, disabled while processing a request to prevent multiple submissions.',
+        story:
+          'Prompt input in loading state, disabled while processing a request to prevent multiple submissions.',
       },
     },
   },
@@ -178,7 +183,8 @@ export const DisabledState: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Disabled prompt input, preventing user interaction when the input should not be editable.',
+        story:
+          'Disabled prompt input, preventing user interaction when the input should not be editable.',
       },
     },
   },
@@ -199,7 +205,8 @@ export const CustomHeight: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Prompt input with custom minimum and maximum height constraints, controlling the auto-resize behavior.',
+        story:
+          'Prompt input with custom minimum and maximum height constraints, controlling the auto-resize behavior.',
       },
     },
   },
@@ -287,7 +294,8 @@ export const Interactive: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Interactive chat demo showing the prompt input in a real chat interface, with message history and simulated AI responses.',
+        story:
+          'Interactive chat demo showing the prompt input in a real chat interface, with message history and simulated AI responses.',
       },
     },
   },
@@ -383,7 +391,8 @@ export const WithAllFeatures: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Complete prompt input with all features enabled: character count, max length, attachments, auto-resize, and keyboard shortcuts.',
+        story:
+          'Complete prompt input with all features enabled: character count, max length, attachments, auto-resize, and keyboard shortcuts.',
       },
     },
   },
@@ -443,7 +452,8 @@ export const MultipleInputs: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Multiple prompt inputs with different configurations (short, medium, large), demonstrating various use cases and size constraints.',
+        story:
+          'Multiple prompt inputs with different configurations (short, medium, large), demonstrating various use cases and size constraints.',
       },
     },
   },
@@ -476,7 +486,8 @@ export const ErrorState: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Prompt input in error state when character limit is exceeded, showing visual feedback and preventing submission.',
+        story:
+          'Prompt input in error state when character limit is exceeded, showing visual feedback and preventing submission.',
       },
     },
   },
@@ -526,7 +537,8 @@ export const AccessibilityDemo: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Accessibility demonstration showing all ARIA features, keyboard navigation, and screen reader support built into the component.',
+        story:
+          'Accessibility demonstration showing all ARIA features, keyboard navigation, and screen reader support built into the component.',
       },
     },
   },

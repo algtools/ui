@@ -377,6 +377,38 @@ export const Basic: Story = {
       description: {
         story: 'Basic usage of the useStep hook showing all available methods and state flags.',
       },
+      source: {
+        code: `import { useStep } from '@algtools/ui';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const {
+    currentStep,
+    goToNextStep,
+    goToPreviousStep,
+    goToStep,
+    reset,
+    canGoToNext,
+    canGoToPrevious,
+    isFirstStep,
+    isLastStep,
+  } = useStep({ maxStep: 4 });
+
+  return (
+    <>
+      <p>Step: {currentStep + 1} / 5</p>
+      <Button onClick={goToPreviousStep} disabled={!canGoToPrevious}>
+        Previous
+      </Button>
+      <Button onClick={goToNextStep} disabled={!canGoToNext}>
+        Next
+      </Button>
+      <Button onClick={reset}>Reset</Button>
+    </>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -387,6 +419,30 @@ export const Wizard: Story = {
     docs: {
       description: {
         story: 'Multi-step wizard/form flow with progress indicators.',
+      },
+      source: {
+        code: `import { useStep } from '@algtools/ui';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const { currentStep, goToNextStep, goToPreviousStep, isLastStep } = useStep({ maxStep: 2 });
+
+  return (
+    <>
+      <p>Step {currentStep + 1} of 3</p>
+      {currentStep === 0 && <div>Step 1 content</div>}
+      {currentStep === 1 && <div>Step 2 content</div>}
+      {currentStep === 2 && <div>Step 3 content</div>}
+      <Button onClick={goToPreviousStep}>Previous</Button>
+      {isLastStep ? (
+        <Button onClick={() => console.log('Submit')}>Submit</Button>
+      ) : (
+        <Button onClick={goToNextStep}>Next</Button>
+      )}
+    </>
+  );
+}`,
+        language: 'tsx',
       },
     },
   },
@@ -399,6 +455,31 @@ export const Onboarding: Story = {
       description: {
         story: 'User onboarding flow with slide-based navigation.',
       },
+      source: {
+        code: `import { useStep } from '@algtools/ui';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const { currentStep, goToNextStep, goToPreviousStep, isLastStep } = useStep({ maxStep: 3 });
+
+  const slides = ['Welcome', 'Features', 'Get Started'];
+
+  return (
+    <>
+      <div className="slide">
+        <h2>{slides[currentStep]}</h2>
+      </div>
+      <Button onClick={goToPreviousStep}>Back</Button>
+      {isLastStep ? (
+        <Button onClick={() => console.log('Complete')}>Get Started</Button>
+      ) : (
+        <Button onClick={goToNextStep}>Next</Button>
+      )}
+    </>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -410,6 +491,26 @@ export const Carousel: Story = {
       description: {
         story: 'Circular carousel navigation that wraps around at edges.',
       },
+      source: {
+        code: `import { useStep } from '@algtools/ui';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const { currentStep, goToNextStep, goToPreviousStep } = useStep({
+    maxStep: 4,
+    loop: true, // Enable circular navigation
+  });
+
+  return (
+    <>
+      <div>Slide {currentStep + 1}</div>
+      <Button onClick={goToPreviousStep}>Previous</Button>
+      <Button onClick={goToNextStep}>Next</Button>
+    </>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -420,6 +521,34 @@ export const Tabs: Story = {
     docs: {
       description: {
         story: 'Tabbed interface using useStep for tab state management.',
+      },
+      source: {
+        code: `import { useStep } from '@algtools/ui';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const { currentStep, goToStep } = useStep({ maxStep: 2 });
+
+  const tabs = ['Tab 1', 'Tab 2', 'Tab 3'];
+
+  return (
+    <>
+      <div className="flex gap-2">
+        {tabs.map((tab, index) => (
+          <Button
+            key={index}
+            onClick={() => goToStep(index)}
+            variant={currentStep === index ? 'default' : 'outline'}
+          >
+            {tab}
+          </Button>
+        ))}
+      </div>
+      <div>Content for {tabs[currentStep]}</div>
+    </>
+  );
+}`,
+        language: 'tsx',
       },
     },
   },

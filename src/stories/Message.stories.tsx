@@ -67,7 +67,8 @@ export const UserMessage: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'User message with default styling, showing how messages from the user appear in a chat interface.',
+        story:
+          'User message with default styling, showing how messages from the user appear in a chat interface.',
       },
     },
   },
@@ -82,7 +83,8 @@ export const AssistantMessage: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Assistant message with AI-specific styling, demonstrating how AI responses appear in the conversation.',
+        story:
+          'Assistant message with AI-specific styling, demonstrating how AI responses appear in the conversation.',
       },
     },
   },
@@ -97,7 +99,8 @@ export const SystemMessage: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'System message for status updates and notifications, displayed with distinct styling to differentiate from user and assistant messages.',
+        story:
+          'System message for status updates and notifications, displayed with distinct styling to differentiate from user and assistant messages.',
       },
     },
   },
@@ -113,7 +116,8 @@ export const WithCustomAvatar: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Message with a custom avatar image URL, allowing for personalized user avatars in chat interfaces.',
+        story:
+          'Message with a custom avatar image URL, allowing for personalized user avatars in chat interfaces.',
       },
     },
   },
@@ -130,7 +134,8 @@ export const WithFallbackText: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Message with avatar fallback text displayed when the avatar image fails to load, ensuring consistent UI even with broken image URLs.',
+        story:
+          'Message with avatar fallback text displayed when the avatar image fails to load, ensuring consistent UI even with broken image URLs.',
       },
     },
   },
@@ -147,7 +152,8 @@ export const WithSenderName: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Message with sender name displayed, useful for multi-user chats or when identifying different AI assistants.',
+        story:
+          'Message with sender name displayed, useful for multi-user chats or when identifying different AI assistants.',
       },
     },
   },
@@ -163,7 +169,8 @@ export const WithoutAvatar: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Message without avatar display, providing a cleaner interface when avatars are not needed.',
+        story:
+          'Message without avatar display, providing a cleaner interface when avatars are not needed.',
       },
     },
   },
@@ -194,7 +201,8 @@ export const LongMessage: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Long message content demonstrating how the component handles extensive text with proper wrapping and readability.',
+        story:
+          'Long message content demonstrating how the component handles extensive text with proper wrapping and readability.',
       },
     },
   },
@@ -209,7 +217,8 @@ export const MultilineMessage: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Message with multiple lines and line breaks, showing how the component preserves formatting and spacing in multiline content.',
+        story:
+          'Message with multiple lines and line breaks, showing how the component preserves formatting and spacing in multiline content.',
       },
     },
   },
@@ -253,7 +262,8 @@ export const ConversationExample: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Complete conversation example showing multiple messages in sequence, demonstrating how messages appear in a real chat interface.',
+        story:
+          'Complete conversation example showing multiple messages in sequence, demonstrating how messages appear in a real chat interface.',
       },
     },
   },
@@ -283,7 +293,8 @@ export const WithCustomAvatars: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Messages with custom avatars and sender names, demonstrating personalized chat interface with user and AI assistant identification.',
+        story:
+          'Messages with custom avatars and sender names, demonstrating personalized chat interface with user and AI assistant identification.',
       },
     },
   },
@@ -318,7 +329,8 @@ export const TimestampFormats: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Messages with various timestamp formats, showing how timestamps are automatically formatted based on time elapsed (just now, minutes, hours, days, weeks).',
+        story:
+          'Messages with various timestamp formats, showing how timestamps are automatically formatted based on time elapsed (just now, minutes, hours, days, weeks).',
       },
     },
   },
@@ -335,7 +347,8 @@ export const AllRoles: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'All three message roles (user, assistant, system) displayed together, showing the visual differences between each role type.',
+        story:
+          'All three message roles (user, assistant, system) displayed together, showing the visual differences between each role type.',
       },
     },
   },
@@ -350,7 +363,8 @@ export const CodeExample: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Message containing code examples, demonstrating how code blocks and formatted text appear within messages.',
+        story:
+          'Message containing code examples, demonstrating how code blocks and formatted text appear within messages.',
       },
     },
   },
@@ -366,7 +380,8 @@ export const MinimalMessage: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Minimal message configuration without avatar or timestamp, providing the most compact message display.',
+        story:
+          'Minimal message configuration without avatar or timestamp, providing the most compact message display.',
       },
     },
   },
@@ -387,7 +402,8 @@ export const FullyCustomized: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Fully customized message with all features enabled: custom avatar, fallback text, sender name, and timestamp, showcasing the complete customization capabilities.',
+        story:
+          'Fully customized message with all features enabled: custom avatar, fallback text, sender name, and timestamp, showcasing the complete customization capabilities.',
       },
     },
   },

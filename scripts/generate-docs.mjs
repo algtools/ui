@@ -527,7 +527,6 @@ function generateMarkdownDocs() {
         if (titleMatch) {
           const hookTitle = titleMatch[1];
           if (hookTitle.startsWith('Hooks/') && !existingTitles.has(hookTitle)) {
-            console.log(`📝 Adding missing hook from source: ${hookTitle}`);
             // Create relative import path
             const relativePath = hookFilePath.replace(join(__dirname, '..') + '/', './');
             // Extract basic info from the file

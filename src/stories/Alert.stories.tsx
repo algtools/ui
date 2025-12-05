@@ -52,7 +52,8 @@ export const Default: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A default alert with an icon, title, and description, demonstrating basic alert functionality.',
+        story:
+          'A default alert with an icon, title, and description, demonstrating basic alert functionality.',
       },
     },
   },
@@ -72,7 +73,8 @@ export const Destructive: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A destructive alert for errors and critical issues, using a warning icon and destructive styling.',
+        story:
+          'A destructive alert for errors and critical issues, using a warning icon and destructive styling.',
       },
     },
   },
@@ -114,7 +116,8 @@ export const Warning: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A warning alert with yellow styling, indicating caution or important information that requires attention.',
+        story:
+          'A warning alert with yellow styling, indicating caution or important information that requires attention.',
       },
     },
   },
@@ -135,7 +138,8 @@ export const WithoutIcon: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'An alert without an icon, showing just the title and description for a cleaner look.',
+        story:
+          'An alert without an icon, showing just the title and description for a cleaner look.',
       },
     },
   },
@@ -206,7 +210,8 @@ export const NetworkStatus: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Network status alerts showing connection status, demonstrating how to use alerts for system status indicators.',
+        story:
+          'Network status alerts showing connection status, demonstrating how to use alerts for system status indicators.',
       },
     },
   },
@@ -235,7 +240,8 @@ export const SecurityAlert: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A security alert with action buttons, demonstrating how to include interactive elements in alerts.',
+        story:
+          'A security alert with action buttons, demonstrating how to include interactive elements in alerts.',
       },
     },
   },
@@ -262,7 +268,8 @@ export const DownloadProgress: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A download progress alert with a progress bar, demonstrating how to show progress within alerts.',
+        story:
+          'A download progress alert with a progress bar, demonstrating how to show progress within alerts.',
       },
     },
   },
@@ -288,7 +295,8 @@ export const TipAlert: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A tip alert with amber styling and keyboard shortcut information, demonstrating how to show helpful tips and shortcuts.',
+        story:
+          'A tip alert with amber styling and keyboard shortcut information, demonstrating how to show helpful tips and shortcuts.',
       },
     },
   },
@@ -325,7 +333,8 @@ export const MultipleAlerts: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Multiple alerts displayed together, demonstrating how to show different types of alerts in a list.',
+        story:
+          'Multiple alerts displayed together, demonstrating how to show different types of alerts in a list.',
       },
     },
   },

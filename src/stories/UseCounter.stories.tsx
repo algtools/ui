@@ -434,6 +434,29 @@ export const Basic: Story = {
         story:
           'Basic usage of the useCounter hook showing all available methods including increment, decrement, reset, and setValue.',
       },
+      source: {
+        code: `import { useCounter } from '@algtools/ui';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const { value, increment, decrement, reset, setValue } = useCounter({
+    initialValue: 0,
+  });
+
+  return (
+    <>
+      <p className="text-5xl font-bold">{value}</p>
+      <Button onClick={() => increment()}>Increment</Button>
+      <Button onClick={() => decrement()}>Decrement</Button>
+      <Button onClick={() => increment(5)}>+5</Button>
+      <Button onClick={() => decrement(5)}>-5</Button>
+      <Button onClick={() => setValue(0)}>Set to 0</Button>
+      <Button onClick={reset}>Reset</Button>
+    </>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -444,6 +467,32 @@ export const BoundedCounter: Story = {
     docs: {
       description: {
         story: 'Counter with min and max boundaries. The counter cannot go below 0 or above 10.',
+      },
+      source: {
+        code: `import { useCounter } from '@algtools/ui';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const { value, increment, decrement, reset } = useCounter({
+    initialValue: 5,
+    min: 0,
+    max: 10,
+  });
+
+  return (
+    <>
+      <p>Value: {value} (Min: 0, Max: 10)</p>
+      <Button onClick={() => increment()} disabled={value >= 10}>
+        Increment
+      </Button>
+      <Button onClick={() => decrement()} disabled={value <= 0}>
+        Decrement
+      </Button>
+      <Button onClick={reset}>Reset</Button>
+    </>
+  );
+}`,
+        language: 'tsx',
       },
     },
   },
@@ -456,6 +505,40 @@ export const QuantitySelector: Story = {
       description: {
         story: 'A common use case: product quantity selector with price calculation.',
       },
+      source: {
+        code: `import { useCounter } from '@algtools/ui';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const { value, increment, decrement, setValue } = useCounter({
+    initialValue: 1,
+    min: 1,
+    max: 99,
+  });
+
+  const price = 29.99;
+  const total = (price * value).toFixed(2);
+
+  return (
+    <>
+      <p>Product: ${price} each</p>
+      <div className="flex items-center gap-2">
+        <Button onClick={() => decrement()} disabled={value === 1}>-</Button>
+        <input
+          type="number"
+          value={value}
+          onChange={(e) => setValue(parseInt(e.target.value) || 1)}
+          min={1}
+          max={99}
+        />
+        <Button onClick={() => increment()} disabled={value === 99}>+</Button>
+      </div>
+      <p>Total: ${total}</p>
+    </>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -466,6 +549,32 @@ export const RatingSelector: Story = {
     docs: {
       description: {
         story: 'Using useCounter to create a 5-star rating selector.',
+      },
+      source: {
+        code: `import { useCounter } from '@algtools/ui';
+
+function MyComponent() {
+  const { value, setValue } = useCounter({
+    initialValue: 0,
+    min: 0,
+    max: 5,
+  });
+
+  return (
+    <div>
+      {[1, 2, 3, 4, 5].map((star) => (
+        <button
+          key={star}
+          onClick={() => setValue(star)}
+        >
+          {star <= value ? '⭐' : '☆'}
+        </button>
+      ))}
+      {value > 0 && <p>Rating: {value} stars</p>}
+    </div>
+  );
+}`,
+        language: 'tsx',
       },
     },
   },
@@ -478,6 +587,47 @@ export const Timer: Story = {
       description: {
         story: 'Creating a simple timer/stopwatch using useCounter with automatic increment.',
       },
+      source: {
+        code: `import { useCounter } from '@algtools/ui';
+import { useState, useEffect } from 'react';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const { value, increment, reset, setValue } = useCounter({
+    initialValue: 0,
+    min: 0,
+  });
+  const [isRunning, setIsRunning] = useState(false);
+
+  useEffect(() => {
+    let interval: NodeJS.Timeout | null = null;
+    if (isRunning) {
+      interval = setInterval(() => increment(), 1000);
+    }
+    return () => {
+      if (interval) clearInterval(interval);
+    };
+  }, [isRunning, increment]);
+
+  const minutes = Math.floor(value / 60);
+  const seconds = value % 60;
+
+  return (
+    <>
+      <p className="text-6xl font-bold font-mono">
+        {String(minutes).padStart(2, '0')}:{String(seconds).padStart(2, '0')}
+      </p>
+      <Button onClick={() => setIsRunning(!isRunning)}>
+        {isRunning ? 'Pause' : 'Start'}
+      </Button>
+      <Button onClick={() => { setIsRunning(false); reset(); }}>
+        Reset
+      </Button>
+    </>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -488,6 +638,37 @@ export const StepInput: Story = {
     docs: {
       description: {
         story: 'Volume control example showing counter with range slider and preset values.',
+      },
+      source: {
+        code: `import { useCounter } from '@algtools/ui';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const { value, increment, decrement, setValue } = useCounter({
+    initialValue: 50,
+    min: 0,
+    max: 100,
+  });
+
+  return (
+    <>
+      <input
+        type="range"
+        min={0}
+        max={100}
+        value={value}
+        onChange={(e) => setValue(parseInt(e.target.value))}
+      />
+      <p>Value: {value}</p>
+      <Button onClick={() => decrement(10)}>-10</Button>
+      <Button onClick={() => increment(10)}>+10</Button>
+      <Button onClick={() => setValue(25)}>25%</Button>
+      <Button onClick={() => setValue(50)}>50%</Button>
+      <Button onClick={() => setValue(75)}>75%</Button>
+    </>
+  );
+}`,
+        language: 'tsx',
       },
     },
   },

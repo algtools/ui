@@ -412,6 +412,32 @@ export const Basic: Story = {
       description: {
         story: 'Basic usage of the useTimeout hook showing reset and cancel functionality.',
       },
+      source: {
+        code: `import { useTimeout } from '@algtools/ui';
+import { useState } from 'react';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const [message, setMessage] = useState('');
+  const { isActive, reset, cancel } = useTimeout(() => {
+    setMessage('Timeout executed!');
+  }, 3000);
+
+  const handleReset = () => {
+    setMessage('');
+    reset();
+  };
+
+  return (
+    <>
+      {message && <p>{message}</p>}
+      <Button onClick={handleReset}>Reset (3s)</Button>
+      <Button onClick={cancel} disabled={!isActive}>Cancel</Button>
+    </>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -422,6 +448,32 @@ export const Notification: Story = {
     docs: {
       description: {
         story: 'Auto-dismissing notifications using useTimeout.',
+      },
+      source: {
+        code: `import { useTimeout } from '@algtools/ui';
+import { useState } from 'react';
+
+function MyComponent() {
+  const [showNotification, setShowNotification] = useState(false);
+
+  useTimeout(() => {
+    setShowNotification(false);
+  }, showNotification ? 3000 : null);
+
+  return (
+    <>
+      <Button onClick={() => setShowNotification(true)}>
+        Show Notification
+      </Button>
+      {showNotification && (
+        <div className="notification">
+          <p>This notification will auto-dismiss in 3 seconds</p>
+        </div>
+      )}
+    </>
+  );
+}`,
+        language: 'tsx',
       },
     },
   },
@@ -434,6 +486,37 @@ export const DelayedAction: Story = {
       description: {
         story: 'Debounced search input using useTimeout to delay search execution.',
       },
+      source: {
+        code: `import { useTimeout } from '@algtools/ui';
+import { useState } from 'react';
+import { Input } from '@algtools/ui';
+
+function MyComponent() {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [searchResults, setSearchResults] = useState<string[]>([]);
+
+  useTimeout(() => {
+    if (searchTerm) {
+      // Perform search
+      setSearchResults([\`Result for \${searchTerm}\`]);
+    }
+  }, searchTerm ? 500 : null);
+
+  return (
+    <>
+      <Input
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        placeholder="Search..."
+      />
+      {searchResults.map((result, i) => (
+        <p key={i}>{result}</p>
+      ))}
+    </>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -445,6 +528,36 @@ export const IdleDetection: Story = {
       description: {
         story: 'Detecting user idle state with automatic timeout reset on activity.',
       },
+      source: {
+        code: `import { useTimeout } from '@algtools/ui';
+import { useState, useEffect } from 'react';
+
+function MyComponent() {
+  const [isIdle, setIsIdle] = useState(false);
+  const { reset } = useTimeout(() => {
+    setIsIdle(true);
+  }, 5000);
+
+  useEffect(() => {
+    const handleActivity = () => {
+      setIsIdle(false);
+      reset();
+    };
+
+    window.addEventListener('mousemove', handleActivity);
+    window.addEventListener('keypress', handleActivity);
+    return () => {
+      window.removeEventListener('mousemove', handleActivity);
+      window.removeEventListener('keypress', handleActivity);
+    };
+  }, [reset]);
+
+  return (
+    <p>User is {isIdle ? 'idle' : 'active'}</p>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -455,6 +568,37 @@ export const CustomDelay: Story = {
     docs: {
       description: {
         story: 'Dynamic delay control showing how useTimeout adapts to delay changes.',
+      },
+      source: {
+        code: `import { useTimeout } from '@algtools/ui';
+import { useState } from 'react';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const [delay, setDelay] = useState(1000);
+  const [message, setMessage] = useState('');
+
+  const { reset } = useTimeout(() => {
+    setMessage(\`Executed after \${delay}ms\`);
+  }, delay);
+
+  return (
+    <>
+      <input
+        type="number"
+        value={delay}
+        onChange={(e) => {
+          setDelay(Number(e.target.value));
+          setMessage('');
+          reset();
+        }}
+      />
+      <Button onClick={reset}>Reset</Button>
+      {message && <p>{message}</p>}
+    </>
+  );
+}`,
+        language: 'tsx',
       },
     },
   },

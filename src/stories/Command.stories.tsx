@@ -122,7 +122,8 @@ export const Default: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A basic command palette with searchable items grouped by category, displaying icons and keyboard shortcuts for quick navigation.',
+        story:
+          'A basic command palette with searchable items grouped by category, displaying icons and keyboard shortcuts for quick navigation.',
       },
     },
   },
@@ -214,7 +215,8 @@ export const DialogCommand: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A command palette displayed in a dialog/modal, typically triggered with a keyboard shortcut (⌘K), providing quick access to commands and actions.',
+        story:
+          'A command palette displayed in a dialog/modal, typically triggered with a keyboard shortcut (⌘K), providing quick access to commands and actions.',
       },
     },
   },
@@ -272,7 +274,8 @@ export const FileCommands: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A command palette for file management, displaying recent files and file actions with keyboard shortcuts for quick operations.',
+        story:
+          'A command palette for file management, displaying recent files and file actions with keyboard shortcuts for quick operations.',
       },
     },
   },
@@ -333,7 +336,8 @@ export const WithKeyboardShortcuts: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A command palette showcasing keyboard shortcuts for various editor and view actions, demonstrating shortcut notation.',
+        story:
+          'A command palette showcasing keyboard shortcuts for various editor and view actions, demonstrating shortcut notation.',
       },
     },
   },
@@ -391,7 +395,8 @@ export const ContactSearch: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A contact search command palette displaying team members with their email addresses and roles, plus contact action shortcuts.',
+        story:
+          'A contact search command palette displaying team members with their email addresses and roles, plus contact action shortcuts.',
       },
     },
   },
@@ -429,7 +434,8 @@ export const CustomEmpty: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A command palette with a custom empty state message, showing how to provide helpful feedback when no search results are found.',
+        story:
+          'A command palette with a custom empty state message, showing how to provide helpful feedback when no search results are found.',
       },
     },
   },
@@ -495,7 +501,8 @@ export const MenuCommand: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A command palette integrated within a card component, displaying quick actions organized by category with keyboard shortcuts.',
+        story:
+          'A command palette integrated within a card component, displaying quick actions organized by category with keyboard shortcuts.',
       },
     },
   },
@@ -543,7 +550,8 @@ export const DisabledItems: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A command palette with disabled items, demonstrating how to show unavailable actions with visual indicators and explanatory text.',
+        story:
+          'A command palette with disabled items, demonstrating how to show unavailable actions with visual indicators and explanatory text.',
       },
     },
   },
@@ -602,7 +610,8 @@ export const ControlledCommand: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A controlled command palette where the search value and selected item are managed externally, allowing programmatic control and state display.',
+        story:
+          'A controlled command palette where the search value and selected item are managed externally, allowing programmatic control and state display.',
       },
     },
   },

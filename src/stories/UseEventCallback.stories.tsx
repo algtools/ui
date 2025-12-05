@@ -435,6 +435,32 @@ export const StableReference: Story = {
         story:
           'Demonstrates how useEventCallback maintains a stable reference across re-renders, preventing child components from re-rendering unnecessarily. The child component (wrapped in React.memo) only renders once despite parent re-renders.',
       },
+      source: {
+        code: `import { useEventCallback } from '@algtools/ui';
+import { useState, memo } from 'react';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const [count, setCount] = useState(0);
+
+  // This callback reference never changes
+  const handleClick = useEventCallback(() => {
+    setCount((c) => c + 1);
+  });
+
+  const ChildComponent = memo(({ onClick }: { onClick: () => void }) => {
+    return <Button onClick={onClick}>Increment</Button>;
+  });
+
+  return (
+    <>
+      <p>Count: {count}</p>
+      <ChildComponent onClick={handleClick} />
+    </>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -446,6 +472,32 @@ export const LatestClosure: Story = {
       description: {
         story:
           'Shows how useEventCallback always captures the latest closure values without needing to update the callback reference. The callback can access the current state value even though the callback reference never changes.',
+      },
+      source: {
+        code: `import { useEventCallback } from '@algtools/ui';
+import { useState } from 'react';
+import { Input, Button } from '@algtools/ui';
+
+function MyComponent() {
+  const [name, setName] = useState('');
+  const [messages, setMessages] = useState<string[]>([]);
+
+  // Always uses the latest name value, even though reference never changes
+  const handleSubmit = useEventCallback(() => {
+    setMessages((prev) => [...prev, \`Hello, \${name}!\`]);
+  });
+
+  return (
+    <>
+      <Input value={name} onChange={(e) => setName(e.target.value)} />
+      <Button onClick={handleSubmit}>Submit</Button>
+      {messages.map((msg, i) => (
+        <p key={i}>{msg}</p>
+      ))}
+    </>
+  );
+}`,
+        language: 'tsx',
       },
     },
   },
@@ -459,6 +511,40 @@ export const FormSubmission: Story = {
         story:
           'Real-world example of using useEventCallback for form submission. The submit handler has a stable reference but always accesses the latest form data, simplifying the code and preventing unnecessary re-renders.',
       },
+      source: {
+        code: `import { useEventCallback } from '@algtools/ui';
+import { useState } from 'react';
+import { Input, Button } from '@algtools/ui';
+
+function MyComponent() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  // Stable reference, always accesses latest form values
+  const handleSubmit = useEventCallback((e: React.FormEvent) => {
+    e.preventDefault();
+    console.log('Submitting:', { email, password });
+    // Submit form...
+  });
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <Input
+        type="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+      />
+      <Input
+        type="password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+      />
+      <Button type="submit">Submit</Button>
+    </form>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -470,6 +556,36 @@ export const EventHandlerOptimization: Story = {
       description: {
         story:
           'Demonstrates how useEventCallback optimizes event handlers like onClick and onMouseMove. The handlers maintain stable references while always accessing the latest state, providing optimal performance.',
+      },
+      source: {
+        code: `import { useEventCallback } from '@algtools/ui';
+import { useState } from 'react';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const [count, setCount] = useState(0);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+
+  // Stable onClick handler
+  const handleClick = useEventCallback(() => {
+    setCount((c) => c + 1);
+  });
+
+  // Stable onMouseMove handler
+  const handleMouseMove = useEventCallback((e: React.MouseEvent) => {
+    setPosition({ x: e.clientX, y: e.clientY });
+  });
+
+  return (
+    <>
+      <Button onClick={handleClick}>Count: {count}</Button>
+      <div onMouseMove={handleMouseMove}>
+        Position: ({position.x}, {position.y})
+      </div>
+    </>
+  );
+}`,
+        language: 'tsx',
       },
     },
   },
@@ -483,6 +599,36 @@ export const DynamicDependencies: Story = {
         story:
           'Shows how useEventCallback eliminates the need for dependency arrays. The callback automatically has access to the latest values without needing to be recreated, simplifying the code significantly.',
       },
+      source: {
+        code: `import { useEventCallback } from '@algtools/ui';
+import { useState } from 'react';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const [userId, setUserId] = useState(1);
+  const [data, setData] = useState(null);
+
+  // No dependency array needed - always has latest userId
+  const fetchData = useEventCallback(async () => {
+    const response = await fetch(\`/api/users/\${userId}\`);
+    const result = await response.json();
+    setData(result);
+  });
+
+  return (
+    <>
+      <Input
+        type="number"
+        value={userId}
+        onChange={(e) => setUserId(Number(e.target.value))}
+      />
+      <Button onClick={fetchData}>Fetch User Data</Button>
+      {data && <div>{/* Render data */}</div>}
+    </>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -494,6 +640,35 @@ export const Comparison: Story = {
       description: {
         story:
           'Side-by-side comparison of useCallback vs useEventCallback. While useCallback changes when dependencies change (causing potential re-renders), useEventCallback never changes its reference, providing better optimization.',
+      },
+      source: {
+        code: `import { useEventCallback } from '@algtools/ui';
+import { useCallback, useState } from 'react';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const [count, setCount] = useState(0);
+
+  // useCallback - reference changes when count changes
+  const handleClickCallback = useCallback(() => {
+    console.log('Count:', count);
+  }, [count]);
+
+  // useEventCallback - reference never changes, always has latest count
+  const handleClickEventCallback = useEventCallback(() => {
+    console.log('Count:', count);
+  });
+
+  return (
+    <>
+      <p>Count: {count}</p>
+      <Button onClick={() => setCount((c) => c + 1)}>Increment</Button>
+      <Button onClick={handleClickCallback}>useCallback</Button>
+      <Button onClick={handleClickEventCallback}>useEventCallback</Button>
+    </>
+  );
+}`,
+        language: 'tsx',
       },
     },
   },

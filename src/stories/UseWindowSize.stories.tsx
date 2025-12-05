@@ -289,6 +289,22 @@ export const Basic: Story = {
         story:
           'Display the current window dimensions in real-time. The hook debounces resize events by 150ms (default) to prevent excessive re-renders during window resizing.',
       },
+      source: {
+        code: `import { useWindowSize } from '@algtools/ui';
+
+function MyComponent() {
+  const { width, height } = useWindowSize();
+
+  return (
+    <>
+      <p>Width: {width}px</p>
+      <p>Height: {height}px</p>
+      <p>Dimensions: {width} × {height}</p>
+    </>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -300,6 +316,27 @@ export const ResponsiveBreakpoints: Story = {
       description: {
         story:
           'Use window size to determine responsive breakpoints and conditionally render content. This is an alternative to CSS media queries when you need JavaScript-based responsive logic.',
+      },
+      source: {
+        code: `import { useWindowSize } from '@algtools/ui';
+
+function MyComponent() {
+  const { width } = useWindowSize();
+
+  const isMobile = width < 768;
+  const isTablet = width >= 768 && width < 1024;
+  const isDesktop = width >= 1024;
+
+  return (
+    <>
+      <p>Current width: {width}px</p>
+      {isMobile && <p>Mobile view</p>}
+      {isTablet && <p>Tablet view</p>}
+      {isDesktop && <p>Desktop view</p>}
+    </>
+  );
+}`,
+        language: 'tsx',
       },
     },
   },
@@ -313,6 +350,24 @@ export const CustomDebounce: Story = {
         story:
           'Compare different debounce delays side-by-side. Lower delays give faster updates but use more CPU. Higher delays are more efficient but less responsive. Choose based on your performance requirements.',
       },
+      source: {
+        code: `import { useWindowSize } from '@algtools/ui';
+
+function MyComponent() {
+  const { width: widthFast } = useWindowSize({ debounceDelay: 50 });
+  const { width: widthMedium } = useWindowSize({ debounceDelay: 150 });
+  const { width: widthSlow } = useWindowSize({ debounceDelay: 500 });
+
+  return (
+    <>
+      <p>Fast (50ms): {widthFast}px</p>
+      <p>Medium (150ms): {widthMedium}px</p>
+      <p>Slow (500ms): {widthSlow}px</p>
+    </>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -324,6 +379,26 @@ export const AspectRatio: Story = {
       description: {
         story:
           'Calculate and display window aspect ratio. Useful for adaptive layouts that need to respond to different screen proportions (standard, widescreen, ultrawide).',
+      },
+      source: {
+        code: `import { useWindowSize } from '@algtools/ui';
+
+function MyComponent() {
+  const { width, height } = useWindowSize();
+  const aspectRatio = width / height;
+
+  return (
+    <>
+      <p>Width: {width}px</p>
+      <p>Height: {height}px</p>
+      <p>Aspect Ratio: {aspectRatio.toFixed(2)}</p>
+      {aspectRatio > 2 && <p>Ultrawide screen</p>}
+      {aspectRatio > 1.6 && aspectRatio <= 2 && <p>Widescreen</p>}
+      {aspectRatio <= 1.6 && <p>Standard screen</p>}
+    </>
+  );
+}`,
+        language: 'tsx',
       },
     },
   },

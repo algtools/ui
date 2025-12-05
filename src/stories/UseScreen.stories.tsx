@@ -348,6 +348,25 @@ export const Basic: Story = {
         story:
           'Display comprehensive screen information including physical dimensions, available space, color depth, pixel ratio, orientation, and touch support capabilities.',
       },
+      source: {
+        code: `import { useScreen } from '@algtools/ui';
+
+function MyComponent() {
+  const screen = useScreen();
+
+  return (
+    <>
+      <p>Screen Size: {screen.width} × {screen.height}</p>
+      <p>Available: {screen.availWidth} × {screen.availHeight}</p>
+      <p>Color Depth: {screen.colorDepth} bits</p>
+      <p>Pixel Ratio: {screen.pixelRatio}×</p>
+      <p>Orientation: {screen.orientation}</p>
+      <p>Touch Support: {screen.isTouch ? 'Yes' : 'No'}</p>
+    </>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };

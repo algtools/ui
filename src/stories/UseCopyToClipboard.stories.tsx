@@ -373,6 +373,22 @@ export const Basic: Story = {
       description: {
         story: 'Basic usage of the useCopyToClipboard hook showing the copy functionality.',
       },
+      source: {
+        code: `import { useCopyToClipboard } from '@algtools/ui';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const { isCopied, copy } = useCopyToClipboard();
+  const textToCopy = 'Hello, this text has been copied to your clipboard!';
+
+  return (
+    <Button onClick={() => copy(textToCopy)}>
+      {isCopied ? 'Copied!' : 'Copy to Clipboard'}
+    </Button>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -384,6 +400,22 @@ export const AutoReset: Story = {
       description: {
         story:
           'Demo showing auto-reset functionality - the copied state automatically resets after 2 seconds.',
+      },
+      source: {
+        code: `import { useCopyToClipboard } from '@algtools/ui';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  // Auto-reset after 2 seconds (2000ms)
+  const { isCopied, copy } = useCopyToClipboard(2000);
+
+  return (
+    <Button onClick={() => copy('npm install @algtools/ui')}>
+      {isCopied ? 'Copied!' : 'Copy Command'}
+    </Button>
+  );
+}`,
+        language: 'tsx',
       },
     },
   },
@@ -397,6 +429,31 @@ export const CustomInput: Story = {
         story:
           'Copy custom text from an input field. Shows the last copied text and auto-resets after 1.5 seconds.',
       },
+      source: {
+        code: `import { useCopyToClipboard } from '@algtools/ui';
+import { useState } from 'react';
+import { Input, Button } from '@algtools/ui';
+
+function MyComponent() {
+  const [text, setText] = useState('https://github.com/algtools/ui');
+  const { isCopied, copiedText, copy } = useCopyToClipboard(1500);
+
+  return (
+    <>
+      <Input
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+        placeholder="Enter text to copy..."
+      />
+      <Button onClick={() => copy(text)} disabled={!text}>
+        {isCopied ? 'Copied!' : 'Copy Text'}
+      </Button>
+      {copiedText && <p>Last copied: {copiedText}</p>}
+    </>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -407,6 +464,32 @@ export const CodeSnippet: Story = {
     docs: {
       description: {
         story: 'Perfect for documentation sites - copy code snippets with a single click.',
+      },
+      source: {
+        code: `import { useCopyToClipboard } from '@algtools/ui';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const { isCopied, copy } = useCopyToClipboard(3000);
+
+  const codeSnippet = \`import { useCopyToClipboard } from '@algtools/ui';
+
+function MyComponent() {
+  const { isCopied, copy } = useCopyToClipboard();
+  return (
+    <button onClick={() => copy('Hello!')}>
+      {isCopied ? 'Copied!' : 'Copy'}
+    </button>
+  );
+}\`;
+
+  return (
+    <Button onClick={() => copy(codeSnippet)}>
+      {isCopied ? 'Copied' : 'Copy Code'}
+    </Button>
+  );
+}`,
+        language: 'tsx',
       },
     },
   },
@@ -420,6 +503,35 @@ export const MultipleButtons: Story = {
         story:
           'Multiple copy buttons using a single hook instance. Shows which item was last copied.',
       },
+      source: {
+        code: `import { useCopyToClipboard } from '@algtools/ui';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const { isCopied, copiedText, copy } = useCopyToClipboard(2000);
+
+  const items = [
+    { label: 'Email', value: 'contact@example.com' },
+    { label: 'Phone', value: '+1 (555) 123-4567' },
+    { label: 'Website', value: 'https://example.com' },
+  ];
+
+  return (
+    <>
+      {items.map((item) => (
+        <Button
+          key={item.label}
+          onClick={() => copy(item.value)}
+          variant={isCopied && copiedText === item.value ? 'default' : 'ghost'}
+        >
+          {item.label}: {item.value}
+        </Button>
+      ))}
+    </>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -432,6 +544,32 @@ export const ErrorHandling: Story = {
         story:
           'Demonstrates error handling with success and error states. Includes a reset function to clear states.',
       },
+      source: {
+        code: `import { useCopyToClipboard } from '@algtools/ui';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const { isCopied, error, copy, reset } = useCopyToClipboard();
+
+  const handleCopy = async () => {
+    await copy('This should copy successfully');
+  };
+
+  return (
+    <>
+      <Button onClick={handleCopy}>Copy</Button>
+      {isCopied && <p>Successfully copied!</p>}
+      {error && (
+        <>
+          <p>Copy failed: {error.message}</p>
+          <Button onClick={reset}>Reset</Button>
+        </>
+      )}
+    </>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -442,6 +580,32 @@ export const TextareaExample: Story = {
     docs: {
       description: {
         story: 'Copy longer text from a textarea with character count and clear functionality.',
+      },
+      source: {
+        code: `import { useCopyToClipboard } from '@algtools/ui';
+import { useState } from 'react';
+import { Textarea, Button } from '@algtools/ui';
+
+function MyComponent() {
+  const [text, setText] = useState('Enter text to copy...');
+  const { isCopied, copy } = useCopyToClipboard(2000);
+
+  return (
+    <>
+      <Textarea
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+        placeholder="Enter text to copy..."
+        rows={6}
+      />
+      <Button onClick={() => copy(text)} disabled={!text}>
+        {isCopied ? 'Copied!' : 'Copy'}
+      </Button>
+      <p>{text.length} characters</p>
+    </>
+  );
+}`,
+        language: 'tsx',
       },
     },
   },

@@ -74,7 +74,8 @@ export const InProgress: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Task in progress with a progress bar showing 45% completion, indicating active work.',
+        story:
+          'Task in progress with a progress bar showing 45% completion, indicating active work.',
       },
     },
   },
@@ -127,7 +128,8 @@ export const Cancelled: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Task that has been cancelled, typically by user action, displayed without progress.',
+        story:
+          'Task that has been cancelled, typically by user action, displayed without progress.',
       },
     },
   },
@@ -148,7 +150,8 @@ export const WithTimestamp: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Task with timestamps displayed, showing when the task was created and last updated, useful for tracking task history.',
+        story:
+          'Task with timestamps displayed, showing when the task was created and last updated, useful for tracking task history.',
       },
     },
   },

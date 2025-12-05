@@ -44,7 +44,8 @@ export const Default: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Default aspect ratio component maintaining a 16:9 widescreen ratio for images and media content.',
+        story:
+          'Default aspect ratio component maintaining a 16:9 widescreen ratio for images and media content.',
       },
     },
   },
@@ -68,7 +69,8 @@ export const Square: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A square aspect ratio (1:1) commonly used for profile pictures and social media images.',
+        story:
+          'A square aspect ratio (1:1) commonly used for profile pictures and social media images.',
       },
     },
   },
@@ -92,7 +94,8 @@ export const Portrait: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A portrait aspect ratio (3:4) suitable for vertical images and portrait photography.',
+        story:
+          'A portrait aspect ratio (3:4) suitable for vertical images and portrait photography.',
       },
     },
   },
@@ -116,7 +119,8 @@ export const UltraWide: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'An ultra-wide aspect ratio (21:9) ideal for cinematic landscape images and panoramic views.',
+        story:
+          'An ultra-wide aspect ratio (21:9) ideal for cinematic landscape images and panoramic views.',
       },
     },
   },
@@ -146,7 +150,8 @@ export const VideoPlayer: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'An aspect ratio container for video players, maintaining the standard 16:9 widescreen format.',
+        story:
+          'An aspect ratio container for video players, maintaining the standard 16:9 widescreen format.',
       },
     },
   },
@@ -179,7 +184,8 @@ export const CardContent: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'An aspect ratio component used within a card layout, maintaining a 4:3 standard ratio for card images.',
+        story:
+          'An aspect ratio component used within a card layout, maintaining a 4:3 standard ratio for card images.',
       },
     },
   },
@@ -214,7 +220,8 @@ export const PlaceholderContent: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'An aspect ratio container with placeholder content, useful for loading states or empty image slots.',
+        story:
+          'An aspect ratio container with placeholder content, useful for loading states or empty image slots.',
       },
     },
   },
@@ -270,7 +277,8 @@ export const ResponsiveGallery: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A responsive image gallery using square aspect ratios in a grid layout that adapts to different screen sizes.',
+        story:
+          'A responsive image gallery using square aspect ratios in a grid layout that adapts to different screen sizes.',
       },
     },
   },
@@ -328,7 +336,8 @@ export const CommonRatios: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A showcase of common aspect ratios (16:9, 4:3, 1:1, 3:4, 21:9) demonstrating their visual differences.',
+        story:
+          'A showcase of common aspect ratios (16:9, 4:3, 1:1, 3:4, 21:9) demonstrating their visual differences.',
       },
     },
   },

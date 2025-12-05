@@ -461,6 +461,36 @@ export const SearchInput: Story = {
         story:
           'Debounce search input to prevent API calls on every keystroke. Only searches after the user stops typing for 500ms.',
       },
+      source: {
+        code: `import { useDebounceValue } from '@algtools/ui';
+import { useState, useEffect } from 'react';
+import { Input } from '@algtools/ui';
+
+function MyComponent() {
+  const [searchTerm, setSearchTerm] = useState('');
+  const debouncedSearchTerm = useDebounceValue(searchTerm, 500);
+
+  useEffect(() => {
+    if (debouncedSearchTerm) {
+      // Perform search API call here
+      console.log('Searching for:', debouncedSearchTerm);
+    }
+  }, [debouncedSearchTerm]);
+
+  return (
+    <>
+      <Input
+        placeholder="Type to search..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
+      <p>Current: {searchTerm}</p>
+      <p>Debounced: {debouncedSearchTerm}</p>
+    </>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -472,6 +502,36 @@ export const PriceFilter: Story = {
       description: {
         story:
           'Debounce range slider inputs for filtering products. Multiple values are debounced independently to optimize filter updates.',
+      },
+      source: {
+        code: `import { useDebounceValue } from '@algtools/ui';
+import { useState } from 'react';
+import { Slider } from '@algtools/ui';
+
+function MyComponent() {
+  const [priceRange, setPriceRange] = useState([0, 100]);
+  const debouncedPriceRange = useDebounceValue(priceRange, 500);
+
+  useEffect(() => {
+    // Apply filter with debounced values
+    console.log('Filtering by price:', debouncedPriceRange);
+  }, [debouncedPriceRange]);
+
+  return (
+    <>
+      <Slider
+        value={priceRange}
+        onValueChange={setPriceRange}
+        min={0}
+        max={1000}
+        step={10}
+      />
+      <p>Current: ${priceRange[0]} - ${priceRange[1]}</p>
+      <p>Debounced: ${debouncedPriceRange[0]} - ${debouncedPriceRange[1]}</p>
+    </>
+  );
+}`,
+        language: 'tsx',
       },
     },
   },
@@ -485,6 +545,38 @@ export const LivePreview: Story = {
         story:
           'Auto-save text content with debouncing. Shows how to create a live preview that updates after a brief pause in typing.',
       },
+      source: {
+        code: `import { useDebounceValue } from '@algtools/ui';
+import { useState, useEffect } from 'react';
+import { Textarea } from '@algtools/ui';
+
+function MyComponent() {
+  const [content, setContent] = useState('');
+  const debouncedContent = useDebounceValue(content, 800);
+
+  useEffect(() => {
+    // Auto-save debounced content
+    if (debouncedContent) {
+      console.log('Auto-saving:', debouncedContent);
+    }
+  }, [debouncedContent]);
+
+  return (
+    <>
+      <Textarea
+        value={content}
+        onChange={(e) => setContent(e.target.value)}
+        placeholder="Type your content..."
+      />
+      <div className="preview">
+        <h3>Preview:</h3>
+        <p>{debouncedContent || 'Start typing to see preview...'}</p>
+      </div>
+    </>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -497,6 +589,28 @@ export const DelayComparison: Story = {
         story:
           'Compare different debounce delay values (100ms, 500ms, 1000ms) to see how they affect update timing.',
       },
+      source: {
+        code: `import { useDebounceValue } from '@algtools/ui';
+import { useState } from 'react';
+import { Input } from '@algtools/ui';
+
+function MyComponent() {
+  const [input, setInput] = useState('');
+  const debounced100 = useDebounceValue(input, 100);
+  const debounced500 = useDebounceValue(input, 500);
+  const debounced1000 = useDebounceValue(input, 1000);
+
+  return (
+    <>
+      <Input value={input} onChange={(e) => setInput(e.target.value)} />
+      <p>100ms delay: {debounced100}</p>
+      <p>500ms delay: {debounced500}</p>
+      <p>1000ms delay: {debounced1000}</p>
+    </>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -508,6 +622,43 @@ export const ComplexObject: Story = {
       description: {
         story:
           'Debounce complex objects like filter configurations. All properties are debounced together to reduce API calls.',
+      },
+      source: {
+        code: `import { useDebounceValue } from '@algtools/ui';
+import { useState, useEffect } from 'react';
+
+interface FilterConfig {
+  category: string;
+  minPrice: number;
+  maxPrice: number;
+  inStock: boolean;
+}
+
+function MyComponent() {
+  const [filters, setFilters] = useState<FilterConfig>({
+    category: '',
+    minPrice: 0,
+    maxPrice: 1000,
+    inStock: false,
+  });
+  const debouncedFilters = useDebounceValue(filters, 500);
+
+  useEffect(() => {
+    // Apply filters with debounced values
+    console.log('Applying filters:', debouncedFilters);
+  }, [debouncedFilters]);
+
+  return (
+    <>
+      <input
+        value={filters.category}
+        onChange={(e) => setFilters({ ...filters, category: e.target.value })}
+      />
+      <p>Filters: {JSON.stringify(debouncedFilters)}</p>
+    </>
+  );
+}`,
+        language: 'tsx',
       },
     },
   },

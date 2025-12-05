@@ -68,7 +68,8 @@ export const Default: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Default calendar component in single date selection mode, showing outside days and standard month navigation.',
+        story:
+          'Default calendar component in single date selection mode, showing outside days and standard month navigation.',
       },
     },
   },
@@ -91,7 +92,8 @@ export const WithDropdownCaption: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Calendar with dropdown caption layout for month and year selection, providing quick navigation to any date.',
+        story:
+          'Calendar with dropdown caption layout for month and year selection, providing quick navigation to any date.',
       },
     },
   },
@@ -127,7 +129,8 @@ export const DateRange: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Calendar in range selection mode, allowing users to select a start and end date with a two-month view for easier range selection.',
+        story:
+          'Calendar in range selection mode, allowing users to select a start and end date with a two-month view for easier range selection.',
       },
     },
   },
@@ -164,7 +167,8 @@ export const MultipleSelection: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Calendar in multiple selection mode, allowing users to select multiple individual dates, useful for scheduling or availability selection.',
+        story:
+          'Calendar in multiple selection mode, allowing users to select multiple individual dates, useful for scheduling or availability selection.',
       },
     },
   },
@@ -196,7 +200,8 @@ export const WithDisabledDates: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Calendar with disabled dates, demonstrating how to prevent selection of specific dates, date ranges, or days of the week (e.g., weekends, holidays).',
+        story:
+          'Calendar with disabled dates, demonstrating how to prevent selection of specific dates, date ranges, or days of the week (e.g., weekends, holidays).',
       },
     },
   },
@@ -238,7 +243,8 @@ export const DatePicker: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Calendar integrated into a date picker pattern with a button trigger and popover, commonly used in forms and input fields.',
+        story:
+          'Calendar integrated into a date picker pattern with a button trigger and popover, commonly used in forms and input fields.',
       },
     },
   },
@@ -286,7 +292,8 @@ export const EventCalendar: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Calendar with event indicators using modifiers, showing visual markers (dots) on dates that have events scheduled.',
+        story:
+          'Calendar with event indicators using modifiers, showing visual markers (dots) on dates that have events scheduled.',
       },
     },
   },
@@ -347,7 +354,8 @@ export const BookingCalendar: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Booking calendar with availability indicators, showing available dates in green, booked dates in red, and disabling past dates and weekends.',
+        story:
+          'Booking calendar with availability indicators, showing available dates in green, booked dates in red, and disabling past dates and weekends.',
       },
     },
   },
@@ -375,7 +383,8 @@ export const CompactCalendar: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Compact calendar with reduced spacing and smaller dimensions, ideal for sidebars or limited space contexts.',
+        story:
+          'Compact calendar with reduced spacing and smaller dimensions, ideal for sidebars or limited space contexts.',
       },
     },
   },
@@ -401,7 +410,8 @@ export const ThreeMonthView: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Calendar displaying three months side-by-side with dropdown navigation, providing a wider view for long-term date planning.',
+        story:
+          'Calendar displaying three months side-by-side with dropdown navigation, providing a wider view for long-term date planning.',
       },
     },
   },
@@ -425,7 +435,8 @@ export const WeekNumbers: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Calendar with week numbers displayed, useful for scheduling and planning that references week numbers, with weeks starting on Monday.',
+        story:
+          'Calendar with week numbers displayed, useful for scheduling and planning that references week numbers, with weeks starting on Monday.',
       },
     },
   },
@@ -457,7 +468,8 @@ export const CustomStyling: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Calendar with custom purple-themed styling, demonstrating how to customize colors, hover states, and today indicator to match brand guidelines.',
+        story:
+          'Calendar with custom purple-themed styling, demonstrating how to customize colors, hover states, and today indicator to match brand guidelines.',
       },
     },
   },

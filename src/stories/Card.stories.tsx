@@ -118,7 +118,8 @@ export const WithAction: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A card with an action button in the header, demonstrating the CardAction component for additional controls.',
+        story:
+          'A card with an action button in the header, demonstrating the CardAction component for additional controls.',
       },
     },
   },
@@ -167,7 +168,8 @@ export const BlogPost: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A blog post card with media preview, engagement metrics, and social sharing actions.',
+        story:
+          'A blog post card with media preview, engagement metrics, and social sharing actions.',
       },
     },
   },
@@ -214,7 +216,8 @@ export const ProductCard: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'An e-commerce product card with image, ratings, pricing, and a call-to-action button.',
+        story:
+          'An e-commerce product card with image, ratings, pricing, and a call-to-action button.',
       },
     },
   },
@@ -265,7 +268,8 @@ export const UserProfile: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A user profile card displaying avatar, bio, social statistics, and a follow action button.',
+        story:
+          'A user profile card displaying avatar, bio, social statistics, and a follow action button.',
       },
     },
   },
@@ -346,7 +350,8 @@ export const StatsCard: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A grid of statistics cards displaying key metrics with trend indicators and icons, commonly used in dashboards.',
+        story:
+          'A grid of statistics cards displaying key metrics with trend indicators and icons, commonly used in dashboards.',
       },
     },
   },
@@ -393,7 +398,8 @@ export const EventCard: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'An event card displaying event details including date, time, location, pricing, and registration actions.',
+        story:
+          'An event card displaying event details including date, time, location, pricing, and registration actions.',
       },
     },
   },
@@ -444,7 +450,8 @@ export const ProjectCard: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A project management card showing progress, team members, due date, and project details.',
+        story:
+          'A project management card showing progress, team members, due date, and project details.',
       },
     },
   },
@@ -488,7 +495,8 @@ export const DownloadCard: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'An app download card with app icon, ratings, file size, and a prominent download button.',
+        story:
+          'An app download card with app icon, ratings, file size, and a prominent download button.',
       },
     },
   },
@@ -564,7 +572,8 @@ export const CardGrid: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A responsive grid layout of cards showcasing different card use cases including analytics, quick actions, and activity feeds.',
+        story:
+          'A responsive grid layout of cards showcasing different card use cases including analytics, quick actions, and activity feeds.',
       },
     },
   },

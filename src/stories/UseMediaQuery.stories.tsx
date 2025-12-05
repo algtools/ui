@@ -356,6 +356,24 @@ export const ResponsiveBreakpoints: Story = {
         story:
           'Monitor common responsive breakpoints (mobile, tablet, desktop) and see which ones are currently active. Try resizing your browser window to see real-time updates.',
       },
+      source: {
+        code: `import { useMediaQuery } from '@algtools/ui';
+
+function MyComponent() {
+  const isMobile = useMediaQuery('(max-width: 767px)');
+  const isTablet = useMediaQuery('(min-width: 768px) and (max-width: 1023px)');
+  const isDesktop = useMediaQuery('(min-width: 1024px)');
+
+  return (
+    <>
+      <p>Mobile: {isMobile ? 'Yes' : 'No'}</p>
+      <p>Tablet: {isTablet ? 'Yes' : 'No'}</p>
+      <p>Desktop: {isDesktop ? 'Yes' : 'No'}</p>
+    </>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -367,6 +385,22 @@ export const ConditionalRendering: Story = {
       description: {
         story:
           'Conditionally render different content based on screen size. This pattern is useful for showing device-specific UI elements or optimizing layouts for different devices.',
+      },
+      source: {
+        code: `import { useMediaQuery } from '@algtools/ui';
+
+function MyComponent() {
+  const isMobile = useMediaQuery('(max-width: 767px)');
+  const isDesktop = useMediaQuery('(min-width: 1024px)');
+
+  return (
+    <>
+      {isMobile && <div>Mobile-specific content</div>}
+      {isDesktop && <div>Desktop-specific content</div>}
+    </>
+  );
+}`,
+        language: 'tsx',
       },
     },
   },
@@ -380,6 +414,24 @@ export const SystemPreferences: Story = {
         story:
           'Detect user system preferences like color scheme (dark/light mode), reduced motion, and contrast preferences. Great for accessibility and respecting user preferences.',
       },
+      source: {
+        code: `import { useMediaQuery } from '@algtools/ui';
+
+function MyComponent() {
+  const prefersDark = useMediaQuery('(prefers-color-scheme: dark)');
+  const prefersReducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)');
+  const prefersHighContrast = useMediaQuery('(prefers-contrast: high)');
+
+  return (
+    <>
+      <p>Dark mode: {prefersDark ? 'Yes' : 'No'}</p>
+      <p>Reduced motion: {prefersReducedMotion ? 'Yes' : 'No'}</p>
+      <p>High contrast: {prefersHighContrast ? 'Yes' : 'No'}</p>
+    </>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -392,6 +444,23 @@ export const OrientationDetection: Story = {
         story:
           'Detect device orientation (portrait vs landscape). Particularly useful for mobile apps and responsive designs that need to adapt to device rotation.',
       },
+      source: {
+        code: `import { useMediaQuery } from '@algtools/ui';
+
+function MyComponent() {
+  const isPortrait = useMediaQuery('(orientation: portrait)');
+  const isLandscape = useMediaQuery('(orientation: landscape)');
+
+  return (
+    <>
+      <p>Orientation: {isPortrait ? 'Portrait' : 'Landscape'}</p>
+      {isPortrait && <div>Portrait layout</div>}
+      {isLandscape && <div>Landscape layout</div>}
+    </>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -403,6 +472,28 @@ export const TailwindBreakpoints: Story = {
       description: {
         story:
           'Examples using standard Tailwind CSS breakpoints (sm, md, lg, xl, 2xl). Useful when you need to synchronize JavaScript logic with Tailwind CSS responsive utilities.',
+      },
+      source: {
+        code: `import { useMediaQuery } from '@algtools/ui';
+
+function MyComponent() {
+  const isSm = useMediaQuery('(min-width: 640px)');
+  const isMd = useMediaQuery('(min-width: 768px)');
+  const isLg = useMediaQuery('(min-width: 1024px)');
+  const isXl = useMediaQuery('(min-width: 1280px)');
+  const is2Xl = useMediaQuery('(min-width: 1536px)');
+
+  return (
+    <>
+      <p>sm (640px+): {isSm ? 'Yes' : 'No'}</p>
+      <p>md (768px+): {isMd ? 'Yes' : 'No'}</p>
+      <p>lg (1024px+): {isLg ? 'Yes' : 'No'}</p>
+      <p>xl (1280px+): {isXl ? 'Yes' : 'No'}</p>
+      <p>2xl (1536px+): {is2Xl ? 'Yes' : 'No'}</p>
+    </>
+  );
+}`,
+        language: 'tsx',
       },
     },
   },

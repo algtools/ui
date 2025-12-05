@@ -389,7 +389,8 @@ export const IconShowcase: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Comprehensive icon browser with search functionality and category organization. Click icons to copy their names, or use the import button to copy import statements. Browse hundreds of Lucide React icons organized by category.',
+        story:
+          'Comprehensive icon browser with search functionality and category organization. Click icons to copy their names, or use the import button to copy import statements. Browse hundreds of Lucide React icons organized by category.',
       },
     },
   },
@@ -665,7 +666,8 @@ export const IconSizes: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Demonstration of common icon sizes from extra small (12px) to hero size (40px), showing how icons scale and the corresponding Tailwind CSS classes.',
+        story:
+          'Demonstration of common icon sizes from extra small (12px) to hero size (40px), showing how icons scale and the corresponding Tailwind CSS classes.',
       },
     },
   },
@@ -724,7 +726,8 @@ export const IconColors: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Different ways to color icons using Tailwind CSS classes, including semantic colors (primary, secondary, destructive), status colors (success, warning, error, info), and custom color options.',
+        story:
+          'Different ways to color icons using Tailwind CSS classes, including semantic colors (primary, secondary, destructive), status colors (success, warning, error, info), and custom color options.',
       },
     },
   },

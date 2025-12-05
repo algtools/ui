@@ -96,7 +96,8 @@ export const Default: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A default tooltip that appears on hover, providing helpful information when users hover over an element.',
+        story:
+          'A default tooltip that appears on hover, providing helpful information when users hover over an element.',
       },
     },
   },
@@ -154,7 +155,8 @@ export const Positioning: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Tooltips positioned in different directions (top, right, bottom, left), demonstrating positioning options.',
+        story:
+          'Tooltips positioned in different directions (top, right, bottom, left), demonstrating positioning options.',
       },
     },
   },
@@ -206,7 +208,8 @@ export const WithDelay: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Tooltips with a delay before appearing, demonstrating how to control tooltip timing for better UX.',
+        story:
+          'Tooltips with a delay before appearing, demonstrating how to control tooltip timing for better UX.',
       },
     },
   },
@@ -296,7 +299,8 @@ export const RichContent: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Tooltips with rich content including formatted text, links, and structured information, demonstrating advanced tooltip content.',
+        story:
+          'Tooltips with rich content including formatted text, links, and structured information, demonstrating advanced tooltip content.',
       },
     },
   },
@@ -408,7 +412,8 @@ export const IconTooltips: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Tooltips attached to icons, providing contextual help and information for icon buttons and icon-only elements.',
+        story:
+          'Tooltips attached to icons, providing contextual help and information for icon buttons and icon-only elements.',
       },
     },
   },
@@ -482,7 +487,8 @@ export const FormTooltips: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Tooltips in forms providing help text and validation messages, demonstrating how to use tooltips for form assistance.',
+        story:
+          'Tooltips in forms providing help text and validation messages, demonstrating how to use tooltips for form assistance.',
       },
     },
   },
@@ -551,7 +557,8 @@ export const StatusTooltips: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Tooltips showing status information like success, error, and warning states, demonstrating status indicators.',
+        story:
+          'Tooltips showing status information like success, error, and warning states, demonstrating status indicators.',
       },
     },
   },
@@ -666,7 +673,8 @@ export const SystemTooltips: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'System tooltips for UI elements like buttons, menu items, and controls, demonstrating system-level tooltips.',
+        story:
+          'System tooltips for UI elements like buttons, menu items, and controls, demonstrating system-level tooltips.',
       },
     },
   },
@@ -775,7 +783,8 @@ export const InteractiveTooltips: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Interactive tooltips with clickable content and actions, demonstrating how to make tooltips interactive and functional.',
+        story:
+          'Interactive tooltips with clickable content and actions, demonstrating how to make tooltips interactive and functional.',
       },
     },
   },
@@ -856,7 +865,8 @@ export const DisabledElements: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Tooltips on disabled elements, demonstrating how to show tooltips for disabled buttons and inputs to explain why they are disabled.',
+        story:
+          'Tooltips on disabled elements, demonstrating how to show tooltips for disabled buttons and inputs to explain why they are disabled.',
       },
     },
   },

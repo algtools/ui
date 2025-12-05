@@ -66,7 +66,8 @@ export const Default: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A default avatar editor with a circular shape, allowing users to upload, crop, and adjust their avatar image.',
+        story:
+          'A default avatar editor with a circular shape, allowing users to upload, crop, and adjust their avatar image.',
       },
     },
   },
@@ -84,7 +85,8 @@ export const Square: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A square avatar editor with no border radius, demonstrating how to create square avatars.',
+        story:
+          'A square avatar editor with no border radius, demonstrating how to create square avatars.',
       },
     },
   },
@@ -102,7 +104,8 @@ export const Large: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A large avatar editor with increased size, demonstrating how to create larger avatar images.',
+        story:
+          'A large avatar editor with increased size, demonstrating how to create larger avatar images.',
       },
     },
   },
@@ -120,7 +123,8 @@ export const Small: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A small avatar editor with reduced size, demonstrating how to create compact avatar images.',
+        story:
+          'A small avatar editor with reduced size, demonstrating how to create compact avatar images.',
       },
     },
   },
@@ -138,7 +142,8 @@ export const NoImage: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'An avatar editor with no initial image, demonstrating how the component handles empty states and new avatar uploads.',
+        story:
+          'An avatar editor with no initial image, demonstrating how the component handles empty states and new avatar uploads.',
       },
     },
   },
@@ -156,7 +161,8 @@ export const LargeSquare: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A large square avatar editor combining large size with square shape, demonstrating size and shape combinations.',
+        story:
+          'A large square avatar editor combining large size with square shape, demonstrating size and shape combinations.',
       },
     },
   },
@@ -175,7 +181,8 @@ export const HighQuality: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'An avatar editor with maximum quality settings (quality: 1.0), demonstrating how to configure high-quality image output.',
+        story:
+          'An avatar editor with maximum quality settings (quality: 1.0), demonstrating how to configure high-quality image output.',
       },
     },
   },
@@ -204,7 +211,8 @@ export const CustomLabels: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'An avatar editor with custom labels for all UI text, demonstrating how to customize button labels and messages.',
+        story:
+          'An avatar editor with custom labels for all UI text, demonstrating how to customize button labels and messages.',
       },
     },
   },
@@ -236,7 +244,8 @@ export const ProfileSetup: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'An avatar editor integrated into a profile setup flow, demonstrating how to use the component in a complete user onboarding experience.',
+        story:
+          'An avatar editor integrated into a profile setup flow, demonstrating how to use the component in a complete user onboarding experience.',
       },
     },
   },
@@ -295,7 +304,8 @@ export const ComparisonSizes: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A comparison of avatar editors in different sizes (small, medium, large, extra large), demonstrating size variations side by side.',
+        story:
+          'A comparison of avatar editors in different sizes (small, medium, large, extra large), demonstrating size variations side by side.',
       },
     },
   },
@@ -343,7 +353,8 @@ export const ComparisonShapes: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A comparison of avatar editors with different shapes (circle, rounded square, square), demonstrating border radius variations side by side.',
+        story:
+          'A comparison of avatar editors with different shapes (circle, rounded square, square), demonstrating border radius variations side by side.',
       },
     },
   },
@@ -386,7 +397,8 @@ export const LivePreviewOnChange: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'An avatar editor with live preview that updates on change, demonstrating real-time preview functionality without requiring a save action.',
+        story:
+          'An avatar editor with live preview that updates on change, demonstrating real-time preview functionality without requiring a save action.',
       },
     },
   },

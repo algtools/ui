@@ -55,7 +55,8 @@ export const Default: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A basic breadcrumb navigation showing the current page location within the site hierarchy.',
+        story:
+          'A basic breadcrumb navigation showing the current page location within the site hierarchy.',
       },
     },
   },
@@ -89,7 +90,8 @@ export const WithHomeIcon: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A breadcrumb with a home icon for the root navigation item, providing a visual indicator for the home page.',
+        story:
+          'A breadcrumb with a home icon for the root navigation item, providing a visual indicator for the home page.',
       },
     },
   },
@@ -124,7 +126,8 @@ export const WithEllipsis: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A breadcrumb with an ellipsis indicator to collapse intermediate navigation levels, useful for long navigation paths.',
+        story:
+          'A breadcrumb with an ellipsis indicator to collapse intermediate navigation levels, useful for long navigation paths.',
       },
     },
   },
@@ -134,7 +137,8 @@ export const CustomSeparators: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Breadcrumbs with custom separator styles including slashes, dots, arrows, and text separators for different design aesthetics.',
+        story:
+          'Breadcrumbs with custom separator styles including slashes, dots, arrows, and text separators for different design aesthetics.',
       },
     },
   },
@@ -239,7 +243,8 @@ export const FileSystemNavigation: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A breadcrumb navigation for file system paths, displaying folders and files with appropriate icons for each level.',
+        story:
+          'A breadcrumb navigation for file system paths, displaying folders and files with appropriate icons for each level.',
       },
     },
   },
@@ -288,7 +293,8 @@ export const EcommerceBreadcrumb: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'E-commerce breadcrumbs for product categories, including responsive ellipsis for mobile views to handle long category paths.',
+        story:
+          'E-commerce breadcrumbs for product categories, including responsive ellipsis for mobile views to handle long category paths.',
       },
     },
   },
@@ -358,7 +364,8 @@ export const AdminDashboard: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Admin dashboard breadcrumbs with icons for different sections like user management and content management, using ellipsis for deep navigation.',
+        story:
+          'Admin dashboard breadcrumbs with icons for different sections like user management and content management, using ellipsis for deep navigation.',
       },
     },
   },
@@ -423,7 +430,8 @@ export const SimpleBreadcrumbs: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Simple breadcrumb examples with minimal navigation levels, including two-level and single-page breadcrumbs.',
+        story:
+          'Simple breadcrumb examples with minimal navigation levels, including two-level and single-page breadcrumbs.',
       },
     },
   },
@@ -462,7 +470,8 @@ export const ComplexNavigation: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A complex breadcrumb navigation with multiple levels, icons, and ellipsis, demonstrating deep hierarchical navigation paths.',
+        story:
+          'A complex breadcrumb navigation with multiple levels, icons, and ellipsis, demonstrating deep hierarchical navigation paths.',
       },
     },
   },
@@ -508,7 +517,8 @@ export const InteractiveBreadcrumb: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'An interactive breadcrumb using buttons instead of links, allowing custom click handlers for navigation actions.',
+        story:
+          'An interactive breadcrumb using buttons instead of links, allowing custom click handlers for navigation actions.',
       },
     },
   },

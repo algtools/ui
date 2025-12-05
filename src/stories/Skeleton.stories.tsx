@@ -38,7 +38,8 @@ export const Default: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Default skeleton loaders in different widths, demonstrating basic skeleton loading states.',
+        story:
+          'Default skeleton loaders in different widths, demonstrating basic skeleton loading states.',
       },
     },
   },
@@ -81,7 +82,8 @@ export const Sizes: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Skeleton loaders in different sizes (small, medium, large), demonstrating size variations.',
+        story:
+          'Skeleton loaders in different sizes (small, medium, large), demonstrating size variations.',
       },
     },
   },
@@ -119,7 +121,8 @@ export const CardSkeleton: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A card skeleton loader mimicking a card layout with image, title, and description placeholders.',
+        story:
+          'A card skeleton loader mimicking a card layout with image, title, and description placeholders.',
       },
     },
   },
@@ -143,7 +146,8 @@ export const ListSkeleton: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A list skeleton loader with multiple list item placeholders, demonstrating list loading states.',
+        story:
+          'A list skeleton loader with multiple list item placeholders, demonstrating list loading states.',
       },
     },
   },
@@ -175,7 +179,8 @@ export const TableSkeleton: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A table skeleton loader with table rows and columns, demonstrating table loading states.',
+        story:
+          'A table skeleton loader with table rows and columns, demonstrating table loading states.',
       },
     },
   },
@@ -215,7 +220,8 @@ export const FormSkeleton: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A form skeleton loader with input fields and labels, demonstrating form loading states.',
+        story:
+          'A form skeleton loader with input fields and labels, demonstrating form loading states.',
       },
     },
   },
@@ -276,7 +282,8 @@ export const ProfileSkeleton: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A profile skeleton loader with avatar, name, and bio placeholders, demonstrating profile loading states.',
+        story:
+          'A profile skeleton loader with avatar, name, and bio placeholders, demonstrating profile loading states.',
       },
     },
   },
@@ -329,7 +336,8 @@ export const ChatSkeleton: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A chat skeleton loader with message bubbles and avatars, demonstrating chat interface loading states.',
+        story:
+          'A chat skeleton loader with message bubbles and avatars, demonstrating chat interface loading states.',
       },
     },
   },
@@ -404,7 +412,8 @@ export const DashboardSkeleton: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A dashboard skeleton loader with cards, charts, and widgets, demonstrating complex dashboard loading states.',
+        story:
+          'A dashboard skeleton loader with cards, charts, and widgets, demonstrating complex dashboard loading states.',
       },
     },
   },
@@ -431,7 +440,8 @@ export const GallerySkeleton: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A gallery skeleton loader with image grid placeholders, demonstrating gallery loading states.',
+        story:
+          'A gallery skeleton loader with image grid placeholders, demonstrating gallery loading states.',
       },
     },
   },
@@ -487,7 +497,8 @@ export const ArticleSkeleton: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'An article skeleton loader with header, featured image, content paragraphs, and tags, demonstrating article loading states.',
+        story:
+          'An article skeleton loader with header, featured image, content paragraphs, and tags, demonstrating article loading states.',
       },
     },
   },
@@ -518,7 +529,8 @@ export const TimelineSkeleton: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A timeline skeleton loader with timeline items and connecting lines, demonstrating timeline loading states.',
+        story:
+          'A timeline skeleton loader with timeline items and connecting lines, demonstrating timeline loading states.',
       },
     },
   },

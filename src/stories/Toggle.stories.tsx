@@ -101,7 +101,8 @@ export const Default: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Default toggle button with an icon, allowing users to toggle a feature on or off (commonly used in toolbars and settings).',
+        story:
+          'Default toggle button with an icon, allowing users to toggle a feature on or off (commonly used in toolbars and settings).',
       },
     },
   },
@@ -145,7 +146,8 @@ export const Variants: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Toggle variants (default and outline) demonstrating different visual styles, with examples showing both pressed and unpressed states.',
+        story:
+          'Toggle variants (default and outline) demonstrating different visual styles, with examples showing both pressed and unpressed states.',
       },
     },
   },
@@ -204,7 +206,8 @@ export const Sizes: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Toggle size variants (small, default, large) demonstrating how to adjust the component size for different layout contexts and toolbars.',
+        story:
+          'Toggle size variants (small, default, large) demonstrating how to adjust the component size for different layout contexts and toolbars.',
       },
     },
   },
@@ -245,7 +248,8 @@ export const WithText: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Toggle buttons with text labels (text-only and icon with text), providing clearer context for users when icons alone might be ambiguous.',
+        story:
+          'Toggle buttons with text labels (text-only and icon with text), providing clearer context for users when icons alone might be ambiguous.',
       },
     },
   },
@@ -300,7 +304,8 @@ export const ControlledState: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Controlled toggle buttons with React state management, demonstrating how to programmatically control toggle states and display current status.',
+        story:
+          'Controlled toggle buttons with React state management, demonstrating how to programmatically control toggle states and display current status.',
       },
     },
   },
@@ -361,7 +366,8 @@ export const DisabledState: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Toggle disabled states showing both disabled off and disabled on appearances, demonstrating when controls are not available for interaction.',
+        story:
+          'Toggle disabled states showing both disabled off and disabled on appearances, demonstrating when controls are not available for interaction.',
       },
     },
   },
@@ -442,7 +448,8 @@ export const MediaControls: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Media player controls with toggles for play/pause, mute, microphone, and camera, featuring dynamic icons and status display for video/audio applications.',
+        story:
+          'Media player controls with toggles for play/pause, mute, microphone, and camera, featuring dynamic icons and status display for video/audio applications.',
       },
     },
   },
@@ -549,7 +556,8 @@ export const ToolbarActions: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Article action toolbar with toggles for favorites, bookmarks, share, and download, demonstrating content interaction patterns with dynamic text labels and counters.',
+        story:
+          'Article action toolbar with toggles for favorites, bookmarks, share, and download, demonstrating content interaction patterns with dynamic text labels and counters.',
       },
     },
   },
@@ -660,7 +668,8 @@ export const SystemSettings: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'System settings panel with toggles for notifications, dark mode, Wi-Fi, security, and location services, featuring dynamic icons and descriptive labels.',
+        story:
+          'System settings panel with toggles for notifications, dark mode, Wi-Fi, security, and location services, featuring dynamic icons and descriptive labels.',
       },
     },
   },
@@ -780,7 +789,8 @@ export const TextFormatting: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Text editor toolbar with toggles for formatting (bold, italic, underline, code, link), alignment, and lists, with an active formatting summary display.',
+        story:
+          'Text editor toolbar with toggles for formatting (bold, italic, underline, code, link), alignment, and lists, with an active formatting summary display.',
       },
     },
   },
@@ -864,7 +874,8 @@ export const ViewModes: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'View mode selector with toggles for grid/list layout and visibility options (details, filters), demonstrating content display customization interfaces.',
+        story:
+          'View mode selector with toggles for grid/list layout and visibility options (details, filters), demonstrating content display customization interfaces.',
       },
     },
   },

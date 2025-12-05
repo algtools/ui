@@ -552,6 +552,22 @@ export const Basic: Story = {
         story:
           'Basic usage of the useMousePosition hook showing real-time mouse coordinate tracking. The hook returns both individual x, y values and a position object.',
       },
+      source: {
+        code: `import { useMousePosition } from '@algtools/ui';
+
+function MyComponent() {
+  const { x, y, position } = useMousePosition();
+
+  return (
+    <>
+      <p>X: {x}px</p>
+      <p>Y: {y}px</p>
+      <p>Position: ({position.x}, {position.y})</p>
+    </>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -564,6 +580,22 @@ export const Debounced: Story = {
         story:
           'Debouncing delays position updates until the mouse stops moving for the specified duration. This is useful for reducing update frequency and preventing excessive re-renders when continuous tracking is not necessary.',
       },
+      source: {
+        code: `import { useMousePosition } from '@algtools/ui';
+
+function MyComponent() {
+  const immediate = useMousePosition();
+  const debounced = useMousePosition({ debounceMs: 300 });
+
+  return (
+    <>
+      <p>Immediate: ({immediate.x}, {immediate.y})</p>
+      <p>Debounced (300ms): ({debounced.x}, {debounced.y})</p>
+    </>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -574,7 +606,23 @@ export const Throttled: Story = {
     docs: {
       description: {
         story:
-          'Throttling limits position updates to at most once per interval. This is ideal for performance-sensitive applications where you need regular updates but want to limit the frequency, such as animations or real-time visualizations.',
+          'Throttling limits position updates to at most once per interval. This is ideal for performance-sensitive applications where you need regular updates but want to limit frequency, such as animations or real-time visualizations.',
+      },
+      source: {
+        code: `import { useMousePosition } from '@algtools/ui';
+
+function MyComponent() {
+  const immediate = useMousePosition();
+  const throttled = useMousePosition({ throttleMs: 100 });
+
+  return (
+    <>
+      <p>Immediate: ({immediate.x}, {immediate.y})</p>
+      <p>Throttled (100ms): ({throttled.x}, {throttled.y})</p>
+    </>
+  );
+}`,
+        language: 'tsx',
       },
     },
   },
@@ -588,6 +636,27 @@ export const CursorFollower: Story = {
         story:
           'A smooth cursor follower effect using throttled mouse position tracking at 60fps (16ms). Perfect for creating custom cursor effects, spotlight effects, or interactive visual elements that follow the mouse.',
       },
+      source: {
+        code: `import { useMousePosition } from '@algtools/ui';
+
+function MyComponent() {
+  const { x, y } = useMousePosition({ throttleMs: 16 }); // 60fps
+
+  return (
+    <div
+      className="fixed pointer-events-none"
+      style={{
+        left: x,
+        top: y,
+        transform: 'translate(-50%, -50%)',
+      }}
+    >
+      <div className="w-4 h-4 bg-primary rounded-full" />
+    </div>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -599,6 +668,36 @@ export const MouseTrail: Story = {
       description: {
         story:
           'Creates a trailing effect behind the cursor by maintaining a history of recent positions. This pattern is great for adding visual flair to interactive experiences and making cursor movement more visible.',
+      },
+      source: {
+        code: `import { useMousePosition } from '@algtools/ui';
+import { useState, useEffect } from 'react';
+
+function MyComponent() {
+  const { x, y } = useMousePosition();
+  const [trail, setTrail] = useState<Array<{ x: number; y: number }>>([]);
+
+  useEffect(() => {
+    setTrail((prev) => [...prev, { x, y }].slice(-10));
+  }, [x, y]);
+
+  return (
+    <>
+      {trail.map((pos, i) => (
+        <div
+          key={i}
+          className="absolute w-2 h-2 bg-primary rounded-full"
+          style={{
+            left: pos.x,
+            top: pos.y,
+            opacity: i / trail.length,
+          }}
+        />
+      ))}
+    </>
+  );
+}`,
+        language: 'tsx',
       },
     },
   },
@@ -612,6 +711,26 @@ export const CoordinateDisplay: Story = {
         story:
           'Simple coordinate display with enable/disable functionality. Demonstrates conditional tracking using the enabled option, useful for toggling mouse tracking on and off.',
       },
+      source: {
+        code: `import { useMousePosition } from '@algtools/ui';
+import { useState } from 'react';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const [enabled, setEnabled] = useState(true);
+  const { x, y } = useMousePosition({ enabled });
+
+  return (
+    <>
+      <Button onClick={() => setEnabled(!enabled)}>
+        {enabled ? 'Disable' : 'Enable'} Tracking
+      </Button>
+      <p>X: {x}px, Y: {y}px</p>
+    </>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -624,6 +743,37 @@ export const DrawingCanvas: Story = {
         story:
           'Interactive drawing canvas using mouse position tracking. Demonstrates practical use of the hook for drawing applications where mouse coordinates drive visual output.',
       },
+      source: {
+        code: `import { useMousePosition } from '@algtools/ui';
+import { useState } from 'react';
+
+function MyComponent() {
+  const { x, y } = useMousePosition();
+  const [isDrawing, setIsDrawing] = useState(false);
+  const [points, setPoints] = useState<Array<{ x: number; y: number }>>([]);
+
+  return (
+    <div
+      onMouseDown={() => setIsDrawing(true)}
+      onMouseUp={() => setIsDrawing(false)}
+      onMouseMove={() => {
+        if (isDrawing) {
+          setPoints((prev) => [...prev, { x, y }]);
+        }
+      }}
+    >
+      {points.map((point, i) => (
+        <div
+          key={i}
+          className="absolute w-1 h-1 bg-black"
+          style={{ left: point.x, top: point.y }}
+        />
+      ))}
+    </div>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -635,6 +785,34 @@ export const Crosshair: Story = {
       description: {
         story:
           'Crosshair overlay showing vertical and horizontal guides following the cursor. Useful for precision tools, image editors, design applications, and any interface requiring accurate coordinate visualization.',
+      },
+      source: {
+        code: `import { useMousePosition } from '@algtools/ui';
+
+function MyComponent() {
+  const { x, y } = useMousePosition();
+
+  return (
+    <>
+      {/* Vertical line */}
+      <div
+        className="fixed w-px h-full bg-primary/50 pointer-events-none"
+        style={{ left: x }}
+      />
+      {/* Horizontal line */}
+      <div
+        className="fixed h-px w-full bg-primary/50 pointer-events-none"
+        style={{ top: y }}
+      />
+      {/* Center point */}
+      <div
+        className="fixed w-2 h-2 bg-primary rounded-full pointer-events-none"
+        style={{ left: x - 4, top: y - 4 }}
+      />
+    </>
+  );
+}`,
+        language: 'tsx',
       },
     },
   },

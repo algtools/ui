@@ -555,6 +555,26 @@ export const Basic: Story = {
         story:
           'Basic usage of the useScript hook. Loads a CDN library and tracks its loading status.',
       },
+      source: {
+        code: `import { useScript } from '@algtools/ui';
+
+function MyComponent() {
+  const { status, isLoading, isReady, isError } = useScript(
+    'https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js'
+  );
+
+  return (
+    <>
+      <p>Status: {status}</p>
+      <p>Loading: {isLoading ? 'Yes' : 'No'}</p>
+      <p>Ready: {isReady ? 'Yes' : 'No'}</p>
+      <p>Error: {isError ? 'Yes' : 'No'}</p>
+      {isReady && <p>Script loaded successfully!</p>}
+    </>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };

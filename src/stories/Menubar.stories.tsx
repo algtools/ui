@@ -144,7 +144,8 @@ export const Default: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A basic menubar with File and Edit menus, displaying common application commands with keyboard shortcuts.',
+        story:
+          'A basic menubar with File and Edit menus, displaying common application commands with keyboard shortcuts.',
       },
     },
   },
@@ -207,7 +208,8 @@ export const WithCheckboxes: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A menubar with checkbox items for toggling view options like sidebar, status bar, toolbar, and minimap visibility.',
+        story:
+          'A menubar with checkbox items for toggling view options like sidebar, status bar, toolbar, and minimap visibility.',
       },
     },
   },
@@ -334,7 +336,8 @@ export const WithSubmenus: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A menubar with nested submenus, demonstrating hierarchical menu structures like "New from Template" and "Import" options.',
+        story:
+          'A menubar with nested submenus, demonstrating hierarchical menu structures like "New from Template" and "Import" options.',
       },
     },
   },
@@ -449,7 +452,8 @@ export const EditorMenubar: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A comprehensive editor menubar with File, Edit, View, and Help menus, including interactive checkbox items for editor settings like line numbers and word wrap.',
+        story:
+          'A comprehensive editor menubar with File, Edit, View, and Help menus, including interactive checkbox items for editor settings like line numbers and word wrap.',
       },
     },
   },
@@ -577,7 +581,8 @@ export const ApplicationMenubar: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A full-featured application menubar with MyApp, File, Edit, Window, and Help menus, demonstrating a complete desktop application menu structure.',
+        story:
+          'A full-featured application menubar with MyApp, File, Edit, Window, and Help menus, demonstrating a complete desktop application menu structure.',
       },
     },
   },
@@ -686,7 +691,8 @@ export const BrowserMenubar: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A browser-style menubar with Chrome, File, View, and Bookmarks menus, demonstrating browser-specific functionality like incognito mode and JavaScript settings.',
+        story:
+          'A browser-style menubar with Chrome, File, View, and Bookmarks menus, demonstrating browser-specific functionality like incognito mode and JavaScript settings.',
       },
     },
   },
@@ -753,7 +759,8 @@ export const DisabledItems: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A menubar demonstrating disabled menu items and triggers, showing how to disable specific actions or entire menus when they are not available.',
+        story:
+          'A menubar demonstrating disabled menu items and triggers, showing how to disable specific actions or entire menus when they are not available.',
       },
     },
   },
@@ -782,7 +789,8 @@ export const MinimalMenubar: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A minimal menubar with just two simple menus (Actions and Tools), demonstrating a streamlined menu structure for simpler applications.',
+        story:
+          'A minimal menubar with just two simple menus (Actions and Tools), demonstrating a streamlined menu structure for simpler applications.',
       },
     },
   },

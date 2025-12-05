@@ -452,6 +452,24 @@ export const Basic: Story = {
         story:
           'Basic usage of the useScrollLock hook showing all available methods: lock, unlock, and toggle.',
       },
+      source: {
+        code: `import { useScrollLock } from '@algtools/ui';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const { isLocked, lock, unlock, toggle } = useScrollLock();
+
+  return (
+    <>
+      <p>Scroll is {isLocked ? 'locked' : 'unlocked'}</p>
+      <Button onClick={lock} disabled={isLocked}>Lock Scroll</Button>
+      <Button onClick={unlock} disabled={!isLocked}>Unlock Scroll</Button>
+      <Button onClick={toggle}>Toggle</Button>
+    </>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -463,6 +481,31 @@ export const ModalWithScrollLock: Story = {
       description: {
         story:
           'A common use case: using scroll lock with modals. The enabled option automatically locks/unlocks based on modal state.',
+      },
+      source: {
+        code: `import { useScrollLock } from '@algtools/ui';
+import { useState } from 'react';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const [isOpen, setIsOpen] = useState(false);
+  const { isLocked } = useScrollLock({ enabled: isOpen });
+
+  return (
+    <>
+      <Button onClick={() => setIsOpen(true)}>Open Modal</Button>
+      {isOpen && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center">
+          <div className="bg-white p-6 rounded-lg">
+            <p>Modal content</p>
+            <Button onClick={() => setIsOpen(false)}>Close</Button>
+          </div>
+        </div>
+      )}
+    </>
+  );
+}`,
+        language: 'tsx',
       },
     },
   },

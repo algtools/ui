@@ -46,7 +46,8 @@ export const Default: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Default dropzone component for single image file upload, supporting drag-and-drop and click-to-upload interactions.',
+        story:
+          'Default dropzone component for single image file upload, supporting drag-and-drop and click-to-upload interactions.',
       },
     },
   },
@@ -80,7 +81,8 @@ export const MultipleFiles: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Dropzone configured for multiple file uploads (up to 5 files) with support for both images and PDF files.',
+        story:
+          'Dropzone configured for multiple file uploads (up to 5 files) with support for both images and PDF files.',
       },
     },
   },
@@ -111,7 +113,8 @@ export const WithValidation: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Dropzone with file validation, restricting uploads to PNG files only with minimum (10KB) and maximum (2MB) size constraints.',
+        story:
+          'Dropzone with file validation, restricting uploads to PNG files only with minimum (10KB) and maximum (2MB) size constraints.',
       },
     },
   },
@@ -133,7 +136,8 @@ export const Disabled: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Disabled dropzone component, showing the inactive state when file uploads are not currently allowed.',
+        story:
+          'Disabled dropzone component, showing the inactive state when file uploads are not currently allowed.',
       },
     },
   },
@@ -168,7 +172,8 @@ export const WithDiscard: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Dropzone with discard functionality, allowing users to remove all selected files and reset the upload state.',
+        story:
+          'Dropzone with discard functionality, allowing users to remove all selected files and reset the upload state.',
       },
     },
   },

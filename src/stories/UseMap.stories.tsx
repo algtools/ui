@@ -340,6 +340,33 @@ export const Basic: Story = {
       description: {
         story: 'Basic usage of the useMap hook showing all available methods.',
       },
+      source: {
+        code: `import { useMap } from '@algtools/ui';
+import { Button, Input } from '@algtools/ui';
+
+function MyComponent() {
+  const { value, set, remove, clear, reset, size } = useMap<string, number>([
+    ['apples', 5],
+    ['oranges', 3],
+  ]);
+
+  return (
+    <>
+      <p>Size: {size}</p>
+      {Array.from(value.entries()).map(([key, val]) => (
+        <div key={key}>
+          {key}: {val}
+          <Button onClick={() => remove(key)}>Remove</Button>
+        </div>
+      ))}
+      <Button onClick={() => set('bananas', 2)}>Add Entry</Button>
+      <Button onClick={clear}>Clear All</Button>
+      <Button onClick={reset}>Reset</Button>
+    </>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -350,6 +377,33 @@ export const ShoppingCart: Story = {
     docs: {
       description: {
         story: 'Shopping cart implementation using useMap to manage cart items.',
+      },
+      source: {
+        code: `import { useMap } from '@algtools/ui';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const { value: cart, set, remove, clear } = useMap<string, number>([
+    ['item1', 2],
+    ['item2', 1],
+  ]);
+
+  const total = Array.from(cart.values()).reduce((sum, qty) => sum + qty, 0);
+
+  return (
+    <>
+      {Array.from(cart.entries()).map(([itemId, quantity]) => (
+        <div key={itemId}>
+          Item {itemId}: {quantity}
+          <Button onClick={() => remove(itemId)}>Remove</Button>
+        </div>
+      ))}
+      <p>Total items: {total}</p>
+      <Button onClick={clear}>Clear Cart</Button>
+    </>
+  );
+}`,
+        language: 'tsx',
       },
     },
   },
@@ -362,6 +416,33 @@ export const FormState: Story = {
       description: {
         story: 'Managing form state with useMap for dynamic field values.',
       },
+      source: {
+        code: `import { useMap } from '@algtools/ui';
+import { Input } from '@algtools/ui';
+
+function MyComponent() {
+  const { value: formData, set } = useMap<string, string>([
+    ['name', ''],
+    ['email', ''],
+  ]);
+
+  return (
+    <>
+      <Input
+        value={formData.get('name') || ''}
+        onChange={(e) => set('name', e.target.value)}
+        placeholder="Name"
+      />
+      <Input
+        value={formData.get('email') || ''}
+        onChange={(e) => set('email', e.target.value)}
+        placeholder="Email"
+      />
+    </>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -373,6 +454,37 @@ export const Cache: Story = {
       description: {
         story:
           'Using useMap as a computation cache/memoization layer. Check console for cache hits/misses.',
+      },
+      source: {
+        code: `import { useMap } from '@algtools/ui';
+import { useState } from 'react';
+import { Input } from '@algtools/ui';
+
+function MyComponent() {
+  const [input, setInput] = useState('');
+  const { value: cache, set, has } = useMap<string, number>();
+
+  const expensiveCalculation = (value: string): number => {
+    if (has(value)) {
+      console.log('Cache hit!');
+      return cache.get(value)!;
+    }
+    console.log('Cache miss - computing...');
+    const result = value.length * 100; // Expensive operation
+    set(value, result);
+    return result;
+  };
+
+  const result = expensiveCalculation(input);
+
+  return (
+    <>
+      <Input value={input} onChange={(e) => setInput(e.target.value)} />
+      <p>Result: {result}</p>
+    </>
+  );
+}`,
+        language: 'tsx',
       },
     },
   },

@@ -389,6 +389,35 @@ export const Dropdown: Story = {
         story:
           'Basic dropdown menu that closes when clicking outside. The most common use case for this hook.',
       },
+      source: {
+        code: `import { useOnClickOutside } from '@algtools/ui';
+import { useRef, useState } from 'react';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useOnClickOutside(dropdownRef, () => {
+    setIsOpen(false);
+  });
+
+  return (
+    <div ref={dropdownRef} className="relative">
+      <Button onClick={() => setIsOpen(!isOpen)}>
+        Toggle Dropdown
+      </Button>
+      {isOpen && (
+        <div className="absolute mt-2 border rounded-md shadow-lg">
+          <button onClick={() => setIsOpen(false)}>Option 1</button>
+          <button onClick={() => setIsOpen(false)}>Option 2</button>
+        </div>
+      )}
+    </div>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -400,6 +429,35 @@ export const Modal: Story = {
       description: {
         story:
           'Modal/dialog that can be dismissed by clicking outside. Great for non-critical dialogs that should be easy to dismiss.',
+      },
+      source: {
+        code: `import { useOnClickOutside } from '@algtools/ui';
+import { useRef, useState } from 'react';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const [isOpen, setIsOpen] = useState(false);
+  const modalRef = useRef<HTMLDivElement>(null);
+
+  useOnClickOutside(modalRef, () => {
+    setIsOpen(false);
+  });
+
+  return (
+    <>
+      <Button onClick={() => setIsOpen(true)}>Open Modal</Button>
+      {isOpen && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center">
+          <div ref={modalRef} className="bg-white p-6 rounded-lg">
+            <p>Modal content</p>
+            <Button onClick={() => setIsOpen(false)}>Close</Button>
+          </div>
+        </div>
+      )}
+    </>
+  );
+}`,
+        language: 'tsx',
       },
     },
   },
@@ -413,6 +471,35 @@ export const MultipleRefs: Story = {
         story:
           'Example using multiple refs. The hook monitors both the button and menu - clicking either one will not trigger the outside click handler.',
       },
+      source: {
+        code: `import { useOnClickOutside } from '@algtools/ui';
+import { useRef, useState } from 'react';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const [isOpen, setIsOpen] = useState(false);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  useOnClickOutside([buttonRef, menuRef], () => {
+    setIsOpen(false);
+  });
+
+  return (
+    <>
+      <Button ref={buttonRef} onClick={() => setIsOpen(!isOpen)}>
+        Toggle Menu
+      </Button>
+      {isOpen && (
+        <div ref={menuRef} className="menu">
+          Menu content
+        </div>
+      )}
+    </>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -424,6 +511,32 @@ export const Popover: Story = {
       description: {
         story:
           'Info popover that closes when clicking outside. Useful for contextual help and tooltips.',
+      },
+      source: {
+        code: `import { useOnClickOutside } from '@algtools/ui';
+import { useRef, useState } from 'react';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const [isOpen, setIsOpen] = useState(false);
+  const popoverRef = useRef<HTMLDivElement>(null);
+
+  useOnClickOutside(popoverRef, () => {
+    setIsOpen(false);
+  });
+
+  return (
+    <div className="relative" ref={popoverRef}>
+      <Button onClick={() => setIsOpen(!isOpen)}>Show Info</Button>
+      {isOpen && (
+        <div className="absolute mt-2 p-4 border rounded-lg shadow-lg bg-white">
+          <p>Popover content</p>
+        </div>
+      )}
+    </div>
+  );
+}`,
+        language: 'tsx',
       },
     },
   },
@@ -437,6 +550,34 @@ export const ConditionalBehavior: Story = {
         story:
           'Demonstrates the optional `enabled` parameter. When disabled, outside clicks are ignored. Useful for locking UI or preventing accidental dismissal.',
       },
+      source: {
+        code: `import { useOnClickOutside } from '@algtools/ui';
+import { useRef, useState } from 'react';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [enabled, setEnabled] = useState(true);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useOnClickOutside(ref, () => {
+    setIsOpen(false);
+  }, enabled);
+
+  return (
+    <>
+      <Button onClick={() => setEnabled(!enabled)}>
+        {enabled ? 'Disable' : 'Enable'} Outside Click
+      </Button>
+      <div ref={ref}>
+        <Button onClick={() => setIsOpen(!isOpen)}>Toggle</Button>
+        {isOpen && <div>Content</div>}
+      </div>
+    </>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -448,6 +589,35 @@ export const NestedElements: Story = {
       description: {
         story:
           'Shows that clicks on nested child elements are correctly identified as "inside" clicks and won\'t trigger the handler. The hook uses element.contains() to check the entire subtree.',
+      },
+      source: {
+        code: `import { useOnClickOutside } from '@algtools/ui';
+import { useRef, useState } from 'react';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const [isOpen, setIsOpen] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useOnClickOutside(containerRef, () => {
+    setIsOpen(false);
+  });
+
+  return (
+    <div ref={containerRef}>
+      <Button onClick={() => setIsOpen(!isOpen)}>Toggle</Button>
+      {isOpen && (
+        <div>
+          <div>
+            <p>Nested content</p>
+            <button>Nested button</button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}`,
+        language: 'tsx',
       },
     },
   },

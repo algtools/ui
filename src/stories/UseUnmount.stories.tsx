@@ -247,6 +247,34 @@ export const Basic: Story = {
       description: {
         story: 'Basic usage of the useUnmount hook showing cleanup execution on unmount.',
       },
+      source: {
+        code: `import { useUnmount } from '@algtools/ui';
+import { useState } from 'react';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const [showComponent, setShowComponent] = useState(true);
+
+  const ComponentWithCleanup = () => {
+    useUnmount(() => {
+      console.log('Component unmounted - cleanup executed!');
+      // Perform cleanup operations
+    });
+
+    return <div>Component with cleanup</div>;
+  };
+
+  return (
+    <>
+      <Button onClick={() => setShowComponent(!showComponent)}>
+        {showComponent ? 'Unmount' : 'Mount'} Component
+      </Button>
+      {showComponent && <ComponentWithCleanup />}
+    </>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -259,6 +287,41 @@ export const TimerCleanup: Story = {
         story:
           'Demonstrates using useUnmount to clean up intervals and timers when component unmounts.',
       },
+      source: {
+        code: `import { useUnmount } from '@algtools/ui';
+import { useState, useEffect } from 'react';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const [count, setCount] = useState(0);
+  const [showTimer, setShowTimer] = useState(true);
+
+  const TimerComponent = () => {
+    useEffect(() => {
+      const interval = setInterval(() => {
+        setCount((c) => c + 1);
+      }, 1000);
+      return () => clearInterval(interval);
+    }, []);
+
+    useUnmount(() => {
+      console.log('Timer component unmounted - interval cleaned up');
+    });
+
+    return <p>Count: {count}</p>;
+  };
+
+  return (
+    <>
+      <Button onClick={() => setShowTimer(!showTimer)}>
+        {showTimer ? 'Unmount Timer' : 'Mount Timer'}
+      </Button>
+      {showTimer && <TimerComponent />}
+    </>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -269,6 +332,41 @@ export const EventListenerCleanup: Story = {
     docs: {
       description: {
         story: 'Shows how to use useUnmount to remove event listeners during component cleanup.',
+      },
+      source: {
+        code: `import { useUnmount } from '@algtools/ui';
+import { useState, useEffect } from 'react';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const [showComponent, setShowComponent] = useState(true);
+
+  const ComponentWithListener = () => {
+    useEffect(() => {
+      const handleResize = () => {
+        console.log('Window resized');
+      };
+      window.addEventListener('resize', handleResize);
+      return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    useUnmount(() => {
+      console.log('Component unmounted - event listeners cleaned up');
+    });
+
+    return <div>Component with event listener</div>;
+  };
+
+  return (
+    <>
+      <Button onClick={() => setShowComponent(!showComponent)}>
+        {showComponent ? 'Unmount' : 'Mount'} Component
+      </Button>
+      {showComponent && <ComponentWithListener />}
+    </>
+  );
+}`,
+        language: 'tsx',
       },
     },
   },

@@ -434,6 +434,29 @@ export const Basic: Story = {
       description: {
         story: 'Basic usage of the useSessionStorage hook with string values.',
       },
+      source: {
+        code: `import { useSessionStorage } from '@algtools/ui';
+import { Input } from '@algtools/ui';
+
+function MyComponent() {
+  const { value, setValue, removeValue, error } = useSessionStorage('demo-session-text', 'Session Data');
+
+  return (
+    <>
+      {error && <p>Error: {error.message}</p>}
+      <Input
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        placeholder="Type something..."
+      />
+      <p>Current Value: {value}</p>
+      <Button onClick={removeValue}>Clear</Button>
+      <Button onClick={() => setValue('Session Data')}>Reset</Button>
+    </>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -445,6 +468,32 @@ export const MultiStepForm: Story = {
       description: {
         story:
           'A multi-step form that preserves progress during the session. Perfect for wizards and multi-page forms.',
+      },
+      source: {
+        code: `import { useSessionStorage } from '@algtools/ui';
+import { useState } from 'react';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const [step, setStep] = useState(1);
+  const { value: formData, setValue: setFormData } = useSessionStorage('form-data', {
+    name: '',
+    email: '',
+    step: 1,
+  });
+
+  return (
+    <>
+      <p>Step: {step}</p>
+      <Input
+        value={formData.name}
+        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+      />
+      <Button onClick={() => setStep(step + 1)}>Next</Button>
+    </>
+  );
+}`,
+        language: 'tsx',
       },
     },
   },
@@ -458,6 +507,24 @@ export const TabCounter: Story = {
         story:
           'Demonstrates tab-specific storage. Each browser tab maintains its own counter value.',
       },
+      source: {
+        code: `import { useSessionStorage } from '@algtools/ui';
+import { Button } from '@algtools/ui';
+
+function MyComponent() {
+  const { value: count, setValue: setCount } = useSessionStorage('tab-counter', 0);
+
+  return (
+    <>
+      <p>Count: {count}</p>
+      <Button onClick={() => setCount((c) => c + 1)}>Increment</Button>
+      <Button onClick={() => setCount(0)}>Reset</Button>
+      <p>Each tab has its own counter</p>
+    </>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -469,6 +536,35 @@ export const TemporarySettings: Story = {
       description: {
         story: 'Temporary UI settings that apply only to the current session.',
       },
+      source: {
+        code: `import { useSessionStorage } from '@algtools/ui';
+import { Switch } from '@algtools/ui';
+
+function MyComponent() {
+  const { value: settings, setValue: setSettings } = useSessionStorage('temp-settings', {
+    showSidebar: true,
+    compactMode: false,
+  });
+
+  return (
+    <>
+      <Switch
+        checked={settings.showSidebar}
+        onCheckedChange={(checked) =>
+          setSettings({ ...settings, showSidebar: checked })
+        }
+      />
+      <Switch
+        checked={settings.compactMode}
+        onCheckedChange={(checked) =>
+          setSettings({ ...settings, compactMode: checked })
+        }
+      />
+    </>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -479,6 +575,23 @@ export const DraftEditor: Story = {
     docs: {
       description: {
         story: 'Auto-saving draft editor with session-scoped persistence.',
+      },
+      source: {
+        code: `import { useSessionStorage } from '@algtools/ui';
+import { Textarea } from '@algtools/ui';
+
+function MyComponent() {
+  const { value: draft, setValue: setDraft } = useSessionStorage('draft-content', '');
+
+  return (
+    <Textarea
+      value={draft}
+      onChange={(e) => setDraft(e.target.value)}
+      placeholder="Start typing... (auto-saved to sessionStorage)"
+    />
+  );
+}`,
+        language: 'tsx',
       },
     },
   },

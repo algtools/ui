@@ -172,7 +172,8 @@ export const Default: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A default bar chart displaying monthly data for desktop and mobile, demonstrating basic chart functionality.',
+        story:
+          'A default bar chart displaying monthly data for desktop and mobile, demonstrating basic chart functionality.',
       },
     },
   },
@@ -223,7 +224,8 @@ export const LineChartExample: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A line chart displaying trends over time, demonstrating how to visualize data with line charts.',
+        story:
+          'A line chart displaying trends over time, demonstrating how to visualize data with line charts.',
       },
     },
   },
@@ -276,7 +278,8 @@ export const AreaChartExample: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'An area chart with filled areas showing data trends, demonstrating area chart visualization.',
+        story:
+          'An area chart with filled areas showing data trends, demonstrating area chart visualization.',
       },
     },
   },
@@ -306,7 +309,8 @@ export const PieChartExample: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A pie chart displaying data distribution, demonstrating how to show proportional data.',
+        story:
+          'A pie chart displaying data distribution, demonstrating how to show proportional data.',
       },
     },
   },
@@ -326,7 +330,8 @@ export const RadialBarChartExample: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A radial bar chart displaying data in a circular format, demonstrating radial chart visualization.',
+        story:
+          'A radial bar chart displaying data in a circular format, demonstrating radial chart visualization.',
       },
     },
   },
@@ -356,7 +361,8 @@ export const WithLegend: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A chart with a legend showing data series labels, demonstrating how to add legends to charts.',
+        story:
+          'A chart with a legend showing data series labels, demonstrating how to add legends to charts.',
       },
     },
   },
@@ -382,7 +388,8 @@ export const RevenueAnalysis: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A revenue analysis chart displaying financial data and trends, demonstrating business analytics use cases.',
+        story:
+          'A revenue analysis chart displaying financial data and trends, demonstrating business analytics use cases.',
       },
     },
   },
@@ -435,7 +442,8 @@ export const StackedAreaChart: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A stacked area chart showing multiple data series stacked on top of each other, demonstrating stacked visualizations.',
+        story:
+          'A stacked area chart showing multiple data series stacked on top of each other, demonstrating stacked visualizations.',
       },
     },
   },
@@ -499,7 +507,8 @@ export const MultipleCharts: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Multiple charts displayed together, demonstrating how to show different chart types on the same page.',
+        story:
+          'Multiple charts displayed together, demonstrating how to show different chart types on the same page.',
       },
     },
   },
@@ -542,7 +551,8 @@ export const CustomTooltip: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A chart with custom tooltip content, demonstrating how to customize tooltip appearance and information.',
+        story:
+          'A chart with custom tooltip content, demonstrating how to customize tooltip appearance and information.',
       },
     },
   },
@@ -609,7 +619,8 @@ export const AllChartColors: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A chart displaying all 5 chart theme colors (chart-1 through chart-5) in a single bar chart, demonstrating the full color palette.',
+        story:
+          'A chart displaying all 5 chart theme colors (chart-1 through chart-5) in a single bar chart, demonstrating the full color palette.',
       },
     },
   },
@@ -693,7 +704,8 @@ export const ChartColorPalette: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A chart color palette showcase displaying all available chart colors with examples of line and pie charts using the color system.',
+        story:
+          'A chart color palette showcase displaying all available chart colors with examples of line and pie charts using the color system.',
       },
     },
   },

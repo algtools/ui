@@ -55,7 +55,8 @@ export const Default: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A default pagination component with previous/next buttons and page numbers, showing the current active page.',
+        story:
+          'A default pagination component with previous/next buttons and page numbers, showing the current active page.',
       },
     },
   },
@@ -94,7 +95,8 @@ export const WithEllipsis: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A pagination component using ellipsis to indicate skipped pages when there are many pages, showing a compact navigation pattern.',
+        story:
+          'A pagination component using ellipsis to indicate skipped pages when there are many pages, showing a compact navigation pattern.',
       },
     },
   },
@@ -133,7 +135,8 @@ export const FirstPage: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A pagination component on the first page, with the previous button disabled and ellipsis indicating more pages ahead.',
+        story:
+          'A pagination component on the first page, with the previous button disabled and ellipsis indicating more pages ahead.',
       },
     },
   },
@@ -172,7 +175,8 @@ export const LastPage: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A pagination component on the last page, with the next button disabled and ellipsis indicating previous pages.',
+        story:
+          'A pagination component on the last page, with the next button disabled and ellipsis indicating previous pages.',
       },
     },
   },
@@ -217,7 +221,8 @@ export const MiddlePage: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A pagination component in the middle of a page range, with ellipsis on both sides to indicate pages before and after.',
+        story:
+          'A pagination component in the middle of a page range, with ellipsis on both sides to indicate pages before and after.',
       },
     },
   },
@@ -244,7 +249,8 @@ export const SinglePage: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A pagination component for a single page, with both previous and next buttons disabled since there is only one page.',
+        story:
+          'A pagination component for a single page, with both previous and next buttons disabled since there is only one page.',
       },
     },
   },
@@ -430,7 +436,8 @@ export const ControlledPagination: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A fully controlled pagination component with state management, dynamically rendering page numbers and ellipsis based on the current page and total pages.',
+        story:
+          'A fully controlled pagination component with state management, dynamically rendering page numbers and ellipsis based on the current page and total pages.',
       },
     },
   },
@@ -489,7 +496,8 @@ export const SearchResults: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A pagination component integrated into a search results page, showing how pagination works with content listings and search result counts.',
+        story:
+          'A pagination component integrated into a search results page, showing how pagination works with content listings and search result counts.',
       },
     },
   },
@@ -569,7 +577,8 @@ export const DataTable: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A pagination component integrated into a data table, showing how pagination works with tabular data and record counts.',
+        story:
+          'A pagination component integrated into a data table, showing how pagination works with tabular data and record counts.',
       },
     },
   },
@@ -637,7 +646,8 @@ export const BlogPosts: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A pagination component integrated into a blog post listing, showing how pagination works with article grids and content listings.',
+        story:
+          'A pagination component integrated into a blog post listing, showing how pagination works with article grids and content listings.',
       },
     },
   },
@@ -679,7 +689,8 @@ export const CompactMobile: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A compact pagination component optimized for mobile devices, showing a minimal number of page buttons suitable for smaller screens.',
+        story:
+          'A compact pagination component optimized for mobile devices, showing a minimal number of page buttons suitable for smaller screens.',
       },
     },
   },

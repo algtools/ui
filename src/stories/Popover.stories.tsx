@@ -86,7 +86,8 @@ export const Default: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A default popover with form inputs for dimensions, demonstrating basic popover functionality with content overlay.',
+        story:
+          'A default popover with form inputs for dimensions, demonstrating basic popover functionality with content overlay.',
       },
     },
   },
@@ -146,7 +147,8 @@ export const UserProfile: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A user profile popover displaying user information, avatar, and quick actions, demonstrating profile card functionality.',
+        story:
+          'A user profile popover displaying user information, avatar, and quick actions, demonstrating profile card functionality.',
       },
     },
   },
@@ -190,7 +192,8 @@ export const QuickActions: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A quick actions popover with a list of common actions like edit, delete, and share, demonstrating action menus.',
+        story:
+          'A quick actions popover with a list of common actions like edit, delete, and share, demonstrating action menus.',
       },
     },
   },
@@ -247,7 +250,8 @@ export const ContactInfo: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A contact info popover displaying contact details like email, phone, and address, demonstrating information display.',
+        story:
+          'A contact info popover displaying contact details like email, phone, and address, demonstrating information display.',
       },
     },
   },
@@ -307,7 +311,8 @@ export const AddNewItem: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'An add new item popover with a form for creating new items, demonstrating how to use popovers for input forms.',
+        story:
+          'An add new item popover with a form for creating new items, demonstrating how to use popovers for input forms.',
       },
     },
   },
@@ -350,7 +355,8 @@ export const HelpTooltip: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A help tooltip popover providing contextual help and information, demonstrating how to show help content.',
+        story:
+          'A help tooltip popover providing contextual help and information, demonstrating how to show help content.',
       },
     },
   },
@@ -410,7 +416,8 @@ export const Notifications: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A notifications popover displaying a list of notifications with actions, demonstrating notification management.',
+        story:
+          'A notifications popover displaying a list of notifications with actions, demonstrating notification management.',
       },
     },
   },
@@ -457,7 +464,8 @@ export const CalendarPreview: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A calendar preview popover showing a mini calendar view, demonstrating how to preview calendar content.',
+        story:
+          'A calendar preview popover showing a mini calendar view, demonstrating how to preview calendar content.',
       },
     },
   },
@@ -515,7 +523,8 @@ export const ShareOptions: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A share options popover with social media and sharing options, demonstrating sharing functionality.',
+        story:
+          'A share options popover with social media and sharing options, demonstrating sharing functionality.',
       },
     },
   },
@@ -550,7 +559,8 @@ export const InfoPopover: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'An info popover displaying additional information and details, demonstrating informational content display.',
+        story:
+          'An info popover displaying additional information and details, demonstrating informational content display.',
       },
     },
   },
@@ -624,7 +634,8 @@ export const MultiplePopovers: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Multiple popovers displayed simultaneously, demonstrating how to manage multiple popover instances on the same page.',
+        story:
+          'Multiple popovers displayed simultaneously, demonstrating how to manage multiple popover instances on the same page.',
       },
     },
   },

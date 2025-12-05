@@ -66,7 +66,8 @@ export const Pending: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Tool in pending state, waiting to be executed, displayed without parameters or results.',
+        story:
+          'Tool in pending state, waiting to be executed, displayed without parameters or results.',
       },
     },
   },
@@ -90,7 +91,8 @@ export const InProgress: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Tool currently executing with parameters displayed and expanded, showing what inputs are being used.',
+        story:
+          'Tool currently executing with parameters displayed and expanded, showing what inputs are being used.',
       },
     },
   },
@@ -121,7 +123,8 @@ export const Complete: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Tool execution completed successfully with both parameters and results displayed, result section expanded by default.',
+        story:
+          'Tool execution completed successfully with both parameters and results displayed, result section expanded by default.',
       },
     },
   },
@@ -147,7 +150,8 @@ export const Failed: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Tool execution failed with an error message in the result, showing both parameters and error details.',
+        story:
+          'Tool execution failed with an error message in the result, showing both parameters and error details.',
       },
     },
   },
@@ -185,7 +189,8 @@ export const WithoutDescription: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Tool without a description field, demonstrating how the component handles missing optional metadata.',
+        story:
+          'Tool without a description field, demonstrating how the component handles missing optional metadata.',
       },
     },
   },
@@ -204,7 +209,8 @@ export const SimpleStringResult: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Tool with a simple string result, demonstrating how primitive string values are displayed.',
+        story:
+          'Tool with a simple string result, demonstrating how primitive string values are displayed.',
       },
     },
   },
@@ -225,7 +231,8 @@ export const NumericResult: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Tool with a numeric result, showing how numeric values are displayed in the result section.',
+        story:
+          'Tool with a numeric result, showing how numeric values are displayed in the result section.',
       },
     },
   },
@@ -285,7 +292,8 @@ export const ComplexParameters: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Tool with complex nested parameters and results, demonstrating how deeply nested objects are displayed and formatted.',
+        story:
+          'Tool with complex nested parameters and results, demonstrating how deeply nested objects are displayed and formatted.',
       },
     },
   },

@@ -38,7 +38,8 @@ export const Default: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Default theme switcher with circle-blur animation starting from the top-left corner, providing smooth theme transitions.',
+        story:
+          'Default theme switcher with circle-blur animation starting from the top-left corner, providing smooth theme transitions.',
       },
     },
   },
@@ -49,7 +50,8 @@ export const Controlled: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Theme switcher with circle animation starting from the center, offering a classic expanding circle transition effect.',
+        story:
+          'Theme switcher with circle animation starting from the center, offering a classic expanding circle transition effect.',
       },
     },
   },
@@ -60,7 +62,8 @@ export const CircleBlurFromCorners: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Circle-blur animation variant starting from corners (top-left, top-right, bottom-left, bottom-right), creating directional theme transitions.',
+        story:
+          'Circle-blur animation variant starting from corners (top-left, top-right, bottom-left, bottom-right), creating directional theme transitions.',
       },
     },
   },
@@ -71,7 +74,8 @@ export const PolygonWipe: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Polygon wipe animation variant, providing a geometric transition effect when switching between light and dark themes.',
+        story:
+          'Polygon wipe animation variant, providing a geometric transition effect when switching between light and dark themes.',
       },
     },
   },

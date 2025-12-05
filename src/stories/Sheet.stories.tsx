@@ -112,7 +112,8 @@ export const Default: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A default sheet component with a form for editing profile information, demonstrating basic sheet functionality.',
+        story:
+          'A default sheet component with a form for editing profile information, demonstrating basic sheet functionality.',
       },
     },
   },
@@ -173,7 +174,8 @@ export const SideVariants: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Sheet variants showing sheets from different sides (top, right, bottom, left), demonstrating directional sheet positioning.',
+        story:
+          'Sheet variants showing sheets from different sides (top, right, bottom, left), demonstrating directional sheet positioning.',
       },
     },
   },
@@ -263,7 +265,8 @@ export const NavigationMenu: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A navigation menu sheet displaying navigation links and menu items, demonstrating how to use sheets for navigation.',
+        story:
+          'A navigation menu sheet displaying navigation links and menu items, demonstrating how to use sheets for navigation.',
       },
     },
   },
@@ -328,7 +331,8 @@ export const ContactForm: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A contact form sheet with input fields for name, email, and message, demonstrating form integration in sheets.',
+        story:
+          'A contact form sheet with input fields for name, email, and message, demonstrating form integration in sheets.',
       },
     },
   },
@@ -451,7 +455,8 @@ export const SettingsPanel: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A settings panel sheet with various configuration options and settings, demonstrating a comprehensive settings interface.',
+        story:
+          'A settings panel sheet with various configuration options and settings, demonstrating a comprehensive settings interface.',
       },
     },
   },
@@ -554,7 +559,8 @@ export const ShoppingCartSheet: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A shopping cart sheet displaying cart items with quantities, prices, and checkout functionality, demonstrating e-commerce use cases.',
+        story:
+          'A shopping cart sheet displaying cart items with quantities, prices, and checkout functionality, demonstrating e-commerce use cases.',
       },
     },
   },
@@ -663,7 +669,8 @@ export const UserProfile: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A user profile sheet displaying user information, avatar, and profile details, demonstrating profile display in sheets.',
+        story:
+          'A user profile sheet displaying user information, avatar, and profile details, demonstrating profile display in sheets.',
       },
     },
   },
@@ -753,7 +760,8 @@ export const FilterPanel: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A filter panel sheet with various filter options including checkboxes, sliders, and dropdowns, demonstrating filtering interfaces.',
+        story:
+          'A filter panel sheet with various filter options including checkboxes, sliders, and dropdowns, demonstrating filtering interfaces.',
       },
     },
   },
@@ -798,7 +806,8 @@ export const ImageGallery: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'An image gallery sheet displaying a grid of images with navigation, demonstrating how to use sheets for media galleries.',
+        story:
+          'An image gallery sheet displaying a grid of images with navigation, demonstrating how to use sheets for media galleries.',
       },
     },
   },

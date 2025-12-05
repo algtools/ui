@@ -116,7 +116,8 @@ export const Default: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A basic dropdown menu triggered by a button, displaying account-related actions like profile, billing, settings, and logout.',
+        story:
+          'A basic dropdown menu triggered by a button, displaying account-related actions like profile, billing, settings, and logout.',
       },
     },
   },
@@ -161,7 +162,8 @@ export const WithKeyboardShortcuts: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A dropdown menu with keyboard shortcuts displayed next to menu items, providing quick access hints for power users.',
+        story:
+          'A dropdown menu with keyboard shortcuts displayed next to menu items, providing quick access hints for power users.',
       },
     },
   },
@@ -197,7 +199,8 @@ export const WithCheckboxes: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A dropdown menu with checkbox items for toggling multiple view options, demonstrating state management for boolean settings.',
+        story:
+          'A dropdown menu with checkbox items for toggling multiple view options, demonstrating state management for boolean settings.',
       },
     },
   },
@@ -239,7 +242,8 @@ export const WithRadioGroup: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A dropdown menu with radio group items for selecting a single option from multiple choices, such as device preview modes.',
+        story:
+          'A dropdown menu with radio group items for selecting a single option from multiple choices, such as device preview modes.',
       },
     },
   },
@@ -318,7 +322,8 @@ export const WithSubmenus: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A dropdown menu with nested submenus for organizing related actions, including theme selection and user invitation options.',
+        story:
+          'A dropdown menu with nested submenus for organizing related actions, including theme selection and user invitation options.',
       },
     },
   },
@@ -383,7 +388,8 @@ export const UserProfileDropdown: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A user profile dropdown menu triggered by an avatar button, displaying user information, account actions, and grouped menu items.',
+        story:
+          'A user profile dropdown menu triggered by an avatar button, displaying user information, account actions, and grouped menu items.',
       },
     },
   },
@@ -457,7 +463,8 @@ export const FileContextMenu: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A file actions dropdown menu with file operations like open, copy, share, download, and move, including nested submenus for folder selection.',
+        story:
+          'A file actions dropdown menu with file operations like open, copy, share, download, and move, including nested submenus for folder selection.',
       },
     },
   },
@@ -524,7 +531,8 @@ export const NotificationDropdown: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A notification dropdown menu with a badge indicator, displaying notification items with timestamps and action details in a structured format.',
+        story:
+          'A notification dropdown menu with a badge indicator, displaying notification items with timestamps and action details in a structured format.',
       },
     },
   },
@@ -580,7 +588,8 @@ export const SettingsDropdown: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A settings dropdown menu with checkbox preferences and nested security submenu, demonstrating complex settings organization.',
+        story:
+          'A settings dropdown menu with checkbox preferences and nested security submenu, demonstrating complex settings organization.',
       },
     },
   },
@@ -618,7 +627,8 @@ export const ActionsDropdown: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A compact actions dropdown menu triggered by a more options icon button, displaying common item actions like edit, copy, share, and delete.',
+        story:
+          'A compact actions dropdown menu triggered by a more options icon button, displaying common item actions like edit, copy, share, and delete.',
       },
     },
   },
@@ -669,7 +679,8 @@ export const MultipleDropdowns: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Multiple dropdown menus displayed side-by-side, demonstrating how multiple menu instances can coexist in the same interface.',
+        story:
+          'Multiple dropdown menus displayed side-by-side, demonstrating how multiple menu instances can coexist in the same interface.',
       },
     },
   },

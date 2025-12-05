@@ -465,6 +465,26 @@ export const BasicVisibility: Story = {
       description: {
         story: 'Basic usage showing element visibility detection and intersection ratio tracking.',
       },
+      source: {
+        code: `import { useIntersectionObserver } from '@algtools/ui';
+
+function MyComponent() {
+  const { ref, isIntersecting, intersectionRatio } = useIntersectionObserver({
+    threshold: 0.1,
+  });
+
+  return (
+    <>
+      <div className="h-[600px]">Scroll down</div>
+      <div ref={ref}>
+        <p>Is visible: {isIntersecting ? 'Yes' : 'No'}</p>
+        <p>Intersection ratio: {(intersectionRatio * 100).toFixed(1)}%</p>
+      </div>
+    </>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -476,6 +496,32 @@ export const LazyLoading: Story = {
       description: {
         story:
           'Lazy loading images as they enter the viewport. Images are loaded with a rootMargin to preload slightly before they become visible.',
+      },
+      source: {
+        code: `import { useIntersectionObserver } from '@algtools/ui';
+import { useState } from 'react';
+
+function MyComponent() {
+  const [imageSrc, setImageSrc] = useState<string | null>(null);
+  const { ref, isIntersecting } = useIntersectionObserver({
+    rootMargin: '50px',
+  });
+
+  if (isIntersecting && !imageSrc) {
+    setImageSrc('https://example.com/image.jpg');
+  }
+
+  return (
+    <div ref={ref}>
+      {imageSrc ? (
+        <img src={imageSrc} alt="Lazy loaded" />
+      ) : (
+        <div>Loading...</div>
+      )}
+    </div>
+  );
+}`,
+        language: 'tsx',
       },
     },
   },
@@ -489,6 +535,26 @@ export const ScrollAnimations: Story = {
         story:
           'Smooth scroll-based animations using intersection ratio. Elements fade in and slide up as they enter the viewport.',
       },
+      source: {
+        code: `import { useIntersectionObserver } from '@algtools/ui';
+
+function MyComponent() {
+  const { ref, isIntersecting, intersectionRatio } = useIntersectionObserver({
+    threshold: [0, 0.25, 0.5, 0.75, 1],
+  });
+
+  return (
+    <div
+      ref={ref}
+      className={\`transition-all duration-500 \${isIntersecting ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}\`}
+      style={{ opacity: intersectionRatio }}
+    >
+      <p>Animated content</p>
+    </div>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -500,6 +566,32 @@ export const InfiniteScroll: Story = {
       description: {
         story:
           'Infinite scroll implementation that automatically loads more content when the user scrolls to the bottom.',
+      },
+      source: {
+        code: `import { useIntersectionObserver } from '@algtools/ui';
+import { useState } from 'react';
+
+function MyComponent() {
+  const [items, setItems] = useState([1, 2, 3, 4, 5]);
+  const { ref, isIntersecting } = useIntersectionObserver({
+    rootMargin: '100px',
+  });
+
+  if (isIntersecting) {
+    // Load more items
+    setItems((prev) => [...prev, prev.length + 1, prev.length + 2]);
+  }
+
+  return (
+    <>
+      {items.map((item) => (
+        <div key={item}>Item {item}</div>
+      ))}
+      <div ref={ref}>Loading more...</div>
+    </>
+  );
+}`,
+        language: 'tsx',
       },
     },
   },
@@ -513,6 +605,30 @@ export const VisibilityTracking: Story = {
         story:
           'Track multiple sections and highlight which ones are currently visible in the viewport.',
       },
+      source: {
+        code: `import { useIntersectionObserver } from '@algtools/ui';
+
+function MyComponent() {
+  const section1 = useIntersectionObserver({ threshold: 0.5 });
+  const section2 = useIntersectionObserver({ threshold: 0.5 });
+  const section3 = useIntersectionObserver({ threshold: 0.5 });
+
+  return (
+    <>
+      <div ref={section1.ref} className={section1.isIntersecting ? 'highlight' : ''}>
+        Section 1
+      </div>
+      <div ref={section2.ref} className={section2.isIntersecting ? 'highlight' : ''}>
+        Section 2
+      </div>
+      <div ref={section3.ref} className={section3.isIntersecting ? 'highlight' : ''}>
+        Section 3
+      </div>
+    </>
+  );
+}`,
+        language: 'tsx',
+      },
     },
   },
 };
@@ -524,6 +640,32 @@ export const TriggerOnce: Story = {
       description: {
         story:
           'Trigger an action only once when an element first becomes visible. Useful for analytics, one-time animations, or lazy data loading.',
+      },
+      source: {
+        code: `import { useIntersectionObserver } from '@algtools/ui';
+import { useState, useEffect } from 'react';
+
+function MyComponent() {
+  const [hasTriggered, setHasTriggered] = useState(false);
+  const { ref, isIntersecting } = useIntersectionObserver({
+    threshold: 0.5,
+  });
+
+  useEffect(() => {
+    if (isIntersecting && !hasTriggered) {
+      setHasTriggered(true);
+      // Perform one-time action (analytics, animation, etc.)
+      console.log('Element became visible for the first time');
+    }
+  }, [isIntersecting, hasTriggered]);
+
+  return (
+    <div ref={ref}>
+      {hasTriggered ? <p>Action triggered!</p> : <p>Scroll to trigger</p>}
+    </div>
+  );
+}`,
+        language: 'tsx',
       },
     },
   },

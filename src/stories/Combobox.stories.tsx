@@ -68,7 +68,8 @@ export const Default: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Default combobox component with searchable input and dropdown list, allowing users to search and select from a list of options.',
+        story:
+          'Default combobox component with searchable input and dropdown list, allowing users to search and select from a list of options.',
       },
     },
   },
@@ -125,7 +126,8 @@ export const WithGroupsAndSeparator: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Combobox with grouped items and separators, organizing options into categories (Fruits, Vegetables) for better navigation and organization.',
+        story:
+          'Combobox with grouped items and separators, organizing options into categories (Fruits, Vegetables) for better navigation and organization.',
       },
     },
   },
@@ -175,7 +177,8 @@ export const CreateNew: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Combobox with create-new functionality, allowing users to add new options dynamically when the searched value does not exist in the list.',
+        story:
+          'Combobox with create-new functionality, allowing users to add new options dynamically when the searched value does not exist in the list.',
       },
     },
   },
