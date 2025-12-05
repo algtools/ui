@@ -1,64 +1,76 @@
-name: Release and Publish
+name: Semantic Release
 
 on:
-  release:
-    types: [published]
+  push:
+    branches:
+      - main
+      - dev
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+      - '.github/*.md'
+      - 'LICENSE'
+
+concurrency:
+  group: ui-release-${{ github.ref_name }}
+  cancel-in-progress: false
 
 permissions:
   contents: write
+  issues: write
+  pull-requests: write
   packages: write
 
+env:
+  NEXT_TELEMETRY_DISABLED: 1
+
 jobs:
-  test:
-    name: Run tests
+  release:
+    name: Publish (${{ github.ref_name }})
     runs-on: ubuntu-latest
+    if: |
+      github.event.head_commit.message == null ||
+      !contains(github.event.head_commit.message, '[skip ci]')
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js with GitHub Packages auth
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: https://npm.pkg.github.com
+          scope: '@algtools'
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
           version: 9
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        shell: bash
+        run: echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - name: Setup pnpm cache
+        uses: actions/cache@v4
         with:
-          node-version: 20
-          cache: pnpm
-          registry-url: https://npm.pkg.github.com
-          scope: '@algtools'
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Run tests
+      - name: Lint
+        run: pnpm run lint
+
+      - name: Test
         run: pnpm run test:ci
-
-  publish:
-    name: Build & publish
-    runs-on: ubuntu-latest
-    needs: test
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 9
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: pnpm
-          # Configure scoped registry for @algtools without changing default registry
-          registry-url: https://npm.pkg.github.com
-          scope: '@algtools'
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
 
       - name: Build library
         run: pnpm run build:lib
@@ -66,20 +78,50 @@ jobs:
       - name: Copy styles into dist
         run: pnpm run postbuild:lib
 
-      - name: Create pnpm package tarball
-        id: pack
-        shell: bash
+      - name: Configure Git
         run: |
-          set -euo pipefail
-          TARBALL=$(pnpm pack --silent | tail -1)
-          echo "tarball=$TARBALL" >> "$GITHUB_OUTPUT"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Attach tarball to GitHub Release
-        uses: softprops/action-gh-release@v2
-        with:
-          files: ${{ steps.pack.outputs.tarball }}
+      - name: Ensure branch is up to date
+        run: |
+          git fetch origin ${{ github.ref_name }}
+          git reset --hard origin/${{ github.ref_name }} || true
 
-      - name: Publish to GitHub Packages
+      - name: Configure git remote with token
         env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git remote set-url origin "https://${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+
+      - name: Run semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: pnpm publish --no-git-checks
+        run: pnpm exec semantic-release
+
+      - name: Summary
+        if: success()
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          BRANCH="${GITHUB_REF_NAME}"
+          TYPE=$([ "$BRANCH" = "dev" ] && echo "Release Candidate (@rc)" || echo "Stable (@latest)")
+          {
+            echo "## 🚀 Semantic release"
+            echo ""
+            echo "- Branch: ${BRANCH}"
+            echo "- Version: ${VERSION}"
+            echo "- Channel: ${TYPE}"
+            echo "- Registry: GitHub Packages (@algtools scope)"
+            echo ""
+            echo "Install:"
+            if [ "$BRANCH" = "dev" ]; then
+              echo "\`\`\`bash"
+              echo "npm install @algtools/ui@rc"
+              echo "\`\`\`"
+            else
+              echo "\`\`\`bash"
+              echo "npm install @algtools/ui"
+              echo "\`\`\`"
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"

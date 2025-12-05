@@ -19,7 +19,8 @@
     "build-storybook": "node scripts/build-storybook.mjs",
     "chromatic": "npx chromatic",
     "docs:generate": "node scripts/generate-docs.mjs",
-    "docs:upload": "node scripts/generate-docs.mjs --upload"
+    "docs:upload": "node scripts/generate-docs.mjs --upload",
+    "release": "semantic-release"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
@@ -96,6 +97,10 @@
     "@storybook/addon-docs": "^9.1.2",
     "@storybook/addon-webpack5-compiler-swc": "^3.0.0",
     "@storybook/react-webpack5": "^9.1.2",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^12.0.2",
+    "@semantic-release/npm": "^13.1.1",
     "@tailwindcss/postcss": "^4",
     "@testing-library/jest-dom": "^6.7.0",
     "@testing-library/react": "^16.3.0",
@@ -115,6 +120,7 @@
     "lint-staged": "^15.2.10",
     "postcss-loader": "^8.1.1",
     "prettier": "^3.6.2",
+    "semantic-release": "^24.2.0",
     "storybook": "^9.1.2",
     "style-loader": "^4.0.0",
     "tailwindcss": "^4",

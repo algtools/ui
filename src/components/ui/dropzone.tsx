@@ -1,7 +1,7 @@
 'use client';
 
-import { Trash2, UploadIcon } from 'lucide-react';
 import * as React from 'react';
+import { Trash2, UploadIcon } from 'lucide-react';
 import type { ReactNode } from 'react';
 import { createContext, useContext } from 'react';
 import type { DropEvent, DropzoneOptions, FileRejection } from 'react-dropzone';
