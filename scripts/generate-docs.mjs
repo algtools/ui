@@ -52,6 +52,11 @@ function sanitizeFilename(name) {
     .toLowerCase();
 }
 
+// Helper to safely build regex patterns
+function escapeRegExp(str) {
+  return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
 // Helper function to extract component name from title and generate import statement
 function generateImportStatement(title, componentPath) {
   // Extract component name from title (e.g., "UI/Button" -> "Button", "AI/Actions" -> "Actions")
@@ -137,6 +142,11 @@ function formatMarkdown(component) {
         markdown += `${story.description}\n\n`;
       }
 
+      // Add story source code below description when available
+      if (story.source) {
+        markdown += `\`\`\`tsx\n${story.source}\n\`\`\`\n\n`;
+      }
+
       if (storybookUrl) {
         const storyUrl = storybookUrl.replace(/\?path=\/story\/.*/, `?path=/story/${story.id}`);
         markdown += `[View story in Storybook](${storyUrl})\n\n`;
@@ -174,50 +184,159 @@ function generateMarkdownDocs() {
     mkdirSync(docsDir, { recursive: true });
   }
 
-  // Helper function to extract component description from story file
-  function extractComponentDescription(importPath) {
+  // Cache story file contents to avoid repeated disk reads
+  const storyFileCache = new Map();
+
+  function getStoryFileContent(importPath) {
     if (!importPath) return null;
 
-    const storyFilePath = join(__dirname, '..', importPath.replace('./', ''));
-    if (!existsSync(storyFilePath)) return null;
+    const cleaned = importPath.replace(/^\.\//, '');
+    const candidates = [];
 
-    try {
-      const storyContent = readFileSync(storyFilePath, 'utf8');
+    if (importPath) candidates.push(importPath);
+    candidates.push(join(__dirname, '..', importPath));
+    candidates.push(join(__dirname, '..', cleaned));
+    candidates.push(join(__dirname, '..', cleaned.split('/').join('\\')));
 
-      // Extract description from parameters.docs.description.component
-      // Handle both single-line and multi-line formats
-      // Pattern 1: description: { component: '...' }
-      const descMatch1 = storyContent.match(
-        /description:\s*\{\s*component:\s*['"`]([^'"`]+)['"`]\s*\}/s
+    for (const candidate of candidates) {
+      if (!candidate || storyFileCache.has(candidate)) {
+        const cached = storyFileCache.get(candidate);
+        if (cached) return cached;
+      }
+
+      if (candidate && existsSync(candidate)) {
+        try {
+          const content = readFileSync(candidate, 'utf8');
+          storyFileCache.set(candidate, content);
+          return content;
+        } catch (error) {
+          // continue to next candidate
+        }
+      }
+    }
+
+    return null;
+  }
+
+  // Provide multiple ways a story name may appear in exports
+  function getStoryNameVariations(storyName) {
+    return [
+      storyName.replace(/\s+/g, ''),
+      storyName.replace(/\s+/g, '-'),
+      storyName
+        .split(/\s+/)
+        .map((word, i) => (i === 0 ? word : word.charAt(0).toUpperCase() + word.slice(1)))
+        .join(''),
+      storyName
+        .split(/\s+/)
+        .map((word, i) =>
+          i === 0 ? word.toLowerCase() : word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+        )
+        .join(''),
+    ]
+      .filter(Boolean)
+      .reduce((acc, name) => {
+        if (!acc.includes(name)) acc.push(name);
+        return acc;
+      }, []);
+  }
+
+  // Extract the full story export code block for documentation
+  function extractStoryCode(importPath, storyName) {
+    const storyContent = getStoryFileContent(importPath);
+    if (!storyContent) return null;
+
+    const nameVariations = getStoryNameVariations(storyName);
+
+    for (const exportName of nameVariations) {
+      const exportPattern = new RegExp(
+        `export\\s+const\\s+${escapeRegExp(exportName)}\\s*(?::[^=]+)?=\\s*\\{`,
+        's'
       );
-      if (descMatch1) {
-        return descMatch1[1].trim();
-      }
 
-      // Pattern 2: description: { component:\n  '...' } (with newline after component:)
-      const descMatch2 = storyContent.match(
-        /description:\s*\{\s*component:\s*\n\s*['"`]([^'"`]+)['"`]\s*\}/s
-      );
-      if (descMatch2) {
-        return descMatch2[1].trim();
-      }
+      const exportMatch = storyContent.match(exportPattern);
+      if (exportMatch) {
+        const startBrace = storyContent.indexOf('{', exportMatch.index);
+        if (startBrace === -1) continue;
 
-      // Pattern 3: template literal format
-      const descMatch3 = storyContent.match(/description:\s*\{\s*component:\s*`([^`]+)`\s*\}/s);
-      if (descMatch3) {
-        return descMatch3[1].trim();
-      }
+        let braceCount = 1;
+        let endPos = startBrace + 1;
 
-      // Pattern 4: More flexible - find component: in description context
-      // Look for docs: { description: { component: ... } }
-      const docsBlockMatch = storyContent.match(
-        /docs:\s*\{[^}]*description:\s*\{[^}]*component:\s*['"`]([^'"`]+)['"`][^}]*\}[^}]*\}/s
-      );
-      if (docsBlockMatch) {
-        return docsBlockMatch[1].trim();
+        while (endPos < storyContent.length && braceCount > 0) {
+          const char = storyContent[endPos];
+          if (char === '{') braceCount++;
+          if (char === '}') braceCount--;
+          endPos++;
+        }
+
+        if (braceCount === 0) {
+          const rawBlock = storyContent.substring(exportMatch.index, endPos);
+
+          // Prefer explicit docs.source.code snippets (common for hooks demos)
+          const sourceBlockMatches = [
+            rawBlock.match(/source\s*:\s*\{\s*code\s*:\s*`([^`]+)`/s),
+            rawBlock.match(/source\s*:\s*\{\s*code\s*:\s*['"]([^'"`]+)['"]/s),
+          ];
+          for (const match of sourceBlockMatches) {
+            if (match && match[1]) {
+              return match[1].trim();
+            }
+          }
+
+          // Try to extract just the render function/snippet instead of the whole story object
+          const renderMatch = rawBlock.match(
+            /render\s*:\s*([^]*?)(?=,\s*\w+\s*:|\n\s*}\s*,?|\n\s*}\s*$)/
+          );
+
+          if (renderMatch && renderMatch[1]) {
+            return renderMatch[1].trim();
+          }
+
+          // If no render is defined, return null to avoid dumping the full story object
+          return null;
+        }
       }
-    } catch (error) {
-      // Silently fail and return null
+    }
+
+    return null;
+  }
+
+  // Helper function to extract component description from story file
+  function extractComponentDescription(importPath) {
+    const storyContent = getStoryFileContent(importPath);
+    if (!storyContent) return null;
+
+    // Extract description from parameters.docs.description.component
+    // Handle both single-line and multi-line formats
+    // Pattern 1: description: { component: '...' }
+    const descMatch1 = storyContent.match(
+      /description:\s*\{\s*component:\s*['"`]([^'"`]+)['"`]\s*\}/s
+    );
+    if (descMatch1) {
+      return descMatch1[1].trim();
+    }
+
+    // Pattern 2: description: { component:\n  '...' } (with newline after component:)
+    const descMatch2 = storyContent.match(
+      /description:\s*\{\s*component:\s*\n\s*['"`]([^'"`]+)['"`]\s*\}/s
+    );
+    if (descMatch2) {
+      return descMatch2[1].trim();
+    }
+
+    // Pattern 3: template literal format
+    const descMatch3 = storyContent.match(/description:\s*\{\s*component:\s*`([^`]+)`\s*\}/s);
+    if (descMatch3) {
+      return descMatch3[1].trim();
+    }
+
+    // Pattern 4: More flexible - find component: in description context
+    // Look for docs: { description: { component: ... } }
+    const docsBlockMatch = storyContent.match(
+      /docs:\s*\{[^}]*description:\s*\{[^}]*component:\s*['"`]([^'"`]+)['"`][^}]*\}[^}]*\}/s
+    );
+    if (docsBlockMatch) {
+      return docsBlockMatch[1].trim();
     }
 
     return null;
@@ -225,105 +344,77 @@ function generateMarkdownDocs() {
 
   // Helper function to extract story description from story file
   function extractStoryDescription(importPath, storyName) {
-    if (!importPath) return null;
+    const storyContent = getStoryFileContent(importPath);
+    if (!storyContent) return null;
 
-    const storyFilePath = join(__dirname, '..', importPath.replace('./', ''));
-    if (!existsSync(storyFilePath)) return null;
+    // Convert story name to possible export names
+    // "With Icons" -> ["WithIcons", "With Icons", "withIcons", "with-icons"]
+    const uniqueNames = getStoryNameVariations(storyName);
 
-    try {
-      const storyContent = readFileSync(storyFilePath, 'utf8');
+    // Try to find story by export name
+    for (const exportName of uniqueNames) {
+      // Find the export line
+      const exportPattern = new RegExp(
+        `export\\s+const\\s+${escapeRegExp(exportName)}\\s*:\\s*Story\\s*=\\s*\\{`,
+        's'
+      );
 
-      // Convert story name to possible export names
-      // "With Icons" -> ["WithIcons", "With Icons", "withIcons", "with-icons"]
-      const nameVariations = [
-        storyName.replace(/\s+/g, ''), // "WithIcons"
-        storyName.replace(/\s+/g, '-'), // "With-Icons"
-        storyName
-          .split(/\s+/)
-          .map((word, i) => (i === 0 ? word : word.charAt(0).toUpperCase() + word.slice(1)))
-          .join(''), // "WithIcons" from "With Icons"
-        storyName
-          .split(/\s+/)
-          .map((word, i) =>
-            i === 0
-              ? word.toLowerCase()
-              : word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
-          )
-          .join(''), // "withIcons"
-      ];
+      const exportMatch = storyContent.match(exportPattern);
+      if (exportMatch) {
+        const startPos = exportMatch.index + exportMatch[0].length - 1; // Position of opening brace
 
-      // Remove duplicates
-      const uniqueNames = [...new Set(nameVariations)];
+        // Find matching closing brace by counting braces
+        let braceCount = 1;
+        let endPos = startPos + 1;
+        while (endPos < storyContent.length && braceCount > 0) {
+          if (storyContent[endPos] === '{') braceCount++;
+          if (storyContent[endPos] === '}') braceCount--;
+          endPos++;
+        }
 
-      // Try to find story by export name
-      for (const exportName of uniqueNames) {
-        // Find the export line
-        const exportPattern = new RegExp(
-          `export\\s+const\\s+${exportName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\s*:\\s*Story\\s*=\\s*\\{`,
-          's'
-        );
+        if (braceCount === 0) {
+          const storyBlock = storyContent.substring(exportMatch.index, endPos);
 
-        const exportMatch = storyContent.match(exportPattern);
-        if (exportMatch) {
-          const startPos = exportMatch.index + exportMatch[0].length - 1; // Position of opening brace
+          // Try multiple patterns in order of specificity
+          const patterns = [
+            // Most specific: description: { story: '...' }
+            /description:\s*\{\s*story:\s*['"`]([^'"`]+)['"`]\s*\}/s,
+            // Template literal: description: { story: `...` }
+            /description:\s*\{\s*story:\s*`([^`]+)`\s*\}/s,
+            // Less specific but still good: story: '...' inside description object
+            /story:\s*['"`]([^'"`]+)['"`]/s,
+          ];
 
-          // Find matching closing brace by counting braces
-          let braceCount = 1;
-          let endPos = startPos + 1;
-          while (endPos < storyContent.length && braceCount > 0) {
-            if (storyContent[endPos] === '{') braceCount++;
-            if (storyContent[endPos] === '}') braceCount--;
-            endPos++;
-          }
-
-          if (braceCount === 0) {
-            const storyBlock = storyContent.substring(exportMatch.index, endPos);
-
-            // Try multiple patterns in order of specificity
-            const patterns = [
-              // Most specific: description: { story: '...' }
-              /description:\s*\{\s*story:\s*['"`]([^'"`]+)['"`]\s*\}/s,
-              // Template literal: description: { story: `...` }
-              /description:\s*\{\s*story:\s*`([^`]+)`\s*\}/s,
-              // Less specific but still good: story: '...' inside description object
-              /story:\s*['"`]([^'"`]+)['"`]/s,
-            ];
-
-            for (const pattern of patterns) {
-              const match = storyBlock.match(pattern);
-              if (match) {
-                return match[1].trim();
-              }
+          for (const pattern of patterns) {
+            const match = storyBlock.match(pattern);
+            if (match) {
+              return match[1].trim();
             }
           }
         }
       }
+    }
 
-      // Fallback: search for the story name in the file and look for nearby description
-      const storyNameLower = storyName.toLowerCase();
-      const lines = storyContent.split('\n');
-      for (let i = 0; i < lines.length; i++) {
-        if (
-          lines[i].includes(`export const`) &&
-          lines[i].toLowerCase().includes(storyNameLower.replace(/\s+/g, ''))
-        ) {
-          // Look ahead for description
-          for (let j = i; j < Math.min(i + 30, lines.length); j++) {
-            const descMatch = lines[j].match(
-              /description:\s*\{\s*story:\s*['"`]([^'"`]+)['"`]\s*\}/
-            );
-            if (descMatch) {
-              return descMatch[1].trim();
-            }
-            const descMatch2 = lines[j].match(/description:\s*['"`]([^'"`]+)['"`]/);
-            if (descMatch2 && !lines[j].includes('component:')) {
-              return descMatch2[1].trim();
-            }
+    // Fallback: search for the story name in the file and look for nearby description
+    const storyNameLower = storyName.toLowerCase();
+    const lines = storyContent.split('\n');
+    for (let i = 0; i < lines.length; i++) {
+      if (
+        lines[i].includes(`export const`) &&
+        lines[i].toLowerCase().includes(storyNameLower.replace(/\s+/g, ''))
+      ) {
+        // Look ahead for description
+        for (let j = i; j < Math.min(i + 30, lines.length); j++) {
+          const descMatch = lines[j].match(/description:\s*\{\s*story:\s*['"`]([^'"`]+)['"`]\s*\}/);
+          if (descMatch) {
+            return descMatch[1].trim();
+          }
+          const descMatch2 = lines[j].match(/description:\s*['"`]([^'"`]+)['"`]/);
+          if (descMatch2 && !lines[j].includes('component:')) {
+            return descMatch2[1].trim();
           }
         }
       }
-    } catch (error) {
-      // Silently fail and return null
     }
 
     return null;
@@ -380,12 +471,16 @@ function generateMarkdownDocs() {
       const enrichedStories = component.stories.map((story) => {
         // Find the story in the full stories data
         let storyDescription = null;
+        let storyImportPath = null;
+        let storySource = null;
         for (const [storyId, storyData] of Object.entries(storiesData)) {
           if (storyData.id === story.id && storyData.name === story.name) {
+            storyImportPath = storyData.importPath || null;
             storyDescription =
               storyData.parameters?.docs?.description?.story ||
               storyData.parameters?.docs?.description ||
               null;
+            storySource = storyData.parameters?.docs?.source?.code || null;
 
             // If not found in data, try to extract from story file
             if (!storyDescription && storyData.importPath) {
@@ -398,6 +493,12 @@ function generateMarkdownDocs() {
         // If still not found, try using component's importPath
         if (!storyDescription && component.importPath) {
           storyDescription = extractStoryDescription(component.importPath, story.name);
+          if (!storyImportPath) {
+            storyImportPath = component.importPath;
+          }
+          if (!storySource) {
+            storySource = extractStoryCode(component.importPath, story.name);
+          }
         }
 
         // If still not found, generate default
@@ -405,9 +506,14 @@ function generateMarkdownDocs() {
           storyDescription = generateDefaultStoryDescription(story.name);
         }
 
+        if (!storySource) {
+          storySource = extractStoryCode(storyImportPath || component.importPath, story.name);
+        }
+
         return {
           ...story,
           description: storyDescription,
+          source: storySource,
         };
       });
       return {
@@ -458,6 +564,7 @@ function generateMarkdownDocs() {
           storyData.parameters?.docs?.description?.story ||
           storyData.parameters?.docs?.description ||
           null;
+        let storySource = storyData.parameters?.docs?.source?.code || null;
 
         // If not found, try to extract from story file
         if (!storyDescription && storyData.importPath) {
@@ -469,10 +576,18 @@ function generateMarkdownDocs() {
           storyDescription = generateDefaultStoryDescription(storyData.name);
         }
 
+        if (!storySource) {
+          storySource = extractStoryCode(
+            storyData.importPath || component.importPath,
+            storyData.name
+          );
+        }
+
         component.stories.push({
           id: storyData.id,
           name: storyData.name,
           description: storyDescription,
+          source: storySource,
         });
       } else if (storyData.title) {
         // Log entries that have titles but aren't being processed
@@ -529,6 +644,18 @@ function generateMarkdownDocs() {
           if (hookTitle.startsWith('Hooks/') && !existingTitles.has(hookTitle)) {
             // Create relative import path
             const relativePath = hookFilePath.replace(join(__dirname, '..') + '/', './');
+            const matchingEntries = Object.values(storiesData).filter(
+              (entry) => entry && entry.title === hookTitle && entry.id
+            );
+            const storyIdByName = new Map(
+              matchingEntries
+                .filter((entry) => entry.name && entry.id)
+                .map((entry) => [entry.name, entry.id])
+            );
+            const componentStorybookUrl =
+              matchingEntries.length > 0
+                ? `https://algtools.github.io/ui/?path=/story/${matchingEntries[0].id}`
+                : null;
             // Extract basic info from the file
             const description = extractComponentDescription(relativePath);
 
@@ -542,10 +669,13 @@ function generateMarkdownDocs() {
               const storyDesc =
                 extractStoryDescription(relativePath, storyName) ||
                 generateDefaultStoryDescription(storyName);
+              const storySource = extractStoryCode(relativePath, storyName);
+              const storyId = storyIdByName.get(storyName) || null;
               storyExports.push({
-                id: null,
+                id: storyId,
                 name: storyName,
                 description: storyDesc,
+                source: storySource,
               });
             }
 
@@ -555,6 +685,7 @@ function generateMarkdownDocs() {
                 id: null,
                 name: 'Default',
                 description: `Default usage of ${hookTitle.replace('Hooks/', '')}`,
+                source: null,
               });
             }
 
@@ -563,7 +694,7 @@ function generateMarkdownDocs() {
               description: description || `A React hook for ${hookTitle.replace('Hooks/', '')}`,
               props: {},
               stories: storyExports,
-              storybookUrl: null,
+              storybookUrl: componentStorybookUrl,
               componentPath: null,
               importPath: relativePath,
             });
