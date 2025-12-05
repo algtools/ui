@@ -505,7 +505,7 @@ export const PriceFilter: Story = {
       },
       source: {
         code: `import { useDebounceValue } from '@algtools/ui';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Slider } from '@algtools/ui';
 
 function MyComponent() {
@@ -526,8 +526,8 @@ function MyComponent() {
         max={1000}
         step={10}
       />
-      <p>Current: ${priceRange[0]} - ${priceRange[1]}</p>
-      <p>Debounced: ${debouncedPriceRange[0]} - ${debouncedPriceRange[1]}</p>
+      <p>Current: \${priceRange[0]} - \${priceRange[1]}</p>
+      <p>Debounced: \${debouncedPriceRange[0]} - \${debouncedPriceRange[1]}</p>
     </>
   );
 }`,
