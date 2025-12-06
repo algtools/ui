@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react';
+import { vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
 import { Dropzone, DropzoneContent, DropzoneEmptyState } from '@/components/ui/dropzone';
 
@@ -49,8 +50,8 @@ describe('Dropzone', () => {
 
   test('invokes onDrop when user selects files; calls onError for rejections', async () => {
     const user = userEvent.setup();
-    const onDrop = jest.fn();
-    const onError = jest.fn();
+    const onDrop = vi.fn();
+    const onError = vi.fn();
 
     render(
       <Dropzone onDrop={onDrop} onError={onError} maxFiles={1} accept={{ 'text/plain': ['.txt'] }}>
@@ -76,8 +77,8 @@ describe('Dropzone', () => {
 
   test('shows discard button when files are selected and calls onDiscard on click', async () => {
     const user = userEvent.setup();
-    const onDiscard = jest.fn();
-    const onDrop = jest.fn();
+    const onDiscard = vi.fn();
+    const onDrop = vi.fn();
 
     const files = [createFile('a.png', 1000, 'image/png')];
 
@@ -91,7 +92,7 @@ describe('Dropzone', () => {
     expect(discardBtn).toBeInTheDocument();
 
     const fileInput = document.querySelector('input[type="file"]') as HTMLInputElement;
-    const clickSpy = jest.spyOn(fileInput, 'click');
+    const clickSpy = vi.spyOn(fileInput, 'click');
 
     await user.click(discardBtn);
 
@@ -104,7 +105,7 @@ describe('Dropzone', () => {
     const files = [createFile('a.png', 1000, 'image/png')];
 
     render(
-      <Dropzone src={files} onDiscard={jest.fn()} disabled>
+      <Dropzone src={files} onDiscard={vi.fn()} disabled>
         <DropzoneContent />
       </Dropzone>
     );

@@ -1,4 +1,5 @@
 import React, { act } from 'react';
+import { vi, beforeEach, afterEach } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Sources } from '../sources';
@@ -133,7 +134,7 @@ describe('Sources', () => {
 
     it('calls onOpenChange when toggled', async () => {
       const user = userEvent.setup();
-      const onOpenChange = jest.fn();
+      const onOpenChange = vi.fn();
       render(<Sources sources={mockSources} onOpenChange={onOpenChange} />);
 
       const trigger = screen.getByRole('button', { name: /Toggle Used 3 sources/i });
@@ -230,7 +231,7 @@ describe('Sources', () => {
   describe('Source Interaction', () => {
     it('opens source URL in new tab when clicked', async () => {
       const user = userEvent.setup();
-      const windowSpy = jest.spyOn(window, 'open').mockImplementation(() => null);
+      const windowSpy = vi.spyOn(window, 'open').mockImplementation(() => null);
 
       render(<Sources sources={mockSources} defaultOpen={true} />);
 
@@ -244,8 +245,8 @@ describe('Sources', () => {
 
     it('calls onSourceClick when source is clicked', async () => {
       const user = userEvent.setup();
-      const onSourceClick = jest.fn();
-      const windowSpy = jest.spyOn(window, 'open').mockImplementation(() => null);
+      const onSourceClick = vi.fn();
+      const windowSpy = vi.spyOn(window, 'open').mockImplementation(() => null);
 
       render(<Sources sources={mockSources} defaultOpen={true} onSourceClick={onSourceClick} />);
 
@@ -259,7 +260,7 @@ describe('Sources', () => {
 
     it('opens source URL when Enter key is pressed', async () => {
       const user = userEvent.setup();
-      const windowSpy = jest.spyOn(window, 'open').mockImplementation(() => null);
+      const windowSpy = vi.spyOn(window, 'open').mockImplementation(() => null);
 
       render(<Sources sources={mockSources} defaultOpen={true} />);
 
@@ -274,7 +275,7 @@ describe('Sources', () => {
 
     it('opens source URL when Space key is pressed', async () => {
       const user = userEvent.setup();
-      const windowSpy = jest.spyOn(window, 'open').mockImplementation(() => null);
+      const windowSpy = vi.spyOn(window, 'open').mockImplementation(() => null);
 
       render(<Sources sources={mockSources} defaultOpen={true} />);
 
@@ -304,7 +305,7 @@ describe('Sources', () => {
 
     it('does not call window.open for sources without URL', async () => {
       const user = userEvent.setup();
-      const windowSpy = jest.spyOn(window, 'open').mockImplementation(() => null);
+      const windowSpy = vi.spyOn(window, 'open').mockImplementation(() => null);
 
       const sourceWithoutUrl: Source[] = [
         {
@@ -497,14 +498,14 @@ describe('Sources', () => {
 
     it('prevents default behavior on Space key press', async () => {
       const user = userEvent.setup();
-      const windowSpy = jest.spyOn(window, 'open').mockImplementation(() => null);
+      const windowSpy = vi.spyOn(window, 'open').mockImplementation(() => null);
 
       render(<Sources sources={mockSources} defaultOpen={true} />);
 
       const firstSource = screen.getByRole('link', { name: /Open React Documentation/i });
       firstSource.focus();
 
-      const preventDefaultSpy = jest.fn();
+      const preventDefaultSpy = vi.fn();
       const event = new KeyboardEvent('keydown', { key: ' ' });
       Object.defineProperty(event, 'preventDefault', {
         value: preventDefaultSpy,

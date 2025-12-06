@@ -1,10 +1,11 @@
 import React from 'react';
+import { vi, Mock, MockedFunction } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { InputOTP, InputOTPGroup, InputOTPSlot, InputOTPSeparator } from '../input-otp';
 
 // Mock input-otp to a simple controlled text input with context describing slots
-jest.mock('input-otp', () => {
+vi.mock('input-otp', () => {
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   const React = require('react') as typeof import('react');
   const Ctx = React.createContext<{

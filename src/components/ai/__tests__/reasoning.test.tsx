@@ -1,11 +1,12 @@
 import React from 'react';
+import { vi, Mock } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Reasoning, ReasoningProps } from '../reasoning';
 import type { ReasoningStep } from '../ai-types';
 
 // Mock Radix primitives to render simple elements during tests
-jest.mock('@radix-ui/react-collapsible', () => {
+vi.mock('@radix-ui/react-collapsible', () => {
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   const React = require('react');
 
@@ -259,7 +260,7 @@ describe('Reasoning', () => {
 
     it('calls onOpenChange when toggled', async () => {
       const user = userEvent.setup();
-      const onOpenChange = jest.fn();
+      const onOpenChange = vi.fn();
       render(<Reasoning steps={mockSteps} onOpenChange={onOpenChange} />);
 
       const trigger = screen.getByRole('button', { name: /Toggle Reasoning/i });
@@ -414,7 +415,7 @@ describe('Reasoning', () => {
         variant: 'compact',
         showStepNumbers: true,
         className: 'test-class',
-        onOpenChange: jest.fn(),
+        onOpenChange: vi.fn(),
       };
 
       render(<Reasoning {...allPropsConfig} />);

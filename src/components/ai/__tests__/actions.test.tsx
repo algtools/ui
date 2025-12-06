@@ -1,4 +1,5 @@
 import React from 'react';
+import { vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { Copy } from 'lucide-react';
 import { Actions, type Action } from '../actions';
@@ -11,8 +12,8 @@ describe('Actions', () => {
     });
 
     it('renders action buttons from callback props', () => {
-      const handleCopy = jest.fn();
-      const handleRegenerate = jest.fn();
+      const handleCopy = vi.fn();
+      const handleRegenerate = vi.fn();
 
       render(<Actions onCopy={handleCopy} onRegenerate={handleRegenerate} />);
 
@@ -22,11 +23,11 @@ describe('Actions', () => {
 
     it('renders all default action types', () => {
       const handlers = {
-        onCopy: jest.fn(),
-        onRegenerate: jest.fn(),
-        onThumbsUp: jest.fn(),
-        onThumbsDown: jest.fn(),
-        onShare: jest.fn(),
+        onCopy: vi.fn(),
+        onRegenerate: vi.fn(),
+        onThumbsUp: vi.fn(),
+        onThumbsDown: vi.fn(),
+        onShare: vi.fn(),
       };
 
       render(<Actions {...handlers} />);
@@ -44,13 +45,13 @@ describe('Actions', () => {
           id: 'custom-1',
           label: 'Custom Action 1',
           icon: <span data-testid="custom-icon-1">Icon 1</span>,
-          onClick: jest.fn(),
+          onClick: vi.fn(),
         },
         {
           id: 'custom-2',
           label: 'Custom Action 2',
           icon: <span data-testid="custom-icon-2">Icon 2</span>,
-          onClick: jest.fn(),
+          onClick: vi.fn(),
         },
       ];
 
@@ -63,13 +64,13 @@ describe('Actions', () => {
     });
 
     it('has role="group" and aria-label', () => {
-      render(<Actions onCopy={jest.fn()} />);
+      render(<Actions onCopy={vi.fn()} />);
       const group = screen.getByRole('group', { name: /message actions/i });
       expect(group).toBeInTheDocument();
     });
 
     it('applies custom className', () => {
-      render(<Actions onCopy={jest.fn()} className="custom-class" />);
+      render(<Actions onCopy={vi.fn()} className="custom-class" />);
       const group = screen.getByRole('group');
       expect(group).toHaveClass('custom-class');
     });
@@ -77,14 +78,14 @@ describe('Actions', () => {
 
   describe('orientation', () => {
     it('renders horizontally by default', () => {
-      render(<Actions onCopy={jest.fn()} onRegenerate={jest.fn()} />);
+      render(<Actions onCopy={vi.fn()} onRegenerate={vi.fn()} />);
       const group = screen.getByRole('group');
       expect(group).toHaveClass('flex-row');
       expect(group).not.toHaveClass('flex-col');
     });
 
     it('renders vertically when orientation="vertical"', () => {
-      render(<Actions onCopy={jest.fn()} onRegenerate={jest.fn()} orientation="vertical" />);
+      render(<Actions onCopy={vi.fn()} onRegenerate={vi.fn()} orientation="vertical" />);
       const group = screen.getByRole('group');
       expect(group).toHaveClass('flex-col');
       expect(group).not.toHaveClass('flex-row');
@@ -93,19 +94,19 @@ describe('Actions', () => {
 
   describe('size variants', () => {
     it('renders with small size', () => {
-      render(<Actions onCopy={jest.fn()} size="sm" />);
+      render(<Actions onCopy={vi.fn()} size="sm" />);
       const button = screen.getByRole('button', { name: /copy to clipboard/i });
       expect(button).toHaveClass('size-8');
     });
 
     it('renders with default size', () => {
-      render(<Actions onCopy={jest.fn()} size="default" />);
+      render(<Actions onCopy={vi.fn()} size="default" />);
       const button = screen.getByRole('button', { name: /copy to clipboard/i });
       expect(button).toHaveClass('size-9');
     });
 
     it('renders with large size', () => {
-      render(<Actions onCopy={jest.fn()} size="lg" />);
+      render(<Actions onCopy={vi.fn()} size="lg" />);
       const button = screen.getByRole('button', { name: /copy to clipboard/i });
       expect(button).toHaveClass('size-10');
     });
@@ -113,8 +114,8 @@ describe('Actions', () => {
 
   describe('interactions', () => {
     it('calls onClick when action button is clicked', () => {
-      const handleCopy = jest.fn();
-      const handleRegenerate = jest.fn();
+      const handleCopy = vi.fn();
+      const handleRegenerate = vi.fn();
 
       render(<Actions onCopy={handleCopy} onRegenerate={handleRegenerate} />);
 
@@ -126,8 +127,8 @@ describe('Actions', () => {
     });
 
     it('calls custom action onClick handlers', () => {
-      const handleCustom1 = jest.fn();
-      const handleCustom2 = jest.fn();
+      const handleCustom1 = vi.fn();
+      const handleCustom2 = vi.fn();
 
       const customActions: Action[] = [
         {
@@ -155,7 +156,7 @@ describe('Actions', () => {
     });
 
     it('does not call onClick when action is disabled', () => {
-      const handleClick = jest.fn();
+      const handleClick = vi.fn();
 
       const actions: Action[] = [
         {
@@ -177,7 +178,7 @@ describe('Actions', () => {
     });
 
     it('does not call onClick when action is loading', () => {
-      const handleClick = jest.fn();
+      const handleClick = vi.fn();
 
       const actions: Action[] = [
         {
@@ -206,7 +207,7 @@ describe('Actions', () => {
           id: 'loading',
           label: 'Loading Action',
           icon: <Copy className="size-4" />,
-          onClick: jest.fn(),
+          onClick: vi.fn(),
           loading: true,
         },
       ];
@@ -223,7 +224,7 @@ describe('Actions', () => {
           id: 'not-loading',
           label: 'Normal Action',
           icon: <Copy className="size-4" data-testid="copy-icon" />,
-          onClick: jest.fn(),
+          onClick: vi.fn(),
           loading: false,
         },
       ];
@@ -237,14 +238,14 @@ describe('Actions', () => {
 
   describe('tooltips', () => {
     it('renders buttons with tooltip triggers when showTooltips is true', () => {
-      render(<Actions onCopy={jest.fn()} />);
+      render(<Actions onCopy={vi.fn()} />);
 
       const button = screen.getByRole('button', { name: /copy to clipboard/i });
       expect(button).toHaveAttribute('data-slot', 'tooltip-trigger');
     });
 
     it('renders buttons without tooltip triggers when showTooltips is false', () => {
-      render(<Actions onCopy={jest.fn()} showTooltips={false} />);
+      render(<Actions onCopy={vi.fn()} showTooltips={false} />);
 
       const button = screen.getByRole('button', { name: /copy to clipboard/i });
       // When showTooltips is false, buttons are rendered directly without Tooltip wrapper
@@ -254,7 +255,7 @@ describe('Actions', () => {
 
   describe('accessibility', () => {
     it('has proper ARIA labels for screen readers', () => {
-      render(<Actions onCopy={jest.fn()} onRegenerate={jest.fn()} />);
+      render(<Actions onCopy={vi.fn()} onRegenerate={vi.fn()} />);
 
       expect(screen.getByRole('button', { name: /copy to clipboard/i })).toHaveAttribute(
         'aria-label',
@@ -267,7 +268,7 @@ describe('Actions', () => {
     });
 
     it('supports keyboard navigation', () => {
-      const handleCopy = jest.fn();
+      const handleCopy = vi.fn();
 
       render(<Actions onCopy={handleCopy} showTooltips={false} />);
 
@@ -282,7 +283,7 @@ describe('Actions', () => {
           id: 'disabled',
           label: 'Disabled Action',
           icon: <span>Icon</span>,
-          onClick: jest.fn(),
+          onClick: vi.fn(),
           disabled: true,
         },
       ];
@@ -297,7 +298,7 @@ describe('Actions', () => {
   describe('ref forwarding', () => {
     it('forwards ref to the container div', () => {
       const ref = React.createRef<HTMLDivElement>();
-      render(<Actions ref={ref} onCopy={jest.fn()} />);
+      render(<Actions ref={ref} onCopy={vi.fn()} />);
 
       expect(ref.current).toBeInstanceOf(HTMLDivElement);
       expect(ref.current?.getAttribute('role')).toBe('group');
@@ -316,7 +317,7 @@ describe('Actions', () => {
           id: 'no-icon',
           label: 'No Icon Action',
           icon: null,
-          onClick: jest.fn(),
+          onClick: vi.fn(),
         },
       ];
 
@@ -325,7 +326,7 @@ describe('Actions', () => {
     });
 
     it('passes through additional HTML attributes', () => {
-      render(<Actions onCopy={jest.fn()} data-testid="actions-container" />);
+      render(<Actions onCopy={vi.fn()} data-testid="actions-container" />);
       expect(screen.getByTestId('actions-container')).toBeInTheDocument();
     });
   });

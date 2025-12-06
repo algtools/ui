@@ -1,4 +1,5 @@
 import React from 'react';
+import { vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Tool } from '../tool';
@@ -317,7 +318,7 @@ describe('Tool', () => {
   describe('Interaction', () => {
     it('calls onClick handler when tool is clicked', async () => {
       const user = userEvent.setup();
-      const onClick = jest.fn();
+      const onClick = vi.fn();
       render(<Tool tool={mockTool} onClick={onClick} />);
 
       await user.click(screen.getByLabelText(/tool: test_function/i));
@@ -326,7 +327,7 @@ describe('Tool', () => {
 
     it('handles keyboard events (Enter) when onClick is provided', async () => {
       const user = userEvent.setup();
-      const onClick = jest.fn();
+      const onClick = vi.fn();
       render(<Tool tool={mockTool} onClick={onClick} />);
 
       const toolElement = screen.getByLabelText(/tool: test_function/i);
@@ -337,7 +338,7 @@ describe('Tool', () => {
 
     it('handles keyboard events (Space) when onClick is provided', async () => {
       const user = userEvent.setup();
-      const onClick = jest.fn();
+      const onClick = vi.fn();
       render(<Tool tool={mockTool} onClick={onClick} />);
 
       const toolElement = screen.getByLabelText(/tool: test_function/i);
@@ -354,7 +355,7 @@ describe('Tool', () => {
     });
 
     it('has button role when onClick is provided', () => {
-      const onClick = jest.fn();
+      const onClick = vi.fn();
       render(<Tool tool={mockTool} onClick={onClick} />);
       expect(screen.getByRole('button')).toBeInTheDocument();
     });
@@ -381,7 +382,7 @@ describe('Tool', () => {
     });
 
     it('applies hover styles when clickable', () => {
-      const onClick = jest.fn();
+      const onClick = vi.fn();
       render(<Tool tool={mockTool} onClick={onClick} />);
       expect(screen.getByLabelText(/tool: test_function/i)).toHaveClass('hover:shadow-sm');
     });
@@ -394,7 +395,7 @@ describe('Tool', () => {
     });
 
     it('has tabIndex when clickable', () => {
-      const onClick = jest.fn();
+      const onClick = vi.fn();
       render(<Tool tool={mockTool} onClick={onClick} />);
       expect(screen.getByRole('button')).toHaveAttribute('tabindex', '0');
     });

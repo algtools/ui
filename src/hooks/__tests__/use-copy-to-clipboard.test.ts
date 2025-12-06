@@ -1,4 +1,5 @@
 import { renderHook, act, waitFor } from '@testing-library/react';
+import { vi, beforeEach, afterEach, Mock } from 'vitest';
 
 import { useCopyToClipboard } from '@/hooks/use-copy-to-clipboard';
 
@@ -8,13 +9,13 @@ describe('useCopyToClipboard', () => {
   const originalExecCommand = document.execCommand;
 
   beforeEach(() => {
-    jest.clearAllTimers();
-    jest.useFakeTimers();
+    vi.clearAllTimers();
+    vi.useFakeTimers();
   });
 
   afterEach(() => {
-    jest.runOnlyPendingTimers();
-    jest.useRealTimers();
+    vi.runOnlyPendingTimers();
+    vi.useRealTimers();
   });
 
   afterAll(() => {
@@ -43,10 +44,10 @@ describe('useCopyToClipboard', () => {
     beforeEach(() => {
       // Mock modern Clipboard API
       const mockClipboard = {
-        writeText: jest.fn().mockResolvedValue(undefined),
-        readText: jest.fn(),
-        read: jest.fn(),
-        write: jest.fn(),
+        writeText: vi.fn().mockResolvedValue(undefined),
+        readText: vi.fn(),
+        read: vi.fn(),
+        write: vi.fn(),
       };
 
       Object.defineProperty(global.navigator, 'clipboard', {
@@ -89,7 +90,7 @@ describe('useCopyToClipboard', () => {
 
     test('should handle Clipboard API errors', async () => {
       const mockError = new Error('Permission denied');
-      (navigator.clipboard.writeText as jest.Mock).mockRejectedValueOnce(mockError);
+      (navigator.clipboard.writeText as Mock).mockRejectedValueOnce(mockError);
 
       const { result } = renderHook(() => useCopyToClipboard());
 
@@ -114,7 +115,7 @@ describe('useCopyToClipboard', () => {
       });
 
       // Mock document.execCommand
-      document.execCommand = jest.fn().mockReturnValue(true);
+      document.execCommand = vi.fn().mockReturnValue(true);
     });
 
     test('should copy text using fallback method', async () => {
@@ -131,7 +132,7 @@ describe('useCopyToClipboard', () => {
     });
 
     test('should handle fallback method errors', async () => {
-      (document.execCommand as jest.Mock).mockReturnValue(false);
+      (document.execCommand as Mock).mockReturnValue(false);
 
       const { result } = renderHook(() => useCopyToClipboard());
 
@@ -146,7 +147,7 @@ describe('useCopyToClipboard', () => {
     });
 
     test('should handle fallback method exceptions', async () => {
-      (document.execCommand as jest.Mock).mockImplementation(() => {
+      (document.execCommand as Mock).mockImplementation(() => {
         throw new Error('execCommand failed');
       });
 
@@ -164,8 +165,8 @@ describe('useCopyToClipboard', () => {
 
     test('should create and remove textarea element', async () => {
       const { result } = renderHook(() => useCopyToClipboard());
-      const appendChildSpy = jest.spyOn(document.body, 'appendChild');
-      const removeChildSpy = jest.spyOn(document.body, 'removeChild');
+      const appendChildSpy = vi.spyOn(document.body, 'appendChild');
+      const removeChildSpy = vi.spyOn(document.body, 'removeChild');
 
       await act(async () => {
         await result.current.copy('Test text');
@@ -182,10 +183,10 @@ describe('useCopyToClipboard', () => {
   describe('reset', () => {
     beforeEach(() => {
       const mockClipboard = {
-        writeText: jest.fn().mockResolvedValue(undefined),
-        readText: jest.fn(),
-        read: jest.fn(),
-        write: jest.fn(),
+        writeText: vi.fn().mockResolvedValue(undefined),
+        readText: vi.fn(),
+        read: vi.fn(),
+        write: vi.fn(),
       };
 
       Object.defineProperty(global.navigator, 'clipboard', {
@@ -226,10 +227,10 @@ describe('useCopyToClipboard', () => {
   describe('auto-reset with delay', () => {
     beforeEach(() => {
       const mockClipboard = {
-        writeText: jest.fn().mockResolvedValue(undefined),
-        readText: jest.fn(),
-        read: jest.fn(),
-        write: jest.fn(),
+        writeText: vi.fn().mockResolvedValue(undefined),
+        readText: vi.fn(),
+        read: vi.fn(),
+        write: vi.fn(),
       };
 
       Object.defineProperty(global.navigator, 'clipboard', {
@@ -250,13 +251,12 @@ describe('useCopyToClipboard', () => {
       expect(result.current.copiedText).toBe('Test text');
 
       act(() => {
-        jest.advanceTimersByTime(2000);
+        vi.advanceTimersByTime(2000);
       });
 
-      await waitFor(() => {
-        expect(result.current.isCopied).toBe(false);
-        expect(result.current.copiedText).toBeNull();
-      });
+      // After advancing timers, the state should be updated immediately
+      expect(result.current.isCopied).toBe(false);
+      expect(result.current.copiedText).toBeNull();
     });
 
     test('should not auto-reset without delay', async () => {
@@ -269,7 +269,7 @@ describe('useCopyToClipboard', () => {
       expect(result.current.isCopied).toBe(true);
 
       act(() => {
-        jest.advanceTimersByTime(10000);
+        vi.advanceTimersByTime(10000);
       });
 
       expect(result.current.isCopied).toBe(true);
@@ -284,7 +284,7 @@ describe('useCopyToClipboard', () => {
       });
 
       act(() => {
-        jest.advanceTimersByTime(1000);
+        vi.advanceTimersByTime(1000);
       });
 
       await act(async () => {
@@ -294,14 +294,14 @@ describe('useCopyToClipboard', () => {
       expect(result.current.copiedText).toBe('Second text');
 
       act(() => {
-        jest.advanceTimersByTime(1500);
+        vi.advanceTimersByTime(1500);
       });
 
       // Should still be copied (timeout was reset)
       expect(result.current.isCopied).toBe(true);
 
       act(() => {
-        jest.advanceTimersByTime(500);
+        vi.advanceTimersByTime(500);
       });
 
       // Now it should be reset (2000ms from second copy)
@@ -326,7 +326,7 @@ describe('useCopyToClipboard', () => {
       expect(result.current.isCopied).toBe(false);
 
       act(() => {
-        jest.advanceTimersByTime(3000);
+        vi.advanceTimersByTime(3000);
       });
 
       // Should remain reset
@@ -337,10 +337,10 @@ describe('useCopyToClipboard', () => {
   describe('integration', () => {
     beforeEach(() => {
       const mockClipboard = {
-        writeText: jest.fn().mockResolvedValue(undefined),
-        readText: jest.fn(),
-        read: jest.fn(),
-        write: jest.fn(),
+        writeText: vi.fn().mockResolvedValue(undefined),
+        readText: vi.fn(),
+        read: vi.fn(),
+        write: vi.fn(),
       };
 
       Object.defineProperty(global.navigator, 'clipboard', {
@@ -415,10 +415,10 @@ describe('useCopyToClipboard', () => {
   describe('performance', () => {
     beforeEach(() => {
       const mockClipboard = {
-        writeText: jest.fn().mockResolvedValue(undefined),
-        readText: jest.fn(),
-        read: jest.fn(),
-        write: jest.fn(),
+        writeText: vi.fn().mockResolvedValue(undefined),
+        readText: vi.fn(),
+        read: vi.fn(),
+        write: vi.fn(),
       };
 
       Object.defineProperty(global.navigator, 'clipboard', {
@@ -451,10 +451,10 @@ describe('useCopyToClipboard', () => {
   describe('cleanup', () => {
     beforeEach(() => {
       const mockClipboard = {
-        writeText: jest.fn().mockResolvedValue(undefined),
-        readText: jest.fn(),
-        read: jest.fn(),
-        write: jest.fn(),
+        writeText: vi.fn().mockResolvedValue(undefined),
+        readText: vi.fn(),
+        read: vi.fn(),
+        write: vi.fn(),
       };
 
       Object.defineProperty(global.navigator, 'clipboard', {
@@ -477,7 +477,7 @@ describe('useCopyToClipboard', () => {
 
       // Should not throw or cause memory leaks
       act(() => {
-        jest.advanceTimersByTime(3000);
+        vi.advanceTimersByTime(3000);
       });
     });
   });

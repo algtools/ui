@@ -1,4 +1,5 @@
 import React from 'react';
+import { vi, Mock, MockedFunction } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import {
@@ -17,7 +18,7 @@ import {
 } from '../dropdown-menu';
 
 // Mock Radix Dropdown primitives to simplify rendering
-jest.mock('@radix-ui/react-dropdown-menu', () => {
+vi.mock('@radix-ui/react-dropdown-menu', () => {
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   const React = require('react');
   return {

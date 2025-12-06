@@ -1,8 +1,9 @@
 import React from 'react';
+import { vi } from 'vitest';
 import { render } from '@testing-library/react';
 import { Logo } from '../logo';
 
-jest.mock('lucide-react', () => ({
+vi.mock('lucide-react', () => ({
   Triangle: ({
     className,
     size,

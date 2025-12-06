@@ -1,4 +1,5 @@
 import { renderHook, act } from '@testing-library/react';
+import { vi } from 'vitest';
 
 import { useToggle } from '@/hooks/use-toggle';
 
@@ -167,7 +168,7 @@ describe('useToggle', () => {
 
   describe('callbacks', () => {
     test('should call onToggleOn when toggled to true', () => {
-      const onToggleOn = jest.fn();
+      const onToggleOn = vi.fn();
       const { result } = renderHook(() => useToggle(false, { onToggleOn }));
 
       act(() => {
@@ -178,7 +179,7 @@ describe('useToggle', () => {
     });
 
     test('should call onToggleOff when toggled to false', () => {
-      const onToggleOff = jest.fn();
+      const onToggleOff = vi.fn();
       const { result } = renderHook(() => useToggle(true, { onToggleOff }));
 
       act(() => {
@@ -189,7 +190,7 @@ describe('useToggle', () => {
     });
 
     test('should call onChange on any state change', () => {
-      const onChange = jest.fn();
+      const onChange = vi.fn();
       const { result } = renderHook(() => useToggle(false, { onChange }));
 
       act(() => {
@@ -207,7 +208,7 @@ describe('useToggle', () => {
     });
 
     test('should call onToggleOn when setTrue is called', () => {
-      const onToggleOn = jest.fn();
+      const onToggleOn = vi.fn();
       const { result } = renderHook(() => useToggle(false, { onToggleOn }));
 
       act(() => {
@@ -218,7 +219,7 @@ describe('useToggle', () => {
     });
 
     test('should call onToggleOff when setFalse is called', () => {
-      const onToggleOff = jest.fn();
+      const onToggleOff = vi.fn();
       const { result } = renderHook(() => useToggle(true, { onToggleOff }));
 
       act(() => {
@@ -229,8 +230,8 @@ describe('useToggle', () => {
     });
 
     test('should not call callbacks when value does not change', () => {
-      const onToggleOn = jest.fn();
-      const onChange = jest.fn();
+      const onToggleOn = vi.fn();
+      const onChange = vi.fn();
       const { result } = renderHook(() => useToggle(true, { onToggleOn, onChange }));
 
       act(() => {
@@ -242,9 +243,9 @@ describe('useToggle', () => {
     });
 
     test('should work with all callbacks together', () => {
-      const onToggleOn = jest.fn();
-      const onToggleOff = jest.fn();
-      const onChange = jest.fn();
+      const onToggleOn = vi.fn();
+      const onToggleOff = vi.fn();
+      const onChange = vi.fn();
       const { result } = renderHook(() => useToggle(false, { onToggleOn, onToggleOff, onChange }));
 
       act(() => {
@@ -265,8 +266,8 @@ describe('useToggle', () => {
     });
 
     test('should handle updated callbacks', () => {
-      const onChange1 = jest.fn();
-      const onChange2 = jest.fn();
+      const onChange1 = vi.fn();
+      const onChange2 = vi.fn();
 
       const { result, rerender } = renderHook(({ onChange }) => useToggle(false, { onChange }), {
         initialProps: { onChange: onChange1 },

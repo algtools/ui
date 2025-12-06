@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { vi } from 'vitest';
 import { renderHook } from '@testing-library/react';
 
 import { useUnmount } from '@/hooks/use-unmount';
@@ -6,7 +7,7 @@ import { useUnmount } from '@/hooks/use-unmount';
 describe('useUnmount', () => {
   describe('basic functionality', () => {
     test('should not call cleanup function on mount', () => {
-      const cleanup = jest.fn();
+      const cleanup = vi.fn();
 
       renderHook(() => useUnmount(cleanup));
 
@@ -14,7 +15,7 @@ describe('useUnmount', () => {
     });
 
     test('should call cleanup function on unmount', () => {
-      const cleanup = jest.fn();
+      const cleanup = vi.fn();
 
       const { unmount } = renderHook(() => useUnmount(cleanup));
 
@@ -26,7 +27,7 @@ describe('useUnmount', () => {
     });
 
     test('should not call cleanup function on re-render', () => {
-      const cleanup = jest.fn();
+      const cleanup = vi.fn();
 
       const { rerender } = renderHook(() => useUnmount(cleanup));
 
@@ -40,8 +41,8 @@ describe('useUnmount', () => {
 
   describe('cleanup function updates', () => {
     test('should call the latest cleanup function', () => {
-      const cleanup1 = jest.fn();
-      const cleanup2 = jest.fn();
+      const cleanup1 = vi.fn();
+      const cleanup2 = vi.fn();
 
       const { rerender, unmount } = renderHook(({ fn }) => useUnmount(fn), {
         initialProps: { fn: cleanup1 },
@@ -58,9 +59,9 @@ describe('useUnmount', () => {
     });
 
     test('should handle cleanup function changes multiple times', () => {
-      const cleanup1 = jest.fn();
-      const cleanup2 = jest.fn();
-      const cleanup3 = jest.fn();
+      const cleanup1 = vi.fn();
+      const cleanup2 = vi.fn();
+      const cleanup3 = vi.fn();
 
       const { rerender, unmount } = renderHook(({ fn }) => useUnmount(fn), {
         initialProps: { fn: cleanup1 },
@@ -79,7 +80,7 @@ describe('useUnmount', () => {
 
   describe('cleanup execution', () => {
     test('should only call cleanup once even if unmounted multiple times', () => {
-      const cleanup = jest.fn();
+      const cleanup = vi.fn();
 
       const { unmount } = renderHook(() => useUnmount(cleanup));
 
@@ -92,7 +93,7 @@ describe('useUnmount', () => {
     });
 
     test('should execute cleanup function successfully', () => {
-      const cleanup = jest.fn(() => {
+      const cleanup = vi.fn(() => {
         // Simulate some cleanup logic
         return true;
       });
@@ -106,7 +107,7 @@ describe('useUnmount', () => {
     });
 
     test('should handle cleanup function that throws error', () => {
-      const cleanup = jest.fn(() => {
+      const cleanup = vi.fn(() => {
         throw new Error('Cleanup error');
       });
 
@@ -120,31 +121,31 @@ describe('useUnmount', () => {
 
   describe('use cases', () => {
     test('should work with timer cleanup', () => {
-      jest.useFakeTimers();
-      const callback = jest.fn();
+      vi.useFakeTimers();
+      const callback = vi.fn();
 
       const { unmount } = renderHook(() => {
         const timerId = setInterval(callback, 1000);
         useUnmount(() => clearInterval(timerId));
       });
 
-      jest.advanceTimersByTime(2500);
+      vi.advanceTimersByTime(2500);
       expect(callback).toHaveBeenCalledTimes(2);
 
       unmount();
 
-      jest.advanceTimersByTime(2000);
+      vi.advanceTimersByTime(2000);
       // Should not be called anymore after unmount
       expect(callback).toHaveBeenCalledTimes(2);
 
-      jest.useRealTimers();
+      vi.useRealTimers();
     });
 
     test('should work with event listener cleanup', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
       const mockElement = {
-        addEventListener: jest.fn(),
-        removeEventListener: jest.fn(),
+        addEventListener: vi.fn(),
+        removeEventListener: vi.fn(),
       };
 
       const { unmount } = renderHook(() => {
@@ -161,8 +162,8 @@ describe('useUnmount', () => {
     });
 
     test('should work with subscription cleanup', () => {
-      const unsubscribe = jest.fn();
-      const subscribe = jest.fn(() => unsubscribe);
+      const unsubscribe = vi.fn();
+      const subscribe = vi.fn(() => unsubscribe);
 
       const { unmount } = renderHook(() => {
         const unsub = subscribe();
@@ -180,8 +181,8 @@ describe('useUnmount', () => {
 
   describe('multiple instances', () => {
     test('should handle multiple useUnmount hooks independently', () => {
-      const cleanup1 = jest.fn();
-      const cleanup2 = jest.fn();
+      const cleanup1 = vi.fn();
+      const cleanup2 = vi.fn();
 
       const { unmount: unmount1 } = renderHook(() => useUnmount(cleanup1));
       const { unmount: unmount2 } = renderHook(() => useUnmount(cleanup2));
@@ -198,9 +199,9 @@ describe('useUnmount', () => {
     });
 
     test('should handle multiple useUnmount calls in same component', () => {
-      const cleanup1 = jest.fn();
-      const cleanup2 = jest.fn();
-      const cleanup3 = jest.fn();
+      const cleanup1 = vi.fn();
+      const cleanup2 = vi.fn();
+      const cleanup3 = vi.fn();
 
       const { unmount } = renderHook(() => {
         useUnmount(cleanup1);
@@ -218,7 +219,7 @@ describe('useUnmount', () => {
 
   describe('edge cases', () => {
     test('should handle empty cleanup function', () => {
-      const cleanup = jest.fn();
+      const cleanup = vi.fn();
 
       const { unmount } = renderHook(() => useUnmount(cleanup));
 
@@ -227,7 +228,7 @@ describe('useUnmount', () => {
     });
 
     test('should handle async cleanup function', async () => {
-      const cleanup = jest.fn(async () => {
+      const cleanup = vi.fn(async () => {
         await Promise.resolve();
       });
 
@@ -239,8 +240,8 @@ describe('useUnmount', () => {
     });
 
     test('should not interfere with component lifecycle', () => {
-      const mountEffect = jest.fn();
-      const cleanup = jest.fn();
+      const mountEffect = vi.fn();
+      const cleanup = vi.fn();
 
       const { unmount } = renderHook(() => {
         React.useEffect(() => {

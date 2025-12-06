@@ -1,4 +1,5 @@
 import React from 'react';
+import { vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { Button } from '../button';
 
@@ -43,7 +44,7 @@ describe('Button', () => {
   });
 
   it('calls onClick when enabled and not when disabled', () => {
-    const handleClick = jest.fn();
+    const handleClick = vi.fn();
     render(
       <>
         <Button onClick={handleClick}>Enabled</Button>

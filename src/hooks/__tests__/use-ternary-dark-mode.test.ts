@@ -1,32 +1,41 @@
 import { renderHook, act, waitFor } from '@testing-library/react';
+import { vi, beforeEach, afterEach, Mock } from 'vitest';
 import { useTernaryDarkMode, type TernaryDarkMode } from '@/hooks/use-ternary-dark-mode';
 
 describe('useTernaryDarkMode', () => {
   // Setup and teardown
   beforeEach(() => {
     // Clear localStorage before each test
-    window.localStorage.clear();
+    if (typeof window !== 'undefined' && window.localStorage) {
+      window.localStorage.clear();
+    }
     // Clear any mocks
-    jest.clearAllMocks();
+    vi.clearAllMocks();
     // Remove dark class from document
-    document.documentElement.classList.remove('dark');
+    if (typeof document !== 'undefined' && document.documentElement) {
+      document.documentElement.classList.remove('dark');
+    }
 
     // Mock matchMedia
-    window.matchMedia = jest.fn().mockImplementation((query) => ({
+    window.matchMedia = vi.fn().mockImplementation((query) => ({
       matches: false,
       media: query,
       onchange: null,
-      addListener: jest.fn(),
-      removeListener: jest.fn(),
-      addEventListener: jest.fn(),
-      removeEventListener: jest.fn(),
-      dispatchEvent: jest.fn(),
+      addListener: vi.fn(),
+      removeListener: vi.fn(),
+      addEventListener: vi.fn(),
+      removeEventListener: vi.fn(),
+      dispatchEvent: vi.fn(),
     }));
   });
 
   afterEach(() => {
-    window.localStorage.clear();
-    document.documentElement.classList.remove('dark');
+    if (typeof window !== 'undefined' && window.localStorage) {
+      window.localStorage.clear();
+    }
+    if (typeof document !== 'undefined' && document.documentElement) {
+      document.documentElement.classList.remove('dark');
+    }
   });
 
   describe('initialization', () => {
@@ -53,15 +62,15 @@ describe('useTernaryDarkMode', () => {
     });
 
     test('should resolve system mode to system preference (dark)', () => {
-      window.matchMedia = jest.fn().mockImplementation((query) => ({
+      window.matchMedia = vi.fn().mockImplementation((query) => ({
         matches: query === '(prefers-color-scheme: dark)',
         media: query,
         onchange: null,
-        addListener: jest.fn(),
-        removeListener: jest.fn(),
-        addEventListener: jest.fn(),
-        removeEventListener: jest.fn(),
-        dispatchEvent: jest.fn(),
+        addListener: vi.fn(),
+        removeListener: vi.fn(),
+        addEventListener: vi.fn(),
+        removeEventListener: vi.fn(),
+        dispatchEvent: vi.fn(),
       }));
 
       const { result } = renderHook(() => useTernaryDarkMode('system'));
@@ -71,15 +80,15 @@ describe('useTernaryDarkMode', () => {
     });
 
     test('should resolve system mode to system preference (light)', () => {
-      window.matchMedia = jest.fn().mockImplementation((query) => ({
+      window.matchMedia = vi.fn().mockImplementation((query) => ({
         matches: false,
         media: query,
         onchange: null,
-        addListener: jest.fn(),
-        removeListener: jest.fn(),
-        addEventListener: jest.fn(),
-        removeEventListener: jest.fn(),
-        dispatchEvent: jest.fn(),
+        addListener: vi.fn(),
+        removeListener: vi.fn(),
+        addEventListener: vi.fn(),
+        removeEventListener: vi.fn(),
+        dispatchEvent: vi.fn(),
       }));
 
       const { result } = renderHook(() => useTernaryDarkMode('system'));
@@ -154,15 +163,15 @@ describe('useTernaryDarkMode', () => {
     });
 
     test('should follow system preference when set to system (dark)', () => {
-      window.matchMedia = jest.fn().mockImplementation((query) => ({
+      window.matchMedia = vi.fn().mockImplementation((query) => ({
         matches: query === '(prefers-color-scheme: dark)',
         media: query,
         onchange: null,
-        addListener: jest.fn(),
-        removeListener: jest.fn(),
-        addEventListener: jest.fn(),
-        removeEventListener: jest.fn(),
-        dispatchEvent: jest.fn(),
+        addListener: vi.fn(),
+        removeListener: vi.fn(),
+        addEventListener: vi.fn(),
+        removeEventListener: vi.fn(),
+        dispatchEvent: vi.fn(),
       }));
 
       const { result } = renderHook(() => useTernaryDarkMode('light'));
@@ -176,15 +185,15 @@ describe('useTernaryDarkMode', () => {
     });
 
     test('should follow system preference when set to system (light)', () => {
-      window.matchMedia = jest.fn().mockImplementation((query) => ({
+      window.matchMedia = vi.fn().mockImplementation((query) => ({
         matches: false,
         media: query,
         onchange: null,
-        addListener: jest.fn(),
-        removeListener: jest.fn(),
-        addEventListener: jest.fn(),
-        removeEventListener: jest.fn(),
-        dispatchEvent: jest.fn(),
+        addListener: vi.fn(),
+        removeListener: vi.fn(),
+        addEventListener: vi.fn(),
+        removeEventListener: vi.fn(),
+        dispatchEvent: vi.fn(),
       }));
 
       const { result } = renderHook(() => useTernaryDarkMode('dark'));
@@ -269,15 +278,15 @@ describe('useTernaryDarkMode', () => {
     });
 
     test('should toggle from system to opposite of current system preference (dark system)', () => {
-      window.matchMedia = jest.fn().mockImplementation((query) => ({
+      window.matchMedia = vi.fn().mockImplementation((query) => ({
         matches: query === '(prefers-color-scheme: dark)',
         media: query,
         onchange: null,
-        addListener: jest.fn(),
-        removeListener: jest.fn(),
-        addEventListener: jest.fn(),
-        removeEventListener: jest.fn(),
-        dispatchEvent: jest.fn(),
+        addListener: vi.fn(),
+        removeListener: vi.fn(),
+        addEventListener: vi.fn(),
+        removeEventListener: vi.fn(),
+        dispatchEvent: vi.fn(),
       }));
 
       const { result } = renderHook(() => useTernaryDarkMode('system'));
@@ -293,15 +302,15 @@ describe('useTernaryDarkMode', () => {
     });
 
     test('should toggle from system to opposite of current system preference (light system)', () => {
-      window.matchMedia = jest.fn().mockImplementation((query) => ({
+      window.matchMedia = vi.fn().mockImplementation((query) => ({
         matches: false,
         media: query,
         onchange: null,
-        addListener: jest.fn(),
-        removeListener: jest.fn(),
-        addEventListener: jest.fn(),
-        removeEventListener: jest.fn(),
-        dispatchEvent: jest.fn(),
+        addListener: vi.fn(),
+        removeListener: vi.fn(),
+        addEventListener: vi.fn(),
+        removeEventListener: vi.fn(),
+        dispatchEvent: vi.fn(),
       }));
 
       const { result } = renderHook(() => useTernaryDarkMode('system'));
@@ -350,15 +359,15 @@ describe('useTernaryDarkMode', () => {
     });
 
     test('should follow system preference when mode is system (dark)', () => {
-      window.matchMedia = jest.fn().mockImplementation((query) => ({
+      window.matchMedia = vi.fn().mockImplementation((query) => ({
         matches: query === '(prefers-color-scheme: dark)',
         media: query,
         onchange: null,
-        addListener: jest.fn(),
-        removeListener: jest.fn(),
-        addEventListener: jest.fn(),
-        removeEventListener: jest.fn(),
-        dispatchEvent: jest.fn(),
+        addListener: vi.fn(),
+        removeListener: vi.fn(),
+        addEventListener: vi.fn(),
+        removeEventListener: vi.fn(),
+        dispatchEvent: vi.fn(),
       }));
 
       const { result } = renderHook(() => useTernaryDarkMode('system'));
@@ -367,15 +376,15 @@ describe('useTernaryDarkMode', () => {
     });
 
     test('should follow system preference when mode is system (light)', () => {
-      window.matchMedia = jest.fn().mockImplementation((query) => ({
+      window.matchMedia = vi.fn().mockImplementation((query) => ({
         matches: false,
         media: query,
         onchange: null,
-        addListener: jest.fn(),
-        removeListener: jest.fn(),
-        addEventListener: jest.fn(),
-        removeEventListener: jest.fn(),
-        dispatchEvent: jest.fn(),
+        addListener: vi.fn(),
+        removeListener: vi.fn(),
+        addEventListener: vi.fn(),
+        removeEventListener: vi.fn(),
+        dispatchEvent: vi.fn(),
       }));
 
       const { result } = renderHook(() => useTernaryDarkMode('system'));
@@ -448,15 +457,15 @@ describe('useTernaryDarkMode', () => {
     });
 
     test('should add dark class when system preference is dark', () => {
-      window.matchMedia = jest.fn().mockImplementation((query) => ({
+      window.matchMedia = vi.fn().mockImplementation((query) => ({
         matches: query === '(prefers-color-scheme: dark)',
         media: query,
         onchange: null,
-        addListener: jest.fn(),
-        removeListener: jest.fn(),
-        addEventListener: jest.fn(),
-        removeEventListener: jest.fn(),
-        dispatchEvent: jest.fn(),
+        addListener: vi.fn(),
+        removeListener: vi.fn(),
+        addEventListener: vi.fn(),
+        removeEventListener: vi.fn(),
+        dispatchEvent: vi.fn(),
       }));
 
       const { result } = renderHook(() => useTernaryDarkMode('system'));
@@ -466,15 +475,15 @@ describe('useTernaryDarkMode', () => {
     });
 
     test('should remove dark class when system preference is light', () => {
-      window.matchMedia = jest.fn().mockImplementation((query) => ({
+      window.matchMedia = vi.fn().mockImplementation((query) => ({
         matches: false,
         media: query,
         onchange: null,
-        addListener: jest.fn(),
-        removeListener: jest.fn(),
-        addEventListener: jest.fn(),
-        removeEventListener: jest.fn(),
-        dispatchEvent: jest.fn(),
+        addListener: vi.fn(),
+        removeListener: vi.fn(),
+        addEventListener: vi.fn(),
+        removeEventListener: vi.fn(),
+        dispatchEvent: vi.fn(),
       }));
 
       const { result } = renderHook(() => useTernaryDarkMode('system'));
@@ -506,19 +515,19 @@ describe('useTernaryDarkMode', () => {
     test('should react to system preference changes when in system mode', () => {
       const listeners: Array<(e: MediaQueryListEvent) => void> = [];
 
-      window.matchMedia = jest.fn().mockImplementation((query) => ({
+      window.matchMedia = vi.fn().mockImplementation((query) => ({
         matches: false,
         media: query,
         onchange: null,
-        addListener: jest.fn(),
-        removeListener: jest.fn(),
-        addEventListener: jest.fn((event: string, listener: (e: MediaQueryListEvent) => void) => {
+        addListener: vi.fn(),
+        removeListener: vi.fn(),
+        addEventListener: vi.fn((event: string, listener: (e: MediaQueryListEvent) => void) => {
           if (event === 'change') {
             listeners.push(listener);
           }
         }),
-        removeEventListener: jest.fn(),
-        dispatchEvent: jest.fn(),
+        removeEventListener: vi.fn(),
+        dispatchEvent: vi.fn(),
       }));
 
       const { result } = renderHook(() => useTernaryDarkMode('system'));
@@ -538,19 +547,19 @@ describe('useTernaryDarkMode', () => {
     test('should not affect explicit light/dark modes when system changes', () => {
       const listeners: Array<(e: MediaQueryListEvent) => void> = [];
 
-      window.matchMedia = jest.fn().mockImplementation((query) => ({
+      window.matchMedia = vi.fn().mockImplementation((query) => ({
         matches: false,
         media: query,
         onchange: null,
-        addListener: jest.fn(),
-        removeListener: jest.fn(),
-        addEventListener: jest.fn((event: string, listener: (e: MediaQueryListEvent) => void) => {
+        addListener: vi.fn(),
+        removeListener: vi.fn(),
+        addEventListener: vi.fn((event: string, listener: (e: MediaQueryListEvent) => void) => {
           if (event === 'change') {
             listeners.push(listener);
           }
         }),
-        removeEventListener: jest.fn(),
-        dispatchEvent: jest.fn(),
+        removeEventListener: vi.fn(),
+        dispatchEvent: vi.fn(),
       }));
 
       const { result } = renderHook(() => useTernaryDarkMode('dark'));

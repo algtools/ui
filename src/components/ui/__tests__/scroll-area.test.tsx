@@ -1,9 +1,10 @@
 import React from 'react';
+import { vi, Mock, MockedFunction } from 'vitest';
 import { render } from '@testing-library/react';
 import { ScrollArea, ScrollBar } from '../scroll-area';
 
 // Mock Radix scroll-area primitives to simple elements
-jest.mock('@radix-ui/react-scroll-area', () => {
+vi.mock('@radix-ui/react-scroll-area', () => {
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   const React = require('react');
   return {

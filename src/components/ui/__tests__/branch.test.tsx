@@ -1,10 +1,11 @@
 import React from 'react';
+import { vi, Mock } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { Branch, BranchList, BranchTrigger, BranchContent, BranchIndicator } from '../branch';
 import type { Branch as BranchType } from '../../ai/ai-types';
 
 // Mock Radix Tabs primitives to simplify rendering
-jest.mock('@radix-ui/react-tabs', () => {
+vi.mock('@radix-ui/react-tabs', () => {
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   const React = require('react');
   return {
@@ -114,7 +115,7 @@ describe('Branch', () => {
     });
 
     it('calls onBranchChange when branch is selected', () => {
-      const onBranchChange = jest.fn();
+      const onBranchChange = vi.fn();
       render(<Branch branches={mockBranches} onBranchChange={onBranchChange} />);
 
       const trigger = screen.getByText('Branch B');
@@ -168,7 +169,7 @@ describe('Branch', () => {
     });
 
     it('calls onValueChange when provided', () => {
-      const onValueChange = jest.fn();
+      const onValueChange = vi.fn();
       render(<Branch branches={mockBranches} onValueChange={onValueChange} />);
 
       const trigger = screen.getByText('Branch B');

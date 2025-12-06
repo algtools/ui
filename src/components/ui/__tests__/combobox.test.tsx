@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react';
+import { vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
 import {
   Combobox,
@@ -64,7 +65,7 @@ describe('Combobox', () => {
 
   test('input value is controllable and used by create-new', async () => {
     const user = userEvent.setup();
-    const onCreate = jest.fn();
+    const onCreate = vi.fn();
 
     render(
       <Combobox data={DATA} type="fruit">

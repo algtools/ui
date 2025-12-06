@@ -1,4 +1,5 @@
 import React, { act } from 'react';
+import { vi } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { WebPreview } from '../web-preview';
@@ -157,7 +158,7 @@ describe('WebPreview', () => {
     });
 
     it('calls onLoad callback when iframe loads', () => {
-      const onLoad = jest.fn();
+      const onLoad = vi.fn();
       const { container } = render(
         <WebPreview src="https://example.com" title="Test" onLoad={onLoad} />
       );
@@ -183,7 +184,7 @@ describe('WebPreview', () => {
     });
 
     it('accepts onError callback prop', () => {
-      const onError = jest.fn();
+      const onError = vi.fn();
       const { container } = render(
         <WebPreview src="https://example.com" title="Test" onError={onError} />
       );
@@ -237,7 +238,7 @@ describe('WebPreview', () => {
   describe('Fullscreen Functionality', () => {
     it('toggles fullscreen state when fullscreen button is clicked', async () => {
       const user = userEvent.setup();
-      const onFullscreenChange = jest.fn();
+      const onFullscreenChange = vi.fn();
 
       render(
         <WebPreview
@@ -296,7 +297,7 @@ describe('WebPreview', () => {
     });
 
     it('exits fullscreen on escape key', async () => {
-      const onFullscreenChange = jest.fn();
+      const onFullscreenChange = vi.fn();
       render(
         <WebPreview
           src="https://example.com"
@@ -432,7 +433,7 @@ describe('WebPreview', () => {
         const element = previewContainer.parentElement as HTMLElement & {
           requestFullscreen: () => Promise<void>;
         };
-        element.requestFullscreen = jest
+        element.requestFullscreen = vi
           .fn()
           .mockRejectedValue(new Error('Fullscreen not allowed'));
       }
@@ -460,7 +461,7 @@ describe('WebPreview', () => {
       });
 
       // Mock exitFullscreen
-      document.exitFullscreen = jest.fn().mockRejectedValue(new Error('Cannot exit'));
+      document.exitFullscreen = vi.fn().mockRejectedValue(new Error('Cannot exit'));
 
       const fullscreenButton = screen.getByLabelText('Exit fullscreen');
       await user.click(fullscreenButton);
@@ -479,7 +480,7 @@ describe('WebPreview', () => {
     });
 
     it('listens to fullscreen change events', () => {
-      const onFullscreenChange = jest.fn();
+      const onFullscreenChange = vi.fn();
       const { container } = render(
         <WebPreview
           src="https://example.com"

@@ -1,4 +1,5 @@
 import { renderHook, act, waitFor } from '@testing-library/react';
+import { vi, beforeEach, afterEach, Mock } from 'vitest';
 
 import { useReadLocalStorage } from '@/hooks/use-read-local-storage';
 
@@ -6,13 +7,17 @@ describe('useReadLocalStorage', () => {
   // Setup and teardown
   beforeEach(() => {
     // Clear localStorage before each test
-    window.localStorage.clear();
+    if (typeof window !== 'undefined' && window.localStorage) {
+      window.localStorage.clear();
+    }
     // Clear any mocks
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   afterEach(() => {
-    window.localStorage.clear();
+    if (typeof window !== 'undefined' && window.localStorage) {
+      window.localStorage.clear();
+    }
   });
 
   describe('initialization', () => {
@@ -365,7 +370,7 @@ describe('useReadLocalStorage', () => {
 
   describe('cleanup', () => {
     test('should clean up event listeners on unmount', () => {
-      const removeEventListenerSpy = jest.spyOn(window, 'removeEventListener');
+      const removeEventListenerSpy = vi.spyOn(window, 'removeEventListener');
 
       const { unmount } = renderHook(() => useReadLocalStorage('test-key', 'initial'));
 

@@ -1,9 +1,10 @@
 import { renderHook, act, waitFor } from '@testing-library/react';
+import { vi, beforeEach, afterEach, Mock } from 'vitest';
 
 import { useWindowSize, UseWindowSizeOptions } from '@/hooks/use-window-size';
 
 // Mock timers for debouncing tests
-jest.useFakeTimers();
+vi.useFakeTimers();
 
 describe('useWindowSize', () => {
   // Store original window dimensions
@@ -36,11 +37,11 @@ describe('useWindowSize', () => {
       configurable: true,
       value: originalInnerHeight,
     });
-    jest.clearAllTimers();
+    vi.clearAllTimers();
   });
 
   afterAll(() => {
-    jest.useRealTimers();
+    vi.useRealTimers();
   });
 
   test('returns initial window dimensions', () => {
@@ -90,14 +91,12 @@ describe('useWindowSize', () => {
 
     // Fast-forward time by default debounce delay (150ms)
     act(() => {
-      jest.advanceTimersByTime(150);
+      vi.advanceTimersByTime(150);
     });
 
-    // Now it should be updated
-    await waitFor(() => {
-      expect(result.current.width).toBe(1920);
-      expect(result.current.height).toBe(1080);
-    });
+    // Now it should be updated (after advancing timers, state updates immediately)
+    expect(result.current.width).toBe(1920);
+    expect(result.current.height).toBe(1080);
   });
 
   test('respects custom debounce delay', async () => {
@@ -118,18 +117,16 @@ describe('useWindowSize', () => {
 
     // Should not update after default 150ms
     act(() => {
-      jest.advanceTimersByTime(150);
+      vi.advanceTimersByTime(150);
     });
     expect(result.current.width).toBe(1024);
 
     // Should update after custom 300ms
     act(() => {
-      jest.advanceTimersByTime(150); // Total 300ms
+      vi.advanceTimersByTime(150); // Total 300ms
     });
 
-    await waitFor(() => {
-      expect(result.current.width).toBe(800);
-    });
+    expect(result.current.width).toBe(800);
   });
 
   test('debounces multiple rapid resize events', async () => {
@@ -142,12 +139,12 @@ describe('useWindowSize', () => {
       Object.defineProperty(window, 'innerWidth', { writable: true, value: 800 });
       window.dispatchEvent(new Event('resize'));
 
-      jest.advanceTimersByTime(50);
+      vi.advanceTimersByTime(50);
 
       Object.defineProperty(window, 'innerWidth', { writable: true, value: 900 });
       window.dispatchEvent(new Event('resize'));
 
-      jest.advanceTimersByTime(50);
+      vi.advanceTimersByTime(50);
 
       Object.defineProperty(window, 'innerWidth', { writable: true, value: 1000 });
       window.dispatchEvent(new Event('resize'));
@@ -158,17 +155,15 @@ describe('useWindowSize', () => {
 
     // Fast-forward remaining time
     act(() => {
-      jest.advanceTimersByTime(100);
+      vi.advanceTimersByTime(100);
     });
 
     // Should only update to the last value
-    await waitFor(() => {
-      expect(result.current.width).toBe(1000);
-    });
+    expect(result.current.width).toBe(1000);
   });
 
   test('cleans up event listener on unmount', () => {
-    const removeEventListenerSpy = jest.spyOn(window, 'removeEventListener');
+    const removeEventListenerSpy = vi.spyOn(window, 'removeEventListener');
     const { unmount } = renderHook(() => useWindowSize());
 
     unmount();
@@ -191,7 +186,7 @@ describe('useWindowSize', () => {
 
     // The timeout should be cleared, so advancing timers shouldn't cause updates
     act(() => {
-      jest.advanceTimersByTime(150);
+      vi.advanceTimersByTime(150);
     });
 
     // No error should occur
@@ -203,14 +198,14 @@ describe('useWindowSize', () => {
     act(() => {
       Object.defineProperty(window, 'innerWidth', { writable: true, value: 800 });
       window.dispatchEvent(new Event('resize'));
-      jest.advanceTimersByTime(100);
+      vi.advanceTimersByTime(100);
     });
 
     // Trigger another resize before first completes
     act(() => {
       Object.defineProperty(window, 'innerWidth', { writable: true, value: 900 });
       window.dispatchEvent(new Event('resize'));
-      jest.advanceTimersByTime(100);
+      vi.advanceTimersByTime(100);
     });
 
     // Still original value
@@ -218,12 +213,10 @@ describe('useWindowSize', () => {
 
     // Complete the debounce for second resize
     act(() => {
-      jest.advanceTimersByTime(100);
+      vi.advanceTimersByTime(100);
     });
 
-    await waitFor(() => {
-      expect(result.current.width).toBe(900);
-    });
+    expect(result.current.width).toBe(900);
   });
 
   test('updates debounce delay when option changes', async () => {
@@ -238,12 +231,10 @@ describe('useWindowSize', () => {
     act(() => {
       Object.defineProperty(window, 'innerWidth', { writable: true, value: 800 });
       window.dispatchEvent(new Event('resize'));
-      jest.advanceTimersByTime(100);
+      vi.advanceTimersByTime(100);
     });
 
-    await waitFor(() => {
-      expect(result.current.width).toBe(800);
-    });
+    expect(result.current.width).toBe(800);
 
     // Change debounce delay
     rerender({ debounceMs: 300 });
@@ -252,19 +243,17 @@ describe('useWindowSize', () => {
     act(() => {
       Object.defineProperty(window, 'innerWidth', { writable: true, value: 600 });
       window.dispatchEvent(new Event('resize'));
-      jest.advanceTimersByTime(100);
+      vi.advanceTimersByTime(100);
     });
 
     // Should not update yet
     expect(result.current.width).toBe(800);
 
     act(() => {
-      jest.advanceTimersByTime(200); // Total 300ms
+      vi.advanceTimersByTime(200); // Total 300ms
     });
 
-    await waitFor(() => {
-      expect(result.current.width).toBe(600);
-    });
+    expect(result.current.width).toBe(600);
   });
 
   test('works with zero debounce delay', async () => {
@@ -273,12 +262,10 @@ describe('useWindowSize', () => {
     act(() => {
       Object.defineProperty(window, 'innerWidth', { writable: true, value: 800 });
       window.dispatchEvent(new Event('resize'));
-      jest.advanceTimersByTime(0);
+      vi.advanceTimersByTime(0);
     });
 
-    await waitFor(() => {
-      expect(result.current.width).toBe(800);
-    });
+    expect(result.current.width).toBe(800);
   });
 
   test('returns WindowSize object with correct shape', () => {

@@ -1,5 +1,5 @@
 // Mock ESM-only dependency to avoid transform issues in Jest
-jest.mock('react-resizable-panels', () => {
+vi.mock('react-resizable-panels', () => {
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   const React = require('react');
   const PanelGroup = ({ direction, children, ...props }: Record<string, unknown>) =>
@@ -11,6 +11,7 @@ jest.mock('react-resizable-panels', () => {
   return { __esModule: true, PanelGroup, Panel, PanelResizeHandle };
 });
 import React from 'react';
+import { vi, Mock, MockedFunction } from 'vitest';
 import { render } from '@testing-library/react';
 import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from '../resizable';
 

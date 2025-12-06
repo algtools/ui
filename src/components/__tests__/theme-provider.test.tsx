@@ -1,4 +1,5 @@
 import React from 'react';
+import { vi, Mock, MockedFunction } from 'vitest';
 import { render, screen } from '@testing-library/react';
 
 // Mock next-themes provider to validate props passthrough
@@ -9,7 +10,7 @@ const MockNextThemesProvider = ({ children, ...props }: MockProviderProps) => (
   </div>
 );
 
-jest.mock('next-themes', () => ({
+vi.mock('next-themes', () => ({
   ThemeProvider: MockNextThemesProvider,
 }));
 

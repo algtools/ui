@@ -1,4 +1,5 @@
 import { renderHook } from '@testing-library/react';
+import { vi, beforeEach, afterEach } from 'vitest';
 
 import { useClickAnyWhere } from '@/hooks/use-click-anywhere';
 
@@ -18,7 +19,7 @@ describe('useClickAnyWhere', () => {
 
   describe('mouse events', () => {
     test('should call handler on mousedown anywhere', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
 
       renderHook(() => useClickAnyWhere(handler));
 
@@ -31,7 +32,7 @@ describe('useClickAnyWhere', () => {
     });
 
     test('should call handler on mousedown on document body', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
 
       renderHook(() => useClickAnyWhere(handler));
 
@@ -44,7 +45,7 @@ describe('useClickAnyWhere', () => {
     });
 
     test('should call handler on mousedown on document', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
 
       renderHook(() => useClickAnyWhere(handler));
 
@@ -56,7 +57,7 @@ describe('useClickAnyWhere', () => {
     });
 
     test('should call handler multiple times for multiple clicks', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
 
       renderHook(() => useClickAnyWhere(handler));
 
@@ -78,7 +79,7 @@ describe('useClickAnyWhere', () => {
 
   describe('touch events', () => {
     test('should call handler on touchstart anywhere', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
 
       renderHook(() => useClickAnyWhere(handler));
 
@@ -91,7 +92,7 @@ describe('useClickAnyWhere', () => {
     });
 
     test('should call handler on touchstart on document body', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
 
       renderHook(() => useClickAnyWhere(handler));
 
@@ -103,7 +104,7 @@ describe('useClickAnyWhere', () => {
     });
 
     test('should call handler multiple times for multiple touches', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
 
       renderHook(() => useClickAnyWhere(handler));
 
@@ -121,7 +122,7 @@ describe('useClickAnyWhere', () => {
 
   describe('mixed events', () => {
     test('should handle both mouse and touch events', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
 
       renderHook(() => useClickAnyWhere(handler));
 
@@ -141,7 +142,7 @@ describe('useClickAnyWhere', () => {
 
   describe('enabled parameter', () => {
     test('should call handler when enabled is true (default)', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
 
       renderHook(() => useClickAnyWhere(handler));
 
@@ -152,7 +153,7 @@ describe('useClickAnyWhere', () => {
     });
 
     test('should call handler when enabled is explicitly true', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
 
       renderHook(() => useClickAnyWhere(handler, true));
 
@@ -163,7 +164,7 @@ describe('useClickAnyWhere', () => {
     });
 
     test('should not call handler when enabled is false', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
 
       renderHook(() => useClickAnyWhere(handler, false));
 
@@ -174,7 +175,7 @@ describe('useClickAnyWhere', () => {
     });
 
     test('should stop listening when enabled changes to false', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
 
       const { rerender } = renderHook(({ enabled }) => useClickAnyWhere(handler, enabled), {
         initialProps: { enabled: true },
@@ -195,7 +196,7 @@ describe('useClickAnyWhere', () => {
     });
 
     test('should start listening when enabled changes to true', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
 
       const { rerender } = renderHook(({ enabled }) => useClickAnyWhere(handler, enabled), {
         initialProps: { enabled: false },
@@ -216,7 +217,7 @@ describe('useClickAnyWhere', () => {
     });
 
     test('should handle multiple enable/disable toggles', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
 
       const { rerender } = renderHook(({ enabled }) => useClickAnyWhere(handler, enabled), {
         initialProps: { enabled: true },
@@ -245,7 +246,7 @@ describe('useClickAnyWhere', () => {
 
   describe('cleanup', () => {
     test('should remove event listeners on unmount', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
 
       const { unmount } = renderHook(() => useClickAnyWhere(handler));
 
@@ -261,7 +262,7 @@ describe('useClickAnyWhere', () => {
     });
 
     test('should not cause memory leaks with multiple mount/unmount cycles', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
 
       // Mount and unmount multiple times
       for (let i = 0; i < 5; i++) {
@@ -278,7 +279,7 @@ describe('useClickAnyWhere', () => {
     });
 
     test('should cleanup both mouse and touch listeners on unmount', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
 
       const { unmount } = renderHook(() => useClickAnyWhere(handler));
 
@@ -296,8 +297,8 @@ describe('useClickAnyWhere', () => {
 
   describe('handler updates', () => {
     test('should use updated handler on subsequent clicks', () => {
-      const firstHandler = jest.fn();
-      const secondHandler = jest.fn();
+      const firstHandler = vi.fn();
+      const secondHandler = vi.fn();
 
       const { rerender } = renderHook(({ handler }) => useClickAnyWhere(handler), {
         initialProps: { handler: firstHandler },
@@ -320,11 +321,11 @@ describe('useClickAnyWhere', () => {
     });
 
     test('should not re-attach listeners when only handler changes', () => {
-      const addEventListenerSpy = jest.spyOn(document, 'addEventListener');
-      const removeEventListenerSpy = jest.spyOn(document, 'removeEventListener');
+      const addEventListenerSpy = vi.spyOn(document, 'addEventListener');
+      const removeEventListenerSpy = vi.spyOn(document, 'removeEventListener');
 
-      const firstHandler = jest.fn();
-      const secondHandler = jest.fn();
+      const firstHandler = vi.fn();
+      const secondHandler = vi.fn();
 
       const { rerender } = renderHook(({ handler }) => useClickAnyWhere(handler), {
         initialProps: { handler: firstHandler },
@@ -345,7 +346,7 @@ describe('useClickAnyWhere', () => {
     });
 
     test('should handle rapid handler updates', () => {
-      const handlers = [jest.fn(), jest.fn(), jest.fn()];
+      const handlers = [vi.fn(), vi.fn(), vi.fn()];
 
       const { rerender } = renderHook(({ handler }) => useClickAnyWhere(handler), {
         initialProps: { handler: handlers[0] },
@@ -367,7 +368,7 @@ describe('useClickAnyWhere', () => {
 
   describe('event details', () => {
     test('should pass event with correct properties to handler', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
 
       renderHook(() => useClickAnyWhere(handler));
 
@@ -386,7 +387,7 @@ describe('useClickAnyWhere', () => {
     });
 
     test('should handle event with target information', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
 
       renderHook(() => useClickAnyWhere(handler));
 
@@ -400,7 +401,7 @@ describe('useClickAnyWhere', () => {
 
   describe('nested elements', () => {
     test('should call handler for clicks on nested elements', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
       const childElement = document.createElement('span');
       testElement.appendChild(childElement);
 
@@ -414,7 +415,7 @@ describe('useClickAnyWhere', () => {
     });
 
     test('should call handler for clicks on deeply nested elements', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
       const level1 = document.createElement('div');
       const level2 = document.createElement('div');
       const level3 = document.createElement('span');
@@ -435,8 +436,8 @@ describe('useClickAnyWhere', () => {
 
   describe('multiple instances', () => {
     test('should support multiple independent instances', () => {
-      const handler1 = jest.fn();
-      const handler2 = jest.fn();
+      const handler1 = vi.fn();
+      const handler2 = vi.fn();
 
       renderHook(() => useClickAnyWhere(handler1));
       renderHook(() => useClickAnyWhere(handler2));
@@ -450,8 +451,8 @@ describe('useClickAnyWhere', () => {
     });
 
     test('should handle multiple instances with different enabled states', () => {
-      const handler1 = jest.fn();
-      const handler2 = jest.fn();
+      const handler1 = vi.fn();
+      const handler2 = vi.fn();
 
       renderHook(() => useClickAnyWhere(handler1, true));
       renderHook(() => useClickAnyWhere(handler2, false));
@@ -466,7 +467,7 @@ describe('useClickAnyWhere', () => {
 
   describe('edge cases', () => {
     test('should handle clicks on window-created elements', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
       const newElement = document.createElement('button');
       document.body.appendChild(newElement);
 
@@ -481,7 +482,7 @@ describe('useClickAnyWhere', () => {
     });
 
     test('should work with disabled state toggling during cleanup', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
 
       const { rerender, unmount } = renderHook(
         ({ enabled }) => useClickAnyWhere(handler, enabled),

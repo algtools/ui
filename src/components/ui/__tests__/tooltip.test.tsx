@@ -1,9 +1,10 @@
 import React from 'react';
+import { vi, Mock, MockedFunction } from 'vitest';
 import { render } from '@testing-library/react';
 import { Tooltip, TooltipTrigger, TooltipContent } from '../tooltip';
 
 // Mock Radix Tooltip primitives to simplify rendering and assertions
-jest.mock('@radix-ui/react-tooltip', () => {
+vi.mock('@radix-ui/react-tooltip', () => {
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   const React = require('react');
   return {

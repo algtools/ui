@@ -1,9 +1,10 @@
 import React from 'react';
+import { vi, Mock, MockedFunction } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { Separator } from '../separator';
 
 // Mock Radix separator primitive to a simple element to make attributes/classes observable
-jest.mock('@radix-ui/react-separator', () => {
+vi.mock('@radix-ui/react-separator', () => {
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   const React = require('react');
   return {

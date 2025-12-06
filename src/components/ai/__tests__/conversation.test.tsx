@@ -1,11 +1,12 @@
 import React from 'react';
+import { vi, beforeEach, afterEach, Mock } from 'vitest';
 import { render, screen, waitFor, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Conversation } from '../conversation';
 import type { Message } from '../ai-types';
 
 // Mock the Radix UI components
-jest.mock('@radix-ui/react-scroll-area', () => {
+vi.mock('@radix-ui/react-scroll-area', () => {
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   const React = require('react');
   return {
@@ -33,7 +34,7 @@ jest.mock('@radix-ui/react-scroll-area', () => {
 });
 
 // Mock lucide-react icons
-jest.mock('lucide-react', () => ({
+vi.mock('lucide-react', () => ({
   ArrowDown: ({ className }: { className?: string }) => (
     <svg data-testid="arrow-down-icon" className={className} />
   ),
@@ -46,7 +47,7 @@ jest.mock('lucide-react', () => ({
 }));
 
 // Mock scrollIntoView
-Element.prototype.scrollIntoView = jest.fn();
+Element.prototype.scrollIntoView = vi.fn();
 
 const mockMessages: Message[] = [
   {
@@ -71,7 +72,7 @@ const mockMessages: Message[] = [
 
 describe('Conversation', () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   describe('Basic Rendering', () => {
@@ -207,7 +208,7 @@ describe('Conversation', () => {
     it('scrolls to bottom when new messages arrive', async () => {
       const { rerender } = render(<Conversation messages={mockMessages.slice(0, 2)} />);
 
-      jest.clearAllMocks();
+      vi.clearAllMocks();
 
       rerender(<Conversation messages={mockMessages} />);
 
@@ -219,7 +220,7 @@ describe('Conversation', () => {
     it('scrolls to bottom when isLoading becomes true', async () => {
       const { rerender } = render(<Conversation messages={mockMessages} isLoading={false} />);
 
-      jest.clearAllMocks();
+      vi.clearAllMocks();
 
       rerender(<Conversation messages={mockMessages} isLoading />);
 
@@ -233,7 +234,7 @@ describe('Conversation', () => {
         <Conversation messages={mockMessages.slice(0, 2)} autoScroll={false} />
       );
 
-      jest.clearAllMocks();
+      vi.clearAllMocks();
 
       rerender(<Conversation messages={mockMessages} autoScroll={false} />);
 
@@ -255,7 +256,7 @@ describe('Conversation', () => {
     it('uses smooth scroll behavior for subsequent updates', async () => {
       const { rerender } = render(<Conversation messages={mockMessages.slice(0, 2)} />);
 
-      jest.clearAllMocks();
+      vi.clearAllMocks();
 
       rerender(<Conversation messages={mockMessages} />);
 
@@ -311,7 +312,7 @@ describe('Conversation', () => {
           expect(screen.getByLabelText('Scroll to bottom')).toBeInTheDocument();
         });
 
-        jest.clearAllMocks();
+        vi.clearAllMocks();
 
         const scrollButton = screen.getByLabelText('Scroll to bottom');
         await userEvent.click(scrollButton);
@@ -356,7 +357,7 @@ describe('Conversation', () => {
     // are difficult to simulate properly in jsdom environment. The functionality works
     // in actual browser/Storybook environments.
     it.skip('calls onScroll callback when scrolling', async () => {
-      const onScroll = jest.fn();
+      const onScroll = vi.fn();
       const { container } = render(<Conversation messages={mockMessages} onScroll={onScroll} />);
 
       const viewport = container.querySelector('[data-slot="scroll-area-viewport"]');

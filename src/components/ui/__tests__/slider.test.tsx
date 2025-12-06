@@ -1,9 +1,10 @@
 import React from 'react';
+import { vi, Mock, MockedFunction } from 'vitest';
 import { render } from '@testing-library/react';
 import { Slider } from '../slider';
 
 // Mock Radix Slider primitives to simplify rendering
-jest.mock('@radix-ui/react-slider', () => {
+vi.mock('@radix-ui/react-slider', () => {
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   const React = require('react');
   return {

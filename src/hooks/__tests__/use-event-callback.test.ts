@@ -1,4 +1,5 @@
 import { renderHook, act } from '@testing-library/react';
+import { vi } from 'vitest';
 import { useState } from 'react';
 
 import { useEventCallback } from '@/hooks/use-event-callback';
@@ -6,14 +7,14 @@ import { useEventCallback } from '@/hooks/use-event-callback';
 describe('useEventCallback', () => {
   describe('initialization', () => {
     test('should return a function', () => {
-      const callback = jest.fn();
+      const callback = vi.fn();
       const { result } = renderHook(() => useEventCallback(callback));
 
       expect(typeof result.current).toBe('function');
     });
 
     test('should return the same function reference across renders', () => {
-      const callback = jest.fn();
+      const callback = vi.fn();
       const { result, rerender } = renderHook(() => useEventCallback(callback));
 
       const firstReference = result.current;
@@ -26,7 +27,7 @@ describe('useEventCallback', () => {
 
   describe('callback execution', () => {
     test('should call the provided callback when invoked', () => {
-      const callback = jest.fn();
+      const callback = vi.fn();
       const { result } = renderHook(() => useEventCallback(callback));
 
       act(() => {
@@ -37,7 +38,7 @@ describe('useEventCallback', () => {
     });
 
     test('should pass arguments to the callback', () => {
-      const callback = jest.fn();
+      const callback = vi.fn();
       const { result } = renderHook(() => useEventCallback(callback));
 
       act(() => {
@@ -48,7 +49,7 @@ describe('useEventCallback', () => {
     });
 
     test('should return the callback return value', () => {
-      const callback = jest.fn(() => 'return value');
+      const callback = vi.fn(() => 'return value');
       const { result } = renderHook(() => useEventCallback(callback));
 
       let returnValue: string = '';
@@ -60,7 +61,7 @@ describe('useEventCallback', () => {
     });
 
     test('should work with callbacks that return undefined', () => {
-      const callback = jest.fn();
+      const callback = vi.fn();
       const { result } = renderHook(() => useEventCallback(callback));
 
       let returnValue: unknown;
@@ -74,8 +75,8 @@ describe('useEventCallback', () => {
 
   describe('callback updates', () => {
     test('should call the latest callback version', () => {
-      const firstCallback = jest.fn();
-      const secondCallback = jest.fn();
+      const firstCallback = vi.fn();
+      const secondCallback = vi.fn();
 
       const { result, rerender } = renderHook(({ callback }) => useEventCallback(callback), {
         initialProps: { callback: firstCallback },
@@ -139,9 +140,9 @@ describe('useEventCallback', () => {
 
   describe('reference stability', () => {
     test('should maintain same reference when callback changes', () => {
-      const firstCallback = jest.fn();
-      const secondCallback = jest.fn();
-      const thirdCallback = jest.fn();
+      const firstCallback = vi.fn();
+      const secondCallback = vi.fn();
+      const thirdCallback = vi.fn();
 
       const { result, rerender } = renderHook(({ callback }) => useEventCallback(callback), {
         initialProps: { callback: firstCallback },
@@ -190,7 +191,7 @@ describe('useEventCallback', () => {
 
   describe('edge cases', () => {
     test('should work with async callbacks', async () => {
-      const callback = jest.fn(async () => {
+      const callback = vi.fn(async () => {
         await Promise.resolve();
         return 'async result';
       });
@@ -208,7 +209,7 @@ describe('useEventCallback', () => {
 
     test('should work with callbacks that throw errors', () => {
       const error = new Error('Test error');
-      const callback = jest.fn(() => {
+      const callback = vi.fn(() => {
         throw error;
       });
 
@@ -222,13 +223,13 @@ describe('useEventCallback', () => {
     });
 
     test('should work with complex argument types', () => {
-      const callback = jest.fn((obj: { a: number }, arr: string[], fn: () => void) => {
+      const callback = vi.fn((obj: { a: number }, arr: string[], fn: () => void) => {
         fn();
         return obj.a + arr.length;
       });
 
       const { result } = renderHook(() => useEventCallback(callback));
-      const mockFn = jest.fn();
+      const mockFn = vi.fn();
 
       let returnValue: number = 0;
       act(() => {
@@ -241,14 +242,14 @@ describe('useEventCallback', () => {
     });
 
     test('should work with event objects', () => {
-      const callback = jest.fn((event: React.MouseEvent) => {
+      const callback = vi.fn((event: React.MouseEvent) => {
         event.preventDefault();
       });
 
       const { result } = renderHook(() => useEventCallback(callback));
 
       const mockEvent = {
-        preventDefault: jest.fn(),
+        preventDefault: vi.fn(),
         currentTarget: null,
       } as unknown as React.MouseEvent;
 
@@ -263,7 +264,7 @@ describe('useEventCallback', () => {
 
   describe('integration', () => {
     test('should work correctly in a realistic scenario', () => {
-      const onSubmit = jest.fn();
+      const onSubmit = vi.fn();
 
       function useForm() {
         const [value, setValue] = useState('');
@@ -297,8 +298,8 @@ describe('useEventCallback', () => {
     });
 
     test('should work with multiple callback instances', () => {
-      const callback1 = jest.fn();
-      const callback2 = jest.fn();
+      const callback1 = vi.fn();
+      const callback2 = vi.fn();
 
       const { result } = renderHook(() => ({
         cb1: useEventCallback(callback1),
@@ -317,7 +318,7 @@ describe('useEventCallback', () => {
 
   describe('performance', () => {
     test('should not create new function on every render', () => {
-      const callback = jest.fn();
+      const callback = vi.fn();
       const { result, rerender } = renderHook(() => useEventCallback(callback));
 
       const references: Array<(...args: unknown[]) => unknown> = [];
@@ -355,7 +356,7 @@ describe('useEventCallback', () => {
     });
 
     test('should work with void return type', () => {
-      const callback = jest.fn((x: number): void => {
+      const callback = vi.fn((x: number): void => {
         console.log(x);
       });
 

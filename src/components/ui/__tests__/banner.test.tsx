@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react';
+import { vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
 import { Banner, BannerIcon, BannerTitle, BannerAction, BannerClose } from '@/components/ui/banner';
 import { XIcon } from 'lucide-react';
@@ -22,7 +23,7 @@ describe('Banner', () => {
 
   it('hides after clicking close in uncontrolled mode and calls onClose', async () => {
     const user = userEvent.setup();
-    const handleClose = jest.fn();
+    const handleClose = vi.fn();
     renderUncontrolled(handleClose);
 
     await user.click(screen.getByLabelText('Close'));
@@ -33,7 +34,7 @@ describe('Banner', () => {
 
   it('remains visible when controlled and still calls onClose', async () => {
     const user = userEvent.setup();
-    const handleClose = jest.fn();
+    const handleClose = vi.fn();
 
     render(
       <Banner visible onClose={handleClose}>
@@ -60,7 +61,7 @@ describe('Banner', () => {
 
   it('renders an action button that can be clicked', async () => {
     const user = userEvent.setup();
-    const onAction = jest.fn();
+    const onAction = vi.fn();
 
     render(
       <Banner>

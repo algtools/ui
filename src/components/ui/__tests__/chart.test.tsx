@@ -1,4 +1,5 @@
 import React from 'react';
+import { vi, Mock } from 'vitest';
 import { render } from '@testing-library/react';
 import type { LegendProps } from 'recharts';
 import { ChartContainer, ChartLegendContent, ChartTooltipContent } from '../chart';
@@ -14,10 +15,13 @@ type TooltipPayloadItem = {
 // removed unused LegendPayloadItem type
 
 // Mock only the parts of recharts needed by our tests to avoid layout errors
-jest.mock('recharts', () => ({
+vi.mock('recharts', () => ({
   __esModule: true,
   ResponsiveContainer: ({ children }: { children: React.ReactNode }) => (
     <div data-testid="responsive-container">{children}</div>
+  ),
+  Tooltip: ({ children }: { children?: React.ReactNode }) => (
+    <div data-testid="recharts-tooltip">{children}</div>
   ),
 }));
 
@@ -115,7 +119,7 @@ describe('Chart', () => {
 
   it('ChartTooltipContent supports labelFormatter and nests label when indicator is not dot', () => {
     const config = { value: { label: 'Ignored via formatter' } } as const;
-    const labelFormatter = jest.fn(() => 'Formatted Label');
+    const labelFormatter = vi.fn(() => 'Formatted Label');
     const { container } = render(
       <ChartContainer config={config}>
         <ChartTooltipContent

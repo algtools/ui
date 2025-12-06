@@ -1,9 +1,10 @@
 import React from 'react';
+import { vi, Mock } from 'vitest';
 import { render, screen, fireEvent, within, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 // Mock react-phone-number-input with a minimal controlled component
-jest.mock('react-phone-number-input', () => {
+vi.mock('react-phone-number-input', () => {
   const ReactLocal: typeof React = React;
 
   type MockProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'value'> & {
@@ -83,7 +84,7 @@ import { PhoneInput } from '@/components/ui/phone-input';
 
 describe('PhoneInput', () => {
   it('renders and accepts digits', () => {
-    const handleChange = jest.fn();
+    const handleChange = vi.fn();
     render(<PhoneInput value="" onChange={handleChange} />);
 
     const input = screen.getByTestId('rpn-input') as HTMLInputElement;
@@ -93,7 +94,7 @@ describe('PhoneInput', () => {
   });
 
   it('coerces undefined onChange to empty string', () => {
-    const handleChange = jest.fn();
+    const handleChange = vi.fn();
     render(<PhoneInput value="" onChange={handleChange} />);
 
     const input = screen.getByTestId('rpn-input') as HTMLInputElement;

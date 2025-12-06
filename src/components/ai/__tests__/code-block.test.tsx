@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { vi, beforeEach, afterEach, Mock, MockedFunction } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
@@ -7,23 +8,25 @@ import { useTheme } from 'next-themes';
 import { CodeBlock } from '../code-block';
 
 // Mock next-themes
-jest.mock('next-themes', () => ({
-  useTheme: jest.fn(),
+vi.mock('next-themes', () => ({
+  useTheme: vi.fn(),
 }));
 
 // Mock shiki
-jest.mock('shiki', () => ({
-  codeToHtml: jest.fn((code: string) => {
+vi.mock('shiki', () => ({
+  codeToHtml: vi.fn((code: string) => {
     return Promise.resolve(`<pre><code>${code}</code></pre>`);
   }),
 }));
 
-// Mock the useCopyToClipboard hook
-const mockCopy = jest.fn();
-const mockReset = jest.fn();
+import { codeToHtml } from 'shiki';
 
-jest.mock('../../../hooks/use-copy-to-clipboard', () => ({
-  useCopyToClipboard: jest.fn(() => ({
+// Mock the useCopyToClipboard hook
+const mockCopy = vi.fn();
+const mockReset = vi.fn();
+
+vi.mock('../../../hooks/use-copy-to-clipboard', () => ({
+  useCopyToClipboard: vi.fn(() => ({
     copiedText: null,
     isCopied: false,
     error: null,
@@ -32,14 +35,16 @@ jest.mock('../../../hooks/use-copy-to-clipboard', () => ({
   })),
 }));
 
+import { useCopyToClipboard } from '../../../hooks/use-copy-to-clipboard';
+
 describe('CodeBlock', () => {
-  const mockUseTheme = useTheme as jest.MockedFunction<typeof useTheme>;
+  const mockUseTheme = useTheme as MockedFunction<typeof useTheme>;
 
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
     mockUseTheme.mockReturnValue({
       theme: 'light',
-      setTheme: jest.fn(),
+      setTheme: vi.fn(),
       resolvedTheme: 'light',
       systemTheme: 'light',
       themes: ['light', 'dark'],
@@ -160,7 +165,7 @@ describe('CodeBlock', () => {
 
     it('calls onCopy callback when copy is successful', async () => {
       const user = userEvent.setup();
-      const onCopy = jest.fn();
+      const onCopy = vi.fn();
 
       render(<CodeBlock code="test" language="javascript" onCopy={onCopy} />);
 
@@ -175,11 +180,8 @@ describe('CodeBlock', () => {
     });
 
     it('shows check icon when code is copied', async () => {
-      // eslint-disable-next-line @typescript-eslint/no-require-imports
-      const { useCopyToClipboard } = require('../../../hooks/use-copy-to-clipboard');
-
       // Mock isCopied state
-      useCopyToClipboard.mockReturnValue({
+      vi.mocked(useCopyToClipboard).mockReturnValue({
         copiedText: 'test',
         isCopied: true,
         error: null,
@@ -240,8 +242,6 @@ describe('CodeBlock', () => {
 
   describe('Theme Support', () => {
     it('uses light theme when resolvedTheme is light', async () => {
-      // eslint-disable-next-line @typescript-eslint/no-require-imports
-      const { codeToHtml } = require('shiki');
 
       render(<CodeBlock code="test" language="javascript" />);
 
@@ -258,14 +258,12 @@ describe('CodeBlock', () => {
     it('uses dark theme when resolvedTheme is dark', async () => {
       mockUseTheme.mockReturnValue({
         theme: 'dark',
-        setTheme: jest.fn(),
+        setTheme: vi.fn(),
         resolvedTheme: 'dark',
         systemTheme: 'dark',
         themes: ['light', 'dark'],
       });
 
-      // eslint-disable-next-line @typescript-eslint/no-require-imports
-      const { codeToHtml } = require('shiki');
 
       render(<CodeBlock code="test" language="javascript" />);
 
@@ -280,8 +278,6 @@ describe('CodeBlock', () => {
     });
 
     it('uses custom light theme when provided', async () => {
-      // eslint-disable-next-line @typescript-eslint/no-require-imports
-      const { codeToHtml } = require('shiki');
 
       render(<CodeBlock code="test" language="javascript" lightTheme="nord" />);
 
@@ -298,14 +294,11 @@ describe('CodeBlock', () => {
     it('uses custom dark theme when provided', async () => {
       mockUseTheme.mockReturnValue({
         theme: 'dark',
-        setTheme: jest.fn(),
+        setTheme: vi.fn(),
         resolvedTheme: 'dark',
         systemTheme: 'dark',
         themes: ['light', 'dark'],
       });
-
-      // eslint-disable-next-line @typescript-eslint/no-require-imports
-      const { codeToHtml } = require('shiki');
 
       render(<CodeBlock code="test" language="javascript" darkTheme="dracula" />);
 
@@ -346,8 +339,6 @@ describe('CodeBlock', () => {
 
   describe('Line Highlighting', () => {
     it('passes highlight decorations to shiki', async () => {
-      // eslint-disable-next-line @typescript-eslint/no-require-imports
-      const { codeToHtml } = require('shiki');
       const code = 'line 1\nline 2\nline 3';
       const highlightLines = [1, 3];
 
@@ -375,8 +366,6 @@ describe('CodeBlock', () => {
     });
 
     it('handles empty highlightLines array', async () => {
-      // eslint-disable-next-line @typescript-eslint/no-require-imports
-      const { codeToHtml } = require('shiki');
 
       render(<CodeBlock code="test" language="javascript" highlightLines={[]} />);
 
@@ -435,8 +424,7 @@ describe('CodeBlock', () => {
 
     it('has proper ARIA label for copy button', async () => {
       // Reset mock to initial state
-      const { useCopyToClipboard } = jest.requireMock('../../../hooks/use-copy-to-clipboard');
-      useCopyToClipboard.mockReturnValue({
+      vi.mocked(useCopyToClipboard).mockReturnValue({
         copiedText: null,
         isCopied: false,
         error: null,
@@ -455,11 +443,9 @@ describe('CodeBlock', () => {
 
   describe('Error Handling', () => {
     it('falls back to plain text when highlighting fails', async () => {
-      // eslint-disable-next-line @typescript-eslint/no-require-imports
-      const { codeToHtml } = require('shiki');
-      codeToHtml.mockRejectedValueOnce(new Error('Highlighting failed'));
+      vi.mocked(codeToHtml).mockRejectedValueOnce(new Error('Highlighting failed'));
 
-      const consoleSpy = jest.spyOn(console, 'error').mockImplementation();
+      const consoleSpy = vi.spyOn(console, 'error').mockImplementation();
       const testCode = '<div>Test</div>';
 
       render(<CodeBlock code={testCode} language="javascript" />);
@@ -473,11 +459,9 @@ describe('CodeBlock', () => {
     });
 
     it('escapes HTML in fallback mode', async () => {
-      // eslint-disable-next-line @typescript-eslint/no-require-imports
-      const { codeToHtml } = require('shiki');
-      codeToHtml.mockRejectedValueOnce(new Error('Highlighting failed'));
+      vi.mocked(codeToHtml).mockRejectedValueOnce(new Error('Highlighting failed'));
 
-      const consoleSpy = jest.spyOn(console, 'error').mockImplementation();
+      const consoleSpy = vi.spyOn(console, 'error').mockImplementation();
       const testCode = '<script>alert("xss")</script>';
 
       const { container } = render(<CodeBlock code={testCode} language="javascript" />);
@@ -505,8 +489,6 @@ describe('CodeBlock', () => {
     });
 
     it('updates when code changes', async () => {
-      // eslint-disable-next-line @typescript-eslint/no-require-imports
-      const { codeToHtml } = require('shiki');
       const { rerender } = render(<CodeBlock code="first" language="javascript" />);
 
       await waitFor(() => {
@@ -526,8 +508,6 @@ describe('CodeBlock', () => {
     });
 
     it('updates when language changes', async () => {
-      // eslint-disable-next-line @typescript-eslint/no-require-imports
-      const { codeToHtml } = require('shiki');
       const { rerender } = render(<CodeBlock code="test" language="javascript" />);
 
       await waitFor(() => {
@@ -547,12 +527,10 @@ describe('CodeBlock', () => {
     });
 
     it('updates when theme changes', async () => {
-      // eslint-disable-next-line @typescript-eslint/no-require-imports
-      const { codeToHtml } = require('shiki');
 
       mockUseTheme.mockReturnValue({
         theme: 'light',
-        setTheme: jest.fn(),
+        setTheme: vi.fn(),
         resolvedTheme: 'light',
         systemTheme: 'light',
         themes: ['light', 'dark'],
@@ -571,7 +549,7 @@ describe('CodeBlock', () => {
 
       mockUseTheme.mockReturnValue({
         theme: 'dark',
-        setTheme: jest.fn(),
+        setTheme: vi.fn(),
         resolvedTheme: 'dark',
         systemTheme: 'dark',
         themes: ['light', 'dark'],

@@ -1,9 +1,10 @@
 import React from 'react';
+import { vi, beforeEach, afterEach, Mock } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { AvatarEditor } from '../avatar-editor';
 
 // Mock Radix Slider primitives used by our Slider wrapper to keep DOM simple
-jest.mock('@radix-ui/react-slider', () => {
+vi.mock('@radix-ui/react-slider', () => {
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   const React = require('react');
   return {
@@ -19,18 +20,18 @@ jest.mock('@radix-ui/react-slider', () => {
 
 // Canvas 2D context mock
 type Ctx = {
-  clearRect: jest.Mock;
-  setTransform: jest.Mock;
-  save: jest.Mock;
-  translate: jest.Mock;
-  rotate: jest.Mock;
-  scale: jest.Mock;
-  drawImage: jest.Mock;
-  restore: jest.Mock;
-  beginPath: jest.Mock;
-  moveTo: jest.Mock;
-  lineTo: jest.Mock;
-  stroke: jest.Mock;
+  clearRect: Mock;
+  setTransform: Mock;
+  save: Mock;
+  translate: Mock;
+  rotate: Mock;
+  scale: Mock;
+  drawImage: Mock;
+  restore: Mock;
+  beginPath: Mock;
+  moveTo: Mock;
+  lineTo: Mock;
+  stroke: Mock;
   globalCompositeOperation?: string;
   strokeStyle?: string;
   lineWidth?: number;
@@ -43,30 +44,30 @@ let ctx: Ctx;
 beforeAll(() => {
   // Mock canvas context
   ctx = {
-    clearRect: jest.fn(),
-    setTransform: jest.fn(),
-    save: jest.fn(),
-    translate: jest.fn(),
-    rotate: jest.fn(),
-    scale: jest.fn(),
-    drawImage: jest.fn(),
-    restore: jest.fn(),
-    beginPath: jest.fn(),
-    moveTo: jest.fn(),
-    lineTo: jest.fn(),
-    stroke: jest.fn(),
+    clearRect: vi.fn(),
+    setTransform: vi.fn(),
+    save: vi.fn(),
+    translate: vi.fn(),
+    rotate: vi.fn(),
+    scale: vi.fn(),
+    drawImage: vi.fn(),
+    restore: vi.fn(),
+    beginPath: vi.fn(),
+    moveTo: vi.fn(),
+    lineTo: vi.fn(),
+    stroke: vi.fn(),
   };
 
   // @ts-expect-error jsdom missing getContext
-  HTMLCanvasElement.prototype.getContext = jest.fn(() => ctx);
+  HTMLCanvasElement.prototype.getContext = vi.fn(() => ctx);
   // Cast to satisfy TS when assigning mock function
-  HTMLCanvasElement.prototype.toDataURL = jest.fn(
+  HTMLCanvasElement.prototype.toDataURL = vi.fn(
     () => 'data:image/png;base64,mock'
   ) as unknown as typeof HTMLCanvasElement.prototype.toDataURL;
 });
 
 afterEach(() => {
-  jest.clearAllMocks();
+  vi.clearAllMocks();
 });
 
 // Mock FileReader
@@ -132,7 +133,7 @@ describe('AvatarEditor', () => {
     const { container } = render(<AvatarEditor onSave={async () => {}} onDiscard={() => {}} />);
 
     const input = getFileInput(container)!;
-    const clickSpy = jest.spyOn(input, 'click');
+    const clickSpy = vi.spyOn(input, 'click');
 
     fireEvent.click(screen.getByText('Haz clic para subir imagen'));
     expect(clickSpy).toHaveBeenCalled();
@@ -155,7 +156,7 @@ describe('AvatarEditor', () => {
   });
 
   it('respects disallowed file types and warns without loading', async () => {
-    const warnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {});
+    const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
     const { container } = render(<AvatarEditor onSave={async () => {}} onDiscard={() => {}} />);
     const input = getFileInput(container)!;
     const badFile = createFile('note.txt', 'text/plain');
@@ -205,7 +206,7 @@ describe('AvatarEditor', () => {
   });
 
   it('saves edited image and calls onSave with data URL, showing loader while pending', async () => {
-    const onSave = jest.fn(async () => {
+    const onSave = vi.fn(async () => {
       return new Promise<void>((resolve) => setTimeout(resolve, 10));
     });
     const { container } = render(<AvatarEditor onSave={onSave} onDiscard={() => {}} />);
@@ -226,7 +227,7 @@ describe('AvatarEditor', () => {
   });
 
   it('calls onChange with data URL on initial load and when transforms change', async () => {
-    const onChange = jest.fn();
+    const onChange = vi.fn();
     const { container } = render(
       <AvatarEditor onSave={async () => {}} onDiscard={() => {}} onChange={onChange} />
     );
@@ -256,7 +257,7 @@ describe('AvatarEditor', () => {
   });
 
   it('does not call onChange on currentAvatar load; calls after user edit', async () => {
-    const onChange = jest.fn();
+    const onChange = vi.fn();
     render(
       <AvatarEditor
         currentAvatar="https://example.com/avatar.jpg"
@@ -292,13 +293,13 @@ describe('AvatarEditor', () => {
   it('respects quality parameter when generating data URLs (used by onChange)', async () => {
     // Spy on toDataURL to inspect arguments
     const originalToDataURL = HTMLCanvasElement.prototype.toDataURL;
-    const toDataURLMock = jest.fn(() => 'data:image/png;base64,spy');
+    const toDataURLMock = vi.fn(() => 'data:image/png;base64,spy');
     // Cast to satisfy TS when overriding prototype method
     HTMLCanvasElement.prototype.toDataURL =
       toDataURLMock as unknown as typeof HTMLCanvasElement.prototype.toDataURL;
 
     try {
-      const onChange = jest.fn();
+      const onChange = vi.fn();
       const { container } = render(
         <AvatarEditor
           onSave={async () => {}}
@@ -323,7 +324,7 @@ describe('AvatarEditor', () => {
   });
 
   it('discard clears image, canvas, input and calls onDiscard', async () => {
-    const onDiscard = jest.fn();
+    const onDiscard = vi.fn();
     const { container } = render(<AvatarEditor onSave={async () => {}} onDiscard={onDiscard} />);
     const input = getFileInput(container)!;
     fireEvent.change(input, { target: { files: [createFile()] } });

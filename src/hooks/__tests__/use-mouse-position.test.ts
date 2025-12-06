@@ -1,15 +1,16 @@
 import { renderHook, act } from '@testing-library/react';
+import { vi, beforeEach, afterEach } from 'vitest';
 
 import { useMousePosition } from '@/hooks/use-mouse-position';
 
 describe('useMousePosition', () => {
   beforeEach(() => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
   });
 
   afterEach(() => {
-    jest.clearAllTimers();
-    jest.useRealTimers();
+    vi.clearAllTimers();
+    vi.useRealTimers();
   });
 
   describe('basic functionality', () => {
@@ -178,13 +179,13 @@ describe('useMousePosition', () => {
 
       // Fast-forward time by 199ms
       act(() => {
-        jest.advanceTimersByTime(199);
+        vi.advanceTimersByTime(199);
       });
       expect(result.current.position).toEqual({ x: 0, y: 0 });
 
       // Fast-forward time by 1ms more
       act(() => {
-        jest.advanceTimersByTime(1);
+        vi.advanceTimersByTime(1);
       });
       expect(result.current.position).toEqual({ x: 100, y: 200 });
     });
@@ -199,7 +200,7 @@ describe('useMousePosition', () => {
 
       // Fast-forward 100ms
       act(() => {
-        jest.advanceTimersByTime(100);
+        vi.advanceTimersByTime(100);
       });
 
       // Second movement before debounce completes
@@ -209,7 +210,7 @@ describe('useMousePosition', () => {
 
       // Fast-forward 100ms (total 200ms from first movement, but only 100ms from second)
       act(() => {
-        jest.advanceTimersByTime(100);
+        vi.advanceTimersByTime(100);
       });
 
       // Should not have updated yet
@@ -217,7 +218,7 @@ describe('useMousePosition', () => {
 
       // Fast-forward another 100ms (200ms from second movement)
       act(() => {
-        jest.advanceTimersByTime(100);
+        vi.advanceTimersByTime(100);
       });
 
       // Should update with the last position
@@ -232,13 +233,13 @@ describe('useMousePosition', () => {
         window.dispatchEvent(new MouseEvent('mousemove', { clientX: 10, clientY: 10 }));
       });
       act(() => {
-        jest.advanceTimersByTime(50);
+        vi.advanceTimersByTime(50);
       });
       act(() => {
         window.dispatchEvent(new MouseEvent('mousemove', { clientX: 20, clientY: 20 }));
       });
       act(() => {
-        jest.advanceTimersByTime(50);
+        vi.advanceTimersByTime(50);
       });
       act(() => {
         window.dispatchEvent(new MouseEvent('mousemove', { clientX: 30, clientY: 30 }));
@@ -249,7 +250,7 @@ describe('useMousePosition', () => {
 
       // Fast-forward past debounce time
       act(() => {
-        jest.advanceTimersByTime(300);
+        vi.advanceTimersByTime(300);
       });
 
       // Should update with the last position only
@@ -280,7 +281,7 @@ describe('useMousePosition', () => {
 
       // Second movement within throttle window should not update
       act(() => {
-        jest.advanceTimersByTime(50);
+        vi.advanceTimersByTime(50);
       });
       act(() => {
         window.dispatchEvent(new MouseEvent('mousemove', { clientX: 150, clientY: 250 }));
@@ -289,7 +290,7 @@ describe('useMousePosition', () => {
 
       // After throttle window, next movement should update
       act(() => {
-        jest.advanceTimersByTime(50);
+        vi.advanceTimersByTime(50);
       });
       act(() => {
         window.dispatchEvent(new MouseEvent('mousemove', { clientX: 200, clientY: 300 }));
@@ -308,7 +309,7 @@ describe('useMousePosition', () => {
 
       // Wait for throttle interval
       act(() => {
-        jest.advanceTimersByTime(100);
+        vi.advanceTimersByTime(100);
       });
 
       // Second update
@@ -319,7 +320,7 @@ describe('useMousePosition', () => {
 
       // Wait for throttle interval
       act(() => {
-        jest.advanceTimersByTime(100);
+        vi.advanceTimersByTime(100);
       });
 
       // Third update
@@ -339,13 +340,13 @@ describe('useMousePosition', () => {
 
       // Multiple movements within throttle window
       act(() => {
-        jest.advanceTimersByTime(50);
+        vi.advanceTimersByTime(50);
       });
       act(() => {
         window.dispatchEvent(new MouseEvent('mousemove', { clientX: 110, clientY: 110 }));
       });
       act(() => {
-        jest.advanceTimersByTime(50);
+        vi.advanceTimersByTime(50);
       });
       act(() => {
         window.dispatchEvent(new MouseEvent('mousemove', { clientX: 120, clientY: 120 }));
@@ -356,7 +357,7 @@ describe('useMousePosition', () => {
 
       // After throttle window
       act(() => {
-        jest.advanceTimersByTime(100);
+        vi.advanceTimersByTime(100);
       });
       act(() => {
         window.dispatchEvent(new MouseEvent('mousemove', { clientX: 130, clientY: 130 }));
@@ -388,7 +389,7 @@ describe('useMousePosition', () => {
     test('should throw error when both debounce and throttle are provided', () => {
       // Suppress console.error for this test
       const originalError = console.error;
-      console.error = jest.fn();
+      console.error = vi.fn();
 
       expect(() => {
         renderHook(() => useMousePosition({ debounceMs: 100, throttleMs: 100 }));
@@ -402,7 +403,7 @@ describe('useMousePosition', () => {
 
   describe('cleanup', () => {
     test('should remove event listener on unmount', () => {
-      const removeEventListenerSpy = jest.spyOn(window, 'removeEventListener');
+      const removeEventListenerSpy = vi.spyOn(window, 'removeEventListener');
 
       const { unmount } = renderHook(() => useMousePosition());
 
@@ -428,7 +429,7 @@ describe('useMousePosition', () => {
 
       // Fast-forward past the debounce time
       act(() => {
-        jest.advanceTimersByTime(500);
+        vi.advanceTimersByTime(500);
       });
 
       // Should still be at initial position since unmount cleared the timeout
@@ -462,7 +463,7 @@ describe('useMousePosition', () => {
         window.dispatchEvent(new MouseEvent('mousemove', { clientX: 50, clientY: 50 }));
       });
       act(() => {
-        jest.advanceTimersByTime(100);
+        vi.advanceTimersByTime(100);
       });
       expect(result.current.position).toEqual({ x: 50, y: 50 });
 
@@ -474,13 +475,13 @@ describe('useMousePosition', () => {
         window.dispatchEvent(new MouseEvent('mousemove', { clientX: 100, clientY: 100 }));
       });
       act(() => {
-        jest.advanceTimersByTime(100);
+        vi.advanceTimersByTime(100);
       });
       // Should not have updated yet
       expect(result.current.position).toEqual({ x: 50, y: 50 });
 
       act(() => {
-        jest.advanceTimersByTime(100);
+        vi.advanceTimersByTime(100);
       });
       // Now should be updated
       expect(result.current.position).toEqual({ x: 100, y: 100 });
@@ -502,7 +503,7 @@ describe('useMousePosition', () => {
       rerender({ throttle: 200 });
 
       act(() => {
-        jest.advanceTimersByTime(150);
+        vi.advanceTimersByTime(150);
       });
       act(() => {
         window.dispatchEvent(new MouseEvent('mousemove', { clientX: 20, clientY: 20 }));
@@ -545,7 +546,7 @@ describe('useMousePosition', () => {
         window.dispatchEvent(new MouseEvent('mousemove', { clientX: 10, clientY: 10 }));
       });
       act(() => {
-        jest.advanceTimersByTime(50);
+        vi.advanceTimersByTime(50);
       });
       expect(result.current.position).toEqual({ x: 10, y: 10 });
 
@@ -555,11 +556,11 @@ describe('useMousePosition', () => {
         window.dispatchEvent(new MouseEvent('mousemove', { clientX: 20, clientY: 20 }));
       });
       act(() => {
-        jest.advanceTimersByTime(499);
+        vi.advanceTimersByTime(499);
       });
       expect(result.current.position).toEqual({ x: 10, y: 10 });
       act(() => {
-        jest.advanceTimersByTime(1);
+        vi.advanceTimersByTime(1);
       });
       expect(result.current.position).toEqual({ x: 20, y: 20 });
     });
@@ -606,7 +607,7 @@ describe('useMousePosition', () => {
 
       // After throttle window
       act(() => {
-        jest.advanceTimersByTime(50);
+        vi.advanceTimersByTime(50);
       });
       act(() => {
         window.dispatchEvent(new MouseEvent('mousemove', { clientX: 100, clientY: 100 }));
@@ -638,7 +639,7 @@ describe('useMousePosition', () => {
 
       // After debounce time
       act(() => {
-        jest.advanceTimersByTime(100);
+        vi.advanceTimersByTime(100);
       });
 
       // Now debounced should update

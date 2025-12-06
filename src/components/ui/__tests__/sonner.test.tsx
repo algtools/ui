@@ -1,13 +1,14 @@
 import React from 'react';
+import { vi, Mock } from 'vitest';
 import { render } from '@testing-library/react';
 import { Toaster } from '../sonner';
 
 // Mock next-themes and sonner primitives
-jest.mock('next-themes', () => ({
-  useTheme: jest.fn(),
+vi.mock('next-themes', () => ({
+  useTheme: vi.fn(),
 }));
 
-jest.mock('sonner', () => ({
+vi.mock('sonner', () => ({
   // The component under test imports: `Toaster as Sonner`
   Toaster: ({ children, ...props }: React.ComponentProps<'div'>) => (
     <div data-slot="sonner-toaster" {...props}>
@@ -16,12 +17,11 @@ jest.mock('sonner', () => ({
   ),
 }));
 
+import { useTheme } from 'next-themes';
+
 describe('Toaster (sonner)', () => {
   it('forwards theme from next-themes and merges className and styles', () => {
-    const { useTheme } = jest.requireMock('next-themes') as {
-      useTheme: jest.Mock;
-    };
-    useTheme.mockReturnValue({ theme: 'dark' });
+    vi.mocked(useTheme).mockReturnValue({ theme: 'dark' } as any);
 
     const { container } = render(<Toaster position="top-right" />);
     const el = container.querySelector('[data-slot="sonner-toaster"]') as HTMLElement | null;
@@ -45,10 +45,7 @@ describe('Toaster (sonner)', () => {
   });
 
   it('defaults to system theme when theme is undefined', () => {
-    const { useTheme } = jest.requireMock('next-themes') as {
-      useTheme: jest.Mock;
-    };
-    useTheme.mockReturnValue({});
+    vi.mocked(useTheme).mockReturnValue({} as any);
 
     const { container } = render(<Toaster />);
     const el = container.querySelector('[data-slot="sonner-toaster"]') as HTMLElement | null;

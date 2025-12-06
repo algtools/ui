@@ -1,15 +1,16 @@
 import React from 'react';
+import { vi, beforeEach, afterEach, Mock } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { AIImage } from '../ai-image';
 
 // Mock fetch for download functionality
-global.fetch = jest.fn();
-global.URL.createObjectURL = jest.fn(() => 'blob:mock-url');
-global.URL.revokeObjectURL = jest.fn();
+global.fetch = vi.fn();
+global.URL.createObjectURL = vi.fn(() => 'blob:mock-url');
+global.URL.revokeObjectURL = vi.fn();
 
 describe('AIImage', () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   describe('Basic Rendering', () => {
@@ -73,7 +74,7 @@ describe('AIImage', () => {
     });
 
     it('calls onImageError callback when image fails to load', () => {
-      const onImageError = jest.fn();
+      const onImageError = vi.fn();
       const { container } = render(
         <AIImage src="/invalid.jpg" alt="Test" onImageError={onImageError} />
       );
@@ -97,7 +98,7 @@ describe('AIImage', () => {
 
   describe('Image Loading', () => {
     it('calls onLoad callback when image loads successfully', () => {
-      const onLoad = jest.fn();
+      const onLoad = vi.fn();
       const { container } = render(<AIImage src="/test.jpg" alt="Test" onLoad={onLoad} />);
       const img = container.querySelector('[data-slot="ai-image"]') as HTMLImageElement;
 
@@ -201,7 +202,7 @@ describe('AIImage', () => {
 
     it('triggers download when download button is clicked', async () => {
       const mockBlob = new Blob(['test'], { type: 'image/png' });
-      (global.fetch as jest.Mock).mockResolvedValue({
+      (global.fetch as Mock).mockResolvedValue({
         blob: () => Promise.resolve(mockBlob),
       });
 
@@ -222,7 +223,7 @@ describe('AIImage', () => {
 
     it('uses default filename when downloadFilename is not provided', async () => {
       const mockBlob = new Blob(['test'], { type: 'image/png' });
-      (global.fetch as jest.Mock).mockResolvedValue({
+      (global.fetch as Mock).mockResolvedValue({
         blob: () => Promise.resolve(mockBlob),
       });
 
@@ -230,23 +231,23 @@ describe('AIImage', () => {
       const mockLink = {
         href: '',
         download: '',
-        click: jest.fn(),
-        remove: jest.fn(),
+        click: vi.fn(),
+        remove: vi.fn(),
       } as unknown as HTMLAnchorElement;
 
       const originalCreateElement = document.createElement.bind(document);
-      jest.spyOn(document, 'createElement').mockImplementation((tag) => {
+      vi.spyOn(document, 'createElement').mockImplementation((tag) => {
         if (tag === 'a') return mockLink;
         return originalCreateElement(tag);
       });
 
       const originalAppendChild = document.body.appendChild.bind(document.body);
       const originalRemoveChild = document.body.removeChild.bind(document.body);
-      jest.spyOn(document.body, 'appendChild').mockImplementation((node) => {
+      vi.spyOn(document.body, 'appendChild').mockImplementation((node) => {
         if ((node as HTMLElement).tagName === 'A') return node as unknown as Node;
         return originalAppendChild(node);
       });
-      jest.spyOn(document.body, 'removeChild').mockImplementation((node) => {
+      vi.spyOn(document.body, 'removeChild').mockImplementation((node) => {
         if ((node as HTMLElement).tagName === 'A') return node as unknown as Node;
         return originalRemoveChild(node);
       });
@@ -264,12 +265,12 @@ describe('AIImage', () => {
       });
 
       // Cleanup
-      jest.restoreAllMocks();
+      vi.restoreAllMocks();
     });
 
     it('handles download errors gracefully', async () => {
-      const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
-      (global.fetch as jest.Mock).mockRejectedValue(new Error('Network error'));
+      const consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+      (global.fetch as Mock).mockRejectedValue(new Error('Network error'));
 
       const { container } = render(<AIImage src="/test.jpg" alt="Test" showDownload />);
       const img = container.querySelector('[data-slot="ai-image"]') as HTMLImageElement;

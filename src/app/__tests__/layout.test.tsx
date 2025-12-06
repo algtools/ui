@@ -1,21 +1,22 @@
 import React from 'react';
+import { vi, Mock, MockedFunction } from 'vitest';
 import { renderToStaticMarkup } from 'react-dom/server';
 
 // Mock next/font/google to provide stable class names for fonts used by layout
-jest.mock('next/font/google', () => ({
+vi.mock('next/font/google', () => ({
   Inter: () => ({ variable: 'geist-sans-var' }),
   JetBrains_Mono: () => ({ variable: 'geist-mono-var' }),
 }));
 
 // Mock ThemeProvider to render children directly and make it discoverable
-jest.mock('@/components/theme-provider', () => ({
+vi.mock('@/components/theme-provider', () => ({
   ThemeProvider: ({ children }: React.PropsWithChildren) => (
     <div data-testid="theme-provider">{children}</div>
   ),
 }));
 
 // Mock ThemeSwitcher to a simple marker
-jest.mock('@/components/ui/theme-switcher', () => ({
+vi.mock('@/components/ui/theme-switcher', () => ({
   ThemeSwitcher: () => <div data-testid="theme-switcher">ThemeSwitcher</div>,
 }));
 

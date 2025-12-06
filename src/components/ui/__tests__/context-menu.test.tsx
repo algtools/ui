@@ -1,4 +1,5 @@
 import React from 'react';
+import { vi, Mock, MockedFunction } from 'vitest';
 import { render } from '@testing-library/react';
 import {
   ContextMenu,
@@ -17,7 +18,7 @@ import {
 } from '../context-menu';
 
 // Mock Radix primitives to simple host elements to avoid portal/focus logic
-jest.mock('@radix-ui/react-context-menu', () => {
+vi.mock('@radix-ui/react-context-menu', () => {
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   const React = require('react');
   const Host = (Tag: React.ElementType) => {

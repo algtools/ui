@@ -1,34 +1,43 @@
 import { renderHook, act, waitFor } from '@testing-library/react';
+import { vi, beforeEach, afterEach, Mock } from 'vitest';
 import { useDarkMode } from '@/hooks/use-dark-mode';
 
 describe('useDarkMode', () => {
   // Setup and teardown
   beforeEach(() => {
     // Clear localStorage before each test
-    window.localStorage.clear();
+    if (typeof window !== 'undefined' && window.localStorage) {
+      window.localStorage.clear();
+    }
     // Clear any mocks
-    jest.clearAllMocks();
+    vi.clearAllMocks();
     // Remove dark class from document
-    document.documentElement.classList.remove('dark');
+    if (typeof document !== 'undefined' && document.documentElement) {
+      document.documentElement.classList.remove('dark');
+    }
   });
 
   afterEach(() => {
-    window.localStorage.clear();
-    document.documentElement.classList.remove('dark');
+    if (typeof window !== 'undefined' && window.localStorage) {
+      window.localStorage.clear();
+    }
+    if (typeof document !== 'undefined' && document.documentElement) {
+      document.documentElement.classList.remove('dark');
+    }
   });
 
   describe('initialization', () => {
     test('should initialize with system preference when no default provided', () => {
       // Mock system prefers dark
-      window.matchMedia = jest.fn().mockImplementation((query) => ({
+      window.matchMedia = vi.fn().mockImplementation((query) => ({
         matches: query === '(prefers-color-scheme: dark)',
         media: query,
         onchange: null,
-        addListener: jest.fn(),
-        removeListener: jest.fn(),
-        addEventListener: jest.fn(),
-        removeEventListener: jest.fn(),
-        dispatchEvent: jest.fn(),
+        addListener: vi.fn(),
+        removeListener: vi.fn(),
+        addEventListener: vi.fn(),
+        removeEventListener: vi.fn(),
+        dispatchEvent: vi.fn(),
       }));
 
       const { result } = renderHook(() => useDarkMode());
@@ -270,15 +279,15 @@ describe('useDarkMode', () => {
 
   describe('system preference sync', () => {
     test('should sync with system dark mode preference on initial load', () => {
-      window.matchMedia = jest.fn().mockImplementation((query) => ({
+      window.matchMedia = vi.fn().mockImplementation((query) => ({
         matches: query === '(prefers-color-scheme: dark)',
         media: query,
         onchange: null,
-        addListener: jest.fn(),
-        removeListener: jest.fn(),
-        addEventListener: jest.fn(),
-        removeEventListener: jest.fn(),
-        dispatchEvent: jest.fn(),
+        addListener: vi.fn(),
+        removeListener: vi.fn(),
+        addEventListener: vi.fn(),
+        removeEventListener: vi.fn(),
+        dispatchEvent: vi.fn(),
       }));
 
       const { result } = renderHook(() => useDarkMode());
@@ -287,15 +296,15 @@ describe('useDarkMode', () => {
     });
 
     test('should sync with system light mode preference on initial load', () => {
-      window.matchMedia = jest.fn().mockImplementation((query) => ({
+      window.matchMedia = vi.fn().mockImplementation((query) => ({
         matches: false,
         media: query,
         onchange: null,
-        addListener: jest.fn(),
-        removeListener: jest.fn(),
-        addEventListener: jest.fn(),
-        removeEventListener: jest.fn(),
-        dispatchEvent: jest.fn(),
+        addListener: vi.fn(),
+        removeListener: vi.fn(),
+        addEventListener: vi.fn(),
+        removeEventListener: vi.fn(),
+        dispatchEvent: vi.fn(),
       }));
 
       const { result } = renderHook(() => useDarkMode());
@@ -304,15 +313,15 @@ describe('useDarkMode', () => {
     });
 
     test('should prefer explicit default over system preference', () => {
-      window.matchMedia = jest.fn().mockImplementation((query) => ({
+      window.matchMedia = vi.fn().mockImplementation((query) => ({
         matches: query === '(prefers-color-scheme: dark)',
         media: query,
         onchange: null,
-        addListener: jest.fn(),
-        removeListener: jest.fn(),
-        addEventListener: jest.fn(),
-        removeEventListener: jest.fn(),
-        dispatchEvent: jest.fn(),
+        addListener: vi.fn(),
+        removeListener: vi.fn(),
+        addEventListener: vi.fn(),
+        removeEventListener: vi.fn(),
+        dispatchEvent: vi.fn(),
       }));
 
       const { result } = renderHook(() => useDarkMode(false));

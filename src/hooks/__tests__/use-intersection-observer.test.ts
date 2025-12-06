@@ -1,29 +1,30 @@
 import { renderHook } from '@testing-library/react';
+import { vi, beforeEach, afterEach, Mock } from 'vitest';
 import { useIntersectionObserver } from '@/hooks/use-intersection-observer';
 
 // Mock IntersectionObserver
 let mockObserverInstance: {
-  observe: jest.Mock;
-  unobserve: jest.Mock;
-  disconnect: jest.Mock;
+  observe: Mock;
+  unobserve: Mock;
+  disconnect: Mock;
 } | null = null;
 
 describe('useIntersectionObserver', () => {
   beforeEach(() => {
     mockObserverInstance = null;
 
-    global.IntersectionObserver = jest.fn(() => {
+    global.IntersectionObserver = vi.fn(() => {
       mockObserverInstance = {
-        observe: jest.fn(),
-        unobserve: jest.fn(),
-        disconnect: jest.fn(),
+        observe: vi.fn(),
+        unobserve: vi.fn(),
+        disconnect: vi.fn(),
       };
       return mockObserverInstance as unknown as IntersectionObserver;
     }) as unknown as typeof IntersectionObserver;
   });
 
   afterEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   describe('initialization', () => {
@@ -80,7 +81,7 @@ describe('useIntersectionObserver', () => {
     });
 
     test('should accept onChange callback', () => {
-      const onChange = jest.fn();
+      const onChange = vi.fn();
       const { result } = renderHook(() => useIntersectionObserver({ onChange }));
 
       expect(result.current.ref).toBeDefined();
@@ -166,7 +167,7 @@ describe('useIntersectionObserver', () => {
       // @ts-expect-error - Intentionally removing for testing
       delete global.IntersectionObserver;
 
-      const consoleWarnSpy = jest.spyOn(console, 'warn').mockImplementation();
+      const consoleWarnSpy = vi.spyOn(console, 'warn').mockImplementation();
 
       const { result } = renderHook(() => useIntersectionObserver());
 
@@ -185,7 +186,7 @@ describe('useIntersectionObserver', () => {
       // @ts-expect-error - Intentionally removing for testing
       delete global.IntersectionObserver;
 
-      const consoleWarnSpy = jest.spyOn(console, 'warn').mockImplementation();
+      const consoleWarnSpy = vi.spyOn(console, 'warn').mockImplementation();
 
       renderHook(() => useIntersectionObserver());
 
@@ -204,7 +205,7 @@ describe('useIntersectionObserver', () => {
         threshold: 0.5,
         rootMargin: '10px',
         enabled: true,
-        onChange: jest.fn(),
+        onChange: vi.fn(),
       };
 
       const { result } = renderHook(() => useIntersectionObserver(options));
@@ -262,8 +263,8 @@ describe('useIntersectionObserver', () => {
     });
 
     test('should handle onChange callback updates', () => {
-      const onChange1 = jest.fn();
-      const onChange2 = jest.fn();
+      const onChange1 = vi.fn();
+      const onChange2 = vi.fn();
 
       const { result, rerender } = renderHook(
         ({ callback }) => useIntersectionObserver({ onChange: callback }),

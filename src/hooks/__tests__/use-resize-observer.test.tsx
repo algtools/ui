@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react';
+import { vi, beforeEach, afterEach, Mock } from 'vitest';
 import * as React from 'react';
 
 import { useResizeObserver } from '@/hooks/use-resize-observer';
@@ -45,7 +46,7 @@ describe('useResizeObserver', () => {
   });
 
   afterEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
     MockResizeObserver.reset();
   });
 
@@ -261,7 +262,7 @@ describe('useResizeObserver', () => {
 
   describe('callback support', () => {
     test('should call onResize callback when size changes', () => {
-      const onResize = jest.fn();
+      const onResize = vi.fn();
 
       const TestComponent = () => {
         const [ref] = useResizeObserver<HTMLDivElement>({ onResize });
@@ -359,8 +360,8 @@ describe('useResizeObserver', () => {
     });
 
     test('should use updated callback', () => {
-      const callback1 = jest.fn();
-      const callback2 = jest.fn();
+      const callback1 = vi.fn();
+      const callback2 = vi.fn();
 
       const TestComponent = ({
         onResize,
@@ -430,7 +431,7 @@ describe('useResizeObserver', () => {
       const { unmount } = render(<TestComponent />);
 
       const observer = MockResizeObserver.instances[0];
-      const disconnectSpy = jest.spyOn(observer, 'disconnect');
+      const disconnectSpy = vi.spyOn(observer, 'disconnect');
 
       unmount();
 
@@ -497,7 +498,7 @@ describe('useResizeObserver', () => {
 
   describe('integration', () => {
     test('should work with multiple resize events', () => {
-      const onResize = jest.fn();
+      const onResize = vi.fn();
 
       const TestComponent = () => {
         const [ref, size] = useResizeObserver<HTMLDivElement>({ onResize });
@@ -568,8 +569,8 @@ describe('useResizeObserver', () => {
     });
 
     test('should work with multiple instances independently', () => {
-      const onResize1 = jest.fn();
-      const onResize2 = jest.fn();
+      const onResize1 = vi.fn();
+      const onResize2 = vi.fn();
 
       const TestComponent = () => {
         const [ref1, size1] = useResizeObserver<HTMLDivElement>({ onResize: onResize1 });

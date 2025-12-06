@@ -1,9 +1,10 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
 import React from 'react';
+import { vi, Mock, MockedFunction } from 'vitest';
 import { render } from '@testing-library/react';
 // Mock Radix Avatar primitives to avoid image loading behavior in tests
-jest.mock('@radix-ui/react-avatar', () => {
+vi.mock('@radix-ui/react-avatar', () => {
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   const React = require('react');
   return {

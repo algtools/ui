@@ -1,4 +1,5 @@
 import { renderHook, act } from '@testing-library/react';
+import { vi, beforeEach, afterEach, Mock } from 'vitest';
 
 import { useSessionStorage } from '@/hooks/use-session-storage';
 
@@ -6,13 +7,17 @@ describe('useSessionStorage', () => {
   // Setup and teardown
   beforeEach(() => {
     // Clear sessionStorage before each test
-    window.sessionStorage.clear();
+    if (typeof window !== 'undefined' && window.sessionStorage) {
+      window.sessionStorage.clear();
+    }
     // Clear any mocks
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   afterEach(() => {
-    window.sessionStorage.clear();
+    if (typeof window !== 'undefined' && window.sessionStorage) {
+      window.sessionStorage.clear();
+    }
   });
 
   describe('initialization', () => {
@@ -149,7 +154,7 @@ describe('useSessionStorage', () => {
       const { result } = renderHook(() => useSessionStorage('test-key', 'initial'));
 
       // Mock sessionStorage.setItem to throw QuotaExceededError
-      const setItemSpy = jest.spyOn(Storage.prototype, 'setItem');
+      const setItemSpy = vi.spyOn(Storage.prototype, 'setItem');
       setItemSpy.mockImplementation(() => {
         throw new DOMException('QuotaExceededError', 'QuotaExceededError');
       });
@@ -167,7 +172,7 @@ describe('useSessionStorage', () => {
       const { result } = renderHook(() => useSessionStorage('test-key', 'initial'));
 
       // Mock sessionStorage.setItem to throw error first
-      const setItemSpy = jest.spyOn(Storage.prototype, 'setItem');
+      const setItemSpy = vi.spyOn(Storage.prototype, 'setItem');
       setItemSpy.mockImplementationOnce(() => {
         throw new Error('Storage error');
       });
@@ -223,7 +228,7 @@ describe('useSessionStorage', () => {
     test('should handle errors when removing', () => {
       const { result } = renderHook(() => useSessionStorage('test-key', 'initial'));
 
-      const removeItemSpy = jest.spyOn(Storage.prototype, 'removeItem');
+      const removeItemSpy = vi.spyOn(Storage.prototype, 'removeItem');
       removeItemSpy.mockImplementation(() => {
         throw new Error('Remove error');
       });

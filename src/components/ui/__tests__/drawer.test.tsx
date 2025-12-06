@@ -1,4 +1,5 @@
 import React from 'react';
+import { vi, Mock, MockedFunction } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import {
@@ -13,7 +14,7 @@ import {
 } from '../drawer';
 
 // Mock vaul's Drawer primitives to simple elements for testing
-jest.mock('vaul', () => ({
+vi.mock('vaul', () => ({
   __esModule: true,
   Drawer: {
     Root: ({ children, ...props }: React.ComponentProps<'div'>) => <div {...props}>{children}</div>,

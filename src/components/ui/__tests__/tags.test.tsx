@@ -1,4 +1,5 @@
 import { render, screen, fireEvent, within } from '@testing-library/react';
+import { vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
 import {
   Tags,
@@ -69,7 +70,7 @@ describe('Tags', () => {
   });
 
   test('renders selected values with removable badges', async () => {
-    const onRemove = jest.fn();
+    const onRemove = vi.fn();
 
     render(
       <Tags>

@@ -1,4 +1,5 @@
 import { renderHook } from '@testing-library/react';
+import { vi } from 'vitest';
 import React from 'react';
 
 import { useEventListener } from '@/hooks/use-event-listener';
@@ -6,7 +7,7 @@ import { useEventListener } from '@/hooks/use-event-listener';
 describe('useEventListener', () => {
   describe('window events', () => {
     test('should attach listener to window by default', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
 
       renderHook(() =>
         useEventListener({
@@ -22,7 +23,7 @@ describe('useEventListener', () => {
     });
 
     test('should handle multiple event triggers', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
 
       renderHook(() =>
         useEventListener({
@@ -40,7 +41,7 @@ describe('useEventListener', () => {
     });
 
     test('should receive event object', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
 
       renderHook(() =>
         useEventListener({
@@ -58,7 +59,7 @@ describe('useEventListener', () => {
 
   describe('document events', () => {
     test('should attach listener to document when specified', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
 
       renderHook(() =>
         useEventListener({
@@ -75,7 +76,7 @@ describe('useEventListener', () => {
     });
 
     test('should handle document click events', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
 
       renderHook(() =>
         useEventListener({
@@ -93,7 +94,7 @@ describe('useEventListener', () => {
 
   describe('element events', () => {
     test('should attach listener to element ref', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
       const element = document.createElement('button');
       const ref = { current: element };
 
@@ -111,7 +112,7 @@ describe('useEventListener', () => {
     });
 
     test('should attach listener to direct element reference', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
       const element = document.createElement('div');
 
       renderHook(() =>
@@ -128,7 +129,7 @@ describe('useEventListener', () => {
     });
 
     test('should handle null element ref gracefully', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
       const ref = { current: null };
 
       renderHook(() =>
@@ -146,7 +147,7 @@ describe('useEventListener', () => {
     });
 
     test('should handle changing element ref', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
       const element1 = document.createElement('button');
       const element2 = document.createElement('button');
 
@@ -182,8 +183,8 @@ describe('useEventListener', () => {
 
   describe('handler updates', () => {
     test('should use updated handler', () => {
-      const handler1 = jest.fn();
-      const handler2 = jest.fn();
+      const handler1 = vi.fn();
+      const handler2 = vi.fn();
 
       const { rerender } = renderHook(
         ({ handler }) =>
@@ -237,7 +238,7 @@ describe('useEventListener', () => {
 
   describe('event listener options', () => {
     test('should support capture option', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
       const element = document.createElement('div');
 
       renderHook(() =>
@@ -255,7 +256,7 @@ describe('useEventListener', () => {
     });
 
     test('should support once option', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
       const element = document.createElement('button');
 
       renderHook(() =>
@@ -277,7 +278,7 @@ describe('useEventListener', () => {
     });
 
     test('should support passive option', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
 
       renderHook(() =>
         useEventListener({
@@ -295,7 +296,7 @@ describe('useEventListener', () => {
 
   describe('enabled parameter', () => {
     test('should attach listener when enabled is true (default)', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
 
       renderHook(() =>
         useEventListener({
@@ -310,7 +311,7 @@ describe('useEventListener', () => {
     });
 
     test('should attach listener when enabled is explicitly true', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
 
       renderHook(() =>
         useEventListener({
@@ -326,7 +327,7 @@ describe('useEventListener', () => {
     });
 
     test('should not attach listener when enabled is false', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
 
       renderHook(() =>
         useEventListener({
@@ -342,7 +343,7 @@ describe('useEventListener', () => {
     });
 
     test('should detach listener when enabled changes to false', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
 
       const { rerender } = renderHook(
         ({ enabled }) =>
@@ -367,7 +368,7 @@ describe('useEventListener', () => {
     });
 
     test('should attach listener when enabled changes to true', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
 
       const { rerender } = renderHook(
         ({ enabled }) =>
@@ -394,7 +395,7 @@ describe('useEventListener', () => {
 
   describe('cleanup', () => {
     test('should remove listener on unmount', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
 
       const { unmount } = renderHook(() =>
         useEventListener({
@@ -413,7 +414,7 @@ describe('useEventListener', () => {
     });
 
     test('should not cause memory leaks with multiple mount/unmount cycles', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
 
       // Mount and unmount multiple times
       for (let i = 0; i < 5; i++) {
@@ -433,7 +434,7 @@ describe('useEventListener', () => {
     });
 
     test('should clean up element listeners correctly', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
       const element = document.createElement('button');
       const ref = { current: element };
 
@@ -455,7 +456,7 @@ describe('useEventListener', () => {
 
   describe('event name changes', () => {
     test('should handle event name changes', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
 
       const { rerender } = renderHook(
         ({ eventName }) =>
@@ -485,8 +486,8 @@ describe('useEventListener', () => {
 
   describe('multiple instances', () => {
     test('should support multiple independent listeners', () => {
-      const handler1 = jest.fn();
-      const handler2 = jest.fn();
+      const handler1 = vi.fn();
+      const handler2 = vi.fn();
 
       renderHook(() =>
         useEventListener({
@@ -509,8 +510,8 @@ describe('useEventListener', () => {
     });
 
     test('should support same event on different elements', () => {
-      const handler1 = jest.fn();
-      const handler2 = jest.fn();
+      const handler1 = vi.fn();
+      const handler2 = vi.fn();
       const element1 = document.createElement('button');
       const element2 = document.createElement('div');
 
@@ -544,8 +545,8 @@ describe('useEventListener', () => {
 
   describe('integration', () => {
     test('should work in a realistic component scenario', () => {
-      const clickHandler = jest.fn();
-      const keyHandler = jest.fn();
+      const clickHandler = vi.fn();
+      const keyHandler = vi.fn();
 
       renderHook(() => {
         useEventListener({
@@ -569,7 +570,7 @@ describe('useEventListener', () => {
     });
 
     test('should work with dynamic element creation', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
       const ref1 = { current: null };
       let element: HTMLButtonElement | null = null;
 
@@ -600,7 +601,7 @@ describe('useEventListener', () => {
 
   describe('edge cases', () => {
     test('should handle rapid enable/disable toggles', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
 
       const { rerender } = renderHook(
         ({ enabled }) =>
@@ -627,7 +628,7 @@ describe('useEventListener', () => {
     });
 
     test('should handle custom events', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
 
       renderHook(() =>
         useEventListener({

@@ -1,4 +1,5 @@
 import { renderHook, act, waitFor } from '@testing-library/react';
+import { vi, beforeEach, afterEach } from 'vitest';
 
 import { useScreen, UseScreenOptions } from '@/hooks/use-screen';
 
@@ -281,7 +282,7 @@ describe('useScreen', () => {
   });
 
   test('cleans up event listeners on unmount', () => {
-    const removeEventListenerSpy = jest.spyOn(window, 'removeEventListener');
+    const removeEventListenerSpy = vi.spyOn(window, 'removeEventListener');
     const { unmount } = renderHook(() => useScreen());
 
     unmount();
@@ -292,7 +293,7 @@ describe('useScreen', () => {
   });
 
   test('does not add listeners when listenForChanges is false', () => {
-    const addEventListenerSpy = jest.spyOn(window, 'addEventListener');
+    const addEventListenerSpy = vi.spyOn(window, 'addEventListener');
     renderHook(() => useScreen({ listenForChanges: false }));
 
     // Should only be called for initial setup, not for change listening

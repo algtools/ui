@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-require-imports */
 import React from 'react';
+import { vi, Mock } from 'vitest';
 import { render, screen, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import {
@@ -15,28 +16,38 @@ import {
   SidebarMenuSub,
   SidebarMenuSubItem,
   SidebarMenuSubButton,
+  SidebarSeparator,
+  SidebarContent,
+  SidebarGroup,
+  SidebarGroupLabel,
+  SidebarGroupAction,
+  SidebarGroupContent,
+  SidebarMenu,
+  SidebarMenuItem,
 } from '../sidebar';
 
 // Mocks for external UI primitives used by sidebar
-jest.mock('@/hooks/use-mobile', () => ({
-  useIsMobile: jest.fn(() => false),
+vi.mock('@/hooks/use-mobile', () => ({
+  useIsMobile: vi.fn(() => false),
 }));
 
-jest.mock('@/components/ui/button', () => ({
+import { useIsMobile } from '@/hooks/use-mobile';
+
+vi.mock('@/components/ui/button', () => ({
   Button: ({ children, ...props }: React.ComponentProps<'button'>) => (
     <button {...props}>{children}</button>
   ),
 }));
 
-jest.mock('@/components/ui/input', () => ({
+vi.mock('@/components/ui/input', () => ({
   Input: ({ ...props }: React.ComponentProps<'input'>) => <input {...props} />,
 }));
 
-jest.mock('@/components/ui/separator', () => ({
+vi.mock('@/components/ui/separator', () => ({
   Separator: ({ ...props }: React.ComponentProps<'hr'>) => <hr {...props} />,
 }));
 
-jest.mock('@/components/ui/sheet', () => ({
+vi.mock('@/components/ui/sheet', () => ({
   Sheet: ({
     children,
     open: _open,
@@ -79,11 +90,11 @@ jest.mock('@/components/ui/sheet', () => ({
   ),
 }));
 
-jest.mock('@/components/ui/skeleton', () => ({
+vi.mock('@/components/ui/skeleton', () => ({
   Skeleton: ({ ...props }: React.ComponentProps<'div'>) => <div {...props} />,
 }));
 
-jest.mock('@/components/ui/tooltip', () => ({
+vi.mock('@/components/ui/tooltip', () => ({
   TooltipProvider: ({ children }: { children: React.ReactNode }) => (
     <div data-slot="tooltip-provider">{children}</div>
   ),
@@ -144,8 +155,7 @@ describe('Sidebar - desktop interactions', () => {
 
 describe('Sidebar - mobile rendering', () => {
   it('renders inside Sheet when mobile', () => {
-    const { useIsMobile } = jest.requireMock('@/hooks/use-mobile') as { useIsMobile: jest.Mock };
-    useIsMobile.mockReturnValue(true);
+    vi.mocked(useIsMobile).mockReturnValue(true);
 
     const { container } = render(
       <SidebarProvider>
@@ -173,8 +183,7 @@ describe('Sidebar menu components', () => {
   });
 
   it('shows TooltipContent only when collapsed and not mobile', () => {
-    const { useIsMobile } = jest.requireMock('@/hooks/use-mobile') as { useIsMobile: jest.Mock };
-    useIsMobile.mockReturnValue(false);
+    vi.mocked(useIsMobile).mockReturnValue(false);
 
     // collapsed state
     const { container, rerender } = render(
@@ -234,7 +243,7 @@ describe('Sidebar menu components', () => {
         <div>
           {/* Use the exported Separator wrapper */}
           {}
-          {React.createElement(require('../sidebar').SidebarSeparator, { className: 'extra' })}
+          {React.createElement(SidebarSeparator, { className: 'extra' })}
         </div>
       </SidebarProvider>
     );
@@ -248,7 +257,7 @@ describe('Sidebar menu components', () => {
     const { container } = render(
       <SidebarProvider>
         {}
-        {React.createElement(require('../sidebar').SidebarContent, { className: 'extra' })}
+        {React.createElement(SidebarContent, { className: 'extra' })}
       </SidebarProvider>
     );
     const el = container.querySelector('[data-slot="sidebar-content"]') as HTMLElement;
@@ -261,7 +270,7 @@ describe('Sidebar menu components', () => {
     const { container } = render(
       <SidebarProvider>
         {}
-        {React.createElement(require('../sidebar').SidebarGroup, { className: 'extra' })}
+        {React.createElement(SidebarGroup, { className: 'extra' })}
       </SidebarProvider>
     );
     const el = container.querySelector('[data-slot="sidebar-group"]') as HTMLElement;
@@ -274,7 +283,7 @@ describe('Sidebar menu components', () => {
     const { container, rerender } = render(
       <SidebarProvider>
         {}
-        {React.createElement(require('../sidebar').SidebarGroupLabel, { className: 'lbl' })}
+        {React.createElement(SidebarGroupLabel, { className: 'lbl' })}
       </SidebarProvider>
     );
     const el = container.querySelector('[data-slot="sidebar-group-label"]') as HTMLElement;
@@ -286,7 +295,7 @@ describe('Sidebar menu components', () => {
     rerender(
       <SidebarProvider>
         {React.createElement(
-          require('../sidebar').SidebarGroupLabel,
+          SidebarGroupLabel,
           { asChild: true, className: 'lbl' },
           <span data-testid="child" />
         )}
@@ -301,7 +310,7 @@ describe('Sidebar menu components', () => {
     const { container, rerender } = render(
       <SidebarProvider>
         {}
-        {React.createElement(require('../sidebar').SidebarGroupAction, { className: 'act' })}
+        {React.createElement(SidebarGroupAction, { className: 'act' })}
       </SidebarProvider>
     );
     const el = container.querySelector('[data-slot="sidebar-group-action"]') as HTMLElement;
@@ -312,7 +321,7 @@ describe('Sidebar menu components', () => {
     rerender(
       <SidebarProvider>
         {React.createElement(
-          require('../sidebar').SidebarGroupAction,
+          SidebarGroupAction,
           { asChild: true, className: 'act' },
           <button data-testid="grp-act" />
         )}
@@ -327,7 +336,7 @@ describe('Sidebar menu components', () => {
     const { container } = render(
       <SidebarProvider>
         {}
-        {React.createElement(require('../sidebar').SidebarGroupContent, { className: 'extra' })}
+        {React.createElement(SidebarGroupContent, { className: 'extra' })}
       </SidebarProvider>
     );
     const el = container.querySelector('[data-slot="sidebar-group-content"]') as HTMLElement;
@@ -340,9 +349,9 @@ describe('Sidebar menu components', () => {
     const { container } = render(
       <SidebarProvider>
         {React.createElement(
-          require('../sidebar').SidebarMenu,
+          SidebarMenu,
           { className: 'm-extra' },
-          React.createElement(require('../sidebar').SidebarMenuItem, { className: 'i-extra' })
+          React.createElement(SidebarMenuItem, { className: 'i-extra' })
         )}
       </SidebarProvider>
     );
@@ -357,7 +366,7 @@ describe('Sidebar menu components', () => {
   });
 
   it('SidebarMenuSkeleton sets CSS variable width using memoized random', () => {
-    const randomSpy = jest.spyOn(Math, 'random').mockReturnValue(0.75); // => 80%
+    const randomSpy = vi.spyOn(Math, 'random').mockReturnValue(0.75); // => 80%
     const { container } = render(
       <SidebarProvider>
         <SidebarMenuSkeleton showIcon />

@@ -1,4 +1,5 @@
 import React from 'react';
+import { vi, Mock, MockedFunction } from 'vitest';
 import { render } from '@testing-library/react';
 import {
   Select,
@@ -14,7 +15,7 @@ import {
 } from '../select';
 
 // Mock Radix Select primitives to simplify rendering
-jest.mock('@radix-ui/react-select', () => {
+vi.mock('@radix-ui/react-select', () => {
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   const React = require('react');
   return {

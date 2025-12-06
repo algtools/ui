@@ -1,4 +1,5 @@
 import React from 'react';
+import { vi, Mock, MockedFunction } from 'vitest';
 import { render } from '@testing-library/react';
 import {
   NavigationMenu,
@@ -11,7 +12,7 @@ import {
 } from '../navigation-menu';
 
 // Mock Radix navigation-menu primitives to simple elements
-jest.mock('@radix-ui/react-navigation-menu', () => {
+vi.mock('@radix-ui/react-navigation-menu', () => {
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   const React = require('react');
   return {

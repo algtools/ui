@@ -1,4 +1,5 @@
 import React from 'react';
+import { vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Task, TaskList } from '../task';
@@ -143,7 +144,7 @@ describe('Task', () => {
 
   it('calls onClick handler when task is clicked', async () => {
     const user = userEvent.setup();
-    const onClick = jest.fn();
+    const onClick = vi.fn();
     render(<Task task={mockTask} onClick={onClick} />);
 
     await user.click(screen.getByLabelText(/task: test task/i));
@@ -152,7 +153,7 @@ describe('Task', () => {
 
   it('handles keyboard events (Enter) when onClick is provided', async () => {
     const user = userEvent.setup();
-    const onClick = jest.fn();
+    const onClick = vi.fn();
     render(<Task task={mockTask} onClick={onClick} />);
 
     const taskElement = screen.getByLabelText(/task: test task/i);
@@ -163,7 +164,7 @@ describe('Task', () => {
 
   it('handles keyboard events (Space) when onClick is provided', async () => {
     const user = userEvent.setup();
-    const onClick = jest.fn();
+    const onClick = vi.fn();
     render(<Task task={mockTask} onClick={onClick} />);
 
     const taskElement = screen.getByLabelText(/task: test task/i);
@@ -254,7 +255,7 @@ describe('TaskList', () => {
 
   it('calls onTaskClick when a task is clicked', async () => {
     const user = userEvent.setup();
-    const onTaskClick = jest.fn();
+    const onTaskClick = vi.fn();
     render(<TaskList tasks={mockTasks} onTaskClick={onTaskClick} />);
 
     await user.click(screen.getByLabelText(/task: task 1/i));

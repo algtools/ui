@@ -1,15 +1,19 @@
 import React from 'react';
+import { vi, Mock, MockedFunction } from 'vitest';
 import { render, screen } from '@testing-library/react';
 
 // Mock root package.json import used by the page component
-jest.mock('../../../package.json', () => ({ version: '0.0.0-test' }));
+vi.mock('../../../package.json', () => ({
+  default: { version: '0.0.0-test' },
+  version: '0.0.0-test',
+}));
 
 // Mock UI components used
-jest.mock('@/components/ui/logo', () => ({
+vi.mock('@/components/ui/logo', () => ({
   Logo: () => <div data-testid="logo" />,
 }));
 
-jest.mock('@/components/ui/badge', () => ({
+vi.mock('@/components/ui/badge', () => ({
   Badge: ({ children }: React.PropsWithChildren) => <span data-testid="badge">{children}</span>,
 }));
 

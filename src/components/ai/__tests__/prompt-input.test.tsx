@@ -1,4 +1,5 @@
 import React from 'react';
+import { vi } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { PromptInput } from '../prompt-input';
@@ -122,7 +123,7 @@ describe('PromptInput', () => {
 
   describe('Controlled Mode', () => {
     it('works in controlled mode', async () => {
-      const handleChange = jest.fn();
+      const handleChange = vi.fn();
       const user = userEvent.setup();
 
       render(<PromptInput value="Test" onChange={handleChange} />);
@@ -156,7 +157,7 @@ describe('PromptInput', () => {
     });
 
     it('calls onChange in uncontrolled mode', async () => {
-      const handleChange = jest.fn();
+      const handleChange = vi.fn();
       const user = userEvent.setup();
 
       render(<PromptInput onChange={handleChange} />);
@@ -170,7 +171,7 @@ describe('PromptInput', () => {
 
   describe('Submit Behavior', () => {
     it('calls onSubmit when Enter is pressed', async () => {
-      const handleSubmit = jest.fn();
+      const handleSubmit = vi.fn();
       const user = userEvent.setup();
 
       render(<PromptInput onSubmit={handleSubmit} />);
@@ -183,7 +184,7 @@ describe('PromptInput', () => {
     });
 
     it('does not submit on Shift+Enter', async () => {
-      const handleSubmit = jest.fn();
+      const handleSubmit = vi.fn();
       const user = userEvent.setup();
 
       render(<PromptInput onSubmit={handleSubmit} />);
@@ -198,7 +199,7 @@ describe('PromptInput', () => {
     });
 
     it('calls onSubmit when submit button is clicked', async () => {
-      const handleSubmit = jest.fn();
+      const handleSubmit = vi.fn();
       const user = userEvent.setup();
 
       render(<PromptInput onSubmit={handleSubmit} />);
@@ -213,7 +214,7 @@ describe('PromptInput', () => {
     });
 
     it('trims whitespace before submitting', async () => {
-      const handleSubmit = jest.fn();
+      const handleSubmit = vi.fn();
       const user = userEvent.setup();
 
       render(<PromptInput onSubmit={handleSubmit} />);
@@ -226,7 +227,7 @@ describe('PromptInput', () => {
     });
 
     it('does not submit empty or whitespace-only messages', async () => {
-      const handleSubmit = jest.fn();
+      const handleSubmit = vi.fn();
       const user = userEvent.setup();
 
       render(<PromptInput onSubmit={handleSubmit} />);
@@ -244,7 +245,7 @@ describe('PromptInput', () => {
     });
 
     it('clears input after submit in uncontrolled mode', async () => {
-      const handleSubmit = jest.fn();
+      const handleSubmit = vi.fn();
       const user = userEvent.setup();
 
       render(<PromptInput onSubmit={handleSubmit} />);
@@ -259,8 +260,8 @@ describe('PromptInput', () => {
     });
 
     it('does not clear input after submit in controlled mode', async () => {
-      const handleSubmit = jest.fn();
-      const handleChange = jest.fn();
+      const handleSubmit = vi.fn();
+      const handleChange = vi.fn();
       const user = userEvent.setup();
 
       render(<PromptInput value="Test message" onChange={handleChange} onSubmit={handleSubmit} />);
@@ -296,7 +297,7 @@ describe('PromptInput', () => {
     });
 
     it('does not submit when disabled', async () => {
-      const handleSubmit = jest.fn();
+      const handleSubmit = vi.fn();
       const user = userEvent.setup();
 
       render(<PromptInput disabled onSubmit={handleSubmit} />);
@@ -328,7 +329,7 @@ describe('PromptInput', () => {
     });
 
     it('does not submit when loading', async () => {
-      const handleSubmit = jest.fn();
+      const handleSubmit = vi.fn();
       const user = userEvent.setup();
 
       render(<PromptInput loading onSubmit={handleSubmit} />);
@@ -374,7 +375,7 @@ describe('PromptInput', () => {
 
   describe('Attachment Button', () => {
     it('calls onAttachmentClick when clicked', async () => {
-      const handleAttachmentClick = jest.fn();
+      const handleAttachmentClick = vi.fn();
       const user = userEvent.setup();
 
       render(<PromptInput showAttachmentButton onAttachmentClick={handleAttachmentClick} />);

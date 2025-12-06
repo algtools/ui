@@ -1,4 +1,5 @@
 import React from 'react';
+import { vi } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
@@ -63,7 +64,7 @@ const suggestions: AddressSuggestion[] = [
 describe('MexicanAddressEditor', () => {
   it('shows suggestions after typing and allows keyboard selection', async () => {
     const provider = makeProvider(suggestions);
-    const onChange = jest.fn();
+    const onChange = vi.fn();
 
     render(
       <MexicanAddressEditor

@@ -1,10 +1,11 @@
 /* eslint-disable @typescript-eslint/no-require-imports */
 import React from 'react';
+import { vi, beforeEach, afterEach, Mock } from 'vitest';
 import { render, screen, renderHook, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 // Mock motion to avoid animation internals affecting DOM
-jest.mock('motion/react', () => ({
+vi.mock('motion/react', () => ({
   motion: {
     div: ({ children, ...props }: React.PropsWithChildren<Record<string, unknown>>) => {
       // Strip motion-only props that React DOM would warn about
@@ -16,9 +17,9 @@ jest.mock('motion/react', () => ({
 }));
 
 // Mock next-themes to control current theme and capture setTheme
-const setThemeMock = jest.fn();
-jest.mock('next-themes', () => ({
-  useTheme: jest.fn(() => ({ theme: 'system', setTheme: setThemeMock })),
+const setThemeMock = vi.fn();
+vi.mock('next-themes', () => ({
+  useTheme: vi.fn(() => ({ theme: 'system', setTheme: setThemeMock })),
 }));
 
 import { ThemeSwitcher, useThemeTransition } from '../theme-switcher';
@@ -27,11 +28,11 @@ describe('ThemeSwitcher', () => {
   beforeEach(() => {
     setThemeMock.mockReset();
     // Ensure real timers by default and clear any leftover injected styles
-    jest.useRealTimers();
+    vi.useRealTimers();
     document.querySelectorAll('style[id^="theme-transition-"]').forEach((el) => el.remove());
   });
   afterEach(() => {
-    jest.useRealTimers();
+    vi.useRealTimers();
     document.querySelectorAll('style[id^="theme-transition-"]').forEach((el) => el.remove());
   });
 
@@ -73,7 +74,7 @@ describe('ThemeSwitcher', () => {
   it('renders active indicator and icon color for the current theme', async () => {
     // Make useTheme return dark as the current theme for this test
     const { useTheme } = require('next-themes');
-    (useTheme as jest.Mock).mockReturnValue({ theme: 'dark', setTheme: setThemeMock });
+    (useTheme as Mock).mockReturnValue({ theme: 'dark', setTheme: setThemeMock });
 
     render(<ThemeSwitcher />);
 
@@ -91,9 +92,9 @@ describe('ThemeSwitcher', () => {
     expect(lightIcon).toHaveClass('text-muted-foreground');
   });
 
-  xit('injects and removes animation styles for circle-blur variant', async () => {
+  it.skip('injects and removes animation styles for circle-blur variant', async () => {
     const user = userEvent.setup();
-    jest.useFakeTimers();
+    vi.useFakeTimers();
 
     render(<ThemeSwitcher variant="circle-blur" />);
 
@@ -110,16 +111,16 @@ describe('ThemeSwitcher', () => {
 
     // After timers, it should be removed
     act(() => {
-      jest.advanceTimersByTime(3100);
+      vi.advanceTimersByTime(3100);
     });
     expect(document.head.querySelectorAll('style[id^="theme-transition-"]').length).toBe(0);
 
-    jest.useRealTimers();
+    vi.useRealTimers();
   });
 
   xit('injects gif mask CSS when using gif variant with url', async () => {
     const user = userEvent.setup();
-    jest.useFakeTimers();
+    vi.useFakeTimers();
     render(<ThemeSwitcher variant="gif" url="https://example.com/mask.gif" />);
 
     const darkBtn = await screen.findByRole('button', { name: 'Dark theme' });
@@ -131,14 +132,14 @@ describe('ThemeSwitcher', () => {
     expect(styleEl!.textContent).toContain("mask-image: url('https://example.com/mask.gif')");
 
     act(() => {
-      jest.advanceTimersByTime(3100);
+      vi.advanceTimersByTime(3100);
     });
-    jest.useRealTimers();
+    vi.useRealTimers();
   });
 
   xit('uses polygon animation and selects light/dark keyframes accordingly', async () => {
     const user = userEvent.setup();
-    jest.useFakeTimers();
+    vi.useFakeTimers();
     render(<ThemeSwitcher variant="polygon" />);
 
     const lightBtn = await screen.findByRole('button', { name: 'Light theme' });
@@ -148,7 +149,7 @@ describe('ThemeSwitcher', () => {
     expect(styleEl!.textContent).toContain('wipe-in-light');
 
     act(() => {
-      jest.advanceTimersByTime(100);
+      vi.advanceTimersByTime(100);
     });
 
     // Click dark now to cover other branch
@@ -158,12 +159,12 @@ describe('ThemeSwitcher', () => {
     expect(styleEl).not.toBeNull();
     expect(styleEl!.textContent).toContain('wipe-in-dark');
 
-    jest.useRealTimers();
+    vi.useRealTimers();
   });
 
   it('calls document.startViewTransition when available', async () => {
     const user = userEvent.setup();
-    const startViewTransitionMock = jest.fn((cb: () => void) => {
+    const startViewTransitionMock = vi.fn((cb: () => void) => {
       cb();
       return {} as unknown as ViewTransition;
     });
@@ -183,10 +184,10 @@ describe('ThemeSwitcher', () => {
   }, 10000);
 
   it('useThemeTransition uses document.startViewTransition if present, else falls back', () => {
-    const updateFn = jest.fn();
+    const updateFn = vi.fn();
 
     // With startViewTransition present
-    const startViewTransitionMock = jest.fn((cb: () => void) => {
+    const startViewTransitionMock = vi.fn((cb: () => void) => {
       cb();
       return {} as unknown as ViewTransition;
     });

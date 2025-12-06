@@ -1,4 +1,5 @@
 import React from 'react';
+import { vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Suggestion } from '../suggestion';
@@ -68,7 +69,7 @@ describe('Suggestion', () => {
   });
 
   it('calls onClick handler when clicked', () => {
-    const handleClick = jest.fn();
+    const handleClick = vi.fn();
     render(<Suggestion text="Clickable" onClick={handleClick} />);
     const element = screen.getByRole('button');
 
@@ -77,7 +78,7 @@ describe('Suggestion', () => {
   });
 
   it('does not call onClick when disabled', () => {
-    const handleClick = jest.fn();
+    const handleClick = vi.fn();
     render(<Suggestion text="Disabled" onClick={handleClick} disabled />);
     const element = screen.getByRole('button');
 
@@ -88,7 +89,7 @@ describe('Suggestion', () => {
 
   it('supports keyboard navigation (Enter key)', async () => {
     const user = userEvent.setup();
-    const handleClick = jest.fn();
+    const handleClick = vi.fn();
     render(<Suggestion text="Keyboard" onClick={handleClick} />);
     const element = screen.getByRole('button');
 
@@ -101,7 +102,7 @@ describe('Suggestion', () => {
 
   it('supports keyboard navigation (Space key)', async () => {
     const user = userEvent.setup();
-    const handleClick = jest.fn();
+    const handleClick = vi.fn();
     render(<Suggestion text="Keyboard" onClick={handleClick} />);
     const element = screen.getByRole('button');
 
@@ -171,7 +172,7 @@ describe('Suggestion', () => {
   });
 
   it('handles multiple clicks correctly', () => {
-    const handleClick = jest.fn();
+    const handleClick = vi.fn();
     render(<Suggestion text="Multiple clicks" onClick={handleClick} />);
     const element = screen.getByRole('button');
 

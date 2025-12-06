@@ -1,15 +1,16 @@
 import { renderHook, act } from '@testing-library/react';
+import { vi, beforeEach, afterEach } from 'vitest';
 
 import { useCountdown } from '@/hooks/use-countdown';
 
 // Mock timers
 beforeEach(() => {
-  jest.useFakeTimers();
+  vi.useFakeTimers();
 });
 
 afterEach(() => {
-  jest.runOnlyPendingTimers();
-  jest.useRealTimers();
+  vi.runOnlyPendingTimers();
+  vi.useRealTimers();
 });
 
 describe('useCountdown', () => {
@@ -39,7 +40,7 @@ describe('useCountdown', () => {
       expect(result.current.isRunning).toBe(true);
 
       act(() => {
-        jest.advanceTimersByTime(500);
+        vi.advanceTimersByTime(500);
       });
 
       expect(result.current.timeRemaining).toBe(4500);
@@ -51,13 +52,13 @@ describe('useCountdown', () => {
       const { result } = renderHook(() => useCountdown(5000, { autoStart: true }));
 
       act(() => {
-        jest.advanceTimersByTime(1000);
+        vi.advanceTimersByTime(1000);
       });
 
       expect(result.current.timeRemaining).toBe(4000);
 
       act(() => {
-        jest.advanceTimersByTime(2000);
+        vi.advanceTimersByTime(2000);
       });
 
       expect(result.current.timeRemaining).toBe(2000);
@@ -67,7 +68,7 @@ describe('useCountdown', () => {
       const { result } = renderHook(() => useCountdown(3000, { autoStart: true }));
 
       act(() => {
-        jest.advanceTimersByTime(3000);
+        vi.advanceTimersByTime(3000);
       });
 
       expect(result.current.timeRemaining).toBe(0);
@@ -75,7 +76,7 @@ describe('useCountdown', () => {
 
       // Should not go below zero
       act(() => {
-        jest.advanceTimersByTime(1000);
+        vi.advanceTimersByTime(1000);
       });
 
       expect(result.current.timeRemaining).toBe(0);
@@ -85,7 +86,7 @@ describe('useCountdown', () => {
       const { result } = renderHook(() => useCountdown(5000));
 
       act(() => {
-        jest.advanceTimersByTime(3000);
+        vi.advanceTimersByTime(3000);
       });
 
       expect(result.current.timeRemaining).toBe(5000);
@@ -95,13 +96,13 @@ describe('useCountdown', () => {
       const { result } = renderHook(() => useCountdown(5000, { interval: 500, autoStart: true }));
 
       act(() => {
-        jest.advanceTimersByTime(500);
+        vi.advanceTimersByTime(500);
       });
 
       expect(result.current.timeRemaining).toBe(4500);
 
       act(() => {
-        jest.advanceTimersByTime(1000);
+        vi.advanceTimersByTime(1000);
       });
 
       expect(result.current.timeRemaining).toBe(3500);
@@ -121,7 +122,7 @@ describe('useCountdown', () => {
       expect(result.current.isRunning).toBe(true);
 
       act(() => {
-        jest.advanceTimersByTime(1000);
+        vi.advanceTimersByTime(1000);
       });
 
       expect(result.current.timeRemaining).toBe(4000);
@@ -152,7 +153,7 @@ describe('useCountdown', () => {
       const { result } = renderHook(() => useCountdown(5000, { autoStart: true }));
 
       act(() => {
-        jest.advanceTimersByTime(1000);
+        vi.advanceTimersByTime(1000);
       });
 
       expect(result.current.timeRemaining).toBe(4000);
@@ -164,7 +165,7 @@ describe('useCountdown', () => {
       expect(result.current.isRunning).toBe(false);
 
       act(() => {
-        jest.advanceTimersByTime(2000);
+        vi.advanceTimersByTime(2000);
       });
 
       // Should still be 4000 since it's paused
@@ -198,7 +199,7 @@ describe('useCountdown', () => {
       const { result } = renderHook(() => useCountdown(5000, { autoStart: true }));
 
       act(() => {
-        jest.advanceTimersByTime(1000);
+        vi.advanceTimersByTime(1000);
       });
 
       expect(result.current.timeRemaining).toBe(4000);
@@ -208,7 +209,7 @@ describe('useCountdown', () => {
       });
 
       act(() => {
-        jest.advanceTimersByTime(1000);
+        vi.advanceTimersByTime(1000);
       });
 
       expect(result.current.timeRemaining).toBe(4000);
@@ -220,7 +221,7 @@ describe('useCountdown', () => {
       expect(result.current.isRunning).toBe(true);
 
       act(() => {
-        jest.advanceTimersByTime(1000);
+        vi.advanceTimersByTime(1000);
       });
 
       expect(result.current.timeRemaining).toBe(3000);
@@ -230,7 +231,7 @@ describe('useCountdown', () => {
       const { result } = renderHook(() => useCountdown(1000, { autoStart: true }));
 
       act(() => {
-        jest.advanceTimersByTime(1000);
+        vi.advanceTimersByTime(1000);
       });
 
       expect(result.current.timeRemaining).toBe(0);
@@ -303,7 +304,7 @@ describe('useCountdown', () => {
       const { result } = renderHook(() => useCountdown(1000, { autoStart: true }));
 
       act(() => {
-        jest.advanceTimersByTime(1000);
+        vi.advanceTimersByTime(1000);
       });
 
       expect(result.current.timeRemaining).toBe(0);
@@ -331,7 +332,7 @@ describe('useCountdown', () => {
       const { result } = renderHook(() => useCountdown(5000, { autoStart: true }));
 
       act(() => {
-        jest.advanceTimersByTime(2000);
+        vi.advanceTimersByTime(2000);
       });
 
       expect(result.current.timeRemaining).toBe(3000);
@@ -347,7 +348,7 @@ describe('useCountdown', () => {
       const { result } = renderHook(() => useCountdown(5000, { autoStart: true }));
 
       act(() => {
-        jest.advanceTimersByTime(2000);
+        vi.advanceTimersByTime(2000);
       });
 
       act(() => {
@@ -370,7 +371,7 @@ describe('useCountdown', () => {
       });
 
       act(() => {
-        jest.advanceTimersByTime(2000);
+        vi.advanceTimersByTime(2000);
       });
 
       act(() => {
@@ -385,7 +386,7 @@ describe('useCountdown', () => {
       const { result } = renderHook(() => useCountdown(2000, { autoStart: true }));
 
       act(() => {
-        jest.advanceTimersByTime(2000);
+        vi.advanceTimersByTime(2000);
       });
 
       expect(result.current.timeRemaining).toBe(0);
@@ -445,7 +446,7 @@ describe('useCountdown', () => {
       });
 
       act(() => {
-        jest.advanceTimersByTime(2000);
+        vi.advanceTimersByTime(2000);
       });
 
       expect(result.current.timeRemaining).toBe(8000);
@@ -469,16 +470,16 @@ describe('useCountdown', () => {
 
   describe('onComplete callback', () => {
     test('should call onComplete when countdown reaches zero', () => {
-      const onComplete = jest.fn();
+      const onComplete = vi.fn();
       const { result } = renderHook(() => useCountdown(2000, { autoStart: true, onComplete }));
 
       act(() => {
-        jest.advanceTimersByTime(2000);
+        vi.advanceTimersByTime(2000);
       });
 
       // Wait for setTimeout in the callback
       act(() => {
-        jest.runAllTimers();
+        vi.runAllTimers();
       });
 
       expect(onComplete).toHaveBeenCalledTimes(1);
@@ -486,11 +487,11 @@ describe('useCountdown', () => {
     });
 
     test('should not call onComplete when paused before reaching zero', () => {
-      const onComplete = jest.fn();
+      const onComplete = vi.fn();
       const { result } = renderHook(() => useCountdown(2000, { autoStart: true, onComplete }));
 
       act(() => {
-        jest.advanceTimersByTime(1000);
+        vi.advanceTimersByTime(1000);
       });
 
       act(() => {
@@ -498,49 +499,49 @@ describe('useCountdown', () => {
       });
 
       act(() => {
-        jest.advanceTimersByTime(2000);
+        vi.advanceTimersByTime(2000);
       });
 
       expect(onComplete).not.toHaveBeenCalled();
     });
 
     test('should call onComplete only once', () => {
-      const onComplete = jest.fn();
+      const onComplete = vi.fn();
       renderHook(() => useCountdown(2000, { autoStart: true, onComplete }));
 
       act(() => {
-        jest.advanceTimersByTime(3000);
+        vi.advanceTimersByTime(3000);
       });
 
       // Wait for setTimeout in the callback
       act(() => {
-        jest.runAllTimers();
+        vi.runAllTimers();
       });
 
       expect(onComplete).toHaveBeenCalledTimes(1);
     });
 
     test('should use the latest onComplete callback', () => {
-      const onComplete1 = jest.fn();
-      const onComplete2 = jest.fn();
+      const onComplete1 = vi.fn();
+      const onComplete2 = vi.fn();
       const { rerender } = renderHook(
         ({ callback }) => useCountdown(2000, { autoStart: true, onComplete: callback }),
         { initialProps: { callback: onComplete1 } }
       );
 
       act(() => {
-        jest.advanceTimersByTime(1000);
+        vi.advanceTimersByTime(1000);
       });
 
       rerender({ callback: onComplete2 });
 
       act(() => {
-        jest.advanceTimersByTime(1000);
+        vi.advanceTimersByTime(1000);
       });
 
       // Wait for setTimeout in the callback
       act(() => {
-        jest.runAllTimers();
+        vi.runAllTimers();
       });
 
       expect(onComplete1).not.toHaveBeenCalled();
@@ -566,7 +567,7 @@ describe('useCountdown', () => {
       const { result, unmount } = renderHook(() => useCountdown(5000, { autoStart: true }));
 
       act(() => {
-        jest.advanceTimersByTime(1000);
+        vi.advanceTimersByTime(1000);
       });
 
       expect(result.current.timeRemaining).toBe(4000);
@@ -575,14 +576,14 @@ describe('useCountdown', () => {
 
       // Should not throw errors after unmount
       act(() => {
-        jest.advanceTimersByTime(2000);
+        vi.advanceTimersByTime(2000);
       });
     });
   });
 
   describe('integration', () => {
     test('should work correctly with multiple operations in sequence', () => {
-      const onComplete = jest.fn();
+      const onComplete = vi.fn();
       const { result } = renderHook(() => useCountdown(5000, { onComplete }));
 
       expect(result.current.isRunning).toBe(false);
@@ -595,7 +596,7 @@ describe('useCountdown', () => {
       expect(result.current.isRunning).toBe(true);
 
       act(() => {
-        jest.advanceTimersByTime(2000);
+        vi.advanceTimersByTime(2000);
       });
 
       expect(result.current.timeRemaining).toBe(3000);
@@ -607,7 +608,7 @@ describe('useCountdown', () => {
       expect(result.current.isRunning).toBe(false);
 
       act(() => {
-        jest.advanceTimersByTime(1000);
+        vi.advanceTimersByTime(1000);
       });
 
       expect(result.current.timeRemaining).toBe(3000);
@@ -617,7 +618,7 @@ describe('useCountdown', () => {
       });
 
       act(() => {
-        jest.advanceTimersByTime(1000);
+        vi.advanceTimersByTime(1000);
       });
 
       expect(result.current.timeRemaining).toBe(2000);
@@ -636,11 +637,11 @@ describe('useCountdown', () => {
       expect(result.current.isRunning).toBe(true);
 
       act(() => {
-        jest.advanceTimersByTime(5000);
+        vi.advanceTimersByTime(5000);
       });
 
       act(() => {
-        jest.runAllTimers();
+        vi.runAllTimers();
       });
 
       expect(result.current.timeRemaining).toBe(0);
@@ -715,13 +716,13 @@ describe('useCountdown', () => {
       const { result } = renderHook(() => useCountdown(100, { autoStart: true, interval: 50 }));
 
       act(() => {
-        jest.advanceTimersByTime(50);
+        vi.advanceTimersByTime(50);
       });
 
       expect(result.current.timeRemaining).toBe(50);
 
       act(() => {
-        jest.advanceTimersByTime(50);
+        vi.advanceTimersByTime(50);
       });
 
       expect(result.current.timeRemaining).toBe(0);
@@ -733,7 +734,7 @@ describe('useCountdown', () => {
       const { result } = renderHook(() => useCountdown(largeNumber, { autoStart: true }));
 
       act(() => {
-        jest.advanceTimersByTime(1000);
+        vi.advanceTimersByTime(1000);
       });
 
       expect(result.current.timeRemaining).toBe(largeNumber - 1000);

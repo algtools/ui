@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { vi } from 'vitest';
 import { renderHook } from '@testing-library/react';
 
 import { useIsClient } from '@/hooks/use-is-client';
@@ -242,7 +243,7 @@ describe('useIsClient', () => {
 
   describe('integration with React effects', () => {
     test('should work correctly with useEffect dependencies', () => {
-      const effectCallback = jest.fn();
+      const effectCallback = vi.fn();
 
       const { rerender } = renderHook(() => {
         const isClient = useIsClient();
@@ -267,8 +268,8 @@ describe('useIsClient', () => {
     });
 
     test('should trigger effects correctly in client environment', () => {
-      const mountEffect = jest.fn();
-      const clientEffect = jest.fn();
+      const mountEffect = vi.fn();
+      const clientEffect = vi.fn();
 
       const { rerender } = renderHook(() => {
         const isClient = useIsClient();

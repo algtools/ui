@@ -1,4 +1,5 @@
 import { renderHook } from '@testing-library/react';
+import { vi, beforeEach, afterEach } from 'vitest';
 import * as React from 'react';
 
 import { useIsomorphicLayoutEffect } from '@/hooks/use-isomorphic-layout-effect';
@@ -20,8 +21,8 @@ describe('useIsomorphicLayoutEffect', () => {
     });
 
     test('should execute effect on client', () => {
-      const effectCallback = jest.fn();
-      const cleanupCallback = jest.fn();
+      const effectCallback = vi.fn();
+      const cleanupCallback = vi.fn();
 
       const { unmount } = renderHook(() => {
         useIsomorphicLayoutEffect(() => {
@@ -39,7 +40,7 @@ describe('useIsomorphicLayoutEffect', () => {
     });
 
     test('should re-run effect when dependencies change', () => {
-      const effectCallback = jest.fn();
+      const effectCallback = vi.fn();
       let count = 0;
 
       const { rerender } = renderHook(() => {
@@ -59,7 +60,7 @@ describe('useIsomorphicLayoutEffect', () => {
     });
 
     test('should not re-run effect when dependencies do not change', () => {
-      const effectCallback = jest.fn();
+      const effectCallback = vi.fn();
       const dep = { value: 'test' };
 
       const { rerender } = renderHook(() => {
@@ -77,8 +78,8 @@ describe('useIsomorphicLayoutEffect', () => {
     });
 
     test('should support cleanup function', () => {
-      const effectCallback = jest.fn();
-      const cleanupCallback = jest.fn();
+      const effectCallback = vi.fn();
+      const cleanupCallback = vi.fn();
 
       const { rerender, unmount } = renderHook(
         ({ value }) => {
@@ -128,8 +129,8 @@ describe('useIsomorphicLayoutEffect', () => {
       // This test verifies that the hook doesn't cause console errors
       // In a real SSR environment, window would be undefined at module load
       // and the hook would use useEffect instead of useLayoutEffect
-      const consoleSpy = jest.spyOn(console, 'error').mockImplementation();
-      const effectCallback = jest.fn();
+      const consoleSpy = vi.spyOn(console, 'error').mockImplementation();
+      const effectCallback = vi.fn();
 
       // Since we're in a jsdom environment, window is defined
       // but the hook pattern ensures no SSR warnings would occur
@@ -149,8 +150,8 @@ describe('useIsomorphicLayoutEffect', () => {
 
   describe('integration scenarios', () => {
     test('should work with DOM measurements', () => {
-      const measurements = jest.fn();
-      const effectCallback = jest.fn();
+      const measurements = vi.fn();
+      const effectCallback = vi.fn();
 
       renderHook(() => {
         const ref = React.useRef<HTMLDivElement>(null);
@@ -177,9 +178,9 @@ describe('useIsomorphicLayoutEffect', () => {
     });
 
     test('should work with multiple effects', () => {
-      const effect1 = jest.fn();
-      const effect2 = jest.fn();
-      const effect3 = jest.fn();
+      const effect1 = vi.fn();
+      const effect2 = vi.fn();
+      const effect3 = vi.fn();
 
       renderHook(() => {
         useIsomorphicLayoutEffect(() => {
@@ -201,7 +202,7 @@ describe('useIsomorphicLayoutEffect', () => {
     });
 
     test('should handle async operations in effect', async () => {
-      const asyncOperation = jest.fn();
+      const asyncOperation = vi.fn();
 
       renderHook(() => {
         useIsomorphicLayoutEffect(() => {
@@ -220,7 +221,7 @@ describe('useIsomorphicLayoutEffect', () => {
     });
 
     test('should work without dependencies array (runs every render)', () => {
-      const effectCallback = jest.fn();
+      const effectCallback = vi.fn();
 
       const { rerender } = renderHook(() => {
         useIsomorphicLayoutEffect(() => {
@@ -241,7 +242,7 @@ describe('useIsomorphicLayoutEffect', () => {
     });
 
     test('should work with empty dependencies array (runs once)', () => {
-      const effectCallback = jest.fn();
+      const effectCallback = vi.fn();
 
       const { rerender } = renderHook(() => {
         useIsomorphicLayoutEffect(() => {
@@ -262,7 +263,7 @@ describe('useIsomorphicLayoutEffect', () => {
 
   describe('edge cases', () => {
     test('should handle effect that throws error', () => {
-      const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation();
+      const consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation();
 
       expect(() => {
         renderHook(() => {
@@ -276,7 +277,7 @@ describe('useIsomorphicLayoutEffect', () => {
     });
 
     test('should handle cleanup that throws error', () => {
-      const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation();
+      const consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation();
 
       const { unmount } = renderHook(() => {
         useIsomorphicLayoutEffect(() => {
@@ -294,7 +295,7 @@ describe('useIsomorphicLayoutEffect', () => {
     });
 
     test('should handle undefined cleanup return', () => {
-      const effectCallback = jest.fn();
+      const effectCallback = vi.fn();
 
       const { unmount } = renderHook(() => {
         useIsomorphicLayoutEffect(() => {

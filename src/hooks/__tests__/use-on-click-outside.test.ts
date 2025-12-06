@@ -1,4 +1,5 @@
 import { renderHook } from '@testing-library/react';
+import { vi, beforeEach, afterEach } from 'vitest';
 import React from 'react';
 
 import { useOnClickOutside } from '@/hooks/use-on-click-outside';
@@ -27,7 +28,7 @@ describe('useOnClickOutside', () => {
 
   describe('single ref', () => {
     test('should call handler when clicking outside the element', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
       const ref = { current: insideElement };
 
       renderHook(() => useOnClickOutside(ref, handler));
@@ -41,7 +42,7 @@ describe('useOnClickOutside', () => {
     });
 
     test('should not call handler when clicking inside the element', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
       const ref = { current: insideElement };
 
       renderHook(() => useOnClickOutside(ref, handler));
@@ -54,7 +55,7 @@ describe('useOnClickOutside', () => {
     });
 
     test('should not call handler when clicking on the element itself', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
       const ref = { current: insideElement };
 
       renderHook(() => useOnClickOutside(ref, handler));
@@ -71,7 +72,7 @@ describe('useOnClickOutside', () => {
     });
 
     test('should handle null ref gracefully', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
       // Use a plain object that matches RefObject structure
       const ref = { current: null } as unknown as React.RefObject<HTMLDivElement>;
 
@@ -88,7 +89,7 @@ describe('useOnClickOutside', () => {
 
   describe('multiple refs', () => {
     test('should call handler when clicking outside all elements', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
       const secondElement = document.createElement('div');
       container.appendChild(secondElement);
 
@@ -104,7 +105,7 @@ describe('useOnClickOutside', () => {
     });
 
     test('should not call handler when clicking inside first element', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
       const secondElement = document.createElement('div');
       container.appendChild(secondElement);
 
@@ -120,7 +121,7 @@ describe('useOnClickOutside', () => {
     });
 
     test('should not call handler when clicking inside second element', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
       const secondElement = document.createElement('div');
       container.appendChild(secondElement);
 
@@ -136,7 +137,7 @@ describe('useOnClickOutside', () => {
     });
 
     test('should handle array with null refs', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
       const refs = [
         { current: insideElement },
         { current: null },
@@ -152,7 +153,7 @@ describe('useOnClickOutside', () => {
     });
 
     test('should handle empty array of refs', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
       const refs: React.RefObject<HTMLDivElement>[] = [];
 
       renderHook(() => useOnClickOutside(refs, handler));
@@ -168,7 +169,7 @@ describe('useOnClickOutside', () => {
 
   describe('touch events', () => {
     test('should call handler on touchstart outside the element', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
       const ref = { current: insideElement };
 
       renderHook(() => useOnClickOutside(ref, handler));
@@ -182,7 +183,7 @@ describe('useOnClickOutside', () => {
     });
 
     test('should not call handler on touchstart inside the element', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
       const ref = { current: insideElement };
 
       renderHook(() => useOnClickOutside(ref, handler));
@@ -197,7 +198,7 @@ describe('useOnClickOutside', () => {
 
   describe('enabled parameter', () => {
     test('should call handler when enabled is true (default)', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
       const ref = { current: insideElement };
 
       renderHook(() => useOnClickOutside(ref, handler));
@@ -210,7 +211,7 @@ describe('useOnClickOutside', () => {
     });
 
     test('should call handler when enabled is explicitly true', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
       const ref = { current: insideElement };
 
       renderHook(() => useOnClickOutside(ref, handler, true));
@@ -223,7 +224,7 @@ describe('useOnClickOutside', () => {
     });
 
     test('should not call handler when enabled is false', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
       const ref = { current: insideElement };
 
       renderHook(() => useOnClickOutside(ref, handler, false));
@@ -236,7 +237,7 @@ describe('useOnClickOutside', () => {
     });
 
     test('should stop listening when enabled changes to false', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
       const ref = { current: insideElement };
 
       const { rerender } = renderHook(({ enabled }) => useOnClickOutside(ref, handler, enabled), {
@@ -258,7 +259,7 @@ describe('useOnClickOutside', () => {
     });
 
     test('should start listening when enabled changes to true', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
       const ref = { current: insideElement };
 
       const { rerender } = renderHook(({ enabled }) => useOnClickOutside(ref, handler, enabled), {
@@ -282,7 +283,7 @@ describe('useOnClickOutside', () => {
 
   describe('cleanup', () => {
     test('should remove event listeners on unmount', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
       const ref = { current: insideElement };
 
       const { unmount } = renderHook(() => useOnClickOutside(ref, handler));
@@ -299,7 +300,7 @@ describe('useOnClickOutside', () => {
     });
 
     test('should not cause memory leaks with multiple mount/unmount cycles', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
       const ref = { current: insideElement };
 
       // Mount and unmount multiple times
@@ -319,8 +320,8 @@ describe('useOnClickOutside', () => {
 
   describe('handler updates', () => {
     test('should use updated handler on subsequent clicks', () => {
-      const firstHandler = jest.fn();
-      const secondHandler = jest.fn();
+      const firstHandler = vi.fn();
+      const secondHandler = vi.fn();
       const ref = { current: insideElement };
 
       const { rerender } = renderHook(({ handler }) => useOnClickOutside(ref, handler), {
@@ -344,11 +345,11 @@ describe('useOnClickOutside', () => {
     });
 
     test('should not re-attach listeners when only handler changes', () => {
-      const addEventListenerSpy = jest.spyOn(document, 'addEventListener');
-      const removeEventListenerSpy = jest.spyOn(document, 'removeEventListener');
+      const addEventListenerSpy = vi.spyOn(document, 'addEventListener');
+      const removeEventListenerSpy = vi.spyOn(document, 'removeEventListener');
 
-      const firstHandler = jest.fn();
-      const secondHandler = jest.fn();
+      const firstHandler = vi.fn();
+      const secondHandler = vi.fn();
       const ref = { current: insideElement };
 
       const { rerender } = renderHook(({ handler }) => useOnClickOutside(ref, handler), {
@@ -372,7 +373,7 @@ describe('useOnClickOutside', () => {
 
   describe('nested elements', () => {
     test('should not call handler when clicking on nested child element', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
       const childElement = document.createElement('span');
       insideElement.appendChild(childElement);
 
@@ -388,7 +389,7 @@ describe('useOnClickOutside', () => {
     });
 
     test('should not call handler when clicking on deeply nested element', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
       const level1 = document.createElement('div');
       const level2 = document.createElement('div');
       const level3 = document.createElement('span');
@@ -411,7 +412,7 @@ describe('useOnClickOutside', () => {
 
   describe('integration', () => {
     test('should work correctly with multiple clicks in sequence', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
       const ref = { current: insideElement };
 
       renderHook(() => useOnClickOutside(ref, handler));
@@ -433,7 +434,7 @@ describe('useOnClickOutside', () => {
     });
 
     test('should work with both mouse and touch events in sequence', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
       const ref = { current: insideElement };
 
       renderHook(() => useOnClickOutside(ref, handler));
@@ -452,7 +453,7 @@ describe('useOnClickOutside', () => {
 
   describe('edge cases', () => {
     test('should handle ref changing from null to element', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
       // Create a mutable ref object
       const ref: { current: HTMLDivElement | null } = { current: null };
 
@@ -474,7 +475,7 @@ describe('useOnClickOutside', () => {
     });
 
     test('should handle document body clicks', () => {
-      const handler = jest.fn();
+      const handler = vi.fn();
       const ref = { current: insideElement };
 
       renderHook(() => useOnClickOutside(ref, handler));

@@ -1,11 +1,12 @@
 import React from 'react';
+import { vi, Mock } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { InlineCitation, InlineCitationList } from '../inline-citation';
 import type { Citation } from '../../ai/ai-types';
 
 // Mock Radix Popover primitives
-jest.mock('@radix-ui/react-popover', () => {
+vi.mock('@radix-ui/react-popover', () => {
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   const React = require('react');
   return {
@@ -163,7 +164,7 @@ describe('InlineCitation', () => {
 
   describe('Interactions', () => {
     it('calls onExpand when clicked', async () => {
-      const onExpand = jest.fn();
+      const onExpand = vi.fn();
       render(<InlineCitation citation={mockCitation} onExpand={onExpand} />);
 
       const button = screen.getByRole('button');
@@ -174,7 +175,7 @@ describe('InlineCitation', () => {
     });
 
     it('handles click event properly', async () => {
-      const onExpand = jest.fn();
+      const onExpand = vi.fn();
       render(<InlineCitation citation={mockCitation} onExpand={onExpand} />);
 
       const button = screen.getByRole('button');
@@ -395,7 +396,7 @@ describe('InlineCitationList', () => {
 
   describe('Interactions', () => {
     it('calls onCitationClick when citation link is clicked', async () => {
-      const onCitationClick = jest.fn();
+      const onCitationClick = vi.fn();
       render(<InlineCitationList citations={mockCitations} onCitationClick={onCitationClick} />);
 
       const firstLink = screen.getByText('First Article');
@@ -406,7 +407,7 @@ describe('InlineCitationList', () => {
     });
 
     it('citation link handles clicks properly', async () => {
-      const onCitationClick = jest.fn();
+      const onCitationClick = vi.fn();
       render(<InlineCitationList citations={mockCitations} onCitationClick={onCitationClick} />);
 
       const firstLink = screen.getByText('First Article');

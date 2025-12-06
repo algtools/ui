@@ -1,42 +1,43 @@
 import { renderHook, act } from '@testing-library/react';
+import { vi, beforeEach, afterEach } from 'vitest';
 
 import { useInterval } from '@/hooks/use-interval';
 
 // Mock timers
 beforeEach(() => {
-  jest.useFakeTimers();
+  vi.useFakeTimers();
 });
 
 afterEach(() => {
-  jest.runOnlyPendingTimers();
-  jest.useRealTimers();
+  vi.runOnlyPendingTimers();
+  vi.useRealTimers();
 });
 
 describe('useInterval', () => {
   describe('initialization', () => {
     test('should start automatically by default', () => {
-      const callback = jest.fn();
+      const callback = vi.fn();
       const { result } = renderHook(() => useInterval(callback, 1000));
 
       expect(result.current.isRunning).toBe(true);
     });
 
     test('should not start automatically when autoStart is false', () => {
-      const callback = jest.fn();
+      const callback = vi.fn();
       const { result } = renderHook(() => useInterval(callback, 1000, { autoStart: false }));
 
       expect(result.current.isRunning).toBe(false);
     });
 
     test('should not start when delay is null', () => {
-      const callback = jest.fn();
+      const callback = vi.fn();
       const { result } = renderHook(() => useInterval(callback, null));
 
       expect(result.current.isRunning).toBe(false);
     });
 
     test('should not call callback immediately', () => {
-      const callback = jest.fn();
+      const callback = vi.fn();
       renderHook(() => useInterval(callback, 1000));
 
       expect(callback).not.toHaveBeenCalled();
@@ -45,58 +46,58 @@ describe('useInterval', () => {
 
   describe('interval execution', () => {
     test('should call callback after delay', () => {
-      const callback = jest.fn();
+      const callback = vi.fn();
       renderHook(() => useInterval(callback, 1000));
 
       act(() => {
-        jest.advanceTimersByTime(1000);
+        vi.advanceTimersByTime(1000);
       });
 
       expect(callback).toHaveBeenCalledTimes(1);
     });
 
     test('should call callback multiple times', () => {
-      const callback = jest.fn();
+      const callback = vi.fn();
       renderHook(() => useInterval(callback, 1000));
 
       act(() => {
-        jest.advanceTimersByTime(3000);
+        vi.advanceTimersByTime(3000);
       });
 
       expect(callback).toHaveBeenCalledTimes(3);
     });
 
     test('should not call callback when delay is null', () => {
-      const callback = jest.fn();
+      const callback = vi.fn();
       renderHook(() => useInterval(callback, null));
 
       act(() => {
-        jest.advanceTimersByTime(5000);
+        vi.advanceTimersByTime(5000);
       });
 
       expect(callback).not.toHaveBeenCalled();
     });
 
     test('should not call callback when autoStart is false', () => {
-      const callback = jest.fn();
+      const callback = vi.fn();
       renderHook(() => useInterval(callback, 1000, { autoStart: false }));
 
       act(() => {
-        jest.advanceTimersByTime(3000);
+        vi.advanceTimersByTime(3000);
       });
 
       expect(callback).not.toHaveBeenCalled();
     });
 
     test('should use the latest callback', () => {
-      const callback1 = jest.fn();
-      const callback2 = jest.fn();
+      const callback1 = vi.fn();
+      const callback2 = vi.fn();
       const { rerender } = renderHook(({ cb }) => useInterval(cb, 1000), {
         initialProps: { cb: callback1 },
       });
 
       act(() => {
-        jest.advanceTimersByTime(1000);
+        vi.advanceTimersByTime(1000);
       });
 
       expect(callback1).toHaveBeenCalledTimes(1);
@@ -105,7 +106,7 @@ describe('useInterval', () => {
       rerender({ cb: callback2 });
 
       act(() => {
-        jest.advanceTimersByTime(1000);
+        vi.advanceTimersByTime(1000);
       });
 
       expect(callback1).toHaveBeenCalledTimes(1);
@@ -115,7 +116,7 @@ describe('useInterval', () => {
 
   describe('start', () => {
     test('should start a paused interval', () => {
-      const callback = jest.fn();
+      const callback = vi.fn();
       const { result } = renderHook(() => useInterval(callback, 1000, { autoStart: false }));
 
       expect(result.current.isRunning).toBe(false);
@@ -127,14 +128,14 @@ describe('useInterval', () => {
       expect(result.current.isRunning).toBe(true);
 
       act(() => {
-        jest.advanceTimersByTime(1000);
+        vi.advanceTimersByTime(1000);
       });
 
       expect(callback).toHaveBeenCalledTimes(1);
     });
 
     test('should have no effect if already running', () => {
-      const callback = jest.fn();
+      const callback = vi.fn();
       const { result } = renderHook(() => useInterval(callback, 1000));
 
       expect(result.current.isRunning).toBe(true);
@@ -147,7 +148,7 @@ describe('useInterval', () => {
     });
 
     test('should maintain same reference across renders', () => {
-      const callback = jest.fn();
+      const callback = vi.fn();
       const { result, rerender } = renderHook(() => useInterval(callback, 1000));
       const firstStart = result.current.start;
 
@@ -159,11 +160,11 @@ describe('useInterval', () => {
 
   describe('pause', () => {
     test('should pause a running interval', () => {
-      const callback = jest.fn();
+      const callback = vi.fn();
       const { result } = renderHook(() => useInterval(callback, 1000));
 
       act(() => {
-        jest.advanceTimersByTime(1000);
+        vi.advanceTimersByTime(1000);
       });
 
       expect(callback).toHaveBeenCalledTimes(1);
@@ -175,7 +176,7 @@ describe('useInterval', () => {
       expect(result.current.isRunning).toBe(false);
 
       act(() => {
-        jest.advanceTimersByTime(2000);
+        vi.advanceTimersByTime(2000);
       });
 
       // Should still be 1, not 3
@@ -183,7 +184,7 @@ describe('useInterval', () => {
     });
 
     test('should have no effect if already paused', () => {
-      const callback = jest.fn();
+      const callback = vi.fn();
       const { result } = renderHook(() => useInterval(callback, 1000, { autoStart: false }));
 
       expect(result.current.isRunning).toBe(false);
@@ -196,7 +197,7 @@ describe('useInterval', () => {
     });
 
     test('should maintain same reference across renders', () => {
-      const callback = jest.fn();
+      const callback = vi.fn();
       const { result, rerender } = renderHook(() => useInterval(callback, 1000));
       const firstPause = result.current.pause;
 
@@ -208,7 +209,7 @@ describe('useInterval', () => {
 
   describe('resume', () => {
     test('should resume a paused interval', () => {
-      const callback = jest.fn();
+      const callback = vi.fn();
       const { result } = renderHook(() => useInterval(callback, 1000));
 
       act(() => {
@@ -216,7 +217,7 @@ describe('useInterval', () => {
       });
 
       act(() => {
-        jest.advanceTimersByTime(1000);
+        vi.advanceTimersByTime(1000);
       });
 
       expect(callback).not.toHaveBeenCalled();
@@ -226,14 +227,14 @@ describe('useInterval', () => {
       });
 
       act(() => {
-        jest.advanceTimersByTime(1000);
+        vi.advanceTimersByTime(1000);
       });
 
       expect(callback).toHaveBeenCalledTimes(1);
     });
 
     test('should maintain same reference across renders', () => {
-      const callback = jest.fn();
+      const callback = vi.fn();
       const { result, rerender } = renderHook(() => useInterval(callback, 1000));
       const firstResume = result.current.resume;
 
@@ -245,7 +246,7 @@ describe('useInterval', () => {
 
   describe('toggle', () => {
     test('should toggle from running to paused', () => {
-      const callback = jest.fn();
+      const callback = vi.fn();
       const { result } = renderHook(() => useInterval(callback, 1000));
 
       expect(result.current.isRunning).toBe(true);
@@ -258,7 +259,7 @@ describe('useInterval', () => {
     });
 
     test('should toggle from paused to running', () => {
-      const callback = jest.fn();
+      const callback = vi.fn();
       const { result } = renderHook(() => useInterval(callback, 1000, { autoStart: false }));
 
       expect(result.current.isRunning).toBe(false);
@@ -271,7 +272,7 @@ describe('useInterval', () => {
     });
 
     test('should toggle multiple times correctly', () => {
-      const callback = jest.fn();
+      const callback = vi.fn();
       const { result } = renderHook(() => useInterval(callback, 1000));
 
       expect(result.current.isRunning).toBe(true);
@@ -293,7 +294,7 @@ describe('useInterval', () => {
     });
 
     test('should maintain same reference across renders', () => {
-      const callback = jest.fn();
+      const callback = vi.fn();
       const { result, rerender } = renderHook(() => useInterval(callback, 1000));
       const firstToggle = result.current.toggle;
 
@@ -305,11 +306,11 @@ describe('useInterval', () => {
 
   describe('reset', () => {
     test('should restart the interval', () => {
-      const callback = jest.fn();
+      const callback = vi.fn();
       const { result } = renderHook(() => useInterval(callback, 1000));
 
       act(() => {
-        jest.advanceTimersByTime(500);
+        vi.advanceTimersByTime(500);
       });
 
       act(() => {
@@ -320,14 +321,14 @@ describe('useInterval', () => {
       expect(result.current.isRunning).toBe(true);
 
       act(() => {
-        jest.advanceTimersByTime(500);
+        vi.advanceTimersByTime(500);
       });
 
       // Should not have called yet since we reset
       expect(callback).not.toHaveBeenCalled();
 
       act(() => {
-        jest.advanceTimersByTime(500);
+        vi.advanceTimersByTime(500);
       });
 
       // Now it should have been called
@@ -335,7 +336,7 @@ describe('useInterval', () => {
     });
 
     test('should not auto-restart when autoStart is false', () => {
-      const callback = jest.fn();
+      const callback = vi.fn();
       const { result } = renderHook(() => useInterval(callback, 1000, { autoStart: false }));
 
       act(() => {
@@ -352,7 +353,7 @@ describe('useInterval', () => {
     });
 
     test('should maintain same reference across renders', () => {
-      const callback = jest.fn();
+      const callback = vi.fn();
       const { result, rerender } = renderHook(() => useInterval(callback, 1000));
       const firstReset = result.current.reset;
 
@@ -364,13 +365,13 @@ describe('useInterval', () => {
 
   describe('delay changes', () => {
     test('should update interval when delay changes', () => {
-      const callback = jest.fn();
+      const callback = vi.fn();
       const { rerender } = renderHook(({ delay }) => useInterval(callback, delay), {
         initialProps: { delay: 1000 },
       });
 
       act(() => {
-        jest.advanceTimersByTime(1000);
+        vi.advanceTimersByTime(1000);
       });
 
       expect(callback).toHaveBeenCalledTimes(1);
@@ -378,20 +379,20 @@ describe('useInterval', () => {
       rerender({ delay: 500 });
 
       act(() => {
-        jest.advanceTimersByTime(500);
+        vi.advanceTimersByTime(500);
       });
 
       expect(callback).toHaveBeenCalledTimes(2);
     });
 
     test('should stop interval when delay becomes null', () => {
-      const callback = jest.fn();
+      const callback = vi.fn();
       const { rerender } = renderHook(({ delay }) => useInterval(callback, delay), {
         initialProps: { delay: 1000 },
       });
 
       act(() => {
-        jest.advanceTimersByTime(1000);
+        vi.advanceTimersByTime(1000);
       });
 
       expect(callback).toHaveBeenCalledTimes(1);
@@ -399,20 +400,20 @@ describe('useInterval', () => {
       rerender({ delay: null });
 
       act(() => {
-        jest.advanceTimersByTime(2000);
+        vi.advanceTimersByTime(2000);
       });
 
       expect(callback).toHaveBeenCalledTimes(1);
     });
 
     test('should start interval when delay changes from null to number', () => {
-      const callback = jest.fn();
+      const callback = vi.fn();
       const { rerender } = renderHook(({ delay }) => useInterval(callback, delay), {
         initialProps: { delay: null },
       });
 
       act(() => {
-        jest.advanceTimersByTime(2000);
+        vi.advanceTimersByTime(2000);
       });
 
       expect(callback).not.toHaveBeenCalled();
@@ -420,7 +421,7 @@ describe('useInterval', () => {
       rerender({ delay: 1000 });
 
       act(() => {
-        jest.advanceTimersByTime(1000);
+        vi.advanceTimersByTime(1000);
       });
 
       expect(callback).toHaveBeenCalledTimes(1);
@@ -429,11 +430,11 @@ describe('useInterval', () => {
 
   describe('cleanup', () => {
     test('should clear interval on unmount', () => {
-      const callback = jest.fn();
+      const callback = vi.fn();
       const { unmount } = renderHook(() => useInterval(callback, 1000));
 
       act(() => {
-        jest.advanceTimersByTime(1000);
+        vi.advanceTimersByTime(1000);
       });
 
       expect(callback).toHaveBeenCalledTimes(1);
@@ -441,7 +442,7 @@ describe('useInterval', () => {
       unmount();
 
       act(() => {
-        jest.advanceTimersByTime(2000);
+        vi.advanceTimersByTime(2000);
       });
 
       // Should not have been called again after unmount
@@ -451,13 +452,13 @@ describe('useInterval', () => {
 
   describe('integration', () => {
     test('should work correctly with multiple operations in sequence', () => {
-      const callback = jest.fn();
+      const callback = vi.fn();
       const { result } = renderHook(() => useInterval(callback, 1000));
 
       expect(result.current.isRunning).toBe(true);
 
       act(() => {
-        jest.advanceTimersByTime(2000);
+        vi.advanceTimersByTime(2000);
       });
       expect(callback).toHaveBeenCalledTimes(2);
 
@@ -466,7 +467,7 @@ describe('useInterval', () => {
       });
 
       act(() => {
-        jest.advanceTimersByTime(1000);
+        vi.advanceTimersByTime(1000);
       });
       expect(callback).toHaveBeenCalledTimes(2);
 
@@ -475,7 +476,7 @@ describe('useInterval', () => {
       });
 
       act(() => {
-        jest.advanceTimersByTime(1000);
+        vi.advanceTimersByTime(1000);
       });
       expect(callback).toHaveBeenCalledTimes(3);
 
@@ -484,7 +485,7 @@ describe('useInterval', () => {
       });
 
       act(() => {
-        jest.advanceTimersByTime(1000);
+        vi.advanceTimersByTime(1000);
       });
       expect(callback).toHaveBeenCalledTimes(3);
 
@@ -493,13 +494,13 @@ describe('useInterval', () => {
       });
 
       act(() => {
-        jest.advanceTimersByTime(1000);
+        vi.advanceTimersByTime(1000);
       });
       expect(callback).toHaveBeenCalledTimes(4);
     });
 
     test('should expose all expected properties', () => {
-      const callback = jest.fn();
+      const callback = vi.fn();
       const { result } = renderHook(() => useInterval(callback, 1000));
 
       expect(result.current).toHaveProperty('isRunning');
@@ -520,7 +521,7 @@ describe('useInterval', () => {
 
   describe('performance', () => {
     test('should not cause unnecessary re-renders (stable function references)', () => {
-      const callback = jest.fn();
+      const callback = vi.fn();
       const { result, rerender } = renderHook(() => useInterval(callback, 1000));
 
       const firstRender = {

@@ -1,4 +1,5 @@
 import { renderHook, act } from '@testing-library/react';
+import { vi, beforeEach, afterEach } from 'vitest';
 import React from 'react';
 
 import { useHover } from '@/hooks/use-hover';
@@ -10,14 +11,14 @@ describe('useHover', () => {
     // Setup DOM element for testing
     element = document.createElement('div');
     document.body.appendChild(element);
-    jest.useFakeTimers();
+    vi.useFakeTimers();
   });
 
   afterEach(() => {
     // Cleanup DOM element
     document.body.removeChild(element);
-    jest.clearAllTimers();
-    jest.useRealTimers();
+    vi.clearAllTimers();
+    vi.useRealTimers();
   });
 
   describe('basic hover detection', () => {
@@ -111,13 +112,13 @@ describe('useHover', () => {
 
         // Fast-forward time by 199ms - still not hovered
         act(() => {
-          jest.advanceTimersByTime(199);
+          vi.advanceTimersByTime(199);
         });
         expect(result.current).toBe(false);
 
         // Fast-forward time by 1ms more - now hovered
         act(() => {
-          jest.advanceTimersByTime(1);
+          vi.advanceTimersByTime(1);
         });
         expect(result.current).toBe(true);
       });
@@ -132,7 +133,7 @@ describe('useHover', () => {
 
         // Fast-forward time by 100ms
         act(() => {
-          jest.advanceTimersByTime(100);
+          vi.advanceTimersByTime(100);
         });
         expect(result.current).toBe(false);
 
@@ -143,7 +144,7 @@ describe('useHover', () => {
 
         // Fast-forward past the original delay
         act(() => {
-          jest.advanceTimersByTime(150);
+          vi.advanceTimersByTime(150);
         });
 
         // Should still be false since enter was cancelled
@@ -184,13 +185,13 @@ describe('useHover', () => {
 
         // Fast-forward time by 199ms - still hovered
         act(() => {
-          jest.advanceTimersByTime(199);
+          vi.advanceTimersByTime(199);
         });
         expect(result.current).toBe(true);
 
         // Fast-forward time by 1ms more - now not hovered
         act(() => {
-          jest.advanceTimersByTime(1);
+          vi.advanceTimersByTime(1);
         });
         expect(result.current).toBe(false);
       });
@@ -212,7 +213,7 @@ describe('useHover', () => {
 
         // Fast-forward time by 100ms
         act(() => {
-          jest.advanceTimersByTime(100);
+          vi.advanceTimersByTime(100);
         });
         expect(result.current).toBe(true);
 
@@ -223,7 +224,7 @@ describe('useHover', () => {
 
         // Fast-forward past the original delay
         act(() => {
-          jest.advanceTimersByTime(150);
+          vi.advanceTimersByTime(150);
         });
 
         // Should still be true since leave was cancelled
@@ -263,7 +264,7 @@ describe('useHover', () => {
 
         // Fast-forward enter delay
         act(() => {
-          jest.advanceTimersByTime(100);
+          vi.advanceTimersByTime(100);
         });
         expect(result.current).toBe(true);
 
@@ -275,7 +276,7 @@ describe('useHover', () => {
 
         // Fast-forward leave delay
         act(() => {
-          jest.advanceTimersByTime(200);
+          vi.advanceTimersByTime(200);
         });
         expect(result.current).toBe(false);
       });
@@ -291,7 +292,7 @@ describe('useHover', () => {
 
         // Quick leave before enter completes
         act(() => {
-          jest.advanceTimersByTime(50);
+          vi.advanceTimersByTime(50);
         });
         act(() => {
           element.dispatchEvent(new MouseEvent('mouseleave', { bubbles: true }));
@@ -299,7 +300,7 @@ describe('useHover', () => {
 
         // Fast-forward past both delays
         act(() => {
-          jest.advanceTimersByTime(200);
+          vi.advanceTimersByTime(200);
         });
 
         // Should be false since we never fully entered
@@ -343,7 +344,7 @@ describe('useHover', () => {
   describe('cleanup', () => {
     test('should remove event listeners on unmount', () => {
       const ref = { current: element };
-      const removeEventListenerSpy = jest.spyOn(element, 'removeEventListener');
+      const removeEventListenerSpy = vi.spyOn(element, 'removeEventListener');
 
       const { unmount } = renderHook(() => useHover(ref));
 
@@ -371,7 +372,7 @@ describe('useHover', () => {
 
       // Fast-forward past the delay
       act(() => {
-        jest.advanceTimersByTime(500);
+        vi.advanceTimersByTime(500);
       });
 
       // Should still be false since unmount cleared the timeout
@@ -453,7 +454,7 @@ describe('useHover', () => {
       expect(result.current).toBe(false);
 
       act(() => {
-        jest.advanceTimersByTime(100);
+        vi.advanceTimersByTime(100);
       });
       expect(result.current).toBe(true);
 
@@ -472,12 +473,12 @@ describe('useHover', () => {
       expect(result.current).toBe(false);
 
       act(() => {
-        jest.advanceTimersByTime(100);
+        vi.advanceTimersByTime(100);
       });
       expect(result.current).toBe(false);
 
       act(() => {
-        jest.advanceTimersByTime(100);
+        vi.advanceTimersByTime(100);
       });
       expect(result.current).toBe(true);
     });
@@ -501,7 +502,7 @@ describe('useHover', () => {
       expect(result.current).toBe(true);
 
       act(() => {
-        jest.advanceTimersByTime(100);
+        vi.advanceTimersByTime(100);
       });
       expect(result.current).toBe(false);
 
@@ -521,12 +522,12 @@ describe('useHover', () => {
       expect(result.current).toBe(true);
 
       act(() => {
-        jest.advanceTimersByTime(100);
+        vi.advanceTimersByTime(100);
       });
       expect(result.current).toBe(true);
 
       act(() => {
-        jest.advanceTimersByTime(100);
+        vi.advanceTimersByTime(100);
       });
       expect(result.current).toBe(false);
     });
@@ -543,12 +544,12 @@ describe('useHover', () => {
       expect(result.current).toBe(false);
 
       act(() => {
-        jest.advanceTimersByTime(9999);
+        vi.advanceTimersByTime(9999);
       });
       expect(result.current).toBe(false);
 
       act(() => {
-        jest.advanceTimersByTime(1);
+        vi.advanceTimersByTime(1);
       });
       expect(result.current).toBe(true);
     });
@@ -575,7 +576,7 @@ describe('useHover', () => {
       expect(result.current).toBe(false);
 
       act(() => {
-        jest.advanceTimersByTime(151);
+        vi.advanceTimersByTime(151);
       });
       expect(result.current).toBe(true);
     });
@@ -591,13 +592,13 @@ describe('useHover', () => {
         element.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
       });
       act(() => {
-        jest.advanceTimersByTime(100);
+        vi.advanceTimersByTime(100);
       });
       act(() => {
         element.dispatchEvent(new MouseEvent('mouseleave', { bubbles: true }));
       });
       act(() => {
-        jest.advanceTimersByTime(500);
+        vi.advanceTimersByTime(500);
       });
       expect(result.current).toBe(false);
 
@@ -606,7 +607,7 @@ describe('useHover', () => {
         element.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
       });
       act(() => {
-        jest.advanceTimersByTime(500);
+        vi.advanceTimersByTime(500);
       });
       expect(result.current).toBe(true);
 
@@ -616,7 +617,7 @@ describe('useHover', () => {
       });
       expect(result.current).toBe(true);
       act(() => {
-        jest.advanceTimersByTime(100);
+        vi.advanceTimersByTime(100);
       });
       expect(result.current).toBe(true);
 
@@ -625,7 +626,7 @@ describe('useHover', () => {
         element.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
       });
       act(() => {
-        jest.advanceTimersByTime(100);
+        vi.advanceTimersByTime(100);
       });
       expect(result.current).toBe(true);
     });

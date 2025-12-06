@@ -1,29 +1,30 @@
 import * as React from 'react';
+import { vi, Mock } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { Response } from '../response';
 
 // Mock the markdown libraries
-jest.mock('react-markdown', () => ({
+vi.mock('react-markdown', () => ({
   __esModule: true,
   default: ({ children }: { children: string }) => (
     <div data-testid="react-markdown">{children}</div>
   ),
 }));
 
-jest.mock('remark-gfm', () => ({
+vi.mock('remark-gfm', () => ({
   __esModule: true,
-  default: jest.fn(),
+  default: vi.fn(),
 }));
 
-jest.mock('rehype-highlight', () => ({
+vi.mock('rehype-highlight', () => ({
   __esModule: true,
-  default: jest.fn(),
+  default: vi.fn(),
 }));
 
-jest.mock('rehype-raw', () => ({
+vi.mock('rehype-raw', () => ({
   __esModule: true,
-  default: jest.fn(),
+  default: vi.fn(),
 }));
 
 describe('Response', () => {

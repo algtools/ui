@@ -1,9 +1,10 @@
 import React from 'react';
+import { vi, Mock, MockedFunction } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { Toggle } from '../toggle';
 
 // Mock Radix Toggle primitive to simplify rendering and avoid implementation details
-jest.mock('@radix-ui/react-toggle', () => {
+vi.mock('@radix-ui/react-toggle', () => {
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   const React = require('react');
   return {

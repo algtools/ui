@@ -1,4 +1,5 @@
 import { renderHook, waitFor } from '@testing-library/react';
+import { vi, beforeEach, afterEach } from 'vitest';
 
 import { useScript } from '@/hooks/use-script';
 
@@ -232,8 +233,8 @@ describe('useScript', () => {
       const { unmount } = renderHook(() => useScript(src));
 
       const script = getScript(src);
-      const addEventListenerSpy = jest.spyOn(script!, 'addEventListener');
-      const removeEventListenerSpy = jest.spyOn(script!, 'removeEventListener');
+      const addEventListenerSpy = vi.spyOn(script!, 'addEventListener');
+      const removeEventListenerSpy = vi.spyOn(script!, 'removeEventListener');
 
       unmount();
 

@@ -1,9 +1,10 @@
 import React from 'react';
+import { vi, Mock, MockedFunction } from 'vitest';
 import { render } from '@testing-library/react';
 import { HoverCard, HoverCardTrigger, HoverCardContent } from '../hover-card';
 
 // Mock Radix HoverCard primitives to simplify rendering
-jest.mock('@radix-ui/react-hover-card', () => {
+vi.mock('@radix-ui/react-hover-card', () => {
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   const React = require('react');
   return {

@@ -1,10 +1,11 @@
 import React from 'react';
+import { vi, Mock, MockedFunction } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Collapsible, CollapsibleTrigger, CollapsibleContent } from '../collapsible';
 
 // Mock Radix primitives to render simple elements during tests
-jest.mock('@radix-ui/react-collapsible', () => {
+vi.mock('@radix-ui/react-collapsible', () => {
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   const React = require('react');
   return {

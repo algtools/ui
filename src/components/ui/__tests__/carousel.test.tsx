@@ -1,4 +1,5 @@
 import React from 'react';
+import { vi, beforeEach, afterEach, Mock } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import {
   Carousel,
@@ -9,17 +10,17 @@ import {
 } from '../carousel';
 
 // Mock embla-carousel-react hook
-const scrollPrev = jest.fn();
-const scrollNext = jest.fn();
-const canScrollPrev = jest.fn().mockReturnValue(false);
-const canScrollNext = jest.fn().mockReturnValue(true);
-const on = jest.fn();
-const off = jest.fn();
+const scrollPrev = vi.fn();
+const scrollNext = vi.fn();
+const canScrollPrev = vi.fn().mockReturnValue(false);
+const canScrollNext = vi.fn().mockReturnValue(true);
+const on = vi.fn();
+const off = vi.fn();
 
-jest.mock('embla-carousel-react', () => ({
+vi.mock('embla-carousel-react', () => ({
   __esModule: true,
-  default: jest.fn(() => [
-    jest.fn(),
+  default: vi.fn(() => [
+    vi.fn(),
     { scrollPrev, scrollNext, canScrollPrev, canScrollNext, on, off },
   ]),
 }));
