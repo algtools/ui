@@ -306,7 +306,6 @@ describe('useCopyToClipboard', () => {
 
       // Now it should be reset (2000ms from second copy)
       expect(result.current.isCopied).toBe(false);
-      });
     });
 
     test('should clear timeout on manual reset', async () => {
