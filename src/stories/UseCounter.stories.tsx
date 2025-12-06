@@ -521,7 +521,7 @@ function MyComponent() {
 
   return (
     <>
-      <p>Product: {`$${price}`} each</p>
+      <p>Product: {'$' + price} each</p>
       <div className="flex items-center gap-2">
         <Button onClick={() => decrement()} disabled={value === 1}>-</Button>
         <input
@@ -533,7 +533,7 @@ function MyComponent() {
         />
         <Button onClick={() => increment()} disabled={value === 99}>+</Button>
       </div>
-      <p>Total: {`$${total}`}</p>
+      <p>Total: {'$' + total}</p>
     </>
   );
 }`,
