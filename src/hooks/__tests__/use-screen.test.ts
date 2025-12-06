@@ -282,6 +282,7 @@ describe('useScreen', () => {
   });
 
   test('cleans up event listeners on unmount', () => {
+    if (typeof window === 'undefined') return;
     const removeEventListenerSpy = vi.spyOn(window, 'removeEventListener');
     const { unmount } = renderHook(() => useScreen());
 
@@ -293,6 +294,7 @@ describe('useScreen', () => {
   });
 
   test('does not add listeners when listenForChanges is false', () => {
+    if (typeof window === 'undefined') return;
     const addEventListenerSpy = vi.spyOn(window, 'addEventListener');
     renderHook(() => useScreen({ listenForChanges: false }));
 

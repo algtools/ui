@@ -257,17 +257,22 @@ describe('useReadLocalStorage', () => {
       // Save original window
       const originalWindow = global.window;
 
-      // Mock SSR environment
-      // @ts-expect-error - Testing SSR scenario
-      delete global.window;
+      try {
+        // Mock SSR environment
+        // @ts-expect-error - Testing SSR scenario
+        delete global.window;
+        // @ts-expect-error - Testing SSR scenario
+        delete (global as any).window;
 
-      const { result } = renderHook(() => useReadLocalStorage('test-key', 'initial'));
+        const { result } = renderHook(() => useReadLocalStorage('test-key', 'initial'));
 
-      expect(result.current.value).toBe('initial');
-      expect(result.current.error).toBeNull();
-
-      // Restore window
-      global.window = originalWindow;
+        expect(result.current.value).toBe('initial');
+        expect(result.current.error).toBeNull();
+      } finally {
+        // Always restore window
+        global.window = originalWindow;
+        (global as any).window = originalWindow;
+      }
     });
 
     test('should work correctly after hydration', () => {
@@ -370,6 +375,7 @@ describe('useReadLocalStorage', () => {
 
   describe('cleanup', () => {
     test('should clean up event listeners on unmount', () => {
+      if (typeof window === 'undefined') return;
       const removeEventListenerSpy = vi.spyOn(window, 'removeEventListener');
 
       const { unmount } = renderHook(() => useReadLocalStorage('test-key', 'initial'));

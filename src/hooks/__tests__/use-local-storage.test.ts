@@ -248,24 +248,33 @@ describe('useLocalStorage', () => {
       // Save original window
       const originalWindow = global.window;
 
-      // Mock SSR environment
-      // @ts-expect-error - Testing SSR scenario
-      delete global.window;
+      try {
+        // Mock SSR environment
+        // @ts-expect-error - Testing SSR scenario
+        delete global.window;
+        // @ts-expect-error - Testing SSR scenario
+        delete (global as any).window;
 
-      const { result } = renderHook(() => useLocalStorage('test-key', 'initial'));
+        const { result } = renderHook(() => useLocalStorage('test-key', 'initial'));
 
-      expect(result.current.value).toBe('initial');
-      expect(result.current.error).toBeNull();
+        expect(result.current.value).toBe('initial');
+        expect(result.current.error).toBeNull();
 
-      // Restore window before calling setValue (simulating hydration)
-      global.window = originalWindow;
+        // Restore window before calling setValue (simulating hydration)
+        global.window = originalWindow;
+        (global as any).window = originalWindow;
 
-      // Should not throw after window is available
-      act(() => {
-        result.current.setValue('new-value');
-      });
+        // Should not throw after window is available
+        act(() => {
+          result.current.setValue('new-value');
+        });
 
-      expect(result.current.value).toBe('new-value');
+        expect(result.current.value).toBe('new-value');
+      } finally {
+        // Always restore window
+        global.window = originalWindow;
+        (global as any).window = originalWindow;
+      }
     });
 
     test('should not crash when calling setValue before window is available', () => {
@@ -541,6 +550,7 @@ describe('useLocalStorage', () => {
 
   describe('cleanup', () => {
     test('should clean up event listeners on unmount', () => {
+      if (typeof window === 'undefined') return;
       const removeEventListenerSpy = vi.spyOn(window, 'removeEventListener');
 
       const { unmount } = renderHook(() => useLocalStorage('test-key', 'initial'));

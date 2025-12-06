@@ -3,16 +3,16 @@ import { vi, Mock, MockedFunction } from 'vitest';
 import { render, screen } from '@testing-library/react';
 
 // Mock next-themes provider to validate props passthrough
-type MockProviderProps = React.PropsWithChildren<Record<string, unknown>>;
-const MockNextThemesProvider = ({ children, ...props }: MockProviderProps) => (
-  <div data-testid="next-themes" data-props={JSON.stringify(props)}>
-    {children}
-  </div>
-);
-
-vi.mock('next-themes', () => ({
-  ThemeProvider: MockNextThemesProvider,
-}));
+vi.mock('next-themes', () => {
+  const MockNextThemesProvider = ({ children, ...props }: React.PropsWithChildren<Record<string, unknown>>) => (
+    <div data-testid="next-themes" data-props={JSON.stringify(props)}>
+      {children}
+    </div>
+  );
+  return {
+    ThemeProvider: MockNextThemesProvider,
+  };
+});
 
 import { ThemeProvider } from '../theme-provider';
 

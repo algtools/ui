@@ -23,6 +23,9 @@ vi.mock('recharts', () => ({
   Tooltip: ({ children }: { children?: React.ReactNode }) => (
     <div data-testid="recharts-tooltip">{children}</div>
   ),
+  Legend: ({ children }: { children?: React.ReactNode }) => (
+    <div data-testid="recharts-legend">{children}</div>
+  ),
 }));
 
 describe('Chart', () => {

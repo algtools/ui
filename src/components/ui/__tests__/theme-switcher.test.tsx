@@ -118,7 +118,7 @@ describe('ThemeSwitcher', () => {
     vi.useRealTimers();
   });
 
-  xit('injects gif mask CSS when using gif variant with url', async () => {
+  it.skip('injects gif mask CSS when using gif variant with url', async () => {
     const user = userEvent.setup();
     vi.useFakeTimers();
     render(<ThemeSwitcher variant="gif" url="https://example.com/mask.gif" />);

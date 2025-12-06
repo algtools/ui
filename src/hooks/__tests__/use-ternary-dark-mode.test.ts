@@ -584,17 +584,22 @@ describe('useTernaryDarkMode', () => {
       // Save original window
       const originalWindow = global.window;
 
-      // Mock SSR environment
-      // @ts-expect-error - Testing SSR scenario
-      delete global.window;
+      try {
+        // Mock SSR environment
+        // @ts-expect-error - Testing SSR scenario
+        delete global.window;
+        // @ts-expect-error - Testing SSR scenario
+        delete (global as any).window;
 
-      const { result } = renderHook(() => useTernaryDarkMode('light'));
+        const { result } = renderHook(() => useTernaryDarkMode('light'));
 
-      expect(result.current.mode).toBe('light');
-      expect(result.current.isDarkMode).toBe(false);
-
-      // Restore window
-      global.window = originalWindow;
+        expect(result.current.mode).toBe('light');
+        expect(result.current.isDarkMode).toBe(false);
+      } finally {
+        // Always restore window
+        global.window = originalWindow;
+        (global as any).window = originalWindow;
+      }
     });
   });
 

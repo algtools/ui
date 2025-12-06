@@ -305,8 +305,7 @@ describe('useCopyToClipboard', () => {
       });
 
       // Now it should be reset (2000ms from second copy)
-      await waitFor(() => {
-        expect(result.current.isCopied).toBe(false);
+      expect(result.current.isCopied).toBe(false);
       });
     });
 

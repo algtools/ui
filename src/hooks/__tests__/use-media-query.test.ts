@@ -12,6 +12,8 @@ const listenersMap = new Map<string, Set<(event: MediaQueryListEvent) => void>>(
 function installMatchMediaMock() {
   listenersMap.clear();
 
+  if (typeof window === 'undefined') return;
+
   Object.defineProperty(window, 'matchMedia', {
     writable: true,
     value: (query: string) => {
@@ -360,15 +362,20 @@ describe('useMediaQuery', () => {
     test('should return false during SSR (window undefined)', () => {
       const originalWindow = global.window;
 
-      // Simulate SSR by removing window
-      // @ts-expect-error - Intentionally removing window for SSR test
-      delete global.window;
+      try {
+        // Simulate SSR by removing window
+        // @ts-expect-error - Intentionally removing window for SSR test
+        delete global.window;
+        // @ts-expect-error - Testing SSR scenario
+        delete (global as any).window;
 
-      const { result } = renderHook(() => useMediaQuery('(min-width: 768px)'));
-      expect(result.current).toBe(false);
-
-      // Restore window
-      global.window = originalWindow;
+        const { result } = renderHook(() => useMediaQuery('(min-width: 768px)'));
+        expect(result.current).toBe(false);
+      } finally {
+        // Always restore window
+        global.window = originalWindow;
+        (global as any).window = originalWindow;
+      }
     });
   });
 

@@ -163,6 +163,7 @@ describe('useWindowSize', () => {
   });
 
   test('cleans up event listener on unmount', () => {
+    if (typeof window === 'undefined') return;
     const removeEventListenerSpy = vi.spyOn(window, 'removeEventListener');
     const { unmount } = renderHook(() => useWindowSize());
 

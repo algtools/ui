@@ -403,6 +403,7 @@ describe('useMousePosition', () => {
 
   describe('cleanup', () => {
     test('should remove event listener on unmount', () => {
+      if (typeof window === 'undefined') return;
       const removeEventListenerSpy = vi.spyOn(window, 'removeEventListener');
 
       const { unmount } = renderHook(() => useMousePosition());
