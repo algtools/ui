@@ -253,7 +253,7 @@ function ShoppingCartDemo() {
               <div key={item.id} className="flex items-center gap-2 p-2 border rounded-lg">
                 <div className="flex-1">
                   <p className="text-sm font-medium">{item.name}</p>
-                  <p className="text-xs text-muted-foreground">${item.price}</p>
+                  <p className="text-xs text-muted-foreground">{`$${item.price}`}</p>
                 </div>
                 <div className="flex items-center gap-1">
                   <Button
@@ -290,7 +290,7 @@ function ShoppingCartDemo() {
         <div className="border-t pt-4">
           <div className="flex items-center justify-between mb-3">
             <span className="text-lg font-semibold">Total:</span>
-            <span className="text-lg font-bold">${total.toFixed(2)}</span>
+            <span className="text-lg font-bold">{`$${total.toFixed(2)}`}</span>
           </div>
           <div className="flex gap-2">
             <Button onClick={addItem} className="flex-1">
@@ -643,12 +643,12 @@ function MyComponent() {
     <>
       {cart.map((item) => (
         <div key={item.id}>
-          <p>{item.name} - ${item.price} x {item.quantity}</p>
+          <p>{item.name} - {`$${item.price}`} x {item.quantity}</p>
           <Button onClick={() => removeItem(item.id)}>Remove</Button>
         </div>
       ))}
       <Button onClick={addItem}>Add Item</Button>
-      <p>Total: ${total.toFixed(2)}</p>
+      <p>Total: {`$${total.toFixed(2)}`}</p>
     </>
   );
 }`,

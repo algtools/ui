@@ -500,7 +500,7 @@ export const ShoppingCartSheet: Story = {
                     <div className="w-16 h-16 bg-muted rounded-md"></div>
                     <div className="flex-1">
                       <h4 className="text-sm font-medium">{item.name}</h4>
-                      <p className="text-sm text-muted-foreground">${item.price}</p>
+                      <p className="text-sm text-muted-foreground">{`$${item.price}`}</p>
                       <div className="flex items-center space-x-2 mt-2">
                         <Button variant="outline" size="icon" className="h-6 w-6">
                           <Minus className="h-3 w-3" />
@@ -529,7 +529,7 @@ export const ShoppingCartSheet: Story = {
             <div className="space-y-2">
               <div className="flex justify-between">
                 <span>Subtotal</span>
-                <span>${total.toFixed(2)}</span>
+                <span>{`$${total.toFixed(2)}`}</span>
               </div>
               <div className="flex justify-between">
                 <span>Shipping</span>

@@ -130,7 +130,7 @@ function ShoppingCartDemo() {
             <div key={product.id} className="flex items-center justify-between p-2 rounded border">
               <div className="flex-1">
                 <p className="text-sm font-medium">{product.name}</p>
-                <p className="text-xs text-muted-foreground">${product.price}</p>
+                <p className="text-xs text-muted-foreground">{`$${product.price}`}</p>
               </div>
               <Button
                 onClick={() => set(product.id, { name: product.name, price: product.price })}
@@ -153,7 +153,7 @@ function ShoppingCartDemo() {
                   <div key={id} className="flex items-center justify-between">
                     <span className="text-sm">{product.name}</span>
                     <div className="flex items-center gap-2">
-                      <span className="text-sm font-medium">${product.price}</span>
+                      <span className="text-sm font-medium">{`$${product.price}`}</span>
                       <Button
                         onClick={() => remove(id)}
                         variant="ghost"
@@ -170,7 +170,7 @@ function ShoppingCartDemo() {
 
             <div className="flex items-center justify-between p-3 rounded-lg bg-primary/10 border border-primary">
               <span className="font-semibold">Total:</span>
-              <span className="text-xl font-bold">${total}</span>
+              <span className="text-xl font-bold">{`$${total}`}</span>
             </div>
 
             <Button onClick={clear} variant="outline" className="w-full">

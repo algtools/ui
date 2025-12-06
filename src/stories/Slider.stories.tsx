@@ -290,11 +290,11 @@ export const PriceRangeFilter: Story = {
             <div className="flex justify-between items-center">
               <div className="text-sm">
                 <span className="text-muted-foreground">Min: </span>
-                <span className="font-medium">${priceRange[0]}</span>
+                <span className="font-medium">{`$${priceRange[0]}`}</span>
               </div>
               <div className="text-sm">
                 <span className="text-muted-foreground">Max: </span>
-                <span className="font-medium">${priceRange[1]}</span>
+                <span className="font-medium">{`$${priceRange[1]}`}</span>
               </div>
             </div>
           </div>
@@ -582,8 +582,8 @@ export const MultipleRanges: Story = {
             <Label>Price Range</Label>
             <Slider value={priceRange} onValueChange={setPriceRange} min={0} max={1000} step={50} />
             <div className="flex justify-between text-sm text-muted-foreground">
-              <span>${priceRange[0]}</span>
-              <span>${priceRange[1]}</span>
+              <span>{`$${priceRange[0]}`}</span>
+              <span>{`$${priceRange[1]}`}</span>
             </div>
           </div>
 

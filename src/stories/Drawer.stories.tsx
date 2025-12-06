@@ -422,7 +422,7 @@ export const ShoppingCartDrawer: Story = {
             <div className="space-y-2">
               <div className="flex justify-between text-sm">
                 <span>Subtotal</span>
-                <span>${total.toFixed(2)}</span>
+                <span>{`$${total.toFixed(2)}`}</span>
               </div>
               <div className="flex justify-between text-sm">
                 <span>Shipping</span>

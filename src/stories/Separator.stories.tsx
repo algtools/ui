@@ -342,7 +342,7 @@ export const EcommerceCart: Story = {
                   <p className="text-xs text-muted-foreground">Quantity: {item.quantity}</p>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <span className="text-sm font-medium">${item.price}</span>
+                  <span className="text-sm font-medium">{`$${item.price}`}</span>
                   <Button variant="ghost" size="sm" className="h-6 w-6 p-0">
                     <Trash2 className="h-3 w-3" />
                   </Button>
