@@ -43,13 +43,36 @@ for (let i = 0; i < args.length; i++) {
   }
 }
 
-// Helper function to sanitize filenames
+// Helper function to sanitize filenames (kept for backward compatibility)
 function sanitizeFilename(name) {
   return name
     .replace(/[^a-z0-9]/gi, '-')
     .replace(/-+/g, '-')
     .replace(/^-|-$/g, '')
     .toLowerCase();
+}
+
+// Helper function to generate proper file path with folder structure and correct casing
+function generateFilePath(title) {
+  const parts = title.split('/');
+
+  if (parts.length === 1) {
+    // No category, just use the component name as-is
+    return { folder: '', filename: `${parts[0]}.md`, relativePath: `${parts[0]}.md` };
+  }
+
+  // Extract category and component name
+  const category = parts[0];
+  const componentName = parts[parts.length - 1];
+
+  // Create folder name (lowercase category)
+  const folder = category.toLowerCase();
+
+  // Use component name as-is (preserving original casing)
+  const filename = `${componentName}.md`;
+  const relativePath = `${folder}/${filename}`;
+
+  return { folder, filename, relativePath };
 }
 
 // Helper to safely build regex patterns
@@ -714,12 +737,19 @@ function generateMarkdownDocs() {
   // Generate markdown for each component
   const generatedFiles = [];
   for (const component of components) {
-    const filename = `${sanitizeFilename(component.title)}.md`;
-    const filepath = join(docsDir, filename);
+    const { folder, filename, relativePath } = generateFilePath(component.title);
+
+    // Create folder if needed
+    const componentDir = folder ? join(docsDir, folder) : docsDir;
+    if (folder && !existsSync(componentDir)) {
+      mkdirSync(componentDir, { recursive: true });
+    }
+
+    const filepath = join(componentDir, filename);
     const markdown = formatMarkdown(component);
     writeFileSync(filepath, markdown, 'utf8');
-    generatedFiles.push({ filename, filepath, component: component.title });
-    console.log(`  ✓ Generated: ${filename} (${component.title})`);
+    generatedFiles.push({ filename, filepath, relativePath, component: component.title });
+    console.log(`  ✓ Generated: ${relativePath} (${component.title})`);
   }
 
   // Generate index file with organized categories
@@ -730,6 +760,7 @@ function generateMarkdownDocs() {
     const parts = component.title.split('/');
     const category = parts.length > 1 ? parts[0] : 'Other';
     const componentName = parts[parts.length - 1];
+    const { relativePath } = generateFilePath(component.title);
 
     if (!categoryMap.has(category)) {
       categoryMap.set(category, []);
@@ -737,7 +768,7 @@ function generateMarkdownDocs() {
     categoryMap.get(category).push({
       ...component,
       componentName,
-      filename: `${sanitizeFilename(component.title)}.md`,
+      filename: relativePath,
     });
   }
 
@@ -815,7 +846,7 @@ async function initializeR2Client() {
 }
 
 async function cleanR2Bucket(s3Client, prefix = '') {
-  console.log(`🧹 Cleaning R2 bucket root (markdown files only)...`);
+  console.log(`🧹 Cleaning R2 bucket (markdown files only)...`);
 
   let continuationToken = undefined;
   let deletedCount = 0;
@@ -831,11 +862,10 @@ async function cleanR2Bucket(s3Client, prefix = '') {
       const response = await s3Client.send(listCommand);
 
       if (response.Contents && response.Contents.length > 0) {
-        // Filter to only delete markdown files in root (not in subdirectories)
+        // Filter to only delete markdown files (including in subdirectories)
         const markdownFiles = response.Contents.filter((obj) => {
           const key = obj.Key;
-          // Only match .md files in root (no slashes in the path)
-          return key.endsWith('.md') && !key.includes('/');
+          return key.endsWith('.md');
         });
 
         if (markdownFiles.length > 0) {
@@ -856,9 +886,9 @@ async function cleanR2Bucket(s3Client, prefix = '') {
     } while (continuationToken);
 
     if (deletedCount === 0) {
-      console.log(`  No markdown files found to delete in root`);
+      console.log(`  No markdown files found to delete`);
     } else {
-      console.log(`✅ Cleaned ${deletedCount} markdown files from bucket root`);
+      console.log(`✅ Cleaned ${deletedCount} markdown files from bucket`);
     }
   } catch (error) {
     console.warn(`⚠️  Warning: Could not clean bucket: ${error.message}`);
@@ -869,9 +899,27 @@ async function cleanR2Bucket(s3Client, prefix = '') {
 }
 
 async function uploadFilesToR2(s3Client, docsDir, prefix = '') {
-  console.log(`📤 Uploading markdown files to R2 bucket root...`);
+  console.log(`📤 Uploading markdown files to R2 bucket...`);
 
-  const files = readdirSync(docsDir).filter((file) => file.endsWith('.md'));
+  // Recursively find all markdown files
+  function findMarkdownFiles(dir, baseDir = dir) {
+    const files = [];
+    const entries = readdirSync(dir, { withFileTypes: true });
+
+    for (const entry of entries) {
+      const fullPath = join(dir, entry.name);
+      if (entry.isDirectory()) {
+        files.push(...findMarkdownFiles(fullPath, baseDir));
+      } else if (entry.isFile() && entry.name.endsWith('.md')) {
+        const relativePath = fullPath.replace(baseDir + '/', '').replace(/\\/g, '/');
+        files.push({ fullPath, relativePath });
+      }
+    }
+
+    return files;
+  }
+
+  const files = findMarkdownFiles(docsDir);
 
   if (files.length === 0) {
     throw new Error(`No markdown files found in ${docsDir}`);
@@ -879,12 +927,11 @@ async function uploadFilesToR2(s3Client, docsDir, prefix = '') {
 
   let uploadedCount = 0;
 
-  for (const file of files) {
+  for (const { fullPath, relativePath } of files) {
     try {
-      const filePath = join(docsDir, file);
-      const fileContent = readFileSync(filePath, 'utf8');
-      // Upload to root - no prefix, just the filename
-      const key = prefix ? `${prefix}${file}` : file;
+      const fileContent = readFileSync(fullPath, 'utf8');
+      // Upload with folder structure preserved
+      const key = prefix ? `${prefix}${relativePath}` : relativePath;
 
       const putCommand = new PutObjectCommand({
         Bucket: R2_BUCKET_NAME,
@@ -897,12 +944,12 @@ async function uploadFilesToR2(s3Client, docsDir, prefix = '') {
       console.log(`  ✓ Uploaded: ${key}`);
       uploadedCount++;
     } catch (error) {
-      console.error(`  ✗ Failed to upload ${file}: ${error.message}`);
+      console.error(`  ✗ Failed to upload ${relativePath}: ${error.message}`);
       throw error;
     }
   }
 
-  console.log(`✅ Uploaded ${uploadedCount} files to R2 bucket root`);
+  console.log(`✅ Uploaded ${uploadedCount} files to R2 bucket`);
   return uploadedCount;
 }
 
