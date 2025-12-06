@@ -22,6 +22,7 @@ vi.mock('next-themes', () => ({
   useTheme: vi.fn(() => ({ theme: 'system', setTheme: setThemeMock })),
 }));
 
+import { useTheme } from 'next-themes';
 import { ThemeSwitcher, useThemeTransition } from '../theme-switcher';
 
 describe('ThemeSwitcher', () => {
@@ -73,8 +74,7 @@ describe('ThemeSwitcher', () => {
 
   it('renders active indicator and icon color for the current theme', async () => {
     // Make useTheme return dark as the current theme for this test
-    const { useTheme } = require('next-themes');
-    (useTheme as Mock).mockReturnValue({ theme: 'dark', setTheme: setThemeMock });
+    vi.mocked(useTheme).mockReturnValue({ theme: 'dark', setTheme: setThemeMock } as any);
 
     render(<ThemeSwitcher />);
 
@@ -137,7 +137,7 @@ describe('ThemeSwitcher', () => {
     vi.useRealTimers();
   });
 
-  xit('uses polygon animation and selects light/dark keyframes accordingly', async () => {
+  it.skip('uses polygon animation and selects light/dark keyframes accordingly', async () => {
     const user = userEvent.setup();
     vi.useFakeTimers();
     render(<ThemeSwitcher variant="polygon" />);
