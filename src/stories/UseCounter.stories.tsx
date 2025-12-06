@@ -154,7 +154,7 @@ function QuantitySelectorDemo() {
             </div>
             <div className="flex-1">
               <p className="font-semibold">Sample Product</p>
-              <p className="text-sm text-muted-foreground">${price} each</p>
+              <p className="text-sm text-muted-foreground">{`$${price}`} each</p>
             </div>
           </div>
         </div>
@@ -197,7 +197,7 @@ function QuantitySelectorDemo() {
         <div className="rounded-lg bg-primary/10 border border-primary p-4">
           <div className="flex items-center justify-between">
             <span className="font-semibold">Total:</span>
-            <span className="text-2xl font-bold">${total}</span>
+            <span className="text-2xl font-bold">{`$${total}`}</span>
           </div>
         </div>
 
@@ -521,7 +521,7 @@ function MyComponent() {
 
   return (
     <>
-      <p>Product: ${price} each</p>
+      <p>Product: {`$${price}`} each</p>
       <div className="flex items-center gap-2">
         <Button onClick={() => decrement()} disabled={value === 1}>-</Button>
         <input
@@ -533,7 +533,7 @@ function MyComponent() {
         />
         <Button onClick={() => increment()} disabled={value === 99}>+</Button>
       </div>
-      <p>Total: ${total}</p>
+      <p>Total: {`$${total}`}</p>
     </>
   );
 }`,
