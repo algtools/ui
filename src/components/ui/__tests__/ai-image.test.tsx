@@ -1,5 +1,5 @@
 import React from 'react';
-import { vi, beforeEach, afterEach, Mock } from 'vitest';
+import { vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { AIImage } from '../ai-image';
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { vi, Mock } from 'vitest';
+import { vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { Branch, BranchList, BranchTrigger, BranchContent, BranchIndicator } from '../branch';
 import type { Branch as BranchType } from '../../ai/ai-types';

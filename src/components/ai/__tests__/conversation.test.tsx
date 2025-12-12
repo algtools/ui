@@ -1,5 +1,5 @@
 import React from 'react';
-import { vi, beforeEach, afterEach, Mock } from 'vitest';
+import { vi, beforeEach } from 'vitest';
 import { render, screen, waitFor, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Conversation } from '../conversation';

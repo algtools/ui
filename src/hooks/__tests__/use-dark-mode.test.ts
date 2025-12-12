@@ -1,15 +1,6 @@
 import { renderHook, act, waitFor } from '@testing-library/react';
-import { vi, beforeEach, afterEach, Mock } from 'vitest';
+import { vi, beforeEach, afterEach } from 'vitest';
 import { useDarkMode } from '@/hooks/use-dark-mode';
-
-// Helper to check if window is actually undefined (for SSR tests)
-const isWindowUndefined = () => {
-  try {
-    return typeof window === 'undefined';
-  } catch {
-    return true;
-  }
-};
 
 describe('useDarkMode', () => {
   // Setup and teardown

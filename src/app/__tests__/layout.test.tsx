@@ -1,5 +1,5 @@
 import React from 'react';
-import { vi, Mock, MockedFunction } from 'vitest';
+import { vi } from 'vitest';
 import { renderToStaticMarkup } from 'react-dom/server';
 
 // Mock next/font/google to provide stable class names for fonts used by layout

@@ -1,5 +1,5 @@
 import { renderHook, act, waitFor } from '@testing-library/react';
-import { vi, beforeEach, afterEach, Mock } from 'vitest';
+import { vi, beforeEach, afterEach } from 'vitest';
 import { useTernaryDarkMode, type TernaryDarkMode } from '@/hooks/use-ternary-dark-mode';
 
 describe('useTernaryDarkMode', () => {

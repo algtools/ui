@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
 import React from 'react';
-import { vi, Mock, MockedFunction } from 'vitest';
+import { vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 
 // Mock Radix Avatar primitives to avoid image loading behavior in tests
@@ -222,7 +222,6 @@ describe('Message', () => {
 
     it('applies system-specific classes', () => {
       render(<Message role="system" content="Test" />);
-      const article = screen.getByRole('article');
       // System messages should have centered styling
       const messageContent = screen.getByText('Test').parentElement;
       expect(messageContent).toHaveClass('text-center');

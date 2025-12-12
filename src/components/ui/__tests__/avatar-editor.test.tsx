@@ -1,5 +1,5 @@
 import React from 'react';
-import { vi, beforeEach, afterEach, Mock } from 'vitest';
+import { vi, beforeEach, afterEach } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { AvatarEditor } from '../avatar-editor';
 

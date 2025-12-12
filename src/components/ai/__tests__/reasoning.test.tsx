@@ -1,5 +1,5 @@
 import React from 'react';
-import { vi, Mock } from 'vitest';
+import { vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Reasoning, ReasoningProps } from '../reasoning';

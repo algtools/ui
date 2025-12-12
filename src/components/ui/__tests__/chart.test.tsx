@@ -1,5 +1,5 @@
 import React from 'react';
-import { vi, Mock } from 'vitest';
+import { vi } from 'vitest';
 import { render } from '@testing-library/react';
 import type { LegendProps } from 'recharts';
 import { ChartContainer, ChartLegendContent, ChartTooltipContent } from '../chart';

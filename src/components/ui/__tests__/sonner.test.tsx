@@ -1,5 +1,5 @@
 import React from 'react';
-import { vi, Mock } from 'vitest';
+import { vi } from 'vitest';
 import { render } from '@testing-library/react';
 import { Toaster } from '../sonner';
 
@@ -21,7 +21,7 @@ import { useTheme } from 'next-themes';
 
 describe('Toaster (sonner)', () => {
   it('forwards theme from next-themes and merges className and styles', () => {
-    vi.mocked(useTheme).mockReturnValue({ theme: 'dark' } as any);
+    vi.mocked(useTheme).mockReturnValue({ theme: 'dark' } as ReturnType<typeof useTheme>);
 
     const { container } = render(<Toaster position="top-right" />);
     const el = container.querySelector('[data-slot="sonner-toaster"]') as HTMLElement | null;
@@ -45,7 +45,7 @@ describe('Toaster (sonner)', () => {
   });
 
   it('defaults to system theme when theme is undefined', () => {
-    vi.mocked(useTheme).mockReturnValue({} as any);
+    vi.mocked(useTheme).mockReturnValue({} as ReturnType<typeof useTheme>);
 
     const { container } = render(<Toaster />);
     const el = container.querySelector('[data-slot="sonner-toaster"]') as HTMLElement | null;

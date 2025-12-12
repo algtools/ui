@@ -1,5 +1,5 @@
 import React, { act } from 'react';
-import { vi, beforeEach, afterEach } from 'vitest';
+import { vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Sources } from '../sources';
@@ -497,7 +497,6 @@ describe('Sources', () => {
     });
 
     it('prevents default behavior on Space key press', async () => {
-      const user = userEvent.setup();
       const windowSpy = vi.spyOn(window, 'open').mockImplementation(() => null);
 
       render(<Sources sources={mockSources} defaultOpen={true} />);

@@ -643,12 +643,12 @@ function MyComponent() {
     <>
       {cart.map((item) => (
         <div key={item.id}>
-          <p>{item.name} - {`$${item.price}`} x {item.quantity}</p>
+          <p>{item.name} - {'$' + item.price} x {item.quantity}</p>
           <Button onClick={() => removeItem(item.id)}>Remove</Button>
         </div>
       ))}
       <Button onClick={addItem}>Add Item</Button>
-      <p>Total: {`$${total.toFixed(2)}`}</p>
+      <p>Total: {'$' + total.toFixed(2)}</p>
     </>
   );
 }`,

@@ -1,5 +1,5 @@
 import { renderHook } from '@testing-library/react';
-import { vi, beforeEach, afterEach } from 'vitest';
+import { vi, afterEach } from 'vitest';
 import * as React from 'react';
 
 import { useIsomorphicLayoutEffect } from '@/hooks/use-isomorphic-layout-effect';

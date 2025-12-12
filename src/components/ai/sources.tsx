@@ -87,6 +87,7 @@ const SourceItem = React.forwardRef<HTMLDivElement, SourceItemProps>(
             )}
           >
             {source.iconUrl ? (
+              // eslint-disable-next-line @next/next/no-img-element
               <img
                 src={source.iconUrl}
                 alt=""

@@ -11,7 +11,7 @@ vi.mock('react-resizable-panels', () => {
   return { __esModule: true, PanelGroup, Panel, PanelResizeHandle };
 });
 import React from 'react';
-import { vi, Mock, MockedFunction } from 'vitest';
+import { vi } from 'vitest';
 import { render } from '@testing-library/react';
 import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from '../resizable';
 

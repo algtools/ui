@@ -1,5 +1,5 @@
 import React from 'react';
-import { vi, Mock, MockedFunction } from 'vitest';
+import { vi } from 'vitest';
 import { render } from '@testing-library/react';
 import {
   NavigationMenu,

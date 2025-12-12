@@ -1,5 +1,5 @@
 import React from 'react';
-import { vi, Mock, MockedFunction } from 'vitest';
+import { vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { Separator } from '../separator';
 

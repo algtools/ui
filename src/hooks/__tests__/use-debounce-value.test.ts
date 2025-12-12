@@ -1,5 +1,5 @@
 import { renderHook, act } from '@testing-library/react';
-import { vi, beforeEach, afterEach } from 'vitest';
+import { vi, afterEach } from 'vitest';
 
 import { useDebounceValue } from '@/hooks/use-debounce-value';
 

@@ -1,5 +1,5 @@
 import { renderHook } from '@testing-library/react';
-import { vi, beforeEach, afterEach, Mock } from 'vitest';
+import { vi, beforeEach, afterEach } from 'vitest';
 import { useIntersectionObserver } from '@/hooks/use-intersection-observer';
 
 // Mock IntersectionObserver

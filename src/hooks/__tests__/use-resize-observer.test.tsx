@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { vi, beforeEach, afterEach, Mock } from 'vitest';
+import { vi, beforeEach, afterEach } from 'vitest';
 import * as React from 'react';
 
 import { useResizeObserver } from '@/hooks/use-resize-observer';

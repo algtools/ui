@@ -1,5 +1,5 @@
 import { renderHook, act } from '@testing-library/react';
-import { vi, beforeEach, afterEach, Mock } from 'vitest';
+import { vi, beforeEach, afterEach } from 'vitest';
 
 import { useSessionStorage } from '@/hooks/use-session-storage';
 

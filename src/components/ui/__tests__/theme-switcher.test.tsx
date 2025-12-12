@@ -1,6 +1,5 @@
-/* eslint-disable @typescript-eslint/no-require-imports */
 import React from 'react';
-import { vi, beforeEach, afterEach, Mock } from 'vitest';
+import { vi, beforeEach, afterEach } from 'vitest';
 import { render, screen, renderHook, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
@@ -74,7 +73,9 @@ describe('ThemeSwitcher', () => {
 
   it('renders active indicator and icon color for the current theme', async () => {
     // Make useTheme return dark as the current theme for this test
-    vi.mocked(useTheme).mockReturnValue({ theme: 'dark', setTheme: setThemeMock } as any);
+    vi.mocked(useTheme).mockReturnValue(
+      { theme: 'dark', setTheme: setThemeMock } as ReturnType<typeof useTheme>
+    );
 
     render(<ThemeSwitcher />);
 

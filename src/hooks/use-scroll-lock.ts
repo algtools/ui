@@ -165,7 +165,6 @@ export function useScrollLock(options: UseScrollLockOptions = {}): UseScrollLock
         document.body.style.paddingRight = originalStyles.paddingRight || '';
       }
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return React.useMemo(
